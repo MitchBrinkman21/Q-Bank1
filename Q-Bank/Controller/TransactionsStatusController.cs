@@ -15,7 +15,6 @@ namespace Q_Bank.Controller
         {
             this.tss = tss;
             AllesGeselecteerd = false;
-            //tss.FormMain.transactionStatusSelectEverything.Click += SelectAllHandler;
         }
 
 
@@ -37,6 +36,11 @@ namespace Q_Bank.Controller
                 }
                 AllesGeselecteerd = false;
             }
+        }
+
+        public void checkchanged(object sender, EventArgs e)
+        {
+            //var selected = from
         }
     }
 }

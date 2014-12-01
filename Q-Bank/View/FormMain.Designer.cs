@@ -77,7 +77,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-<<<<<<< HEAD
             this.TransactionOverviewTable = new System.Windows.Forms.TableLayoutPanel();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -87,9 +86,7 @@
             this.BalanceLabel = new System.Windows.Forms.Label();
             this.TransactionOverviewAccountsCombobox = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
-=======
             this.TransactionStatusSearch = new System.Windows.Forms.TextBox();
->>>>>>> c77b1af8aabb81d31cb1aad3f4f94edabc20ea07
             this.menuStrip2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.TransactionStatusTableLayout.SuspendLayout();
@@ -685,7 +682,6 @@
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-<<<<<<< HEAD
             // TransactionOverviewTable
             // 
             this.TransactionOverviewTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -803,7 +799,6 @@
             this.label23.Size = new System.Drawing.Size(165, 20);
             this.label23.TabIndex = 4;
             this.label23.Text = "Transactieoverzicht";
-=======
             // TransactionStatusSearch
             // 
             this.TransactionStatusSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -812,7 +807,6 @@
             this.TransactionStatusSearch.Size = new System.Drawing.Size(139, 20);
             this.TransactionStatusSearch.TabIndex = 6;
             this.TransactionStatusSearch.Text = "Search";
->>>>>>> c77b1af8aabb81d31cb1aad3f4f94edabc20ea07
             // 
             // FormMain
             // 
@@ -904,7 +898,6 @@
         public System.Windows.Forms.TextBox transactionTextBox3;
         public System.Windows.Forms.DateTimePicker transactionDateTimePicker1;
         private System.Windows.Forms.NumericUpDown transactionNumericUpDown1;
-<<<<<<< HEAD
         public System.Windows.Forms.TableLayoutPanel TransactionOverviewTable;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
@@ -914,9 +907,7 @@
         private System.Windows.Forms.Label BalanceLabel;
         private System.Windows.Forms.Label label23;
         public System.Windows.Forms.ComboBox TransactionOverviewAccountsCombobox;
-=======
         private System.Windows.Forms.TextBox TransactionStatusSearch;
->>>>>>> c77b1af8aabb81d31cb1aad3f4f94edabc20ea07
     }
 }
 

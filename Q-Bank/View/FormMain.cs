@@ -77,5 +77,22 @@ namespace Q_Bank
                     break;
             }
         }
+
+        private void test()
+        {
+            using (var con = new Q_BANKEntities())
+            {
+
+
+                var usersCol = from c in con.users
+                               select c.firstName;
+
+                user newUser = new user() { firstName = "jan" };
+
+                con.users.Add(newUser);
+
+                con.SaveChanges();
+            }
+        }
     }
 }

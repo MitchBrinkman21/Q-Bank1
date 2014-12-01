@@ -36,7 +36,6 @@ namespace Q_Bank
 
         private void TransactionOverview()
         {
-            InitializeComponent();
             TabTransactionOverview tto = new TabTransactionOverview(this);
         }
 

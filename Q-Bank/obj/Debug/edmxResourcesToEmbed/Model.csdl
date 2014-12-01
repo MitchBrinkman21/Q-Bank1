@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Q_BANKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="account">
+    <Key>
+      <PropertyRef Name="accountId" />
+    </Key>
+    <Property Name="accountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="accountTypeId" Type="Int32" Nullable="false" />
+    <Property Name="balance" Type="Double" Nullable="false" />
+    <Property Name="accountNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="iban" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="bic" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="active" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="accounttype" Relationship="Self.account_fk_Account_AccountType1" FromRole="account" ToRole="accounttype" />
+    <NavigationProperty Name="user" Relationship="Self.account_fk_Rekening_Persoon1" FromRole="account" ToRole="user" />
+    <NavigationProperty Name="transactions" Relationship="Self.transaction_fk_Transactie_Rekening1" FromRole="account" ToRole="transaction" />
+  </EntityType>
+  <EntityType Name="accounttype">
+    <Key>
+      <PropertyRef Name="accountTypeId" />
+    </Key>
+    <Property Name="accountTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="accountTypeName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="accounts" Relationship="Self.account_fk_Account_AccountType1" FromRole="accounttype" ToRole="account" />
+  </EntityType>
+  <EntityType Name="address">
+    <Key>
+      <PropertyRef Name="addressId" />
+    </Key>
+    <Property Name="addressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="active" Type="Int16" Nullable="false" />
+    <Property Name="address1" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="address2" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="number" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="zipcode" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="state" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="country" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="user" Relationship="Self.address_fk_Adres_Gebruiker1" FromRole="address" ToRole="user" />
+  </EntityType>
+  <EntityType Name="email">
+    <Key>
+      <PropertyRef Name="emailId" />
+    </Key>
+    <Property Name="emailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="active" Type="Int16" Nullable="false" />
+    <Property Name="email1" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="user" Relationship="Self.email_fk_Email_Gebruiker1" FromRole="email" ToRole="user" />
+  </EntityType>
+  <EntityType Name="loginlog">
+    <Key>
+      <PropertyRef Name="loginId" />
+    </Key>
+    <Property Name="loginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="ip" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="datetimeLogin" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="user" Relationship="Self.loginlog_fk_Login_User1" FromRole="loginlog" ToRole="user" />
+  </EntityType>
+  <EntityType Name="message">
+    <Key>
+      <PropertyRef Name="messageId" />
+    </Key>
+    <Property Name="messageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="messageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="read" Type="Int16" />
+    <Property Name="deleted" Type="Int16" />
+    <NavigationProperty Name="user" Relationship="Self.message_fk_Message_User1" FromRole="message" ToRole="user" />
+  </EntityType>
+  <EntityType Name="phone">
+    <Key>
+      <PropertyRef Name="phoneId" />
+    </Key>
+    <Property Name="phoneId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="phoneTypeId" Type="Int32" Nullable="false" />
+    <Property Name="phonenumber" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="active" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="phonetype" Relationship="Self.phone_fk_Phone_PhoneType1" FromRole="phone" ToRole="phonetype" />
+    <NavigationProperty Name="user" Relationship="Self.phone_fk_Telefoonnummer_Gebruiker1" FromRole="phone" ToRole="user" />
+  </EntityType>
+  <EntityType Name="phonetype">
+    <Key>
+      <PropertyRef Name="phoneTypeId" />
+    </Key>
+    <Property Name="phoneTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="phoneTypeName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="phones" Relationship="Self.phone_fk_Phone_PhoneType1" FromRole="phonetype" ToRole="phone" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="users" Relationship="Self.user_fk_Gebruiker_Rol1" FromRole="role" ToRole="user" />
+  </EntityType>
+  <EntityType Name="transaction">
+    <Key>
+      <PropertyRef Name="transactionId" />
+    </Key>
+    <Property Name="transactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="accountId" Type="Int32" Nullable="false" />
+    <Property Name="transactionTypeId" Type="Int32" Nullable="false" />
+    <Property Name="transactionStatusId" Type="Int32" Nullable="false" />
+    <Property Name="amount" Type="Double" Nullable="false" />
+    <Property Name="datetime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="commit" Type="Int16" Nullable="false" />
+    <Property Name="executeDatetime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="nameReceiver" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ibanReceiver" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="account" Relationship="Self.transaction_fk_Transactie_Rekening1" FromRole="transaction" ToRole="account" />
+    <NavigationProperty Name="transactionstatu" Relationship="Self.transaction_fk_Transaction_TransactionStatus1" FromRole="transaction" ToRole="transactionstatus" />
+    <NavigationProperty Name="transactiontype" Relationship="Self.transaction_fk_Transaction_TransactionType1" FromRole="transaction" ToRole="transactiontype" />
+  </EntityType>
+  <EntityType Name="transactionstatu">
+    <Key>
+      <PropertyRef Name="transactionStatusId" />
+    </Key>
+    <Property Name="transactionStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="transactionStatusName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="transactions" Relationship="Self.transaction_fk_Transaction_TransactionStatus1" FromRole="transactionstatus" ToRole="transaction" />
+  </EntityType>
+  <EntityType Name="transactiontype">
+    <Key>
+      <PropertyRef Name="transactionTypeId" />
+    </Key>
+    <Property Name="transactionTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="transactionTypeName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="transactions" Relationship="Self.transaction_fk_Transaction_TransactionType1" FromRole="transactiontype" ToRole="transaction" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleId" Type="Int32" Nullable="false" />
+    <Property Name="bsn" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="active" Type="Int16" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="birthDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="username" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="registerDatetime" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="accounts" Relationship="Self.account_fk_Rekening_Persoon1" FromRole="user" ToRole="account" />
+    <NavigationProperty Name="addresses" Relationship="Self.address_fk_Adres_Gebruiker1" FromRole="user" ToRole="address" />
+    <NavigationProperty Name="emails" Relationship="Self.email_fk_Email_Gebruiker1" FromRole="user" ToRole="email" />
+    <NavigationProperty Name="loginlogs" Relationship="Self.loginlog_fk_Login_User1" FromRole="user" ToRole="loginlog" />
+    <NavigationProperty Name="messages" Relationship="Self.message_fk_Message_User1" FromRole="user" ToRole="message" />
+    <NavigationProperty Name="phones" Relationship="Self.phone_fk_Telefoonnummer_Gebruiker1" FromRole="user" ToRole="phone" />
+    <NavigationProperty Name="role" Relationship="Self.user_fk_Gebruiker_Rol1" FromRole="user" ToRole="role" />
+  </EntityType>
+  <Association Name="account_fk_Account_AccountType1">
+    <End Role="accounttype" Type="Self.accounttype" Multiplicity="1" />
+    <End Role="account" Type="Self.account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accounttype">
+        <PropertyRef Name="accountTypeId" />
+      </Principal>
+      <Dependent Role="account">
+        <PropertyRef Name="accountTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="account_fk_Rekening_Persoon1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="account" Type="Self.account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="account">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="transaction_fk_Transactie_Rekening1">
+    <End Role="account" Type="Self.account" Multiplicity="1" />
+    <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="accountId" />
+      </Principal>
+      <Dependent Role="transaction">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="address_fk_Adres_Gebruiker1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="address" Type="Self.address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="address">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="email_fk_Email_Gebruiker1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="email" Type="Self.email" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="email">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="loginlog_fk_Login_User1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="loginlog" Type="Self.loginlog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="loginlog">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="message_fk_Message_User1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="message" Type="Self.message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="message">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="phone_fk_Phone_PhoneType1">
+    <End Role="phonetype" Type="Self.phonetype" Multiplicity="1" />
+    <End Role="phone" Type="Self.phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="phonetype">
+        <PropertyRef Name="phoneTypeId" />
+      </Principal>
+      <Dependent Role="phone">
+        <PropertyRef Name="phoneTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="phone_fk_Telefoonnummer_Gebruiker1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="phone" Type="Self.phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="phone">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="user_fk_Gebruiker_Rol1">
+    <End Role="role" Type="Self.role" Multiplicity="1" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="transaction_fk_Transaction_TransactionStatus1">
+    <End Role="transactionstatus" Type="Self.transactionstatu" Multiplicity="1" />
+    <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transactionstatus">
+        <PropertyRef Name="transactionStatusId" />
+      </Principal>
+      <Dependent Role="transaction">
+        <PropertyRef Name="transactionStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="transaction_fk_Transaction_TransactionType1">
+    <End Role="transactiontype" Type="Self.transactiontype" Multiplicity="1" />
+    <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transactiontype">
+        <PropertyRef Name="transactionTypeId" />
+      </Principal>
+      <Dependent Role="transaction">
+        <PropertyRef Name="transactionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Q_BANKEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="accounts" EntityType="Self.account" />
+    <EntitySet Name="accounttypes" EntityType="Self.accounttype" />
+    <EntitySet Name="addresses" EntityType="Self.address" />
+    <EntitySet Name="emails" EntityType="Self.email" />
+    <EntitySet Name="loginlogs" EntityType="Self.loginlog" />
+    <EntitySet Name="messages" EntityType="Self.message" />
+    <EntitySet Name="phones" EntityType="Self.phone" />
+    <EntitySet Name="phonetypes" EntityType="Self.phonetype" />
+    <EntitySet Name="roles" EntityType="Self.role" />
+    <EntitySet Name="transactions" EntityType="Self.transaction" />
+    <EntitySet Name="transactionstatus" EntityType="Self.transactionstatu" />
+    <EntitySet Name="transactiontypes" EntityType="Self.transactiontype" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="account_fk_Account_AccountType1" Association="Self.account_fk_Account_AccountType1">
+      <End Role="accounttype" EntitySet="accounttypes" />
+      <End Role="account" EntitySet="accounts" />
+    </AssociationSet>
+    <AssociationSet Name="account_fk_Rekening_Persoon1" Association="Self.account_fk_Rekening_Persoon1">
+      <End Role="user" EntitySet="users" />
+      <End Role="account" EntitySet="accounts" />
+    </AssociationSet>
+    <AssociationSet Name="transaction_fk_Transactie_Rekening1" Association="Self.transaction_fk_Transactie_Rekening1">
+      <End Role="account" EntitySet="accounts" />
+      <End Role="transaction" EntitySet="transactions" />
+    </AssociationSet>
+    <AssociationSet Name="address_fk_Adres_Gebruiker1" Association="Self.address_fk_Adres_Gebruiker1">
+      <End Role="user" EntitySet="users" />
+      <End Role="address" EntitySet="addresses" />
+    </AssociationSet>
+    <AssociationSet Name="email_fk_Email_Gebruiker1" Association="Self.email_fk_Email_Gebruiker1">
+      <End Role="user" EntitySet="users" />
+      <End Role="email" EntitySet="emails" />
+    </AssociationSet>
+    <AssociationSet Name="loginlog_fk_Login_User1" Association="Self.loginlog_fk_Login_User1">
+      <End Role="user" EntitySet="users" />
+      <End Role="loginlog" EntitySet="loginlogs" />
+    </AssociationSet>
+    <AssociationSet Name="message_fk_Message_User1" Association="Self.message_fk_Message_User1">
+      <End Role="user" EntitySet="users" />
+      <End Role="message" EntitySet="messages" />
+    </AssociationSet>
+    <AssociationSet Name="phone_fk_Phone_PhoneType1" Association="Self.phone_fk_Phone_PhoneType1">
+      <End Role="phonetype" EntitySet="phonetypes" />
+      <End Role="phone" EntitySet="phones" />
+    </AssociationSet>
+    <AssociationSet Name="phone_fk_Telefoonnummer_Gebruiker1" Association="Self.phone_fk_Telefoonnummer_Gebruiker1">
+      <End Role="user" EntitySet="users" />
+      <End Role="phone" EntitySet="phones" />
+    </AssociationSet>
+    <AssociationSet Name="user_fk_Gebruiker_Rol1" Association="Self.user_fk_Gebruiker_Rol1">
+      <End Role="role" EntitySet="roles" />
+      <End Role="user" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="transaction_fk_Transaction_TransactionStatus1" Association="Self.transaction_fk_Transaction_TransactionStatus1">
+      <End Role="transactionstatus" EntitySet="transactionstatus" />
+      <End Role="transaction" EntitySet="transactions" />
+    </AssociationSet>
+    <AssociationSet Name="transaction_fk_Transaction_TransactionType1" Association="Self.transaction_fk_Transaction_TransactionType1">
+      <End Role="transactiontype" EntitySet="transactiontypes" />
+      <End Role="transaction" EntitySet="transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

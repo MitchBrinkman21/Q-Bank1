@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Q_BANKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="account">
+    <Key>
+      <PropertyRef Name="accountId" />
+    </Key>
+    <Property Name="accountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="accountTypeId" Type="int" Nullable="false" />
+    <Property Name="balance" Type="float" Nullable="false" />
+    <Property Name="accountNumber" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="iban" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="bic" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="active" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="accounttype">
+    <Key>
+      <PropertyRef Name="accountTypeId" />
+    </Key>
+    <Property Name="accountTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="accountTypeName" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="remark" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="address">
+    <Key>
+      <PropertyRef Name="addressId" />
+    </Key>
+    <Property Name="addressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="active" Type="smallint" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="address2" Type="nvarchar" MaxLength="45" />
+    <Property Name="number" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="zipcode" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="city" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="state" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="country" Type="nvarchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <EntityType Name="email">
+    <Key>
+      <PropertyRef Name="emailId" />
+    </Key>
+    <Property Name="emailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="active" Type="smallint" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <EntityType Name="loginlog">
+    <Key>
+      <PropertyRef Name="loginId" />
+    </Key>
+    <Property Name="loginId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="ip" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="datetimeLogin" Type="datetime2" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="message">
+    <Key>
+      <PropertyRef Name="messageId" />
+    </Key>
+    <Property Name="messageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="messageText" Type="nvarchar(max)" />
+    <Property Name="read" Type="smallint" />
+    <Property Name="deleted" Type="smallint" />
+  </EntityType>
+  <EntityType Name="phone">
+    <Key>
+      <PropertyRef Name="phoneId" />
+    </Key>
+    <Property Name="phoneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="phoneTypeId" Type="int" Nullable="false" />
+    <Property Name="phonenumber" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="active" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="phonetype">
+    <Key>
+      <PropertyRef Name="phoneTypeId" />
+    </Key>
+    <Property Name="phoneTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="phoneTypeName" Type="nvarchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleName" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="remark" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="transaction">
+    <Key>
+      <PropertyRef Name="transactionId" />
+    </Key>
+    <Property Name="transactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="accountId" Type="int" Nullable="false" />
+    <Property Name="transactionTypeId" Type="int" Nullable="false" />
+    <Property Name="transactionStatusId" Type="int" Nullable="false" />
+    <Property Name="amount" Type="float" Nullable="false" />
+    <Property Name="datetime" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="commit" Type="smallint" Nullable="false" />
+    <Property Name="executeDatetime" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="nameReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="ibanReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="remark" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="transactionstatus">
+    <Key>
+      <PropertyRef Name="transactionStatusId" />
+    </Key>
+    <Property Name="transactionStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="transactionStatusName" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="remark" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="transactiontype">
+    <Key>
+      <PropertyRef Name="transactionTypeId" />
+    </Key>
+    <Property Name="transactionTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="transactionTypeName" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="remark" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleId" Type="int" Nullable="false" />
+    <Property Name="bsn" Type="nvarchar" MaxLength="45" />
+    <Property Name="active" Type="smallint" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="gender" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="birthDate" Type="date" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="registerDatetime" Type="datetime2" Precision="0" Nullable="false" />
+  </EntityType>
+  <Association Name="account$fk_Account_AccountType1">
+    <End Role="accounttype" Type="Self.accounttype" Multiplicity="1" />
+    <End Role="account" Type="Self.account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accounttype">
+        <PropertyRef Name="accountTypeId" />
+      </Principal>
+      <Dependent Role="account">
+        <PropertyRef Name="accountTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="account$fk_Rekening_Persoon1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="account" Type="Self.account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="account">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="address$fk_Adres_Gebruiker1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="address" Type="Self.address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="address">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="email$fk_Email_Gebruiker1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="email" Type="Self.email" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="email">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="loginlog$fk_Login_User1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="loginlog" Type="Self.loginlog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="loginlog">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="message$fk_Message_User1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="message" Type="Self.message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="message">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="phone$fk_Phone_PhoneType1">
+    <End Role="phonetype" Type="Self.phonetype" Multiplicity="1" />
+    <End Role="phone" Type="Self.phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="phonetype">
+        <PropertyRef Name="phoneTypeId" />
+      </Principal>
+      <Dependent Role="phone">
+        <PropertyRef Name="phoneTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="phone$fk_Telefoonnummer_Gebruiker1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="phone" Type="Self.phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="phone">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="transaction$fk_Transactie_Rekening1">
+    <End Role="account" Type="Self.account" Multiplicity="1" />
+    <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="accountId" />
+      </Principal>
+      <Dependent Role="transaction">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="transaction$fk_Transaction_TransactionStatus1">
+    <End Role="transactionstatus" Type="Self.transactionstatus" Multiplicity="1" />
+    <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transactionstatus">
+        <PropertyRef Name="transactionStatusId" />
+      </Principal>
+      <Dependent Role="transaction">
+        <PropertyRef Name="transactionStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="transaction$fk_Transaction_TransactionType1">
+    <End Role="transactiontype" Type="Self.transactiontype" Multiplicity="1" />
+    <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transactiontype">
+        <PropertyRef Name="transactionTypeId" />
+      </Principal>
+      <Dependent Role="transaction">
+        <PropertyRef Name="transactionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="user$fk_Gebruiker_Rol1">
+    <End Role="role" Type="Self.role" Multiplicity="1" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Q_BANKModelStoreContainer">
+    <EntitySet Name="account" EntityType="Self.account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="accounttype" EntityType="Self.accounttype" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="address" EntityType="Self.address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="email" EntityType="Self.email" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="loginlog" EntityType="Self.loginlog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="message" EntityType="Self.message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="phone" EntityType="Self.phone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="phonetype" EntityType="Self.phonetype" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="transaction" EntityType="Self.transaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="transactionstatus" EntityType="Self.transactionstatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="transactiontype" EntityType="Self.transactiontype" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="account$fk_Account_AccountType1" Association="Self.account$fk_Account_AccountType1">
+      <End Role="accounttype" EntitySet="accounttype" />
+      <End Role="account" EntitySet="account" />
+    </AssociationSet>
+    <AssociationSet Name="account$fk_Rekening_Persoon1" Association="Self.account$fk_Rekening_Persoon1">
+      <End Role="user" EntitySet="user" />
+      <End Role="account" EntitySet="account" />
+    </AssociationSet>
+    <AssociationSet Name="address$fk_Adres_Gebruiker1" Association="Self.address$fk_Adres_Gebruiker1">
+      <End Role="user" EntitySet="user" />
+      <End Role="address" EntitySet="address" />
+    </AssociationSet>
+    <AssociationSet Name="email$fk_Email_Gebruiker1" Association="Self.email$fk_Email_Gebruiker1">
+      <End Role="user" EntitySet="user" />
+      <End Role="email" EntitySet="email" />
+    </AssociationSet>
+    <AssociationSet Name="loginlog$fk_Login_User1" Association="Self.loginlog$fk_Login_User1">
+      <End Role="user" EntitySet="user" />
+      <End Role="loginlog" EntitySet="loginlog" />
+    </AssociationSet>
+    <AssociationSet Name="message$fk_Message_User1" Association="Self.message$fk_Message_User1">
+      <End Role="user" EntitySet="user" />
+      <End Role="message" EntitySet="message" />
+    </AssociationSet>
+    <AssociationSet Name="phone$fk_Phone_PhoneType1" Association="Self.phone$fk_Phone_PhoneType1">
+      <End Role="phonetype" EntitySet="phonetype" />
+      <End Role="phone" EntitySet="phone" />
+    </AssociationSet>
+    <AssociationSet Name="phone$fk_Telefoonnummer_Gebruiker1" Association="Self.phone$fk_Telefoonnummer_Gebruiker1">
+      <End Role="user" EntitySet="user" />
+      <End Role="phone" EntitySet="phone" />
+    </AssociationSet>
+    <AssociationSet Name="transaction$fk_Transactie_Rekening1" Association="Self.transaction$fk_Transactie_Rekening1">
+      <End Role="account" EntitySet="account" />
+      <End Role="transaction" EntitySet="transaction" />
+    </AssociationSet>
+    <AssociationSet Name="transaction$fk_Transaction_TransactionStatus1" Association="Self.transaction$fk_Transaction_TransactionStatus1">
+      <End Role="transactionstatus" EntitySet="transactionstatus" />
+      <End Role="transaction" EntitySet="transaction" />
+    </AssociationSet>
+    <AssociationSet Name="transaction$fk_Transaction_TransactionType1" Association="Self.transaction$fk_Transaction_TransactionType1">
+      <End Role="transactiontype" EntitySet="transactiontype" />
+      <End Role="transaction" EntitySet="transaction" />
+    </AssociationSet>
+    <AssociationSet Name="user$fk_Gebruiker_Rol1" Association="Self.user$fk_Gebruiker_Rol1">
+      <End Role="role" EntitySet="role" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

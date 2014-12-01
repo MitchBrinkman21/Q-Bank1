@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Q_BANKModelStoreContainer" CdmEntityContainer="Q_BANKEntities">
+    <EntitySetMapping Name="accounts">
+      <EntityTypeMapping TypeName="Q_BANKModel.account">
+        <MappingFragment StoreEntitySet="account">
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="accountTypeId" ColumnName="accountTypeId" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+          <ScalarProperty Name="iban" ColumnName="iban" />
+          <ScalarProperty Name="bic" ColumnName="bic" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="accounttypes">
+      <EntityTypeMapping TypeName="Q_BANKModel.accounttype">
+        <MappingFragment StoreEntitySet="accounttype">
+          <ScalarProperty Name="accountTypeId" ColumnName="accountTypeId" />
+          <ScalarProperty Name="accountTypeName" ColumnName="accountTypeName" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="addresses">
+      <EntityTypeMapping TypeName="Q_BANKModel.address">
+        <MappingFragment StoreEntitySet="address">
+          <ScalarProperty Name="addressId" ColumnName="addressId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="address1" ColumnName="address" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="country" ColumnName="country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="emails">
+      <EntityTypeMapping TypeName="Q_BANKModel.email">
+        <MappingFragment StoreEntitySet="email">
+          <ScalarProperty Name="emailId" ColumnName="emailId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="email1" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="loginlogs">
+      <EntityTypeMapping TypeName="Q_BANKModel.loginlog">
+        <MappingFragment StoreEntitySet="loginlog">
+          <ScalarProperty Name="loginId" ColumnName="loginId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="ip" ColumnName="ip" />
+          <ScalarProperty Name="datetimeLogin" ColumnName="datetimeLogin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="messages">
+      <EntityTypeMapping TypeName="Q_BANKModel.message">
+        <MappingFragment StoreEntitySet="message">
+          <ScalarProperty Name="messageId" ColumnName="messageId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="messageText" ColumnName="messageText" />
+          <ScalarProperty Name="read" ColumnName="read" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="phones">
+      <EntityTypeMapping TypeName="Q_BANKModel.phone">
+        <MappingFragment StoreEntitySet="phone">
+          <ScalarProperty Name="phoneId" ColumnName="phoneId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="phoneTypeId" ColumnName="phoneTypeId" />
+          <ScalarProperty Name="phonenumber" ColumnName="phonenumber" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="phonetypes">
+      <EntityTypeMapping TypeName="Q_BANKModel.phonetype">
+        <MappingFragment StoreEntitySet="phonetype">
+          <ScalarProperty Name="phoneTypeId" ColumnName="phoneTypeId" />
+          <ScalarProperty Name="phoneTypeName" ColumnName="phoneTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="Q_BANKModel.role">
+        <MappingFragment StoreEntitySet="role">
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactions">
+      <EntityTypeMapping TypeName="Q_BANKModel.transaction">
+        <MappingFragment StoreEntitySet="transaction">
+          <ScalarProperty Name="transactionId" ColumnName="transactionId" />
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
+          <ScalarProperty Name="transactionStatusId" ColumnName="transactionStatusId" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="datetime" ColumnName="datetime" />
+          <ScalarProperty Name="commit" ColumnName="commit" />
+          <ScalarProperty Name="executeDatetime" ColumnName="executeDatetime" />
+          <ScalarProperty Name="nameReceiver" ColumnName="nameReceiver" />
+          <ScalarProperty Name="ibanReceiver" ColumnName="ibanReceiver" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactionstatus">
+      <EntityTypeMapping TypeName="Q_BANKModel.transactionstatu">
+        <MappingFragment StoreEntitySet="transactionstatus">
+          <ScalarProperty Name="transactionStatusId" ColumnName="transactionStatusId" />
+          <ScalarProperty Name="transactionStatusName" ColumnName="transactionStatusName" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactiontypes">
+      <EntityTypeMapping TypeName="Q_BANKModel.transactiontype">
+        <MappingFragment StoreEntitySet="transactiontype">
+          <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
+          <ScalarProperty Name="transactionTypeName" ColumnName="transactionTypeName" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="Q_BANKModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="bsn" ColumnName="bsn" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="birthDate" ColumnName="birthDate" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="registerDatetime" ColumnName="registerDatetime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

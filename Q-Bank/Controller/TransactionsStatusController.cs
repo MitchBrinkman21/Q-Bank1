@@ -11,10 +11,12 @@ namespace Q_Bank.Controller
     {
         private View.TabTransactionStatus tss;
         private bool AllesGeselecteerd;
+        private List<int> selectedId;
         public TransactionsStatusController(View.TabTransactionStatus tss)
         {
             this.tss = tss;
             AllesGeselecteerd = false;
+            selectedId = new List<int>();
         }
 
 
@@ -38,9 +40,30 @@ namespace Q_Bank.Controller
             }
         }
 
-        public void checkchanged(object sender, EventArgs e)
+        public void Annuleren(object sender, EventArgs e)
         {
-            //var selected = from
+            string a = "";
+            selectedId.Clear();
+            for (int i = 0; i < tss.kies.Count; i++)
+            {
+                if (tss.kies[i].Checked == true)
+                {
+                    selectedId.Add(i);
+                    a += i;
+                }
+            }
+            MessageBox.Show(a, "geselecteerde resultaaten");
+        }
+
+        public void Search(object sender, EventArgs e)
+        {
+            String a = tss.formMain.TransactionStatusSearch.Text;
+            MessageBox.Show(tss.formMain.TransactionStatusSearch.Text, "ingetypte resultaat resultaaten");
+        }
+
+        public void getItems()
+        {
+
         }
     }
 }

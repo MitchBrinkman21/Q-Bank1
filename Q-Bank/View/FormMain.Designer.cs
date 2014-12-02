@@ -883,7 +883,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox TrasactionStatusDropBox;
         private System.Windows.Forms.Label transactionStatusSaldo;
-        private System.Windows.Forms.Button transactionStatusButtonAnnuleren;
+        public System.Windows.Forms.Button transactionStatusButtonAnnuleren;
         public System.Windows.Forms.Button transactionStatusSelectEverything;
         public System.Windows.Forms.TableLayoutPanel TransactionStatusTableLayout;
         private System.Windows.Forms.Label label15;
@@ -907,7 +907,7 @@
         private System.Windows.Forms.Label BalanceLabel;
         private System.Windows.Forms.Label label23;
         public System.Windows.Forms.ComboBox TransactionOverviewAccountsCombobox;
-        private System.Windows.Forms.TextBox TransactionStatusSearch;
+        public System.Windows.Forms.TextBox TransactionStatusSearch;
     }
 }
 

@@ -57,8 +57,8 @@ namespace Q_Bank.Controller
 
         public void Search(object sender, EventArgs e)
         {
-            String a = tss.formMain.TransactionStatusSearch.Text;
-            MessageBox.Show(tss.formMain.TransactionStatusSearch.Text, "ingetypte resultaat resultaaten");
+            String a = tss.formMain.TransactionStatusSearchBar.Text;
+            MessageBox.Show(tss.formMain.TransactionStatusSearchBar.Text, "ingetypte resultaat resultaaten");
         }
 
         public void getItems()

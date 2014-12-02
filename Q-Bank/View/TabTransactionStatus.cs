@@ -21,7 +21,7 @@ namespace Q_Bank.View
             tsc = new Controller.TransactionsStatusController(this);
             formMain.transactionStatusSelectEverything.Click += tsc.SelectAllHandler;
             formMain.transactionStatusButtonAnnuleren.Click += tsc.Annuleren;
-            formMain.TransactionStatusSearch.KeyPress += tsc.Search;
+            formMain.TransactionStatusSearchBar.KeyPress += tsc.Search;
             uitvoerDatum = new List<Label>();
             tegenRekening = new List<Label>();
             omschrijving = new List<Label>();

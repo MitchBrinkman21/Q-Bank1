@@ -326,16 +326,15 @@
             this.TransactionOverviewTable.AutoScroll = true;
             this.TransactionOverviewTable.BackColor = System.Drawing.Color.Transparent;
             this.TransactionOverviewTable.ColumnCount = 5;
-            this.TransactionOverviewTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.76471F));
-            this.TransactionOverviewTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.52941F));
-            this.TransactionOverviewTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.52941F));
-            this.TransactionOverviewTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.41176F));
-            this.TransactionOverviewTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.76471F));
+            this.TransactionOverviewTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.TransactionOverviewTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.TransactionOverviewTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.TransactionOverviewTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.TransactionOverviewTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TransactionOverviewTable.Location = new System.Drawing.Point(48, 114);
             this.TransactionOverviewTable.Name = "TransactionOverviewTable";
-            this.TransactionOverviewTable.RowCount = 2;
+            this.TransactionOverviewTable.RowCount = 1;
             this.TransactionOverviewTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TransactionOverviewTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 11F));
             this.TransactionOverviewTable.Size = new System.Drawing.Size(750, 228);
             this.TransactionOverviewTable.TabIndex = 3;
             // 

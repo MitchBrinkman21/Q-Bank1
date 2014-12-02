@@ -24,8 +24,10 @@ namespace Q_Bank.View
             using (var con = new Q_BANKEntities())
             {
                 formMain.TransactionOverviewTable.Controls.Clear();
+                formMain.TransactionOverviewTable.RowStyles.Clear();
+                formMain.TransactionOverviewTable.RowStyles.Add(new RowStyle(SizeType.Absolute, 20f));
                 AddDefaultLabels();
-                Label tempLabel;
+
                 int i = 0;
                 if (formMain.TransactionOverviewAccountsCombobox.SelectedIndex >= 0)
                 {
@@ -52,45 +54,11 @@ namespace Q_Bank.View
 
                         foreach (transaction t in transactionCol)
                         {
-                            tempLabel = new Label();
-                            tempLabel.Text = t.datetime.ToString();
-                            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 0, i + 1);
-
-                            tempLabel = new Label();
-                            tempLabel.Text = t.nameReceiver.ToString() + " " + t.ibanReceiver.ToString();
-                            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 1, i + 1);
-
-                            tempLabel = new Label();
-                            tempLabel.Text = t.remark.ToString();
-                            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 2, i + 1);
-
-                            String addWithdraw = "Bij";
-                            if (t.amount < 0)
-                            {
-                                addWithdraw = "Af";
-                            }
-                            tempLabel = new Label();
-                            tempLabel.Text = addWithdraw;
-                            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 3, i + 1);
-
-                            double amount = t.amount;
-                            if (t.amount < 0)
-                            {
-                                amount *= -1;
-                            }
-                            tempLabel = new Label();
-                            tempLabel.Text = "€" + amount.ToString();
-                            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 4, i + 1);
-
+                            AddItemsInTable(t, i);
                             i++;
                         }
                     }
-                    else
+                    else if(combobox.Value > 0)
                     {
                         var accountCol = from a in con.accounts
                                          where a.accountId == combobox.Value
@@ -108,69 +76,81 @@ namespace Q_Bank.View
 
                         foreach (transaction t in transactionCol)
                         {
-                            tempLabel = new Label();
-                            tempLabel.Text = t.datetime.ToString();
-                            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 0, i + 1);
-
-                            tempLabel = new Label();
-                            tempLabel.Text = t.nameReceiver.ToString() + " " + t.ibanReceiver.ToString();
-                            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 1, i + 1);
-
-                            tempLabel = new Label();
-                            tempLabel.Text = t.remark.ToString();
-                            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 2, i + 1);
-
-                            String addWithdraw = "Bij";
-                            if (t.amount < 0)
-                            {
-                                addWithdraw = "Af";
-                            }
-                            tempLabel = new Label();
-                            tempLabel.Text = addWithdraw;
-                            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 3, i + 1);
-
-                            tempLabel = new Label();
-                            tempLabel.Text = t.amount.ToString();
-                            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 4, i + 1);
+                            AddItemsInTable(t, i);
 
                             i++;
                         }
                     }
+                    Label tempLabel = new Label();
+                    formMain.TransactionOverviewTable.Controls.Add(tempLabel, 0, formMain.TransactionOverviewTable.RowCount);
                 }
             }
 
         }
 
+        private void AddItemsInTable(transaction t, int i)
+        {
+            Label tempLabel;
+
+            tempLabel = new Label();
+            tempLabel.Text = t.datetime.ToString();
+            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 0, i + 1);
+
+            tempLabel = new Label();
+            tempLabel.Text = t.nameReceiver.ToString() + " " + t.ibanReceiver.ToString();
+            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 1, i + 1);
+
+            tempLabel = new Label();
+            tempLabel.Text = t.remark.ToString();
+            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 2, i + 1);
+
+            String addWithdraw = "Bij";
+            if (t.amount < 0)
+            {
+                addWithdraw = "Af";
+            }
+            tempLabel = new Label();
+            tempLabel.Text = addWithdraw;
+            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 3, i + 1);
+
+            double amount = t.amount;
+            if (t.amount < 0)
+            {
+                amount *= -1;
+            }
+
+            tempLabel = new Label();
+            tempLabel.Text = "€" + String.Format("{0:0,00}", amount.ToString("f2"));
+            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+            formMain.TransactionOverviewTable.Controls.Add(tempLabel, 4, i + 1);
+            formMain.TransactionOverviewTable.RowCount = i+2;
+        }
+
+
         private void AddDefaultLabels()
         {
             lDate = new Label();
             lDate.Text = "Datum";
-            lDate.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             formMain.TransactionOverviewTable.Controls.Add(lDate, 0, 0);
 
             lFromAccount = new Label();
             lFromAccount.Text = "Van rekening";
-            lFromAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             formMain.TransactionOverviewTable.Controls.Add(lFromAccount, 1, 0);
 
             lRemark = new Label();
             lRemark.Text = "Omschrijving";
-            lRemark.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             formMain.TransactionOverviewTable.Controls.Add(lRemark, 2, 0);
 
             lAddWithdraw = new Label();
             lAddWithdraw.Text = "Bij/af";
-            lAddWithdraw.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             formMain.TransactionOverviewTable.Controls.Add(lAddWithdraw, 3, 0);
 
             lAmount = new Label();
             lAmount.Text = "Bedrag";
-            lAmount.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             formMain.TransactionOverviewTable.Controls.Add(lAmount, 4, 0);
         }
     }

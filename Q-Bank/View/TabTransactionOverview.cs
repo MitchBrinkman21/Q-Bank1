@@ -82,15 +82,16 @@ namespace Q_Bank.View
                             {
                                 amount *= -1;
                             }
+                            
                             tempLabel = new Label();
-                            tempLabel.Text = "€" + amount.ToString();
+                            tempLabel.Text = "€" + String.Format("{0:0,00}", amount.ToString("f2"));
                             tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
                             formMain.TransactionOverviewTable.Controls.Add(tempLabel, 4, i + 1);
 
                             i++;
                         }
                     }
-                    else
+                    else if(combobox.Value > 0)
                     {
                         var accountCol = from a in con.accounts
                                          where a.accountId == combobox.Value
@@ -133,8 +134,14 @@ namespace Q_Bank.View
                             tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
                             formMain.TransactionOverviewTable.Controls.Add(tempLabel, 3, i + 1);
 
+                            double amount = t.amount;
+                            if (t.amount < 0)
+                            {
+                                amount *= -1;
+                            }
+
                             tempLabel = new Label();
-                            tempLabel.Text = t.amount.ToString();
+                            tempLabel.Text = "€" + String.Format("{0:0,00}", amount.ToString("f2"));
                             tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
                             formMain.TransactionOverviewTable.Controls.Add(tempLabel, 4, i + 1);
 

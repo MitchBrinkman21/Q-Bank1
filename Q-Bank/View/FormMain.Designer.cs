@@ -806,8 +806,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button transactionButton2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox TrasactionStatusDropBox;
-        private System.Windows.Forms.Label transactionStatusSaldo;
+        public System.Windows.Forms.ComboBox TrasactionStatusDropBox;
+        public System.Windows.Forms.Label transactionStatusSaldo;
         public System.Windows.Forms.Button transactionStatusButtonAnnuleren;
         public System.Windows.Forms.Button transactionStatusSelectEverything;
         public System.Windows.Forms.TableLayoutPanel TransactionStatusTableLayout;

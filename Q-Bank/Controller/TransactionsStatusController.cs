@@ -10,13 +10,14 @@ namespace Q_Bank.Controller
     public class TransactionsStatusController
     {
         private View.TabTransactionStatus tss;
-        private bool AllesGeselecteerd;
+        public bool AllesGeselecteerd { get; set; }
         private List<int> selectedId;
         public TransactionsStatusController(View.TabTransactionStatus tss)
         {
             this.tss = tss;
             AllesGeselecteerd = false;
             selectedId = new List<int>();
+            FillAccountsCombobox();
         }
 
 
@@ -61,9 +62,31 @@ namespace Q_Bank.Controller
             MessageBox.Show(tss.formMain.TransactionStatusSearchBar.Text, "ingetypte resultaat resultaaten");
         }
 
-        public void getItems()
+        private void FillAccountsCombobox()
         {
+            using (var con = new Q_BANKEntities())
+            { 
+                int userId = 1;
+                tss.formMain.TrasactionStatusDropBox.Items.Clear();
+                var accountsCol = from a in con.accounts
+                                  where a.userId == userId
+                                  select a;
 
+                if (accountsCol.Count() > 0)
+                {
+                    tss.formMain.TrasactionStatusDropBox.Items.Add(new ComboBoxItem(0, "Alle rekeningen"));
+                    tss.formMain.TrasactionStatusDropBox.SelectedIndex = 0;
+                    foreach (account a in accountsCol)
+                    {
+                        tss.formMain.TrasactionStatusDropBox.Items.Add(new ComboBoxItem(a.accountId, a.iban.ToString()));
+                    }
+                }
+                else
+                {
+                    tss.formMain.TrasactionStatusDropBox.Items.Add(new ComboBoxItem(-1, "Geen rekeningen gevonden"));
+                    tss.formMain.TrasactionStatusDropBox.SelectedIndex = 0;
+                }
+            }
         }
     }
 }

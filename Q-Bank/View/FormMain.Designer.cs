@@ -33,7 +33,7 @@
             this.optiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afsluitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.TransactionStatusSearch = new System.Windows.Forms.TextBox();
+            this.TransactionStatusSearchBar = new System.Windows.Forms.TextBox();
             this.TransactionStatusTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -130,7 +130,7 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.TransactionStatusSearch);
+            this.tabPage4.Controls.Add(this.TransactionStatusSearchBar);
             this.tabPage4.Controls.Add(this.TransactionStatusTableLayout);
             this.tabPage4.Controls.Add(this.transactionStatusButtonAnnuleren);
             this.tabPage4.Controls.Add(this.transactionStatusSelectEverything);
@@ -147,12 +147,12 @@
             // 
             // TransactionStatusSearch
             // 
-            this.TransactionStatusSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TransactionStatusSearch.Location = new System.Drawing.Point(681, 55);
-            this.TransactionStatusSearch.Name = "TransactionStatusSearch";
-            this.TransactionStatusSearch.Size = new System.Drawing.Size(139, 20);
-            this.TransactionStatusSearch.TabIndex = 6;
-            this.TransactionStatusSearch.Text = "Search";
+            this.TransactionStatusSearchBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TransactionStatusSearchBar.Location = new System.Drawing.Point(681, 55);
+            this.TransactionStatusSearchBar.Name = "TransactionStatusSearch";
+            this.TransactionStatusSearchBar.Size = new System.Drawing.Size(139, 20);
+            this.TransactionStatusSearchBar.TabIndex = 6;
+            this.TransactionStatusSearchBar.Text = "Search";
             // 
             // TransactionStatusTableLayout
             // 
@@ -807,7 +807,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox TrasactionStatusDropBox;
         private System.Windows.Forms.Label transactionStatusSaldo;
-        private System.Windows.Forms.Button transactionStatusButtonAnnuleren;
+        public System.Windows.Forms.Button transactionStatusButtonAnnuleren;
         public System.Windows.Forms.Button transactionStatusSelectEverything;
         public System.Windows.Forms.TableLayoutPanel TransactionStatusTableLayout;
         private System.Windows.Forms.Label label15;
@@ -825,8 +825,10 @@
         public System.Windows.Forms.TableLayoutPanel TransactionOverviewTable;
         private System.Windows.Forms.Label label23;
         public System.Windows.Forms.ComboBox TransactionOverviewAccountsCombobox;
+        public System.Windows.Forms.TextBox TransactionStatusSearchBar;
         private System.Windows.Forms.TextBox TransactionStatusSearch;
         public System.Windows.Forms.Label TransactionOverviewBalanceLabel;
+
     }
 }
 

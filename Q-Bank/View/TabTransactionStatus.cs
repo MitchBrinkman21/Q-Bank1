@@ -20,14 +20,16 @@ namespace Q_Bank.View
             this.formMain = formMain;
             tsc = new Controller.TransactionsStatusController(this);
             formMain.transactionStatusSelectEverything.Click += tsc.SelectAllHandler;
+            formMain.transactionStatusButtonAnnuleren.Click += tsc.Annuleren;
+            formMain.TransactionStatusSearchBar.KeyPress += tsc.Search;
             uitvoerDatum = new List<Label>();
             tegenRekening = new List<Label>();
             omschrijving = new List<Label>();
             bedrag = new List<Label>();
             status = new List<Label>();
             kies = new List<CheckBox>();
+            tsc.getItems();
             AddTransactions();
-
             //verwijderd de verticale scrollbar
             int vertScrollWidth = SystemInformation.VerticalScrollBarWidth;
             formMain.TransactionStatusTableLayout.Padding = new Padding(0, 0, vertScrollWidth, 0);
@@ -42,9 +44,6 @@ namespace Q_Bank.View
             {
                 CheckBox tempCBox = new CheckBox();
                 tempCBox.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                tempCBox.CheckedChanged += tsc.checkchanged;
-                tempCBox.Name = "12";
-                tempCBox.Text = "12";
                 formMain.TransactionStatusTableLayout.Controls.Add(tempCBox, 0, i + 2);
                 kies.Add(tempCBox);
 

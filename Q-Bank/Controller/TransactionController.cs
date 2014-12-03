@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,12 +20,12 @@ namespace Q_Bank.Controller
 
         public void fillComboBox()
         {
-            
+
             formMain.transactionComboBox1.Items.Clear();
             using (var con = new Q_BANKEntities())
             {
                 var query = from c in con.accounts
-                            where c.customerId == 2
+                            where c.customerId == 1
                             select c;
 
                 if (query.Count() > 0)
@@ -49,104 +50,85 @@ namespace Q_Bank.Controller
             }
         }
 
-        public void sendTransactionOverview(object sender, System.EventArgs e)
-        {
-
-            if (formMain.transactionComboBox1.SelectedIndex != 0)
-            {
-                //Check of alle tekstboxen zijn gevuld
-                if (!String.IsNullOrEmpty(formMain.transactionTextBox1.Text) &&
-                    !String.IsNullOrEmpty(formMain.transactionTextBox2.Text) &&
-                    !String.IsNullOrEmpty(formMain.transactionTextBox3.Text) &&
-                    Convert.ToDouble(formMain.transactionNumericUpDown1.Text) != 0.00)
-                {
-                    //Check IBANformaat
-                    if (isIbanChecksumValid(formMain.transactionTextBox2.Text))
-                    {
-                        using (var con = new Q_BANKEntities())
-                        {
-                            transaction newTransaction = new transaction()
-                            {
-                                accountId = 2,
-                                transactionTypeId = 1,
-                                transactionStatusId = 1,
-                                amount = Convert.ToDouble(formMain.transactionNumericUpDown1.Text),
-                                datetime = DateTime.Today,
-                                commit = 0,
-                                executeDate = Convert.ToDateTime(formMain.transactionDateTimePicker1.Value),
-                                nameReceiver = formMain.transactionTextBox1.Text,
-                                ibanReceiver = formMain.transactionTextBox2.Text,
-                                remark = formMain.transactionTextBox3.Text
-                            };
-                            con.transactions.Add(newTransaction);
-                            con.SaveChanges();
-
-                            //Reset calendar and textboxes
-                            formMain.transactionTextBox1.Text = String.Empty;
-                            formMain.transactionTextBox2.Text = String.Empty;
-                            formMain.transactionTextBox3.Text = String.Empty;
-                            formMain.transactionDateTimePicker1.Text = DateTime.Today.ToString();
-                            formMain.transactionNumericUpDown1.Text = "0.00";
-                            formMain.transactionLabel9.Text = String.Empty;
-                        }
-                    }
-                    else
-                    {
-                        formMain.transactionLabel9.ForeColor = System.Drawing.Color.Red;
-                        formMain.transactionLabel9.Text = "Dit is geen legitieme IBAN";
-                    }
-                }
-                else
-                {
-                    formMain.transactionLabel9.ForeColor = System.Drawing.Color.Red;
-                    formMain.transactionLabel9.Text = "Niet alle tekstvelden zijn ingevuld";
-                }
-            }
-            else
-            {
-                formMain.transactionLabel9.ForeColor = System.Drawing.Color.Red;
-                formMain.transactionLabel9.Text = "Er is geen rekening geselecteerd";
-            }
-        }
-
         public void sendTransactionNew(object sender, System.EventArgs e)
         {
+            if (IsCorrectlyFilledIn())
+            {
+                using (var con = new Q_BANKEntities())
+                {
+                    transaction newTransaction = new transaction()
+                    {
+                        accountId = 2,
+                        transactionTypeId = 1,
+                        transactionStatusId = 1,
+                        amount = Convert.ToDouble(formMain.transactionNumericUpDown1.Text),
+                        datetime = DateTime.Today,
+                        executeDate = Convert.ToDateTime(formMain.transactionDateTimePicker1.Value),
+                        commitDatetime = null,
+                        commit = 0,
+                        nameReceiver = formMain.transactionTextBox1.Text,
+                        ibanReceiver = formMain.transactionTextBox2.Text,
+                        remark = formMain.transactionTextBox3.Text,
+                        sepa = 0,
+                        bic = "QBank"
+                    };
+                    con.transactions.Add(newTransaction);
+                    con.SaveChanges();
 
+
+                }
+                resetFields();
+            }
+        }
+
+        public void sendTransactionOverview(object sender, System.EventArgs e)
+        {
+            if (IsCorrectlyFilledIn())
+            {
+                using (var con = new Q_BANKEntities())
+                {
+                    transaction newTransaction = new transaction()
+                    {
+                        accountId = 2,
+                        transactionTypeId = 1,
+                        transactionStatusId = 1,
+                        amount = Convert.ToDouble(formMain.transactionNumericUpDown1.Text),
+                        datetime = DateTime.Now,
+                        executeDate = Convert.ToDateTime(formMain.transactionDateTimePicker1.Value),
+                        commitDatetime = null,
+                        commit = 0,
+                        nameReceiver = formMain.transactionTextBox1.Text,
+                        ibanReceiver = formMain.transactionTextBox2.Text,
+                        remark = formMain.transactionTextBox3.Text,
+                        sepa = 0,
+                        bic = "QBank"
+                    };
+                    con.transactions.Add(newTransaction);
+                    con.SaveChanges();
+
+
+                }
+                resetFields();
+                formMain.tabControl1.SelectedIndex = 3;
+            }
+
+        }
+
+        private Boolean IsCorrectlyFilledIn()
+        {
+            Boolean filled = false;
             if (formMain.transactionComboBox1.SelectedIndex != 0)
             {
-                //Check of alle tekstboxen zijn gevuld
+
                 if (!String.IsNullOrEmpty(formMain.transactionTextBox1.Text) &&
-                    !String.IsNullOrEmpty(formMain.transactionTextBox2.Text) &&
-                    !String.IsNullOrEmpty(formMain.transactionTextBox3.Text) &&
-                    Convert.ToDouble(formMain.transactionNumericUpDown1.Text) != 0.00)
+                        !String.IsNullOrEmpty(formMain.transactionTextBox2.Text) &&
+                        !String.IsNullOrEmpty(formMain.transactionTextBox3.Text) &&
+                        Convert.ToDouble(formMain.transactionNumericUpDown1.Text) != 0.00)
                 {
                     //Check IBANformaat
                     if (isIbanChecksumValid(formMain.transactionTextBox2.Text))
                     {
-                        var con = FormMain.connection;
-                        transaction newTransaction = new transaction()
-                        {
-                            accountId = 2,
-                            transactionTypeId = 1,
-                            transactionStatusId = 1,
-                            amount = Convert.ToDouble(formMain.transactionNumericUpDown1.Text),
-                            datetime = DateTime.Today,
-                            commit = 0,
-                            executeDate = Convert.ToDateTime(formMain.transactionDateTimePicker1.Value),
-                            nameReceiver = formMain.transactionTextBox1.Text,
-                            ibanReceiver = formMain.transactionTextBox2.Text,
-                            remark = formMain.transactionTextBox3.Text
-                        };
-                        con.transactions.Add(newTransaction);
-                        con.SaveChanges();
-
-                        //Reset calendar and textboxes
-                        formMain.transactionTextBox1.Text = String.Empty;
-                        formMain.transactionTextBox2.Text = String.Empty;
-                        formMain.transactionTextBox3.Text = String.Empty;
-                        formMain.transactionDateTimePicker1.Text = DateTime.Today.ToString();
-                        formMain.transactionNumericUpDown1.Text = "0.00";
-                        formMain.transactionLabel9.Text = String.Empty;
+                        filled = true;
                     }
                     else
                     {
@@ -165,8 +147,20 @@ namespace Q_Bank.Controller
                 formMain.transactionLabel9.ForeColor = System.Drawing.Color.Red;
                 formMain.transactionLabel9.Text = "Er is geen rekening geselecteerd";
             }
+            return filled;
         }
 
+        private void resetFields()
+        {
+            formMain.transactionTextBox1.Text = String.Empty;
+            formMain.transactionTextBox2.Text = String.Empty;
+            formMain.transactionTextBox3.Text = String.Empty;
+            formMain.transactionDateTimePicker1.Text = DateTime.Today.ToString();
+            formMain.transactionNumericUpDown1.Text = "0.00";
+            formMain.transactionLabel9.Text = String.Empty;
+        }
+
+ 
         //Check if the IBAN format is valid
         public static bool isIbanChecksumValid(string iban)
         {

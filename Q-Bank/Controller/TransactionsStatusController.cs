@@ -11,12 +11,12 @@ namespace Q_Bank.Controller
     {
         private View.TabTransactionStatus tss;
         public bool AllesGeselecteerd { get; set; }
-        private List<int> selectedId;
+        //private List<int> selectedId;
         public TransactionsStatusController(View.TabTransactionStatus tss)
         {
             this.tss = tss;
             AllesGeselecteerd = false;
-            selectedId = new List<int>();
+            //selectedId = new List<int>();
             FillAccountsCombobox();
         }
 
@@ -44,22 +44,15 @@ namespace Q_Bank.Controller
         public void Annuleren(object sender, EventArgs e)
         {
             string a = "";
-            selectedId.Clear();
-            for (int i = 0; i < tss.kies.Count; i++)
+            //selectedId.Clear();
+            var selectedId = from id in tss.kies
+                                       where id.Checked == true
+                                       select id.Tag;
+            foreach (int id in selectedId)
             {
-                if (tss.kies[i].Checked == true)
-                {
-                    selectedId.Add(i);
-                    a += i;
-                }
+                a += id;
             }
             MessageBox.Show(a, "geselecteerde resultaaten");
-        }
-
-        public void Search(object sender, EventArgs e)
-        {
-            String a = tss.formMain.TransactionStatusSearchBar.Text;
-            MessageBox.Show(tss.formMain.TransactionStatusSearchBar.Text, "ingetypte resultaat resultaaten");
         }
 
         private void FillAccountsCombobox()
@@ -87,6 +80,16 @@ namespace Q_Bank.Controller
                     tss.formMain.TrasactionStatusDropBox.SelectedIndex = 0;
                 }
             }
+        }
+
+        public void clickLabelDate(object sender, EventArgs e)
+        {
+            Label clickedLabel = sender as Label;
+            View.TransactionDetails d = new View.TransactionDetails(Convert.ToInt32(clickedLabel.Tag));
+            d.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            d.ShowDialog();
         }
     }
 }

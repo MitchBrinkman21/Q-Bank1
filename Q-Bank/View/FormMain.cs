@@ -15,7 +15,6 @@ namespace Q_Bank
 {
     public partial class FormMain : Form
     {
-        public TabTransactionStatus tts;
         public static Q_BANKEntities connection = new Q_BANKEntities();
         public FormMain()
         {
@@ -45,10 +44,7 @@ namespace Q_Bank
         private void TransactionStatus()
         {
 
-    
-            TabTransactionStatus tts = new TabTransactionStatus(this);            
-
-            tts = new TabTransactionStatus(this);            
+            TabTransactionStatus tts = new TabTransactionStatus(this);                      
 
         }
 

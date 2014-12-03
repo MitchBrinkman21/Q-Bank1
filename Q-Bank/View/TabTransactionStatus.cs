@@ -53,7 +53,7 @@ namespace Q_Bank.View
                     {
                         int userId = 1;
                         var accountCol = from a in con.accounts
-                                         where a.userId == userId
+                                         where a.customerId == userId
                                          select a;
                         if (accountCol.Count() > 0)
                         {

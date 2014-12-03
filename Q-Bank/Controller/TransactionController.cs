@@ -24,7 +24,7 @@ namespace Q_Bank.Controller
             using (var con = new Q_BANKEntities())
             {
                 var query = from c in con.accounts
-                            where c.userId == 2
+                            where c.customerId == 2
                             select c;
 
                 if (query.Count() > 0)
@@ -73,7 +73,7 @@ namespace Q_Bank.Controller
                                 amount = Convert.ToDouble(formMain.transactionNumericUpDown1.Text),
                                 datetime = DateTime.Today,
                                 commit = 0,
-                                executeDatetime = Convert.ToDateTime(formMain.transactionDateTimePicker1.Value),
+                                executeDate = Convert.ToDateTime(formMain.transactionDateTimePicker1.Value),
                                 nameReceiver = formMain.transactionTextBox1.Text,
                                 ibanReceiver = formMain.transactionTextBox2.Text,
                                 remark = formMain.transactionTextBox3.Text
@@ -132,7 +132,7 @@ namespace Q_Bank.Controller
                             amount = Convert.ToDouble(formMain.transactionNumericUpDown1.Text),
                             datetime = DateTime.Today,
                             commit = 0,
-                            executeDatetime = Convert.ToDateTime(formMain.transactionDateTimePicker1.Value),
+                            executeDate = Convert.ToDateTime(formMain.transactionDateTimePicker1.Value),
                             nameReceiver = formMain.transactionTextBox1.Text,
                             ibanReceiver = formMain.transactionTextBox2.Text,
                             remark = formMain.transactionTextBox3.Text

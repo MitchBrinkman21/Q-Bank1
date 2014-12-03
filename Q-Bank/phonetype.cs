@@ -16,12 +16,14 @@ namespace Q_Bank
     {
         public phonetype()
         {
-            this.phones = new HashSet<phone>();
+            this.customerphones = new HashSet<customerphone>();
+            this.employeephones = new HashSet<employeephone>();
         }
     
         public int phoneTypeId { get; set; }
         public string phoneTypeName { get; set; }
     
-        public virtual ICollection<phone> phones { get; set; }
+        public virtual ICollection<customerphone> customerphones { get; set; }
+        public virtual ICollection<employeephone> employeephones { get; set; }
     }
 }

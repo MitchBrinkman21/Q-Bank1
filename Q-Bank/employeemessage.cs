@@ -12,19 +12,14 @@ namespace Q_Bank
     using System;
     using System.Collections.Generic;
     
-    public partial class address
+    public partial class employeemessage
     {
-        public int addressId { get; set; }
-        public int userId { get; set; }
-        public short active { get; set; }
-        public string address1 { get; set; }
-        public string address2 { get; set; }
-        public string number { get; set; }
-        public string zipcode { get; set; }
-        public string city { get; set; }
-        public string state { get; set; }
-        public string country { get; set; }
+        public int customerMessageId { get; set; }
+        public int employeeId { get; set; }
+        public string messageText { get; set; }
+        public Nullable<short> read { get; set; }
+        public Nullable<short> deleted { get; set; }
     
-        public virtual user user { get; set; }
+        public virtual employee employee { get; set; }
     }
 }

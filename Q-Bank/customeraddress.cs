@@ -12,13 +12,19 @@ namespace Q_Bank
     using System;
     using System.Collections.Generic;
     
-    public partial class email
+    public partial class customeraddress
     {
-        public int emailId { get; set; }
-        public int userId { get; set; }
+        public int customeAddressId { get; set; }
+        public int customerId { get; set; }
         public short active { get; set; }
-        public string email1 { get; set; }
+        public string address { get; set; }
+        public string address2 { get; set; }
+        public string number { get; set; }
+        public string zipcode { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public string country { get; set; }
     
-        public virtual user user { get; set; }
+        public virtual customer customer { get; set; }
     }
 }

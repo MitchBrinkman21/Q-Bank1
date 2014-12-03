@@ -31,14 +31,12 @@ namespace Q_Bank
 
         private void Transaction()
         {
-
-            TabTransaction tt = new TabTransaction(this);
+            TransactionController tc = new TransactionController(this);
         }
 
         private void TransactionOverview()
         {
-
-            TabTransactionOverview tto = new TabTransactionOverview(this);
+            TransactionOverviewController toc = new TransactionOverviewController(this);
         }
 
         private void TransactionStatus()
@@ -86,12 +84,12 @@ namespace Q_Bank
             {
 
 
-                var usersCol = from c in con.users
+                var usersCol = from c in con.customers
                                select c.firstName;
 
-                user newUser = new user() { firstName = "jan" };
+                customer newUser = new customer() { firstName = "jan" };
 
-                con.users.Add(newUser);
+                con.customers.Add(newUser);
 
                 //con.SaveChanges();
             }

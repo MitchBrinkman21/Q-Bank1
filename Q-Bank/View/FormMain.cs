@@ -16,13 +16,13 @@ namespace Q_Bank
     public partial class FormMain : Form
     {
         public TabTransactionStatus tts;
-       
+        public static Q_BANKEntities connection = new Q_BANKEntities();
         public FormMain()
         {
             InitializeComponent();
             Home();
             test();
-        }
+         }
 
         private void Home()
         {
@@ -32,6 +32,7 @@ namespace Q_Bank
 
         private void Transaction()
         {
+
             TabTransaction tt = new TabTransaction(this);
         }
 
@@ -42,7 +43,12 @@ namespace Q_Bank
 
         private void TransactionStatus()
         {
+
+    
+            TabTransactionStatus tts = new TabTransactionStatus(this);            
+
             tts = new TabTransactionStatus(this);            
+
         }
 
         private void afsluitenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -93,5 +99,6 @@ namespace Q_Bank
                 //con.SaveChanges();
             }
         }
+
     }
 }

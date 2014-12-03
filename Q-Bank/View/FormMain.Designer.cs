@@ -83,6 +83,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.transactionLabel9 = new System.Windows.Forms.Label();
             this.menuStrip2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.TransactionStatusTableLayout.SuspendLayout();
@@ -434,6 +435,7 @@
             this.transactionTableLayoutPanel3.Controls.Add(this.transactionLabel7, 2, 2);
             this.transactionTableLayoutPanel3.Controls.Add(this.transactionDateTimePicker1, 3, 2);
             this.transactionTableLayoutPanel3.Controls.Add(this.transactionNumericUpDown1, 3, 1);
+            this.transactionTableLayoutPanel3.Controls.Add(this.transactionLabel9, 1, 0);
             this.transactionTableLayoutPanel3.Cursor = System.Windows.Forms.Cursors.Default;
             this.transactionTableLayoutPanel3.Location = new System.Drawing.Point(138, 79);
             this.transactionTableLayoutPanel3.Name = "transactionTableLayoutPanel3";
@@ -566,9 +568,6 @@
             // transactionComboBox1
             // 
             this.transactionComboBox1.FormattingEnabled = true;
-            this.transactionComboBox1.Items.AddRange(new object[] {
-            "12.34.56.789 - Betaalrekening - EUR 1.232,03",
-            "13.21.86.333 - Betaalrekening - EUR 8.623,08"});
             this.transactionComboBox1.Location = new System.Drawing.Point(138, 38);
             this.transactionComboBox1.Name = "transactionComboBox1";
             this.transactionComboBox1.Size = new System.Drawing.Size(286, 21);
@@ -744,6 +743,14 @@
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
+            // transactionLabel9
+            // 
+            this.transactionLabel9.AutoSize = true;
+            this.transactionLabel9.Location = new System.Drawing.Point(125, 0);
+            this.transactionLabel9.Name = "transactionLabel9";
+            this.transactionLabel9.Size = new System.Drawing.Size(0, 13);
+            this.transactionLabel9.TabIndex = 16;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -839,6 +846,7 @@
         private System.Windows.Forms.TextBox TransactionStatusSearch;
         public System.Windows.Forms.Label TransactionOverviewBalanceLabel;
         public System.Windows.Forms.TextBox TransactionOverviewSearchTextbox;
+        public System.Windows.Forms.Label transactionLabel9;
 
     }
 }

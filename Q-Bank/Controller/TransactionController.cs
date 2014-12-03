@@ -39,7 +39,7 @@ namespace Q_Bank.Controller
                         var query2 = from at in con.accounttypes
                                      where at.accountTypeId == a.accountTypeId
                                      select at;
-                        formMain.transactionComboBox1.Items.Add(new TempAccount(a.accountId, a.accountNumber.ToString(), query2.First().accountTypeName, a.balance));
+                        formMain.transactionComboBox1.Items.Add(new TempAccount(a.accountId, a.iban, query2.First().accountTypeName, a.balance));
                     }
                 }
                 else
@@ -54,30 +54,16 @@ namespace Q_Bank.Controller
         {
             if (IsCorrectlyFilledIn())
             {
-                using (var con = new Q_BANKEntities())
+                TempAccount tp = (TempAccount)formMain.transactionComboBox1.SelectedItem;
+                if (!tp.accountnumber.Equals(formMain.transactionTextBox2.Text))
                 {
-                    transaction newTransaction = new transaction()
-                    {
-                        accountId = 2,
-                        transactionTypeId = 1,
-                        transactionStatusId = 1,
-                        amount = Convert.ToDouble(formMain.transactionNumericUpDown1.Text),
-                        datetime = DateTime.Today,
-                        executeDate = Convert.ToDateTime(formMain.transactionDateTimePicker1.Value),
-                        commitDatetime = null,
-                        commit = 0,
-                        nameReceiver = formMain.transactionTextBox1.Text,
-                        ibanReceiver = formMain.transactionTextBox2.Text,
-                        remark = formMain.transactionTextBox3.Text,
-                        sepa = 0,
-                        bic = "QBank"
-                    };
-                    con.transactions.Add(newTransaction);
-                    con.SaveChanges();
-
-
+                    createTransaction();
+                    resetFields();
                 }
-                resetFields();
+                else
+                {
+                    formMain.transactionLabel9.Text = "U heeft uw geselecteerde IBAN ingevuld als doelrekening";
+                }
             }
         }
 
@@ -85,33 +71,47 @@ namespace Q_Bank.Controller
         {
             if (IsCorrectlyFilledIn())
             {
-                using (var con = new Q_BANKEntities())
+                TempAccount tp = (TempAccount)formMain.transactionComboBox1.SelectedItem;
+                if (!tp.accountnumber.Equals(formMain.transactionTextBox2.Text))
                 {
-                    transaction newTransaction = new transaction()
-                    {
-                        accountId = 2,
-                        transactionTypeId = 1,
-                        transactionStatusId = 1,
-                        amount = Convert.ToDouble(formMain.transactionNumericUpDown1.Text),
-                        datetime = DateTime.Now,
-                        executeDate = Convert.ToDateTime(formMain.transactionDateTimePicker1.Value),
-                        commitDatetime = null,
-                        commit = 0,
-                        nameReceiver = formMain.transactionTextBox1.Text,
-                        ibanReceiver = formMain.transactionTextBox2.Text,
-                        remark = formMain.transactionTextBox3.Text,
-                        sepa = 0,
-                        bic = "QBank"
-                    };
-                    con.transactions.Add(newTransaction);
-                    con.SaveChanges();
-
-
+                    createTransaction();
+                    resetFields();
+                    formMain.tabControl1.SelectedIndex = 3;
                 }
-                resetFields();
-                formMain.tabControl1.SelectedIndex = 3;
+                else
+                {
+                    formMain.transactionLabel9.Text = "U heeft uw geselecteerde IBAN ingevuld als doelrekening";
+                }
             }
 
+        }
+
+        private void createTransaction()
+        {
+            using (var con = new Q_BANKEntities())
+            {
+                TempAccount tp = (TempAccount)formMain.transactionComboBox1.SelectedItem;
+                transaction newTransaction = new transaction()
+                {
+                    accountId = tp.accountid,
+                    transactionTypeId = 1,
+                    transactionStatusId = 1,
+                    amount = Convert.ToDouble(formMain.transactionNumericUpDown1.Text),
+                    datetime = DateTime.Now,
+                    executeDate = Convert.ToDateTime(formMain.transactionDateTimePicker1.Value),
+                    commitDatetime = null,
+                    commit = 0,
+                    nameReceiver = formMain.transactionTextBox1.Text,
+                    ibanReceiver = formMain.transactionTextBox2.Text,
+                    remark = formMain.transactionTextBox3.Text,
+                    sepa = 0,
+                    bic = "QBank"
+                };
+                con.transactions.Add(newTransaction);
+                con.SaveChanges();
+
+
+            }
         }
 
         private Boolean IsCorrectlyFilledIn()
@@ -160,7 +160,7 @@ namespace Q_Bank.Controller
             formMain.transactionLabel9.Text = String.Empty;
         }
 
- 
+
         //Check if the IBAN format is valid
         public static bool isIbanChecksumValid(string iban)
         {

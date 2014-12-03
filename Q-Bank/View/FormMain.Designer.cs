@@ -52,6 +52,7 @@
             this.TransactionOverviewAccountsCombobox = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.transactionLabel1 = new System.Windows.Forms.Label();
             this.transactionButton2 = new System.Windows.Forms.Button();
             this.transactionButton1 = new System.Windows.Forms.Button();
             this.transactionTableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -61,15 +62,14 @@
             this.transactionTextBox2 = new System.Windows.Forms.TextBox();
             this.transactionLabel6 = new System.Windows.Forms.Label();
             this.transactionLabel8 = new System.Windows.Forms.Label();
-            this.transactionTextBox3 = new System.Windows.Forms.TextBox();
             this.transactionLabel5 = new System.Windows.Forms.Label();
             this.transactionLabel7 = new System.Windows.Forms.Label();
             this.transactionDateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.transactionNumericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.transactionLabel9 = new System.Windows.Forms.Label();
+            this.transactionTextBox3 = new System.Windows.Forms.TextBox();
             this.transactionComboBox1 = new System.Windows.Forms.ComboBox();
             this.transactionLabel2 = new System.Windows.Forms.Label();
-            this.transactionLabel1 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -140,7 +140,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(958, 840);
+            this.tabPage4.Size = new System.Drawing.Size(1023, 840);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Transactiestatus";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -294,7 +294,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(858, 604);
+            this.tabPage3.Size = new System.Drawing.Size(1023, 840);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Transactieoverzicht";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -358,24 +358,34 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.transactionLabel1);
             this.tabPage2.Controls.Add(this.transactionButton2);
             this.tabPage2.Controls.Add(this.transactionButton1);
             this.tabPage2.Controls.Add(this.transactionTableLayoutPanel3);
             this.tabPage2.Controls.Add(this.transactionComboBox1);
             this.tabPage2.Controls.Add(this.transactionLabel2);
-            this.tabPage2.Controls.Add(this.transactionLabel1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(858, 604);
+            this.tabPage2.Size = new System.Drawing.Size(1023, 840);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Overboeking";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // transactionLabel1
+            // 
+            this.transactionLabel1.AutoSize = true;
+            this.transactionLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.transactionLabel1.Location = new System.Drawing.Point(44, 47);
+            this.transactionLabel1.Name = "transactionLabel1";
+            this.transactionLabel1.Size = new System.Drawing.Size(109, 20);
+            this.transactionLabel1.TabIndex = 7;
+            this.transactionLabel1.Text = "Overboeking";
+            // 
             // transactionButton2
             // 
-            this.transactionButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.transactionButton2.Location = new System.Drawing.Point(585, 354);
+            this.transactionButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.transactionButton2.Location = new System.Drawing.Point(501, 393);
             this.transactionButton2.Name = "transactionButton2";
             this.transactionButton2.Size = new System.Drawing.Size(161, 21);
             this.transactionButton2.TabIndex = 6;
@@ -385,7 +395,7 @@
             // transactionButton1
             // 
             this.transactionButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.transactionButton1.Location = new System.Drawing.Point(138, 354);
+            this.transactionButton1.Location = new System.Drawing.Point(48, 393);
             this.transactionButton1.Name = "transactionButton1";
             this.transactionButton1.Size = new System.Drawing.Size(168, 21);
             this.transactionButton1.TabIndex = 5;
@@ -398,31 +408,31 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.transactionTableLayoutPanel3.ColumnCount = 4;
-            this.transactionTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.transactionTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.transactionTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.transactionTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.transactionTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.transactionTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 335F));
+            this.transactionTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.transactionTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 137F));
             this.transactionTableLayoutPanel3.Controls.Add(this.transactionLabel3, 0, 0);
             this.transactionTableLayoutPanel3.Controls.Add(this.transactionLabel4, 0, 1);
             this.transactionTableLayoutPanel3.Controls.Add(this.transactionTextBox1, 1, 1);
             this.transactionTableLayoutPanel3.Controls.Add(this.transactionTextBox2, 1, 2);
             this.transactionTableLayoutPanel3.Controls.Add(this.transactionLabel6, 0, 2);
             this.transactionTableLayoutPanel3.Controls.Add(this.transactionLabel8, 0, 3);
-            this.transactionTableLayoutPanel3.Controls.Add(this.transactionTextBox3, 1, 3);
             this.transactionTableLayoutPanel3.Controls.Add(this.transactionLabel5, 2, 1);
             this.transactionTableLayoutPanel3.Controls.Add(this.transactionLabel7, 2, 2);
             this.transactionTableLayoutPanel3.Controls.Add(this.transactionDateTimePicker1, 3, 2);
             this.transactionTableLayoutPanel3.Controls.Add(this.transactionNumericUpDown1, 3, 1);
             this.transactionTableLayoutPanel3.Controls.Add(this.transactionLabel9, 1, 0);
+            this.transactionTableLayoutPanel3.Controls.Add(this.transactionTextBox3, 1, 3);
             this.transactionTableLayoutPanel3.Cursor = System.Windows.Forms.Cursors.Default;
-            this.transactionTableLayoutPanel3.Location = new System.Drawing.Point(138, 79);
+            this.transactionTableLayoutPanel3.Location = new System.Drawing.Point(48, 139);
             this.transactionTableLayoutPanel3.Name = "transactionTableLayoutPanel3";
             this.transactionTableLayoutPanel3.RowCount = 4;
             this.transactionTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.transactionTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.transactionTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.transactionTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.transactionTableLayoutPanel3.Size = new System.Drawing.Size(611, 248);
+            this.transactionTableLayoutPanel3.Size = new System.Drawing.Size(614, 248);
             this.transactionTableLayoutPanel3.TabIndex = 4;
             // 
             // transactionLabel3
@@ -430,7 +440,7 @@
             this.transactionLabel3.AutoSize = true;
             this.transactionLabel3.Location = new System.Drawing.Point(3, 0);
             this.transactionLabel3.Name = "transactionLabel3";
-            this.transactionLabel3.Size = new System.Drawing.Size(93, 13);
+            this.transactionLabel3.Size = new System.Drawing.Size(69, 24);
             this.transactionLabel3.TabIndex = 0;
             this.transactionLabel3.Text = "Overboeken naar:";
             // 
@@ -448,10 +458,10 @@
             this.transactionTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.transactionTextBox1.Location = new System.Drawing.Point(125, 27);
+            this.transactionTextBox1.Location = new System.Drawing.Point(83, 27);
             this.transactionTextBox1.MaxLength = 45;
             this.transactionTextBox1.Name = "transactionTextBox1";
-            this.transactionTextBox1.Size = new System.Drawing.Size(238, 20);
+            this.transactionTextBox1.Size = new System.Drawing.Size(329, 20);
             this.transactionTextBox1.TabIndex = 5;
             // 
             // transactionTextBox2
@@ -459,10 +469,10 @@
             this.transactionTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.transactionTextBox2.Location = new System.Drawing.Point(125, 51);
+            this.transactionTextBox2.Location = new System.Drawing.Point(83, 51);
             this.transactionTextBox2.MaxLength = 45;
             this.transactionTextBox2.Name = "transactionTextBox2";
-            this.transactionTextBox2.Size = new System.Drawing.Size(238, 20);
+            this.transactionTextBox2.Size = new System.Drawing.Size(329, 20);
             this.transactionTextBox2.TabIndex = 6;
             // 
             // transactionLabel6
@@ -483,22 +493,10 @@
             this.transactionLabel8.TabIndex = 9;
             this.transactionLabel8.Text = "Omschrijving";
             // 
-            // transactionTextBox3
-            // 
-            this.transactionTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.transactionTextBox3.Location = new System.Drawing.Point(125, 75);
-            this.transactionTextBox3.MaxLength = 8000;
-            this.transactionTextBox3.Multiline = true;
-            this.transactionTextBox3.Name = "transactionTextBox3";
-            this.transactionTextBox3.Size = new System.Drawing.Size(238, 170);
-            this.transactionTextBox3.TabIndex = 7;
-            // 
             // transactionLabel5
             // 
             this.transactionLabel5.AutoSize = true;
-            this.transactionLabel5.Location = new System.Drawing.Point(369, 24);
+            this.transactionLabel5.Location = new System.Drawing.Point(418, 24);
             this.transactionLabel5.Name = "transactionLabel5";
             this.transactionLabel5.Size = new System.Drawing.Size(41, 13);
             this.transactionLabel5.TabIndex = 12;
@@ -507,7 +505,7 @@
             // transactionLabel7
             // 
             this.transactionLabel7.AutoSize = true;
-            this.transactionLabel7.Location = new System.Drawing.Point(369, 48);
+            this.transactionLabel7.Location = new System.Drawing.Point(418, 48);
             this.transactionLabel7.Name = "transactionLabel7";
             this.transactionLabel7.Size = new System.Drawing.Size(38, 13);
             this.transactionLabel7.TabIndex = 13;
@@ -517,7 +515,7 @@
             // transactionDateTimePicker1
             // 
             this.transactionDateTimePicker1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.transactionDateTimePicker1.Location = new System.Drawing.Point(491, 51);
+            this.transactionDateTimePicker1.Location = new System.Drawing.Point(490, 51);
             this.transactionDateTimePicker1.MinDate = new System.DateTime(2014, 12, 1, 0, 0, 0, 0);
             this.transactionDateTimePicker1.Name = "transactionDateTimePicker1";
             this.transactionDateTimePicker1.Size = new System.Drawing.Size(117, 20);
@@ -532,7 +530,7 @@
             0,
             0,
             0});
-            this.transactionNumericUpDown1.Location = new System.Drawing.Point(491, 27);
+            this.transactionNumericUpDown1.Location = new System.Drawing.Point(490, 27);
             this.transactionNumericUpDown1.Maximum = new decimal(new int[] {
             1410065407,
             2,
@@ -546,15 +544,27 @@
             // transactionLabel9
             // 
             this.transactionLabel9.AutoSize = true;
-            this.transactionLabel9.Location = new System.Drawing.Point(125, 0);
+            this.transactionLabel9.Location = new System.Drawing.Point(83, 0);
             this.transactionLabel9.Name = "transactionLabel9";
             this.transactionLabel9.Size = new System.Drawing.Size(0, 13);
             this.transactionLabel9.TabIndex = 16;
             // 
+            // transactionTextBox3
+            // 
+            this.transactionTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.transactionTextBox3.Location = new System.Drawing.Point(83, 75);
+            this.transactionTextBox3.MaxLength = 8000;
+            this.transactionTextBox3.Multiline = true;
+            this.transactionTextBox3.Name = "transactionTextBox3";
+            this.transactionTextBox3.Size = new System.Drawing.Size(329, 170);
+            this.transactionTextBox3.TabIndex = 7;
+            // 
             // transactionComboBox1
             // 
             this.transactionComboBox1.FormattingEnabled = true;
-            this.transactionComboBox1.Location = new System.Drawing.Point(138, 38);
+            this.transactionComboBox1.Location = new System.Drawing.Point(48, 98);
             this.transactionComboBox1.Name = "transactionComboBox1";
             this.transactionComboBox1.Size = new System.Drawing.Size(286, 21);
             this.transactionComboBox1.TabIndex = 3;
@@ -563,20 +573,11 @@
             // transactionLabel2
             // 
             this.transactionLabel2.AutoSize = true;
-            this.transactionLabel2.Location = new System.Drawing.Point(135, 22);
+            this.transactionLabel2.Location = new System.Drawing.Point(45, 82);
             this.transactionLabel2.Name = "transactionLabel2";
             this.transactionLabel2.Size = new System.Drawing.Size(56, 13);
             this.transactionLabel2.TabIndex = 1;
             this.transactionLabel2.Text = "Rekening:";
-            // 
-            // transactionLabel1
-            // 
-            this.transactionLabel1.AutoSize = true;
-            this.transactionLabel1.Location = new System.Drawing.Point(21, 22);
-            this.transactionLabel1.Name = "transactionLabel1";
-            this.transactionLabel1.Size = new System.Drawing.Size(68, 13);
-            this.transactionLabel1.TabIndex = 0;
-            this.transactionLabel1.Text = "Overboeking";
             // 
             // tabPage1
             // 
@@ -589,7 +590,7 @@
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tabPage1.Size = new System.Drawing.Size(858, 604);
+            this.tabPage1.Size = new System.Drawing.Size(986, 840);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Home";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -619,7 +620,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(794, 21);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(822, 21);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
             // label9
@@ -634,7 +635,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(161, 0);
+            this.label10.Location = new System.Drawing.Point(167, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(40, 13);
             this.label10.TabIndex = 1;
@@ -643,7 +644,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(637, 0);
+            this.label11.Location = new System.Drawing.Point(660, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(38, 13);
             this.label11.TabIndex = 2;
@@ -652,7 +653,7 @@
             // monthCalendar1
             // 
             this.monthCalendar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.monthCalendar1.Location = new System.Drawing.Point(597, 25);
+            this.monthCalendar1.Location = new System.Drawing.Point(625, 25);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 2;
             // 
@@ -672,7 +673,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(232, 21);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(260, 21);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // label6
@@ -687,7 +688,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(80, 0);
+            this.label7.Location = new System.Drawing.Point(89, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 13);
             this.label7.TabIndex = 1;
@@ -696,7 +697,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(157, 0);
+            this.label8.Location = new System.Drawing.Point(175, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(39, 13);
             this.label8.TabIndex = 2;
@@ -724,7 +725,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(966, 866);
+            this.tabControl1.Size = new System.Drawing.Size(994, 866);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
@@ -733,7 +734,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(994, 671);
+            this.ClientSize = new System.Drawing.Size(994, 675);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.menuStrip2);
@@ -784,7 +785,6 @@
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label transactionLabel1;
         private System.Windows.Forms.Label transactionLabel2;
         private System.Windows.Forms.TableLayoutPanel transactionTableLayoutPanel3;
         private System.Windows.Forms.Label transactionLabel3;
@@ -826,6 +826,7 @@
         public System.Windows.Forms.Label TransactionOverviewBalanceLabel;
         public System.Windows.Forms.TextBox TransactionOverviewSearchTextbox;
         public System.Windows.Forms.Label transactionLabel9;
+        private System.Windows.Forms.Label transactionLabel1;
 
     }
 }

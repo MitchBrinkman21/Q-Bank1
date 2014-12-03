@@ -12,17 +12,15 @@ namespace Q_Bank
     using System;
     using System.Collections.Generic;
     
-    public partial class role
+    public partial class customerphone
     {
-        public role()
-        {
-            this.employees = new HashSet<employee>();
-        }
+        public int customerPhoneId { get; set; }
+        public int customerId { get; set; }
+        public int phoneTypeId { get; set; }
+        public string phonenumber { get; set; }
+        public short active { get; set; }
     
-        public int roleId { get; set; }
-        public string roleName { get; set; }
-        public string remark { get; set; }
-    
-        public virtual ICollection<employee> employees { get; set; }
+        public virtual customer customer { get; set; }
+        public virtual phonetype phonetype { get; set; }
     }
 }

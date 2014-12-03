@@ -12,13 +12,13 @@ namespace Q_Bank
     using System;
     using System.Collections.Generic;
     
-    public partial class loginlog
+    public partial class employeeloginlog
     {
-        public int loginId { get; set; }
-        public int userId { get; set; }
+        public int customeLoginId { get; set; }
+        public int employeeId { get; set; }
         public string ip { get; set; }
         public System.DateTime datetimeLogin { get; set; }
     
-        public virtual user user { get; set; }
+        public virtual employee employee { get; set; }
     }
 }

@@ -69,7 +69,7 @@ namespace Q_Bank.Controller
                 int userId = 1;
                 tss.formMain.TrasactionStatusDropBox.Items.Clear();
                 var accountsCol = from a in con.accounts
-                                  where a.userId == userId
+                                  where a.customerId == userId
                                   select a;
 
                 if (accountsCol.Count() > 0)

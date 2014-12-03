@@ -12,17 +12,13 @@ namespace Q_Bank
     using System;
     using System.Collections.Generic;
     
-    public partial class role
+    public partial class customerloginlog
     {
-        public role()
-        {
-            this.employees = new HashSet<employee>();
-        }
+        public int customeLoginId { get; set; }
+        public int customerId { get; set; }
+        public string ip { get; set; }
+        public System.DateTime datetimeLogin { get; set; }
     
-        public int roleId { get; set; }
-        public string roleName { get; set; }
-        public string remark { get; set; }
-    
-        public virtual ICollection<employee> employees { get; set; }
+        public virtual customer customer { get; set; }
     }
 }

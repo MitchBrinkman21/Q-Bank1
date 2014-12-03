@@ -12,19 +12,18 @@ namespace Q_Bank
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class employee
     {
-        public user()
+        public employee()
         {
-            this.accounts = new HashSet<account>();
-            this.addresses = new HashSet<address>();
-            this.emails = new HashSet<email>();
-            this.loginlogs = new HashSet<loginlog>();
-            this.messages = new HashSet<message>();
-            this.phones = new HashSet<phone>();
+            this.employeeaddresses = new HashSet<employeeaddress>();
+            this.employeeemails = new HashSet<employeeemail>();
+            this.employeeloginlogs = new HashSet<employeeloginlog>();
+            this.employeemessages = new HashSet<employeemessage>();
+            this.employeephones = new HashSet<employeephone>();
         }
     
-        public int userId { get; set; }
+        public int employeeId { get; set; }
         public int roleId { get; set; }
         public string bsn { get; set; }
         public short active { get; set; }
@@ -36,12 +35,11 @@ namespace Q_Bank
         public string password { get; set; }
         public System.DateTime registerDatetime { get; set; }
     
-        public virtual ICollection<account> accounts { get; set; }
-        public virtual ICollection<address> addresses { get; set; }
-        public virtual ICollection<email> emails { get; set; }
-        public virtual ICollection<loginlog> loginlogs { get; set; }
-        public virtual ICollection<message> messages { get; set; }
-        public virtual ICollection<phone> phones { get; set; }
         public virtual role role { get; set; }
+        public virtual ICollection<employeeaddress> employeeaddresses { get; set; }
+        public virtual ICollection<employeeemail> employeeemails { get; set; }
+        public virtual ICollection<employeeloginlog> employeeloginlogs { get; set; }
+        public virtual ICollection<employeemessage> employeemessages { get; set; }
+        public virtual ICollection<employeephone> employeephones { get; set; }
     }
 }

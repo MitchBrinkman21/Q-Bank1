@@ -20,7 +20,7 @@ namespace Q_Bank
         }
     
         public int accountId { get; set; }
-        public int userId { get; set; }
+        public int customerId { get; set; }
         public int accountTypeId { get; set; }
         public double balance { get; set; }
         public string accountNumber { get; set; }
@@ -29,7 +29,7 @@ namespace Q_Bank
         public short active { get; set; }
     
         public virtual accounttype accounttype { get; set; }
-        public virtual user user { get; set; }
+        public virtual customer customer { get; set; }
         public virtual ICollection<transaction> transactions { get; set; }
     }
 }

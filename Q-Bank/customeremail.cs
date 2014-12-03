@@ -12,15 +12,13 @@ namespace Q_Bank
     using System;
     using System.Collections.Generic;
     
-    public partial class phone
+    public partial class customeremail
     {
-        public int phoneId { get; set; }
-        public int userId { get; set; }
-        public int phoneTypeId { get; set; }
-        public string phonenumber { get; set; }
+        public int customeEmailId { get; set; }
+        public int customerId { get; set; }
         public short active { get; set; }
+        public string email { get; set; }
     
-        public virtual phonetype phonetype { get; set; }
-        public virtual user user { get; set; }
+        public virtual customer customer { get; set; }
     }
 }

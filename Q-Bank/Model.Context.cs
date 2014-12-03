@@ -27,16 +27,23 @@ namespace Q_Bank
     
         public virtual DbSet<account> accounts { get; set; }
         public virtual DbSet<accounttype> accounttypes { get; set; }
-        public virtual DbSet<address> addresses { get; set; }
-        public virtual DbSet<email> emails { get; set; }
-        public virtual DbSet<loginlog> loginlogs { get; set; }
-        public virtual DbSet<message> messages { get; set; }
-        public virtual DbSet<phone> phones { get; set; }
+        public virtual DbSet<customer> customers { get; set; }
+        public virtual DbSet<customeraddress> customeraddresses { get; set; }
+        public virtual DbSet<customeremail> customeremails { get; set; }
+        public virtual DbSet<customerloginlog> customerloginlogs { get; set; }
+        public virtual DbSet<customermessage> customermessages { get; set; }
+        public virtual DbSet<customerphone> customerphones { get; set; }
+        public virtual DbSet<employee> employees { get; set; }
+        public virtual DbSet<employeeaddress> employeeaddresses { get; set; }
+        public virtual DbSet<employeeemail> employeeemails { get; set; }
+        public virtual DbSet<employeeloginlog> employeeloginlogs { get; set; }
+        public virtual DbSet<employeemessage> employeemessages { get; set; }
+        public virtual DbSet<employeephone> employeephones { get; set; }
         public virtual DbSet<phonetype> phonetypes { get; set; }
         public virtual DbSet<role> roles { get; set; }
         public virtual DbSet<transaction> transactions { get; set; }
         public virtual DbSet<transactionstatu> transactionstatus { get; set; }
+        public virtual DbSet<transactiontask> transactiontasks { get; set; }
         public virtual DbSet<transactiontype> transactiontypes { get; set; }
-        public virtual DbSet<user> users { get; set; }
     }
 }

@@ -4,13 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Q_BANKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Q_BANKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="account">
           <Key>
             <PropertyRef Name="accountId" />
           </Key>
           <Property Name="accountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="customerId" Type="int" Nullable="false" />
           <Property Name="accountTypeId" Type="int" Nullable="false" />
           <Property Name="balance" Type="float" Nullable="false" />
           <Property Name="accountNumber" Type="nvarchar" MaxLength="45" Nullable="false" />
@@ -26,12 +26,27 @@
           <Property Name="accountTypeName" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="address">
+        <EntityType Name="customer">
           <Key>
-            <PropertyRef Name="addressId" />
+            <PropertyRef Name="customerId" />
           </Key>
-          <Property Name="addressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="customerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bsn" Type="nvarchar" MaxLength="45" />
+          <Property Name="active" Type="smallint" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="gender" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="birthDate" Type="date" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="registerDatetime" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customeraddress">
+          <Key>
+            <PropertyRef Name="customeAddressId" />
+          </Key>
+          <Property Name="customeAddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerId" Type="int" Nullable="false" />
           <Property Name="active" Type="smallint" Nullable="false" />
           <Property Name="address" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="address2" Type="nvarchar" MaxLength="45" />
@@ -41,40 +56,109 @@
           <Property Name="state" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="country" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
-        <EntityType Name="email">
+        <EntityType Name="customeremail">
           <Key>
-            <PropertyRef Name="emailId" />
+            <PropertyRef Name="customeEmailId" />
           </Key>
-          <Property Name="emailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="customeEmailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerId" Type="int" Nullable="false" />
           <Property Name="active" Type="smallint" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
-        <EntityType Name="loginlog">
+        <EntityType Name="customerloginlog">
           <Key>
-            <PropertyRef Name="loginId" />
+            <PropertyRef Name="customeLoginId" />
           </Key>
-          <Property Name="loginId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="customeLoginId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerId" Type="int" Nullable="false" />
           <Property Name="ip" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="datetimeLogin" Type="datetime2" Precision="0" Nullable="false" />
         </EntityType>
-        <EntityType Name="message">
+        <EntityType Name="customermessage">
           <Key>
-            <PropertyRef Name="messageId" />
+            <PropertyRef Name="customerMessageId" />
           </Key>
-          <Property Name="messageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="customerMessageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerId" Type="int" Nullable="false" />
           <Property Name="messageText" Type="nvarchar(max)" />
           <Property Name="read" Type="smallint" />
           <Property Name="deleted" Type="smallint" />
         </EntityType>
-        <EntityType Name="phone">
+        <EntityType Name="customerphone">
           <Key>
-            <PropertyRef Name="phoneId" />
+            <PropertyRef Name="customerPhoneId" />
           </Key>
-          <Property Name="phoneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="customerPhoneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerId" Type="int" Nullable="false" />
+          <Property Name="phoneTypeId" Type="int" Nullable="false" />
+          <Property Name="phonenumber" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="active" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employeeId" />
+          </Key>
+          <Property Name="employeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleId" Type="int" Nullable="false" />
+          <Property Name="bsn" Type="nvarchar" MaxLength="45" />
+          <Property Name="active" Type="smallint" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="gender" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="birthDate" Type="date" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="registerDatetime" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employeeaddress">
+          <Key>
+            <PropertyRef Name="employeeAddressId" />
+          </Key>
+          <Property Name="employeeAddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeId" Type="int" Nullable="false" />
+          <Property Name="active" Type="smallint" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="address2" Type="nvarchar" MaxLength="45" />
+          <Property Name="number" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="zipcode" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="state" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="country" Type="nvarchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employeeemail">
+          <Key>
+            <PropertyRef Name="employeeEmailId" />
+          </Key>
+          <Property Name="employeeEmailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeId" Type="int" Nullable="false" />
+          <Property Name="active" Type="smallint" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employeeloginlog">
+          <Key>
+            <PropertyRef Name="customeLoginId" />
+          </Key>
+          <Property Name="customeLoginId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeId" Type="int" Nullable="false" />
+          <Property Name="ip" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="datetimeLogin" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employeemessage">
+          <Key>
+            <PropertyRef Name="customerMessageId" />
+          </Key>
+          <Property Name="customerMessageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeId" Type="int" Nullable="false" />
+          <Property Name="messageText" Type="nvarchar(max)" />
+          <Property Name="read" Type="smallint" />
+          <Property Name="deleted" Type="smallint" />
+        </EntityType>
+        <EntityType Name="employeephone">
+          <Key>
+            <PropertyRef Name="employeePhoneId" />
+          </Key>
+          <Property Name="employeePhoneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeId" Type="int" Nullable="false" />
           <Property Name="phoneTypeId" Type="int" Nullable="false" />
           <Property Name="phonenumber" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="active" Type="smallint" Nullable="false" />
@@ -104,11 +188,14 @@
           <Property Name="transactionStatusId" Type="int" Nullable="false" />
           <Property Name="amount" Type="float" Nullable="false" />
           <Property Name="datetime" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="executeDate" Type="date" />
+          <Property Name="commitDatetime" Type="datetime2" Precision="0" />
           <Property Name="commit" Type="smallint" Nullable="false" />
-          <Property Name="executeDatetime" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="nameReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="ibanReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
+          <Property Name="sepa" Type="smallint" Nullable="false" />
+          <Property Name="bic" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="transactionstatus">
           <Key>
@@ -118,6 +205,23 @@
           <Property Name="transactionStatusName" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="transactiontask">
+          <Key>
+            <PropertyRef Name="transactionTaskId" />
+          </Key>
+          <Property Name="transactionTaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accountId" Type="int" Nullable="false" />
+          <Property Name="amount" Type="float" Nullable="false" />
+          <Property Name="datetime" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="executeDate" Type="date" />
+          <Property Name="commitDatetime" Type="datetime2" Precision="0" />
+          <Property Name="commit" Type="smallint" Nullable="false" />
+          <Property Name="nameReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="ibanReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="remark" Type="nvarchar(max)" />
+          <Property Name="sepa" Type="smallint" Nullable="false" />
+          <Property Name="bic" Type="nvarchar" MaxLength="45" Nullable="false" />
+        </EntityType>
         <EntityType Name="transactiontype">
           <Key>
             <PropertyRef Name="transactionTypeId" />
@@ -125,22 +229,6 @@
           <Property Name="transactionTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="transactionTypeName" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="userId" />
-          </Key>
-          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="roleId" Type="int" Nullable="false" />
-          <Property Name="bsn" Type="nvarchar" MaxLength="45" />
-          <Property Name="active" Type="smallint" Nullable="false" />
-          <Property Name="firstName" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="lastName" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="gender" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="birthDate" Type="date" Nullable="false" />
-          <Property Name="username" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="registerDatetime" Type="datetime2" Precision="0" Nullable="false" />
         </EntityType>
         <Association Name="account$fk_Account_AccountType1">
           <End Role="accounttype" Type="Self.accounttype" Multiplicity="1" />
@@ -155,86 +243,170 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="account$fk_Rekening_Persoon1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
           <End Role="account" Type="Self.account" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="userId" />
+            <Principal Role="customer">
+              <PropertyRef Name="customerId" />
             </Principal>
             <Dependent Role="account">
-              <PropertyRef Name="userId" />
+              <PropertyRef Name="customerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="address$fk_Adres_Gebruiker1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="address" Type="Self.address" Multiplicity="*" />
+        <Association Name="customeraddress$fk_Adres_Gebruiker1">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="customeraddress" Type="Self.customeraddress" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="userId" />
+            <Principal Role="customer">
+              <PropertyRef Name="customerId" />
             </Principal>
-            <Dependent Role="address">
-              <PropertyRef Name="userId" />
+            <Dependent Role="customeraddress">
+              <PropertyRef Name="customerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="email$fk_Email_Gebruiker1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="email" Type="Self.email" Multiplicity="*" />
+        <Association Name="customeremail$fk_Email_Gebruiker1">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="customeremail" Type="Self.customeremail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="userId" />
+            <Principal Role="customer">
+              <PropertyRef Name="customerId" />
             </Principal>
-            <Dependent Role="email">
-              <PropertyRef Name="userId" />
+            <Dependent Role="customeremail">
+              <PropertyRef Name="customerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="loginlog$fk_Login_User1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="loginlog" Type="Self.loginlog" Multiplicity="*" />
+        <Association Name="customerloginlog$fk_Login_User1">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="customerloginlog" Type="Self.customerloginlog" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="userId" />
+            <Principal Role="customer">
+              <PropertyRef Name="customerId" />
             </Principal>
-            <Dependent Role="loginlog">
-              <PropertyRef Name="userId" />
+            <Dependent Role="customerloginlog">
+              <PropertyRef Name="customerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="message$fk_Message_User1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="message" Type="Self.message" Multiplicity="*" />
+        <Association Name="customermessage$fk_Message_User1">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="customermessage" Type="Self.customermessage" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="userId" />
+            <Principal Role="customer">
+              <PropertyRef Name="customerId" />
             </Principal>
-            <Dependent Role="message">
-              <PropertyRef Name="userId" />
+            <Dependent Role="customermessage">
+              <PropertyRef Name="customerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="phone$fk_Phone_PhoneType1">
+        <Association Name="customerphone$fk_Phone_PhoneType1">
           <End Role="phonetype" Type="Self.phonetype" Multiplicity="1" />
-          <End Role="phone" Type="Self.phone" Multiplicity="*" />
+          <End Role="customerphone" Type="Self.customerphone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="phonetype">
               <PropertyRef Name="phoneTypeId" />
             </Principal>
-            <Dependent Role="phone">
+            <Dependent Role="customerphone">
               <PropertyRef Name="phoneTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="phone$fk_Telefoonnummer_Gebruiker1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="phone" Type="Self.phone" Multiplicity="*" />
+        <Association Name="customerphone$fk_Telefoonnummer_Gebruiker1">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="customerphone" Type="Self.customerphone" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="userId" />
+            <Principal Role="customer">
+              <PropertyRef Name="customerId" />
             </Principal>
-            <Dependent Role="phone">
-              <PropertyRef Name="userId" />
+            <Dependent Role="customerphone">
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employee$fk_Employee_Role1">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="employee" Type="Self.employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="roleId" />
+            </Principal>
+            <Dependent Role="employee">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employeeaddress$fk_EmployeeAddress_Employee1">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="employeeaddress" Type="Self.employeeaddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="employeeaddress">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employeeemail$fk_EmployeeEmail_Employee1">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="employeeemail" Type="Self.employeeemail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="employeeemail">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employeeloginlog$fk_EmployeeLoginLog_Employee1">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="employeeloginlog" Type="Self.employeeloginlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="employeeloginlog">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employeemessage$fk_EmployeeMessage_Employee1">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="employeemessage" Type="Self.employeemessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="employeemessage">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employeephone$fk_EmployeePhone_Employee1">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="employeephone" Type="Self.employeephone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="employeephone">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employeephone$fk_Phone_PhoneType10">
+          <End Role="phonetype" Type="Self.phonetype" Multiplicity="1" />
+          <End Role="employeephone" Type="Self.employeephone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="phonetype">
+              <PropertyRef Name="phoneTypeId" />
+            </Principal>
+            <Dependent Role="employeephone">
+              <PropertyRef Name="phoneTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -274,63 +446,86 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="user$fk_Gebruiker_Rol1">
-          <End Role="role" Type="Self.role" Multiplicity="1" />
-          <End Role="user" Type="Self.user" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="role">
-              <PropertyRef Name="roleId" />
-            </Principal>
-            <Dependent Role="user">
-              <PropertyRef Name="roleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Q_BANKModelStoreContainer">
           <EntitySet Name="account" EntityType="Self.account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="accounttype" EntityType="Self.accounttype" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="address" EntityType="Self.address" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="email" EntityType="Self.email" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="loginlog" EntityType="Self.loginlog" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="message" EntityType="Self.message" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="phone" EntityType="Self.phone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customeraddress" EntityType="Self.customeraddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customeremail" EntityType="Self.customeremail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customerloginlog" EntityType="Self.customerloginlog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customermessage" EntityType="Self.customermessage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customerphone" EntityType="Self.customerphone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employeeaddress" EntityType="Self.employeeaddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employeeemail" EntityType="Self.employeeemail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employeeloginlog" EntityType="Self.employeeloginlog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employeemessage" EntityType="Self.employeemessage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employeephone" EntityType="Self.employeephone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="phonetype" EntityType="Self.phonetype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="transaction" EntityType="Self.transaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="transactionstatus" EntityType="Self.transactionstatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transactiontask" EntityType="Self.transactiontask" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="transactiontype" EntityType="Self.transactiontype" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="account$fk_Account_AccountType1" Association="Self.account$fk_Account_AccountType1">
             <End Role="accounttype" EntitySet="accounttype" />
             <End Role="account" EntitySet="account" />
           </AssociationSet>
           <AssociationSet Name="account$fk_Rekening_Persoon1" Association="Self.account$fk_Rekening_Persoon1">
-            <End Role="user" EntitySet="user" />
+            <End Role="customer" EntitySet="customer" />
             <End Role="account" EntitySet="account" />
           </AssociationSet>
-          <AssociationSet Name="address$fk_Adres_Gebruiker1" Association="Self.address$fk_Adres_Gebruiker1">
-            <End Role="user" EntitySet="user" />
-            <End Role="address" EntitySet="address" />
+          <AssociationSet Name="customeraddress$fk_Adres_Gebruiker1" Association="Self.customeraddress$fk_Adres_Gebruiker1">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="customeraddress" EntitySet="customeraddress" />
           </AssociationSet>
-          <AssociationSet Name="email$fk_Email_Gebruiker1" Association="Self.email$fk_Email_Gebruiker1">
-            <End Role="user" EntitySet="user" />
-            <End Role="email" EntitySet="email" />
+          <AssociationSet Name="customeremail$fk_Email_Gebruiker1" Association="Self.customeremail$fk_Email_Gebruiker1">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="customeremail" EntitySet="customeremail" />
           </AssociationSet>
-          <AssociationSet Name="loginlog$fk_Login_User1" Association="Self.loginlog$fk_Login_User1">
-            <End Role="user" EntitySet="user" />
-            <End Role="loginlog" EntitySet="loginlog" />
+          <AssociationSet Name="customerloginlog$fk_Login_User1" Association="Self.customerloginlog$fk_Login_User1">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="customerloginlog" EntitySet="customerloginlog" />
           </AssociationSet>
-          <AssociationSet Name="message$fk_Message_User1" Association="Self.message$fk_Message_User1">
-            <End Role="user" EntitySet="user" />
-            <End Role="message" EntitySet="message" />
+          <AssociationSet Name="customermessage$fk_Message_User1" Association="Self.customermessage$fk_Message_User1">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="customermessage" EntitySet="customermessage" />
           </AssociationSet>
-          <AssociationSet Name="phone$fk_Phone_PhoneType1" Association="Self.phone$fk_Phone_PhoneType1">
+          <AssociationSet Name="customerphone$fk_Phone_PhoneType1" Association="Self.customerphone$fk_Phone_PhoneType1">
             <End Role="phonetype" EntitySet="phonetype" />
-            <End Role="phone" EntitySet="phone" />
+            <End Role="customerphone" EntitySet="customerphone" />
           </AssociationSet>
-          <AssociationSet Name="phone$fk_Telefoonnummer_Gebruiker1" Association="Self.phone$fk_Telefoonnummer_Gebruiker1">
-            <End Role="user" EntitySet="user" />
-            <End Role="phone" EntitySet="phone" />
+          <AssociationSet Name="customerphone$fk_Telefoonnummer_Gebruiker1" Association="Self.customerphone$fk_Telefoonnummer_Gebruiker1">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="customerphone" EntitySet="customerphone" />
+          </AssociationSet>
+          <AssociationSet Name="employee$fk_Employee_Role1" Association="Self.employee$fk_Employee_Role1">
+            <End Role="role" EntitySet="role" />
+            <End Role="employee" EntitySet="employee" />
+          </AssociationSet>
+          <AssociationSet Name="employeeaddress$fk_EmployeeAddress_Employee1" Association="Self.employeeaddress$fk_EmployeeAddress_Employee1">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="employeeaddress" EntitySet="employeeaddress" />
+          </AssociationSet>
+          <AssociationSet Name="employeeemail$fk_EmployeeEmail_Employee1" Association="Self.employeeemail$fk_EmployeeEmail_Employee1">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="employeeemail" EntitySet="employeeemail" />
+          </AssociationSet>
+          <AssociationSet Name="employeeloginlog$fk_EmployeeLoginLog_Employee1" Association="Self.employeeloginlog$fk_EmployeeLoginLog_Employee1">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="employeeloginlog" EntitySet="employeeloginlog" />
+          </AssociationSet>
+          <AssociationSet Name="employeemessage$fk_EmployeeMessage_Employee1" Association="Self.employeemessage$fk_EmployeeMessage_Employee1">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="employeemessage" EntitySet="employeemessage" />
+          </AssociationSet>
+          <AssociationSet Name="employeephone$fk_EmployeePhone_Employee1" Association="Self.employeephone$fk_EmployeePhone_Employee1">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="employeephone" EntitySet="employeephone" />
+          </AssociationSet>
+          <AssociationSet Name="employeephone$fk_Phone_PhoneType10" Association="Self.employeephone$fk_Phone_PhoneType10">
+            <End Role="phonetype" EntitySet="phonetype" />
+            <End Role="employeephone" EntitySet="employeephone" />
           </AssociationSet>
           <AssociationSet Name="transaction$fk_Transactie_Rekening1" Association="Self.transaction$fk_Transactie_Rekening1">
             <End Role="account" EntitySet="account" />
@@ -344,116 +539,308 @@
             <End Role="transactiontype" EntitySet="transactiontype" />
             <End Role="transaction" EntitySet="transaction" />
           </AssociationSet>
-          <AssociationSet Name="user$fk_Gebruiker_Rol1" Association="Self.user$fk_Gebruiker_Rol1">
-            <End Role="role" EntitySet="role" />
-            <End Role="user" EntitySet="user" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Q_BANKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Q_BANKEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accounts" EntityType="Q_BANKModel.account" />
+          <EntitySet Name="accounttypes" EntityType="Q_BANKModel.accounttype" />
+          <EntitySet Name="customers" EntityType="Q_BANKModel.customer" />
+          <EntitySet Name="customeraddresses" EntityType="Q_BANKModel.customeraddress" />
+          <EntitySet Name="customeremails" EntityType="Q_BANKModel.customeremail" />
+          <EntitySet Name="customerloginlogs" EntityType="Q_BANKModel.customerloginlog" />
+          <EntitySet Name="customermessages" EntityType="Q_BANKModel.customermessage" />
+          <EntitySet Name="customerphones" EntityType="Q_BANKModel.customerphone" />
+          <EntitySet Name="employees" EntityType="Q_BANKModel.employee" />
+          <EntitySet Name="employeeaddresses" EntityType="Q_BANKModel.employeeaddress" />
+          <EntitySet Name="employeeemails" EntityType="Q_BANKModel.employeeemail" />
+          <EntitySet Name="employeeloginlogs" EntityType="Q_BANKModel.employeeloginlog" />
+          <EntitySet Name="employeemessages" EntityType="Q_BANKModel.employeemessage" />
+          <EntitySet Name="employeephones" EntityType="Q_BANKModel.employeephone" />
+          <EntitySet Name="phonetypes" EntityType="Q_BANKModel.phonetype" />
+          <EntitySet Name="roles" EntityType="Q_BANKModel.role" />
+          <EntitySet Name="transactions" EntityType="Q_BANKModel.transaction" />
+          <EntitySet Name="transactionstatus" EntityType="Q_BANKModel.transactionstatu" />
+          <EntitySet Name="transactiontasks" EntityType="Q_BANKModel.transactiontask" />
+          <EntitySet Name="transactiontypes" EntityType="Q_BANKModel.transactiontype" />
+          <AssociationSet Name="account_fk_Account_AccountType1" Association="Q_BANKModel.account_fk_Account_AccountType1">
+            <End Role="accounttype" EntitySet="accounttypes" />
+            <End Role="account" EntitySet="accounts" />
+          </AssociationSet>
+          <AssociationSet Name="account_fk_Rekening_Persoon1" Association="Q_BANKModel.account_fk_Rekening_Persoon1">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="account" EntitySet="accounts" />
+          </AssociationSet>
+          <AssociationSet Name="transaction_fk_Transactie_Rekening1" Association="Q_BANKModel.transaction_fk_Transactie_Rekening1">
+            <End Role="account" EntitySet="accounts" />
+            <End Role="transaction" EntitySet="transactions" />
+          </AssociationSet>
+          <AssociationSet Name="customeraddress_fk_Adres_Gebruiker1" Association="Q_BANKModel.customeraddress_fk_Adres_Gebruiker1">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="customeraddress" EntitySet="customeraddresses" />
+          </AssociationSet>
+          <AssociationSet Name="customeremail_fk_Email_Gebruiker1" Association="Q_BANKModel.customeremail_fk_Email_Gebruiker1">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="customeremail" EntitySet="customeremails" />
+          </AssociationSet>
+          <AssociationSet Name="customerloginlog_fk_Login_User1" Association="Q_BANKModel.customerloginlog_fk_Login_User1">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="customerloginlog" EntitySet="customerloginlogs" />
+          </AssociationSet>
+          <AssociationSet Name="customermessage_fk_Message_User1" Association="Q_BANKModel.customermessage_fk_Message_User1">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="customermessage" EntitySet="customermessages" />
+          </AssociationSet>
+          <AssociationSet Name="customerphone_fk_Telefoonnummer_Gebruiker1" Association="Q_BANKModel.customerphone_fk_Telefoonnummer_Gebruiker1">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="customerphone" EntitySet="customerphones" />
+          </AssociationSet>
+          <AssociationSet Name="customerphone_fk_Phone_PhoneType1" Association="Q_BANKModel.customerphone_fk_Phone_PhoneType1">
+            <End Role="phonetype" EntitySet="phonetypes" />
+            <End Role="customerphone" EntitySet="customerphones" />
+          </AssociationSet>
+          <AssociationSet Name="employee_fk_Employee_Role1" Association="Q_BANKModel.employee_fk_Employee_Role1">
+            <End Role="role" EntitySet="roles" />
+            <End Role="employee" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="employeeaddress_fk_EmployeeAddress_Employee1" Association="Q_BANKModel.employeeaddress_fk_EmployeeAddress_Employee1">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="employeeaddress" EntitySet="employeeaddresses" />
+          </AssociationSet>
+          <AssociationSet Name="employeeemail_fk_EmployeeEmail_Employee1" Association="Q_BANKModel.employeeemail_fk_EmployeeEmail_Employee1">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="employeeemail" EntitySet="employeeemails" />
+          </AssociationSet>
+          <AssociationSet Name="employeeloginlog_fk_EmployeeLoginLog_Employee1" Association="Q_BANKModel.employeeloginlog_fk_EmployeeLoginLog_Employee1">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="employeeloginlog" EntitySet="employeeloginlogs" />
+          </AssociationSet>
+          <AssociationSet Name="employeemessage_fk_EmployeeMessage_Employee1" Association="Q_BANKModel.employeemessage_fk_EmployeeMessage_Employee1">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="employeemessage" EntitySet="employeemessages" />
+          </AssociationSet>
+          <AssociationSet Name="employeephone_fk_EmployeePhone_Employee1" Association="Q_BANKModel.employeephone_fk_EmployeePhone_Employee1">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="employeephone" EntitySet="employeephones" />
+          </AssociationSet>
+          <AssociationSet Name="employeephone_fk_Phone_PhoneType10" Association="Q_BANKModel.employeephone_fk_Phone_PhoneType10">
+            <End Role="phonetype" EntitySet="phonetypes" />
+            <End Role="employeephone" EntitySet="employeephones" />
+          </AssociationSet>
+          <AssociationSet Name="transaction_fk_Transaction_TransactionStatus1" Association="Q_BANKModel.transaction_fk_Transaction_TransactionStatus1">
+            <End Role="transactionstatu" EntitySet="transactionstatus" />
+            <End Role="transaction" EntitySet="transactions" />
+          </AssociationSet>
+          <AssociationSet Name="transaction_fk_Transaction_TransactionType1" Association="Q_BANKModel.transaction_fk_Transaction_TransactionType1">
+            <End Role="transactiontype" EntitySet="transactiontypes" />
+            <End Role="transaction" EntitySet="transactions" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="account">
           <Key>
             <PropertyRef Name="accountId" />
           </Key>
           <Property Name="accountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="customerId" Type="Int32" Nullable="false" />
           <Property Name="accountTypeId" Type="Int32" Nullable="false" />
           <Property Name="balance" Type="Double" Nullable="false" />
-          <Property Name="accountNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="iban" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="bic" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="accountNumber" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="iban" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="bic" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="active" Type="Int16" Nullable="false" />
-          <NavigationProperty Name="accounttype" Relationship="Self.account_fk_Account_AccountType1" FromRole="account" ToRole="accounttype" />
-          <NavigationProperty Name="user" Relationship="Self.account_fk_Rekening_Persoon1" FromRole="account" ToRole="user" />
-          <NavigationProperty Name="transactions" Relationship="Self.transaction_fk_Transactie_Rekening1" FromRole="account" ToRole="transaction" />
+          <NavigationProperty Name="accounttype" Relationship="Q_BANKModel.account_fk_Account_AccountType1" FromRole="account" ToRole="accounttype" />
+          <NavigationProperty Name="customer" Relationship="Q_BANKModel.account_fk_Rekening_Persoon1" FromRole="account" ToRole="customer" />
+          <NavigationProperty Name="transactions" Relationship="Q_BANKModel.transaction_fk_Transactie_Rekening1" FromRole="account" ToRole="transaction" />
         </EntityType>
         <EntityType Name="accounttype">
           <Key>
             <PropertyRef Name="accountTypeId" />
           </Key>
           <Property Name="accountTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accountTypeName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="accountTypeName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="accounts" Relationship="Self.account_fk_Account_AccountType1" FromRole="accounttype" ToRole="account" />
+          <NavigationProperty Name="accounts" Relationship="Q_BANKModel.account_fk_Account_AccountType1" FromRole="accounttype" ToRole="account" />
         </EntityType>
-        <EntityType Name="address">
+        <EntityType Name="customer">
           <Key>
-            <PropertyRef Name="addressId" />
+            <PropertyRef Name="customerId" />
           </Key>
-          <Property Name="addressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="customerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bsn" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="active" Type="Int16" Nullable="false" />
-          <Property Name="address1" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="birthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="registerDatetime" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="accounts" Relationship="Q_BANKModel.account_fk_Rekening_Persoon1" FromRole="customer" ToRole="account" />
+          <NavigationProperty Name="customeraddresses" Relationship="Q_BANKModel.customeraddress_fk_Adres_Gebruiker1" FromRole="customer" ToRole="customeraddress" />
+          <NavigationProperty Name="customeremails" Relationship="Q_BANKModel.customeremail_fk_Email_Gebruiker1" FromRole="customer" ToRole="customeremail" />
+          <NavigationProperty Name="customerloginlogs" Relationship="Q_BANKModel.customerloginlog_fk_Login_User1" FromRole="customer" ToRole="customerloginlog" />
+          <NavigationProperty Name="customermessages" Relationship="Q_BANKModel.customermessage_fk_Message_User1" FromRole="customer" ToRole="customermessage" />
+          <NavigationProperty Name="customerphones" Relationship="Q_BANKModel.customerphone_fk_Telefoonnummer_Gebruiker1" FromRole="customer" ToRole="customerphone" />
+        </EntityType>
+        <EntityType Name="customeraddress">
+          <Key>
+            <PropertyRef Name="customeAddressId" />
+          </Key>
+          <Property Name="customeAddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerId" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Int16" Nullable="false" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="address2" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="number" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="zipcode" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="city" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="state" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="country" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="user" Relationship="Self.address_fk_Adres_Gebruiker1" FromRole="address" ToRole="user" />
+          <Property Name="number" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="zipcode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="customer" Relationship="Q_BANKModel.customeraddress_fk_Adres_Gebruiker1" FromRole="customeraddress" ToRole="customer" />
         </EntityType>
-        <EntityType Name="email">
+        <EntityType Name="customeremail">
           <Key>
-            <PropertyRef Name="emailId" />
+            <PropertyRef Name="customeEmailId" />
           </Key>
-          <Property Name="emailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="customeEmailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerId" Type="Int32" Nullable="false" />
           <Property Name="active" Type="Int16" Nullable="false" />
-          <Property Name="email1" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="user" Relationship="Self.email_fk_Email_Gebruiker1" FromRole="email" ToRole="user" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="customer" Relationship="Q_BANKModel.customeremail_fk_Email_Gebruiker1" FromRole="customeremail" ToRole="customer" />
         </EntityType>
-        <EntityType Name="loginlog">
+        <EntityType Name="customerloginlog">
           <Key>
-            <PropertyRef Name="loginId" />
+            <PropertyRef Name="customeLoginId" />
           </Key>
-          <Property Name="loginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userId" Type="Int32" Nullable="false" />
-          <Property Name="ip" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="customeLoginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerId" Type="Int32" Nullable="false" />
+          <Property Name="ip" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="datetimeLogin" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="user" Relationship="Self.loginlog_fk_Login_User1" FromRole="loginlog" ToRole="user" />
+          <NavigationProperty Name="customer" Relationship="Q_BANKModel.customerloginlog_fk_Login_User1" FromRole="customerloginlog" ToRole="customer" />
         </EntityType>
-        <EntityType Name="message">
+        <EntityType Name="customermessage">
           <Key>
-            <PropertyRef Name="messageId" />
+            <PropertyRef Name="customerMessageId" />
           </Key>
-          <Property Name="messageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="customerMessageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerId" Type="Int32" Nullable="false" />
           <Property Name="messageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="read" Type="Int16" />
           <Property Name="deleted" Type="Int16" />
-          <NavigationProperty Name="user" Relationship="Self.message_fk_Message_User1" FromRole="message" ToRole="user" />
+          <NavigationProperty Name="customer" Relationship="Q_BANKModel.customermessage_fk_Message_User1" FromRole="customermessage" ToRole="customer" />
         </EntityType>
-        <EntityType Name="phone">
+        <EntityType Name="customerphone">
           <Key>
-            <PropertyRef Name="phoneId" />
+            <PropertyRef Name="customerPhoneId" />
           </Key>
-          <Property Name="phoneId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="customerPhoneId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerId" Type="Int32" Nullable="false" />
           <Property Name="phoneTypeId" Type="Int32" Nullable="false" />
-          <Property Name="phonenumber" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phonenumber" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="active" Type="Int16" Nullable="false" />
-          <NavigationProperty Name="phonetype" Relationship="Self.phone_fk_Phone_PhoneType1" FromRole="phone" ToRole="phonetype" />
-          <NavigationProperty Name="user" Relationship="Self.phone_fk_Telefoonnummer_Gebruiker1" FromRole="phone" ToRole="user" />
+          <NavigationProperty Name="customer" Relationship="Q_BANKModel.customerphone_fk_Telefoonnummer_Gebruiker1" FromRole="customerphone" ToRole="customer" />
+          <NavigationProperty Name="phonetype" Relationship="Q_BANKModel.customerphone_fk_Phone_PhoneType1" FromRole="customerphone" ToRole="phonetype" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employeeId" />
+          </Key>
+          <Property Name="employeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleId" Type="Int32" Nullable="false" />
+          <Property Name="bsn" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Int16" Nullable="false" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="birthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="registerDatetime" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="role" Relationship="Q_BANKModel.employee_fk_Employee_Role1" FromRole="employee" ToRole="role" />
+          <NavigationProperty Name="employeeaddresses" Relationship="Q_BANKModel.employeeaddress_fk_EmployeeAddress_Employee1" FromRole="employee" ToRole="employeeaddress" />
+          <NavigationProperty Name="employeeemails" Relationship="Q_BANKModel.employeeemail_fk_EmployeeEmail_Employee1" FromRole="employee" ToRole="employeeemail" />
+          <NavigationProperty Name="employeeloginlogs" Relationship="Q_BANKModel.employeeloginlog_fk_EmployeeLoginLog_Employee1" FromRole="employee" ToRole="employeeloginlog" />
+          <NavigationProperty Name="employeemessages" Relationship="Q_BANKModel.employeemessage_fk_EmployeeMessage_Employee1" FromRole="employee" ToRole="employeemessage" />
+          <NavigationProperty Name="employeephones" Relationship="Q_BANKModel.employeephone_fk_EmployeePhone_Employee1" FromRole="employee" ToRole="employeephone" />
+        </EntityType>
+        <EntityType Name="employeeaddress">
+          <Key>
+            <PropertyRef Name="employeeAddressId" />
+          </Key>
+          <Property Name="employeeAddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeId" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Int16" Nullable="false" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="address2" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="number" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="zipcode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="employee" Relationship="Q_BANKModel.employeeaddress_fk_EmployeeAddress_Employee1" FromRole="employeeaddress" ToRole="employee" />
+        </EntityType>
+        <EntityType Name="employeeemail">
+          <Key>
+            <PropertyRef Name="employeeEmailId" />
+          </Key>
+          <Property Name="employeeEmailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeId" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Int16" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="employee" Relationship="Q_BANKModel.employeeemail_fk_EmployeeEmail_Employee1" FromRole="employeeemail" ToRole="employee" />
+        </EntityType>
+        <EntityType Name="employeeloginlog">
+          <Key>
+            <PropertyRef Name="customeLoginId" />
+          </Key>
+          <Property Name="customeLoginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeId" Type="Int32" Nullable="false" />
+          <Property Name="ip" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="datetimeLogin" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="employee" Relationship="Q_BANKModel.employeeloginlog_fk_EmployeeLoginLog_Employee1" FromRole="employeeloginlog" ToRole="employee" />
+        </EntityType>
+        <EntityType Name="employeemessage">
+          <Key>
+            <PropertyRef Name="customerMessageId" />
+          </Key>
+          <Property Name="customerMessageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeId" Type="Int32" Nullable="false" />
+          <Property Name="messageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="read" Type="Int16" />
+          <Property Name="deleted" Type="Int16" />
+          <NavigationProperty Name="employee" Relationship="Q_BANKModel.employeemessage_fk_EmployeeMessage_Employee1" FromRole="employeemessage" ToRole="employee" />
+        </EntityType>
+        <EntityType Name="employeephone">
+          <Key>
+            <PropertyRef Name="employeePhoneId" />
+          </Key>
+          <Property Name="employeePhoneId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeId" Type="Int32" Nullable="false" />
+          <Property Name="phoneTypeId" Type="Int32" Nullable="false" />
+          <Property Name="phonenumber" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="employee" Relationship="Q_BANKModel.employeephone_fk_EmployeePhone_Employee1" FromRole="employeephone" ToRole="employee" />
+          <NavigationProperty Name="phonetype" Relationship="Q_BANKModel.employeephone_fk_Phone_PhoneType10" FromRole="employeephone" ToRole="phonetype" />
         </EntityType>
         <EntityType Name="phonetype">
           <Key>
             <PropertyRef Name="phoneTypeId" />
           </Key>
           <Property Name="phoneTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="phoneTypeName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="phones" Relationship="Self.phone_fk_Phone_PhoneType1" FromRole="phonetype" ToRole="phone" />
+          <Property Name="phoneTypeName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="customerphones" Relationship="Q_BANKModel.customerphone_fk_Phone_PhoneType1" FromRole="phonetype" ToRole="customerphone" />
+          <NavigationProperty Name="employeephones" Relationship="Q_BANKModel.employeephone_fk_Phone_PhoneType10" FromRole="phonetype" ToRole="employeephone" />
         </EntityType>
         <EntityType Name="role">
           <Key>
             <PropertyRef Name="roleId" />
           </Key>
           <Property Name="roleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="roleName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="roleName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="users" Relationship="Self.user_fk_Gebruiker_Rol1" FromRole="role" ToRole="user" />
+          <NavigationProperty Name="employees" Relationship="Q_BANKModel.employee_fk_Employee_Role1" FromRole="role" ToRole="employee" />
         </EntityType>
         <EntityType Name="transaction">
           <Key>
@@ -465,59 +852,56 @@
           <Property Name="transactionStatusId" Type="Int32" Nullable="false" />
           <Property Name="amount" Type="Double" Nullable="false" />
           <Property Name="datetime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="executeDate" Type="DateTime" Precision="0" />
+          <Property Name="commitDatetime" Type="DateTime" Precision="0" />
           <Property Name="commit" Type="Int16" Nullable="false" />
-          <Property Name="executeDatetime" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="nameReceiver" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ibanReceiver" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nameReceiver" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="ibanReceiver" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="account" Relationship="Self.transaction_fk_Transactie_Rekening1" FromRole="transaction" ToRole="account" />
-          <NavigationProperty Name="transactionstatu" Relationship="Self.transaction_fk_Transaction_TransactionStatus1" FromRole="transaction" ToRole="transactionstatus" />
-          <NavigationProperty Name="transactiontype" Relationship="Self.transaction_fk_Transaction_TransactionType1" FromRole="transaction" ToRole="transactiontype" />
+          <Property Name="sepa" Type="Int16" Nullable="false" />
+          <Property Name="bic" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="account" Relationship="Q_BANKModel.transaction_fk_Transactie_Rekening1" FromRole="transaction" ToRole="account" />
+          <NavigationProperty Name="transactionstatu" Relationship="Q_BANKModel.transaction_fk_Transaction_TransactionStatus1" FromRole="transaction" ToRole="transactionstatu" />
+          <NavigationProperty Name="transactiontype" Relationship="Q_BANKModel.transaction_fk_Transaction_TransactionType1" FromRole="transaction" ToRole="transactiontype" />
         </EntityType>
         <EntityType Name="transactionstatu">
           <Key>
             <PropertyRef Name="transactionStatusId" />
           </Key>
           <Property Name="transactionStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="transactionStatusName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="transactionStatusName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="transactions" Relationship="Self.transaction_fk_Transaction_TransactionStatus1" FromRole="transactionstatus" ToRole="transaction" />
+          <NavigationProperty Name="transactions" Relationship="Q_BANKModel.transaction_fk_Transaction_TransactionStatus1" FromRole="transactionstatu" ToRole="transaction" />
+        </EntityType>
+        <EntityType Name="transactiontask">
+          <Key>
+            <PropertyRef Name="transactionTaskId" />
+          </Key>
+          <Property Name="transactionTaskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountId" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Double" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="executeDate" Type="DateTime" Precision="0" />
+          <Property Name="commitDatetime" Type="DateTime" Precision="0" />
+          <Property Name="commit" Type="Int16" Nullable="false" />
+          <Property Name="nameReceiver" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="ibanReceiver" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sepa" Type="Int16" Nullable="false" />
+          <Property Name="bic" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="transactiontype">
           <Key>
             <PropertyRef Name="transactionTypeId" />
           </Key>
           <Property Name="transactionTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="transactionTypeName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="transactionTypeName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="transactions" Relationship="Self.transaction_fk_Transaction_TransactionType1" FromRole="transactiontype" ToRole="transaction" />
-        </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="userId" />
-          </Key>
-          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="roleId" Type="Int32" Nullable="false" />
-          <Property Name="bsn" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="active" Type="Int16" Nullable="false" />
-          <Property Name="firstName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="lastName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="gender" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="birthDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="username" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="registerDatetime" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="accounts" Relationship="Self.account_fk_Rekening_Persoon1" FromRole="user" ToRole="account" />
-          <NavigationProperty Name="addresses" Relationship="Self.address_fk_Adres_Gebruiker1" FromRole="user" ToRole="address" />
-          <NavigationProperty Name="emails" Relationship="Self.email_fk_Email_Gebruiker1" FromRole="user" ToRole="email" />
-          <NavigationProperty Name="loginlogs" Relationship="Self.loginlog_fk_Login_User1" FromRole="user" ToRole="loginlog" />
-          <NavigationProperty Name="messages" Relationship="Self.message_fk_Message_User1" FromRole="user" ToRole="message" />
-          <NavigationProperty Name="phones" Relationship="Self.phone_fk_Telefoonnummer_Gebruiker1" FromRole="user" ToRole="phone" />
-          <NavigationProperty Name="role" Relationship="Self.user_fk_Gebruiker_Rol1" FromRole="user" ToRole="role" />
+          <NavigationProperty Name="transactions" Relationship="Q_BANKModel.transaction_fk_Transaction_TransactionType1" FromRole="transactiontype" ToRole="transaction" />
         </EntityType>
         <Association Name="account_fk_Account_AccountType1">
-          <End Role="accounttype" Type="Self.accounttype" Multiplicity="1" />
-          <End Role="account" Type="Self.account" Multiplicity="*" />
+          <End Type="Q_BANKModel.accounttype" Role="accounttype" Multiplicity="1" />
+          <End Type="Q_BANKModel.account" Role="account" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="accounttype">
               <PropertyRef Name="accountTypeId" />
@@ -528,20 +912,20 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="account_fk_Rekening_Persoon1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="account" Type="Self.account" Multiplicity="*" />
+          <End Type="Q_BANKModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="Q_BANKModel.account" Role="account" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="userId" />
+            <Principal Role="customer">
+              <PropertyRef Name="customerId" />
             </Principal>
             <Dependent Role="account">
-              <PropertyRef Name="userId" />
+              <PropertyRef Name="customerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="transaction_fk_Transactie_Rekening1">
-          <End Role="account" Type="Self.account" Multiplicity="1" />
-          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <End Type="Q_BANKModel.account" Role="account" Multiplicity="1" />
+          <End Type="Q_BANKModel.transaction" Role="transaction" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="account">
               <PropertyRef Name="accountId" />
@@ -551,95 +935,167 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="address_fk_Adres_Gebruiker1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="address" Type="Self.address" Multiplicity="*" />
+        <Association Name="customeraddress_fk_Adres_Gebruiker1">
+          <End Type="Q_BANKModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="Q_BANKModel.customeraddress" Role="customeraddress" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="userId" />
+            <Principal Role="customer">
+              <PropertyRef Name="customerId" />
             </Principal>
-            <Dependent Role="address">
-              <PropertyRef Name="userId" />
+            <Dependent Role="customeraddress">
+              <PropertyRef Name="customerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="email_fk_Email_Gebruiker1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="email" Type="Self.email" Multiplicity="*" />
+        <Association Name="customeremail_fk_Email_Gebruiker1">
+          <End Type="Q_BANKModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="Q_BANKModel.customeremail" Role="customeremail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="userId" />
+            <Principal Role="customer">
+              <PropertyRef Name="customerId" />
             </Principal>
-            <Dependent Role="email">
-              <PropertyRef Name="userId" />
+            <Dependent Role="customeremail">
+              <PropertyRef Name="customerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="loginlog_fk_Login_User1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="loginlog" Type="Self.loginlog" Multiplicity="*" />
+        <Association Name="customerloginlog_fk_Login_User1">
+          <End Type="Q_BANKModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="Q_BANKModel.customerloginlog" Role="customerloginlog" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="userId" />
+            <Principal Role="customer">
+              <PropertyRef Name="customerId" />
             </Principal>
-            <Dependent Role="loginlog">
-              <PropertyRef Name="userId" />
+            <Dependent Role="customerloginlog">
+              <PropertyRef Name="customerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="message_fk_Message_User1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="message" Type="Self.message" Multiplicity="*" />
+        <Association Name="customermessage_fk_Message_User1">
+          <End Type="Q_BANKModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="Q_BANKModel.customermessage" Role="customermessage" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="userId" />
+            <Principal Role="customer">
+              <PropertyRef Name="customerId" />
             </Principal>
-            <Dependent Role="message">
-              <PropertyRef Name="userId" />
+            <Dependent Role="customermessage">
+              <PropertyRef Name="customerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="phone_fk_Phone_PhoneType1">
-          <End Role="phonetype" Type="Self.phonetype" Multiplicity="1" />
-          <End Role="phone" Type="Self.phone" Multiplicity="*" />
+        <Association Name="customerphone_fk_Telefoonnummer_Gebruiker1">
+          <End Type="Q_BANKModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="Q_BANKModel.customerphone" Role="customerphone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customerId" />
+            </Principal>
+            <Dependent Role="customerphone">
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customerphone_fk_Phone_PhoneType1">
+          <End Type="Q_BANKModel.phonetype" Role="phonetype" Multiplicity="1" />
+          <End Type="Q_BANKModel.customerphone" Role="customerphone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="phonetype">
               <PropertyRef Name="phoneTypeId" />
             </Principal>
-            <Dependent Role="phone">
+            <Dependent Role="customerphone">
               <PropertyRef Name="phoneTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="phone_fk_Telefoonnummer_Gebruiker1">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="phone" Type="Self.phone" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="userId" />
-            </Principal>
-            <Dependent Role="phone">
-              <PropertyRef Name="userId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="user_fk_Gebruiker_Rol1">
-          <End Role="role" Type="Self.role" Multiplicity="1" />
-          <End Role="user" Type="Self.user" Multiplicity="*" />
+        <Association Name="employee_fk_Employee_Role1">
+          <End Type="Q_BANKModel.role" Role="role" Multiplicity="1" />
+          <End Type="Q_BANKModel.employee" Role="employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="role">
               <PropertyRef Name="roleId" />
             </Principal>
-            <Dependent Role="user">
+            <Dependent Role="employee">
               <PropertyRef Name="roleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="transaction_fk_Transaction_TransactionStatus1">
-          <End Role="transactionstatus" Type="Self.transactionstatu" Multiplicity="1" />
-          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+        <Association Name="employeeaddress_fk_EmployeeAddress_Employee1">
+          <End Type="Q_BANKModel.employee" Role="employee" Multiplicity="1" />
+          <End Type="Q_BANKModel.employeeaddress" Role="employeeaddress" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="transactionstatus">
+            <Principal Role="employee">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="employeeaddress">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employeeemail_fk_EmployeeEmail_Employee1">
+          <End Type="Q_BANKModel.employee" Role="employee" Multiplicity="1" />
+          <End Type="Q_BANKModel.employeeemail" Role="employeeemail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="employeeemail">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employeeloginlog_fk_EmployeeLoginLog_Employee1">
+          <End Type="Q_BANKModel.employee" Role="employee" Multiplicity="1" />
+          <End Type="Q_BANKModel.employeeloginlog" Role="employeeloginlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="employeeloginlog">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employeemessage_fk_EmployeeMessage_Employee1">
+          <End Type="Q_BANKModel.employee" Role="employee" Multiplicity="1" />
+          <End Type="Q_BANKModel.employeemessage" Role="employeemessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="employeemessage">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employeephone_fk_EmployeePhone_Employee1">
+          <End Type="Q_BANKModel.employee" Role="employee" Multiplicity="1" />
+          <End Type="Q_BANKModel.employeephone" Role="employeephone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="employeephone">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employeephone_fk_Phone_PhoneType10">
+          <End Type="Q_BANKModel.phonetype" Role="phonetype" Multiplicity="1" />
+          <End Type="Q_BANKModel.employeephone" Role="employeephone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="phonetype">
+              <PropertyRef Name="phoneTypeId" />
+            </Principal>
+            <Dependent Role="employeephone">
+              <PropertyRef Name="phoneTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="transaction_fk_Transaction_TransactionStatus1">
+          <End Type="Q_BANKModel.transactionstatu" Role="transactionstatu" Multiplicity="1" />
+          <End Type="Q_BANKModel.transaction" Role="transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transactionstatu">
               <PropertyRef Name="transactionStatusId" />
             </Principal>
             <Dependent Role="transaction">
@@ -648,8 +1104,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="transaction_fk_Transaction_TransactionType1">
-          <End Role="transactiontype" Type="Self.transactiontype" Multiplicity="1" />
-          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <End Type="Q_BANKModel.transactiontype" Role="transactiontype" Multiplicity="1" />
+          <End Type="Q_BANKModel.transaction" Role="transaction" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="transactiontype">
               <PropertyRef Name="transactionTypeId" />
@@ -659,70 +1115,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Q_BANKEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="accounts" EntityType="Self.account" />
-          <EntitySet Name="accounttypes" EntityType="Self.accounttype" />
-          <EntitySet Name="addresses" EntityType="Self.address" />
-          <EntitySet Name="emails" EntityType="Self.email" />
-          <EntitySet Name="loginlogs" EntityType="Self.loginlog" />
-          <EntitySet Name="messages" EntityType="Self.message" />
-          <EntitySet Name="phones" EntityType="Self.phone" />
-          <EntitySet Name="phonetypes" EntityType="Self.phonetype" />
-          <EntitySet Name="roles" EntityType="Self.role" />
-          <EntitySet Name="transactions" EntityType="Self.transaction" />
-          <EntitySet Name="transactionstatus" EntityType="Self.transactionstatu" />
-          <EntitySet Name="transactiontypes" EntityType="Self.transactiontype" />
-          <EntitySet Name="users" EntityType="Self.user" />
-          <AssociationSet Name="account_fk_Account_AccountType1" Association="Self.account_fk_Account_AccountType1">
-            <End Role="accounttype" EntitySet="accounttypes" />
-            <End Role="account" EntitySet="accounts" />
-          </AssociationSet>
-          <AssociationSet Name="account_fk_Rekening_Persoon1" Association="Self.account_fk_Rekening_Persoon1">
-            <End Role="user" EntitySet="users" />
-            <End Role="account" EntitySet="accounts" />
-          </AssociationSet>
-          <AssociationSet Name="transaction_fk_Transactie_Rekening1" Association="Self.transaction_fk_Transactie_Rekening1">
-            <End Role="account" EntitySet="accounts" />
-            <End Role="transaction" EntitySet="transactions" />
-          </AssociationSet>
-          <AssociationSet Name="address_fk_Adres_Gebruiker1" Association="Self.address_fk_Adres_Gebruiker1">
-            <End Role="user" EntitySet="users" />
-            <End Role="address" EntitySet="addresses" />
-          </AssociationSet>
-          <AssociationSet Name="email_fk_Email_Gebruiker1" Association="Self.email_fk_Email_Gebruiker1">
-            <End Role="user" EntitySet="users" />
-            <End Role="email" EntitySet="emails" />
-          </AssociationSet>
-          <AssociationSet Name="loginlog_fk_Login_User1" Association="Self.loginlog_fk_Login_User1">
-            <End Role="user" EntitySet="users" />
-            <End Role="loginlog" EntitySet="loginlogs" />
-          </AssociationSet>
-          <AssociationSet Name="message_fk_Message_User1" Association="Self.message_fk_Message_User1">
-            <End Role="user" EntitySet="users" />
-            <End Role="message" EntitySet="messages" />
-          </AssociationSet>
-          <AssociationSet Name="phone_fk_Phone_PhoneType1" Association="Self.phone_fk_Phone_PhoneType1">
-            <End Role="phonetype" EntitySet="phonetypes" />
-            <End Role="phone" EntitySet="phones" />
-          </AssociationSet>
-          <AssociationSet Name="phone_fk_Telefoonnummer_Gebruiker1" Association="Self.phone_fk_Telefoonnummer_Gebruiker1">
-            <End Role="user" EntitySet="users" />
-            <End Role="phone" EntitySet="phones" />
-          </AssociationSet>
-          <AssociationSet Name="user_fk_Gebruiker_Rol1" Association="Self.user_fk_Gebruiker_Rol1">
-            <End Role="role" EntitySet="roles" />
-            <End Role="user" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="transaction_fk_Transaction_TransactionStatus1" Association="Self.transaction_fk_Transaction_TransactionStatus1">
-            <End Role="transactionstatus" EntitySet="transactionstatus" />
-            <End Role="transaction" EntitySet="transactions" />
-          </AssociationSet>
-          <AssociationSet Name="transaction_fk_Transaction_TransactionType1" Association="Self.transaction_fk_Transaction_TransactionType1">
-            <End Role="transactiontype" EntitySet="transactiontypes" />
-            <End Role="transaction" EntitySet="transactions" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -731,150 +1124,245 @@
           <EntitySetMapping Name="accounts">
             <EntityTypeMapping TypeName="Q_BANKModel.account">
               <MappingFragment StoreEntitySet="account">
-                <ScalarProperty Name="accountId" ColumnName="accountId" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="accountTypeId" ColumnName="accountTypeId" />
-                <ScalarProperty Name="balance" ColumnName="balance" />
-                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
-                <ScalarProperty Name="iban" ColumnName="iban" />
-                <ScalarProperty Name="bic" ColumnName="bic" />
                 <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="bic" ColumnName="bic" />
+                <ScalarProperty Name="iban" ColumnName="iban" />
+                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+                <ScalarProperty Name="accountTypeId" ColumnName="accountTypeId" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="accounttypes">
             <EntityTypeMapping TypeName="Q_BANKModel.accounttype">
               <MappingFragment StoreEntitySet="accounttype">
-                <ScalarProperty Name="accountTypeId" ColumnName="accountTypeId" />
-                <ScalarProperty Name="accountTypeName" ColumnName="accountTypeName" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="accountTypeName" ColumnName="accountTypeName" />
+                <ScalarProperty Name="accountTypeId" ColumnName="accountTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="addresses">
-            <EntityTypeMapping TypeName="Q_BANKModel.address">
-              <MappingFragment StoreEntitySet="address">
-                <ScalarProperty Name="addressId" ColumnName="addressId" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="Q_BANKModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="registerDatetime" ColumnName="registerDatetime" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="birthDate" ColumnName="birthDate" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
                 <ScalarProperty Name="active" ColumnName="active" />
-                <ScalarProperty Name="address1" ColumnName="address" />
-                <ScalarProperty Name="address2" ColumnName="address2" />
-                <ScalarProperty Name="number" ColumnName="number" />
-                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
-                <ScalarProperty Name="city" ColumnName="city" />
-                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="bsn" ColumnName="bsn" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customeraddresses">
+            <EntityTypeMapping TypeName="Q_BANKModel.customeraddress">
+              <MappingFragment StoreEntitySet="customeraddress">
                 <ScalarProperty Name="country" ColumnName="country" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="emails">
-            <EntityTypeMapping TypeName="Q_BANKModel.email">
-              <MappingFragment StoreEntitySet="email">
-                <ScalarProperty Name="emailId" ColumnName="emailId" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="active" ColumnName="active" />
-                <ScalarProperty Name="email1" ColumnName="email" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="customeAddressId" ColumnName="customeAddressId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="loginlogs">
-            <EntityTypeMapping TypeName="Q_BANKModel.loginlog">
-              <MappingFragment StoreEntitySet="loginlog">
-                <ScalarProperty Name="loginId" ColumnName="loginId" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="ip" ColumnName="ip" />
+          <EntitySetMapping Name="customeremails">
+            <EntityTypeMapping TypeName="Q_BANKModel.customeremail">
+              <MappingFragment StoreEntitySet="customeremail">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="customeEmailId" ColumnName="customeEmailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customerloginlogs">
+            <EntityTypeMapping TypeName="Q_BANKModel.customerloginlog">
+              <MappingFragment StoreEntitySet="customerloginlog">
                 <ScalarProperty Name="datetimeLogin" ColumnName="datetimeLogin" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="customeLoginId" ColumnName="customeLoginId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="messages">
-            <EntityTypeMapping TypeName="Q_BANKModel.message">
-              <MappingFragment StoreEntitySet="message">
-                <ScalarProperty Name="messageId" ColumnName="messageId" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="messageText" ColumnName="messageText" />
-                <ScalarProperty Name="read" ColumnName="read" />
+          <EntitySetMapping Name="customermessages">
+            <EntityTypeMapping TypeName="Q_BANKModel.customermessage">
+              <MappingFragment StoreEntitySet="customermessage">
                 <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="read" ColumnName="read" />
+                <ScalarProperty Name="messageText" ColumnName="messageText" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="customerMessageId" ColumnName="customerMessageId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="phones">
-            <EntityTypeMapping TypeName="Q_BANKModel.phone">
-              <MappingFragment StoreEntitySet="phone">
-                <ScalarProperty Name="phoneId" ColumnName="phoneId" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="phoneTypeId" ColumnName="phoneTypeId" />
-                <ScalarProperty Name="phonenumber" ColumnName="phonenumber" />
+          <EntitySetMapping Name="customerphones">
+            <EntityTypeMapping TypeName="Q_BANKModel.customerphone">
+              <MappingFragment StoreEntitySet="customerphone">
                 <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="phonenumber" ColumnName="phonenumber" />
+                <ScalarProperty Name="phoneTypeId" ColumnName="phoneTypeId" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="customerPhoneId" ColumnName="customerPhoneId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="Q_BANKModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="registerDatetime" ColumnName="registerDatetime" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="birthDate" ColumnName="birthDate" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="bsn" ColumnName="bsn" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeeaddresses">
+            <EntityTypeMapping TypeName="Q_BANKModel.employeeaddress">
+              <MappingFragment StoreEntitySet="employeeaddress">
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+                <ScalarProperty Name="employeeAddressId" ColumnName="employeeAddressId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeeemails">
+            <EntityTypeMapping TypeName="Q_BANKModel.employeeemail">
+              <MappingFragment StoreEntitySet="employeeemail">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+                <ScalarProperty Name="employeeEmailId" ColumnName="employeeEmailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeeloginlogs">
+            <EntityTypeMapping TypeName="Q_BANKModel.employeeloginlog">
+              <MappingFragment StoreEntitySet="employeeloginlog">
+                <ScalarProperty Name="datetimeLogin" ColumnName="datetimeLogin" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+                <ScalarProperty Name="customeLoginId" ColumnName="customeLoginId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeemessages">
+            <EntityTypeMapping TypeName="Q_BANKModel.employeemessage">
+              <MappingFragment StoreEntitySet="employeemessage">
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="read" ColumnName="read" />
+                <ScalarProperty Name="messageText" ColumnName="messageText" />
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+                <ScalarProperty Name="customerMessageId" ColumnName="customerMessageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeephones">
+            <EntityTypeMapping TypeName="Q_BANKModel.employeephone">
+              <MappingFragment StoreEntitySet="employeephone">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="phonenumber" ColumnName="phonenumber" />
+                <ScalarProperty Name="phoneTypeId" ColumnName="phoneTypeId" />
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+                <ScalarProperty Name="employeePhoneId" ColumnName="employeePhoneId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="phonetypes">
             <EntityTypeMapping TypeName="Q_BANKModel.phonetype">
               <MappingFragment StoreEntitySet="phonetype">
-                <ScalarProperty Name="phoneTypeId" ColumnName="phoneTypeId" />
                 <ScalarProperty Name="phoneTypeName" ColumnName="phoneTypeName" />
+                <ScalarProperty Name="phoneTypeId" ColumnName="phoneTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="roles">
             <EntityTypeMapping TypeName="Q_BANKModel.role">
               <MappingFragment StoreEntitySet="role">
-                <ScalarProperty Name="roleId" ColumnName="roleId" />
-                <ScalarProperty Name="roleName" ColumnName="roleName" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="transactions">
             <EntityTypeMapping TypeName="Q_BANKModel.transaction">
               <MappingFragment StoreEntitySet="transaction">
-                <ScalarProperty Name="transactionId" ColumnName="transactionId" />
-                <ScalarProperty Name="accountId" ColumnName="accountId" />
-                <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
-                <ScalarProperty Name="transactionStatusId" ColumnName="transactionStatusId" />
-                <ScalarProperty Name="amount" ColumnName="amount" />
-                <ScalarProperty Name="datetime" ColumnName="datetime" />
-                <ScalarProperty Name="commit" ColumnName="commit" />
-                <ScalarProperty Name="executeDatetime" ColumnName="executeDatetime" />
-                <ScalarProperty Name="nameReceiver" ColumnName="nameReceiver" />
-                <ScalarProperty Name="ibanReceiver" ColumnName="ibanReceiver" />
+                <ScalarProperty Name="bic" ColumnName="bic" />
+                <ScalarProperty Name="sepa" ColumnName="sepa" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="ibanReceiver" ColumnName="ibanReceiver" />
+                <ScalarProperty Name="nameReceiver" ColumnName="nameReceiver" />
+                <ScalarProperty Name="commit" ColumnName="commit" />
+                <ScalarProperty Name="commitDatetime" ColumnName="commitDatetime" />
+                <ScalarProperty Name="executeDate" ColumnName="executeDate" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="transactionStatusId" ColumnName="transactionStatusId" />
+                <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="transactionId" ColumnName="transactionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="transactionstatus">
             <EntityTypeMapping TypeName="Q_BANKModel.transactionstatu">
               <MappingFragment StoreEntitySet="transactionstatus">
-                <ScalarProperty Name="transactionStatusId" ColumnName="transactionStatusId" />
-                <ScalarProperty Name="transactionStatusName" ColumnName="transactionStatusName" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="transactionStatusName" ColumnName="transactionStatusName" />
+                <ScalarProperty Name="transactionStatusId" ColumnName="transactionStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transactiontasks">
+            <EntityTypeMapping TypeName="Q_BANKModel.transactiontask">
+              <MappingFragment StoreEntitySet="transactiontask">
+                <ScalarProperty Name="bic" ColumnName="bic" />
+                <ScalarProperty Name="sepa" ColumnName="sepa" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="ibanReceiver" ColumnName="ibanReceiver" />
+                <ScalarProperty Name="nameReceiver" ColumnName="nameReceiver" />
+                <ScalarProperty Name="commit" ColumnName="commit" />
+                <ScalarProperty Name="commitDatetime" ColumnName="commitDatetime" />
+                <ScalarProperty Name="executeDate" ColumnName="executeDate" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="transactionTaskId" ColumnName="transactionTaskId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="transactiontypes">
             <EntityTypeMapping TypeName="Q_BANKModel.transactiontype">
               <MappingFragment StoreEntitySet="transactiontype">
-                <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
-                <ScalarProperty Name="transactionTypeName" ColumnName="transactionTypeName" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="Q_BANKModel.user">
-              <MappingFragment StoreEntitySet="user">
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="roleId" ColumnName="roleId" />
-                <ScalarProperty Name="bsn" ColumnName="bsn" />
-                <ScalarProperty Name="active" ColumnName="active" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="birthDate" ColumnName="birthDate" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="registerDatetime" ColumnName="registerDatetime" />
+                <ScalarProperty Name="transactionTypeName" ColumnName="transactionTypeName" />
+                <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

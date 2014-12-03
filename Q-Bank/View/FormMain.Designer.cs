@@ -366,9 +366,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-<<<<<<< .mine            this.tabPage2.Size = new System.Drawing.Size(986, 840);
-=======            this.tabPage2.Size = new System.Drawing.Size(958, 840);
->>>>>>> .theirs            this.tabPage2.Size = new System.Drawing.Size(1023, 840);
+            this.tabPage2.Size = new System.Drawing.Size(1023, 840);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Overboeking";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -847,12 +845,10 @@
         public System.Windows.Forms.TableLayoutPanel TransactionOverviewTable;
         private System.Windows.Forms.Label label23;
         public System.Windows.Forms.ComboBox TransactionOverviewAccountsCombobox;
-        private System.Windows.Forms.TextBox TransactionStatusSearch;
         public System.Windows.Forms.Label TransactionOverviewBalanceLabel;
         public System.Windows.Forms.Label transactionLabel9;
-<<<<<<< .mine        public System.Windows.Forms.Button TransactionOverviewSearchButton;
-=======        private System.Windows.Forms.Label transactionLabel1;
->>>>>>> .theirs
+        public System.Windows.Forms.Button TransactionOverviewSearchButton;
+        private System.Windows.Forms.Label transactionLabel1;
     }
 }
 

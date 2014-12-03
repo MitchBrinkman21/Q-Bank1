@@ -294,11 +294,8 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-<<<<<<< HEAD
             this.tabPage3.Size = new System.Drawing.Size(958, 840);
-=======
             this.tabPage3.Size = new System.Drawing.Size(1023, 840);
->>>>>>> 1aa5ee079869140f399012034e129dfef896d123
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Transactieoverzicht";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -371,11 +368,8 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-<<<<<<< HEAD
             this.tabPage2.Size = new System.Drawing.Size(958, 840);
-=======
             this.tabPage2.Size = new System.Drawing.Size(1023, 840);
->>>>>>> 1aa5ee079869140f399012034e129dfef896d123
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Overboeking";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -598,11 +592,8 @@
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-<<<<<<< HEAD
             this.tabPage1.Size = new System.Drawing.Size(958, 840);
-=======
             this.tabPage1.Size = new System.Drawing.Size(986, 840);
->>>>>>> 1aa5ee079869140f399012034e129dfef896d123
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Home";
             this.tabPage1.UseVisualStyleBackColor = true;

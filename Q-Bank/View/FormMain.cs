@@ -32,8 +32,7 @@ namespace Q_Bank
 
         private void Transaction()
         {
-
-            TabTransaction tt = new TabTransaction(this);
+            TransactionController tc = new TransactionController(this);
         }
 
         private void TransactionOverview()

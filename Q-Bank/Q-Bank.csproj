@@ -120,6 +120,12 @@
     <Compile Include="View\TabTransaction.cs" />
     <Compile Include="View\TabTransactionOverview.cs" />
     <Compile Include="View\TabTransactionStatus.cs" />
+    <Compile Include="View\TransactionDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TransactionDetails.Designer.cs">
+      <DependentUpon>TransactionDetails.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="View\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,6 +138,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\TransactionDetails.resx">
+      <DependentUpon>TransactionDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>

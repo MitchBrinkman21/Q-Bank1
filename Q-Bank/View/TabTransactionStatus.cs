@@ -15,9 +15,21 @@ namespace Q_Bank.View
         public List<Label> uitvoerDatum, tegenRekening, omschrijving, bedrag, status;
         public List<CheckBox> kies;
         private Label lKies, lUitvoerDatum, lTegenRekening, lOmschrijving, lBedrag, lStatus;
-
+        private List<String> statussen = new List<string>();
         public TabTransactionStatus(FormMain formMain)
         {
+            
+            using (var con = new Q_BANKEntities())
+            {
+                var statusList = from a in con.transactionstatus
+                                 select a;
+
+                foreach (transactionstatu item in statusList)
+                {
+                    statussen.Add(item.transactionStatusName);
+                }
+            }
+
             uitvoerDatum = new List<Label>();
             tegenRekening = new List<Label>();
             omschrijving = new List<Label>();
@@ -106,57 +118,60 @@ namespace Q_Bank.View
 
         private void AddItemsInTable(transaction t, int i)
         {
-            Label tempLabel;
-            CheckBox tempCBox;
-            int tID = t.transactionId;
-            tempCBox = new CheckBox();
-            tempCBox.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-            tempCBox.Tag = tID;
-            formMain.TransactionStatusTableLayout.Controls.Add(tempCBox, 0, i + 1);
-            kies.Add(tempCBox);
+            if (t.transactionStatusId == 1 || t.transactionStatusId == 2)
+            {
+                Label tempLabel;
+                CheckBox tempCBox;
+                int tID = t.transactionId;
+                tempCBox = new CheckBox();
+                tempCBox.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                tempCBox.Tag = tID;
+                formMain.TransactionStatusTableLayout.Controls.Add(tempCBox, 0, i + 1);
+                kies.Add(tempCBox);
 
-            tempLabel = new Label();
-            tempLabel.Text = t.datetime.ToString();
-            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-            tempLabel.Tag = tID;
-            tempLabel.Click += tsc.clickLabelDate;
-            formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 1, i + 1);
-            uitvoerDatum.Add(tempLabel);
+                tempLabel = new Label();
+                tempLabel.Text = t.datetime.ToString();
+                tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                tempLabel.Tag = tID;
+                tempLabel.Click += tsc.clickLabelDate;
+                formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 1, i + 1);
+                uitvoerDatum.Add(tempLabel);
 
-            tempLabel = new Label();
-            tempLabel.Text = t.nameReceiver.ToString() + " " + t.ibanReceiver.ToString();
-            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-            tempLabel.Tag = tID;
-            tempLabel.Click += tsc.clickLabelDate;
-            formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 2, i + 1);
-            tegenRekening.Add(tempLabel);
+                tempLabel = new Label();
+                tempLabel.Text = t.nameReceiver.ToString() + " " + t.ibanReceiver.ToString();
+                tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                tempLabel.Tag = tID;
+                tempLabel.Click += tsc.clickLabelDate;
+                formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 2, i + 1);
+                tegenRekening.Add(tempLabel);
 
-            tempLabel = new Label();
-            tempLabel.Text = t.remark.ToString();
-            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-            tempLabel.Tag = tID;
-            tempLabel.Click += tsc.clickLabelDate;
-            formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 3, i + 1);
-            omschrijving.Add(tempLabel);
+                tempLabel = new Label();
+                tempLabel.Text = t.remark.ToString();
+                tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                tempLabel.Tag = tID;
+                tempLabel.Click += tsc.clickLabelDate;
+                formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 3, i + 1);
+                omschrijving.Add(tempLabel);
 
-            tempLabel = new Label();
-            tempLabel.Text = "€" + t.amount.ToString();
-            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-            tempLabel.Tag = tID;
-            tempLabel.Click += tsc.clickLabelDate;
-            formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 4, i + 1);
-            bedrag.Add(tempLabel);
+                tempLabel = new Label();
+                tempLabel.Text = "€" + t.amount.ToString();
+                tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                tempLabel.Tag = tID;
+                tempLabel.Click += tsc.clickLabelDate;
+                formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 4, i + 1);
+                bedrag.Add(tempLabel);
 
-            tempLabel = new Label();
-            tempLabel.Text = "Bezig met verwerken";
-            tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-            tempLabel.Tag = tID;
-            tempLabel.Click += tsc.clickLabelDate;
-            formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 5, i + 1);
-            status.Add(tempLabel);
+                tempLabel = new Label();
+                tempLabel.Text = statussen[t.transactionStatusId - 1];
+                tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                tempLabel.Tag = tID;
+                tempLabel.Click += tsc.clickLabelDate;
+                formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 5, i + 1);
+                status.Add(tempLabel);
 
-            formMain.TransactionStatusTableLayout.RowCount = i + 2;
+                formMain.TransactionStatusTableLayout.RowCount = i + 2;
 
+            }
         }
 
 

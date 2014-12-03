@@ -59,6 +59,7 @@
     <Compile Include="accounttype.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controller\CreateUserController.cs" />
     <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Controller\TransactionOverviewController.cs" />
     <Compile Include="Controller\TransactionsStatusController.cs" />
@@ -115,6 +116,12 @@
     </Compile>
     <Compile Include="transactiontype.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreateUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CreateUser.Designer.cs">
+      <DependentUpon>CreateUser.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FormMain.cs">
       <SubType>Form</SubType>

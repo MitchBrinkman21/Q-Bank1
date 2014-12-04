@@ -117,6 +117,7 @@
     <Compile Include="transactiontype.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="View\ComboBoxItem.cs" />
     <Compile Include="View\CreateUser.cs">
       <SubType>Form</SubType>
     </Compile>

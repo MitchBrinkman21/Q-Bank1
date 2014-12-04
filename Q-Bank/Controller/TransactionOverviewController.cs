@@ -20,13 +20,13 @@ namespace Q_Bank.Controller
             this.formMain = formMain;
             formMain.TransactionOverviewAccountsCombobox.SelectedIndexChanged += TransactionOverviewAccountComboboxChanged;
             formMain.TransactionOverviewSearchButton.MouseDown += TransactionOverviewSearchButtonMouseDown;
-            FillAccountsCombobox();
+            FillAccountCombobox();
         }
 
         /// <summary>
-        /// Fills the accounts combobox.
+        /// Fills the account combobox.
         /// </summary>
-        private void FillAccountsCombobox()
+        private void FillAccountCombobox()
         {
             using (var con = new Q_BANKEntities())
             {
@@ -153,38 +153,48 @@ namespace Q_Bank.Controller
                 formMain.TransactionOverviewTable.RowStyles.Add(new RowStyle(SizeType.AutoSize));
                 AddDefaultLabels();
 
+                ComboBoxItem accountComboBox = (ComboBoxItem)ts.TransactionSearchAccountCombobox.SelectedItem;
+
                 IQueryable<transaction> transactionCol = null;
+                transactionCol = from t in con.transactions
+                                 select t;
                 if (ts.TransactionSearchCombobox.SelectedIndex == 0) {
-                    if (String.IsNullOrEmpty(ts.textBoxFirstName.Text)) 
-                    { 
-                        transactionCol = from t in con.transactions
-                                         orderby t.executeDate descending
-                                         where t.nameReceiver.Contains(ts.textBoxLastName.Text)
-                                         select t;
+                    // Textboxes
+                    if (String.IsNullOrEmpty(ts.textBoxFirstName.Text))
+                    {
+                        transactionCol = transactionCol.Where(t => t.nameReceiver.Contains(ts.textBoxLastName.Text));
                     }
                     else if (String.IsNullOrEmpty(ts.textBoxLastName.Text))
                     {
-                        transactionCol = from t in con.transactions
-                                         orderby t.executeDate descending
-                                         where t.nameReceiver.Contains(ts.textBoxFirstName.Text)
-                                         select t;
+                        transactionCol = transactionCol.Where(t => t.nameReceiver.Contains(ts.textBoxFirstName.Text));
                     }
                     else
                     {
-                        transactionCol = from t in con.transactions
-                                         orderby t.executeDate descending
-                                         where t.nameReceiver.Contains(ts.textBoxFirstName.Text) || t.nameReceiver.Contains(ts.textBoxLastName.Text)
-                                         select t;
+                        transactionCol = transactionCol.Where(t => t.nameReceiver.Contains(ts.textBoxFirstName.Text) && t.nameReceiver.Contains(ts.textBoxLastName.Text));
+                    }
+                    // ComboBox for accounts
+                    if (accountComboBox.Value != 0)
+                    {
+                        transactionCol = transactionCol.Where(t => t.accountId == accountComboBox.Value);
                     }
                 }
                 else
                 {
-                    transactionCol = from t in con.transactions
-                                     orderby t.executeDate descending
-                                     where (DbFunctions.TruncateTime(t.executeDate.Value) >= DbFunctions.TruncateTime(ts.beginDatePicker.Value))
-                                            &&
-                                            (DbFunctions.TruncateTime(t.executeDate.Value) <= DbFunctions.TruncateTime(ts.endDatePicker.Value))
-                                     select t;
+                    transactionCol = transactionCol.Where(t => DbFunctions.TruncateTime(t.executeDate.Value) >= DbFunctions.TruncateTime(ts.beginDatePicker.Value));
+                    transactionCol = transactionCol.Where(t => DbFunctions.TruncateTime(t.executeDate.Value) <= DbFunctions.TruncateTime(ts.endDatePicker.Value));
+
+                    if (accountComboBox.Value != 0)
+                    {
+                        transactionCol = transactionCol.Where(t => t.accountId == accountComboBox.Value);
+                    }
+                }
+                if (ts.TransactionSearchOrderByCombobobox.SelectedIndex == 0)
+                {
+                    transactionCol = transactionCol.OrderBy(t => t.executeDate);
+                }
+                else
+                {
+                    transactionCol = transactionCol.OrderByDescending(t => t.executeDate);
                 }
                 if (transactionCol != null)
                 {
@@ -212,6 +222,7 @@ namespace Q_Bank.Controller
         {
             using (var con = new Q_BANKEntities())
             {
+                formMain.TransactionOverviewSearchLabel.Visible = false;
                 formMain.TransactionOverviewTable.Controls.Clear();
                 formMain.TransactionOverviewTable.RowStyles.Clear();
                 formMain.TransactionOverviewTable.RowStyles.Add(new RowStyle(SizeType.AutoSize));
@@ -294,6 +305,16 @@ namespace Q_Bank.Controller
                 ts.ShowDialog();
                 if (ts.CloseForm == true)
                 {
+                    formMain.TransactionOverviewSearchLabel.Visible = true;
+                    if (ts.TransactionSearchCombobox.SelectedIndex == 0) 
+                    { 
+                        formMain.TransactionOverviewSearchLabel.Text = "U hebt gezocht naar transacties van: " + ts.textBoxFirstName.Text + " " + ts.textBoxLastName.Text;
+                    }
+                    else
+                    {
+                        formMain.TransactionOverviewSearchLabel.Text = "U hebt gezocht naar transacties in de periode " + ts.beginDatePicker.Value.ToShortDateString() + " - " + ts.endDatePicker.Value.ToShortDateString();
+                    }
+                    formMain.TransactionOverviewSearchLabel.Text += " (" + ts.TransactionSearchOrderByCombobobox.Text + ")";
                     FillTransactionOverviewTableSearchResults(ts);
                 }
             }
@@ -312,22 +333,6 @@ namespace Q_Bank.Controller
                 td.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
                 td.ShowDialog();
             }
-        }
-    }
-
-    public class ComboBoxItem
-    {
-        public int Value;
-        public string Text;
-        public ComboBoxItem(int val, string text)
-        {
-            Value = val;
-            Text = text;
-        }
-
-        public override string ToString()
-        {
-            return Text;
         }
     }
 }

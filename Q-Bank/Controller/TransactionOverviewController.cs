@@ -42,7 +42,7 @@ namespace Q_Bank.Controller
                     formMain.TransactionOverviewAccountsCombobox.SelectedIndex = 0;
                     foreach (account a in accountsCol)
                     {
-                        formMain.TransactionOverviewAccountsCombobox.Items.Add(new ComboBoxItem(a.accountId, a.iban.ToString()));
+                        formMain.TransactionOverviewAccountsCombobox.Items.Add(new ComboBoxItem(a.accountId, a.iban.ToString(), a.iban.ToString()));
                     }
                 }
                 else
@@ -58,8 +58,24 @@ namespace Q_Bank.Controller
         /// </summary>
         /// <param name="t">The transaction.</param>
         /// <param name="i">The rownumber.</param>
-        private void AddItemsInTable(transaction t, int i)
+        private void AddItemsInTable(transaction t, int i, ComboBoxItem combobox)
         {
+            if (combobox.Value > 0)
+            {
+                if (combobox.Iban.Equals(t.ibanReceiver))
+                {
+                    if (t.transactionTypeId == 1)
+                    {
+                        t.transactiontype.transactionTypeName = "Bijschrijven";
+                    }
+                    else
+                    {
+                        t.transactiontype.transactionTypeName = "Afschrijven";
+                    }
+                    t.nameReceiver = t.account.customer.firstName + " " + t.account.customer.lastName;
+                    t.ibanReceiver = t.account.iban;
+                }
+            }
             Label tempLabel;
 
             tempLabel = new Label();
@@ -164,7 +180,7 @@ namespace Q_Bank.Controller
                     // ComboBox for accounts
                     if (accountComboBox.Value != 0)
                     {
-                        transactionCol = transactionCol.Where(t => t.accountId == accountComboBox.Value);
+                        transactionCol = transactionCol.Where(t => t.account.iban == accountComboBox.Iban || t.ibanReceiver == accountComboBox.Iban);
                     }
                 }
                 else
@@ -191,7 +207,7 @@ namespace Q_Bank.Controller
                     int i = 1;
                     foreach (transaction t in transactionCol)
                     {
-                        AddItemsInTable(t, i);
+                        AddItemsInTable(t, i, accountComboBox);
                         i++;
                     }
                     Label tempLabel = new Label();
@@ -221,13 +237,13 @@ namespace Q_Bank.Controller
                 IQueryable<account> accountCol = null;
                 IQueryable<transaction> transactionCol = null;
                 int i = 1;
+                int customerId = 1;
                 if (formMain.TransactionOverviewAccountsCombobox.SelectedIndex >= 0)
                 {
-                    ComboBoxItem combobox = (ComboBoxItem)formMain.TransactionOverviewAccountsCombobox.SelectedItem;
+                    ComboBoxItem accountComboBox = (ComboBoxItem)formMain.TransactionOverviewAccountsCombobox.SelectedItem;
 
-                    if (combobox.Value == 0)
+                    if (accountComboBox.Value == 0)
                     {
-                        int customerId = 1;
                         accountCol = from a in con.accounts
                                      where a.customerId == customerId
                                      select a;
@@ -247,10 +263,10 @@ namespace Q_Bank.Controller
                                          orderby t.commitDatetime descending
                                          select t;
                     }
-                    else if (combobox.Value > 0)
+                    else if (accountComboBox.Value > 0)
                     {
                         accountCol = from a in con.accounts
-                                     where a.accountId == combobox.Value
+                                     where a.accountId == accountComboBox.Value
                                      select a;
 
                         if (accountCol.Count() > 0)
@@ -260,7 +276,7 @@ namespace Q_Bank.Controller
                         }
 
                         transactionCol = from t in con.transactions
-                                         where t.accountId == combobox.Value && t.commitDatetime != null
+                                         where t.commitDatetime != null && (t.ibanReceiver.Equals(accountComboBox.Iban) || t.account.iban.Equals(accountComboBox.Iban))
                                          orderby t.commitDatetime descending
                                          select t;
                     }
@@ -268,7 +284,7 @@ namespace Q_Bank.Controller
                     {
                         foreach (transaction t in transactionCol)
                         {
-                            AddItemsInTable(t, i);
+                            AddItemsInTable(t, i, accountComboBox);
                             i++;
                         }
                     }
@@ -316,8 +332,9 @@ namespace Q_Bank.Controller
         private void TransactionOverviewLabelOnClick(object sender, EventArgs e)
         {
             Label clickedLabel = sender as Label;
-            if (clickedLabel != null) { 
-                TransactionDetails td = new TransactionDetails(Convert.ToInt32(clickedLabel.Tag));
+            if (clickedLabel != null) {
+                ComboBoxItem cbi = (ComboBoxItem)formMain.TransactionOverviewAccountsCombobox.SelectedItem;
+                TransactionDetails td = new TransactionDetails(Convert.ToInt32(clickedLabel.Tag), cbi);
                 td.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
                 td.ShowDialog();
             }

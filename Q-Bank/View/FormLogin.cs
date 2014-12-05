@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Q_Bank.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace Q_Bank.View
         public FormLogin()
         {
             InitializeComponent();
+            LoginController lc = new LoginController(this);
         }
     }
 }

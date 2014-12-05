@@ -45,6 +45,7 @@ namespace Q_Bank.View
             formMain.TrasactionStatusDropBox.SelectedIndexChanged += TransactionStatusAccountComboboxChanged;
             formMain.transactieStatusVerzenden.Click += tsc.Verzenden;
             formMain.transactieStatusHideButton.Click += tsc.Hide;
+            formMain.transactionStatusRefreshButton.Click += tsc.Refresch;
             tsc = new Controller.TransactionsStatusController(this);
             //AddTransactions();
             //verwijderd de verticale scrollbar

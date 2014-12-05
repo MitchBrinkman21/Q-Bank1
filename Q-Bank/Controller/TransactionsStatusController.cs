@@ -192,5 +192,10 @@ namespace Q_Bank.Controller
                 tss.TransactionStatusAccountComboboxChanged(sender, e);
             }
         }
+
+        public void Refresch(object sender, EventArgs e)
+        {
+            tss.TransactionStatusAccountComboboxChanged(sender, e);
+        }
     }
 }

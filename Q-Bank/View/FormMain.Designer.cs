@@ -33,6 +33,8 @@
             this.optiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afsluitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.transactieStatusVerzenden = new System.Windows.Forms.Button();
+            this.transactieStatusHideButton = new System.Windows.Forms.Button();
             this.TransactionStatusTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -84,8 +86,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.transactieStatusHideButton = new System.Windows.Forms.Button();
-            this.transactieStatusVerzenden = new System.Windows.Forms.Button();
+            this.transactionStatusRefreshButton = new System.Windows.Forms.Button();
             this.menuStrip2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.TransactionStatusTableLayout.SuspendLayout();
@@ -134,6 +135,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.transactionStatusRefreshButton);
             this.tabPage4.Controls.Add(this.transactieStatusVerzenden);
             this.tabPage4.Controls.Add(this.transactieStatusHideButton);
             this.tabPage4.Controls.Add(this.TransactionStatusTableLayout);
@@ -149,6 +151,26 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Transactiestatus";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // transactieStatusVerzenden
+            // 
+            this.transactieStatusVerzenden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.transactieStatusVerzenden.Location = new System.Drawing.Point(648, 587);
+            this.transactieStatusVerzenden.Name = "transactieStatusVerzenden";
+            this.transactieStatusVerzenden.Size = new System.Drawing.Size(139, 23);
+            this.transactieStatusVerzenden.TabIndex = 7;
+            this.transactieStatusVerzenden.Text = "Verzenden";
+            this.transactieStatusVerzenden.UseVisualStyleBackColor = true;
+            // 
+            // transactieStatusHideButton
+            // 
+            this.transactieStatusHideButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.transactieStatusHideButton.Location = new System.Drawing.Point(809, 55);
+            this.transactieStatusHideButton.Name = "transactieStatusHideButton";
+            this.transactieStatusHideButton.Size = new System.Drawing.Size(139, 20);
+            this.transactieStatusHideButton.TabIndex = 6;
+            this.transactieStatusHideButton.Text = "niet verzonden items";
+            this.transactieStatusHideButton.UseVisualStyleBackColor = true;
             // 
             // TransactionStatusTableLayout
             // 
@@ -747,25 +769,15 @@
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // transactieStatusHideButton
+            // transactionStatusRefreshButton
             // 
-            this.transactieStatusHideButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.transactieStatusHideButton.Location = new System.Drawing.Point(809, 55);
-            this.transactieStatusHideButton.Name = "transactieStatusHideButton";
-            this.transactieStatusHideButton.Size = new System.Drawing.Size(139, 20);
-            this.transactieStatusHideButton.TabIndex = 6;
-            this.transactieStatusHideButton.Text = "niet verzonden items";
-            this.transactieStatusHideButton.UseVisualStyleBackColor = true;
-            // 
-            // transactieStatusVerzenden
-            // 
-            this.transactieStatusVerzenden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.transactieStatusVerzenden.Location = new System.Drawing.Point(648, 587);
-            this.transactieStatusVerzenden.Name = "transactieStatusVerzenden";
-            this.transactieStatusVerzenden.Size = new System.Drawing.Size(139, 23);
-            this.transactieStatusVerzenden.TabIndex = 7;
-            this.transactieStatusVerzenden.Text = "Verzenden";
-            this.transactieStatusVerzenden.UseVisualStyleBackColor = true;
+            this.transactionStatusRefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.transactionStatusRefreshButton.Location = new System.Drawing.Point(722, 55);
+            this.transactionStatusRefreshButton.Name = "transactionStatusRefreshButton";
+            this.transactionStatusRefreshButton.Size = new System.Drawing.Size(65, 20);
+            this.transactionStatusRefreshButton.TabIndex = 8;
+            this.transactionStatusRefreshButton.Text = "Refresh";
+            this.transactionStatusRefreshButton.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -866,6 +878,7 @@
         public System.Windows.Forms.Label TransactionOverviewSearchLabel;
         public System.Windows.Forms.Button transactieStatusHideButton;
         public System.Windows.Forms.Button transactieStatusVerzenden;
+        public System.Windows.Forms.Button transactionStatusRefreshButton;
     }
 }
 

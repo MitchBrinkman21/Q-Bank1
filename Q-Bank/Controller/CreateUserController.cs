@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Q_Bank.Controller
@@ -28,6 +29,7 @@ namespace Q_Bank.Controller
             createUser.textBoxUsername.TextChanged += checkUsername;
             createUser.textBoxPassword.Leave += checkPassword;
             createUser.textBoxRepeatPassword.Leave += checkPassword;
+            
             createUser.textBoxZipcode.Leave += fillAddress;
             createUser.textBoxNumber.Leave += fillAddress;
         }
@@ -127,19 +129,31 @@ namespace Q_Bank.Controller
                !String.IsNullOrEmpty(createUser.textBoxPassword.Text) &&
                !String.IsNullOrEmpty(createUser.textBoxRepeatPassword.Text))
             {
+                bool valid = true;
+
                 // Check if username doesn't exist and password is correct
                 if(createUser.labelCheckUsername.Visible == true || createUser.labelCheckPassword.Visible == true)
                 {
-                    return false;
+                    valid = false;
                 }
+                
+                if (!Regex.IsMatch(createUser.textBoxFirstname.Text, @"^[a-zA-Z]+$") ||
+                         !Regex.IsMatch(createUser.textBoxFirstname.Text, @"^[a-zA-Z]+$") || 
+                         !Regex.IsMatch(createUser.textBoxLastname.Text, @"^[a-zA-Z]+$") ||
+                         !Regex.IsMatch(createUser.textBoxCity.Text, @"^[a-zA-Z]+$") ||
+                         !Regex.IsMatch(createUser.textBoxCountry.Text, @"^[a-zA-Z]+$") ||
+                         !Regex.IsMatch(createUser.textBoxPhonenumber.Text, @"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$"))
+                {
+                    valid = false;
+                }
+
+                return valid;
             }
             else
             {     
                 createUser.showMessage("Niet alle velden zijn ingevuld!");
                 return false;
             }
-
-            return true;
         }
 
         private void checkUsername(object sender, System.EventArgs e)
@@ -183,10 +197,18 @@ namespace Q_Bank.Controller
             if (!String.IsNullOrEmpty(createUser.textBoxZipcode.Text) &&
                 !String.IsNullOrEmpty(createUser.textBoxNumber.Text))
             {
-                /*AddressGenerator ag = new AddressGenerator(createUser.textBoxZipcode.Text, createUser.textBoxNumber.Text);
-                ag.generateAddressDetails();
-                createUser.textBoxAddress.Text = ag.street;
-                createUser.textBoxCity.Text = ag.city;*/
+                try
+                {
+                    AddressGenerator ag = new AddressGenerator(createUser.textBoxZipcode.Text, createUser.textBoxNumber.Text);
+                    ag.generateAddressDetails();
+                    createUser.textBoxAddress.Text = ag.street;
+                    createUser.textBoxCity.Text = ag.city;
+                }
+                catch
+                {
+                    createUser.textBoxAddress.Clear();
+                    createUser.textBoxCity.Clear();
+                }
             }
         }
 
@@ -209,30 +231,5 @@ namespace Q_Bank.Controller
             createUser.textBoxPassword.Clear();
             createUser.textBoxRepeatPassword.Clear();
         }
-
-        /*public bool checkOnlyNumbers(string text)
-        {
-            foreach (char c in text)
-            {
-                if (!Char.IsDigit(c))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-        public bool checkNoNumbers(string text)
-        {
-            foreach (char c in text)
-            {
-                if (Char.IsDigit(c))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }*/
     }
 }

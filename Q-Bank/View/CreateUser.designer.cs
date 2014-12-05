@@ -64,6 +64,7 @@
             this.labelBirthday = new System.Windows.Forms.Label();
             this.labelCheckUsername = new System.Windows.Forms.Label();
             this.labelCheckPassword = new System.Windows.Forms.Label();
+            this.labelCheckFirstname = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelCreateUser
@@ -115,7 +116,7 @@
             // labelAddress
             // 
             this.labelAddress.AutoSize = true;
-            this.labelAddress.Location = new System.Drawing.Point(96, 268);
+            this.labelAddress.Location = new System.Drawing.Point(96, 334);
             this.labelAddress.Name = "labelAddress";
             this.labelAddress.Size = new System.Drawing.Size(45, 17);
             this.labelAddress.TabIndex = 5;
@@ -133,7 +134,7 @@
             // labelZipcode
             // 
             this.labelZipcode.AutoSize = true;
-            this.labelZipcode.Location = new System.Drawing.Point(96, 334);
+            this.labelZipcode.Location = new System.Drawing.Point(96, 268);
             this.labelZipcode.Name = "labelZipcode";
             this.labelZipcode.Size = new System.Drawing.Size(67, 17);
             this.labelZipcode.TabIndex = 7;
@@ -233,10 +234,10 @@
             // 
             // textBoxAddress
             // 
-            this.textBoxAddress.Location = new System.Drawing.Point(284, 265);
+            this.textBoxAddress.Location = new System.Drawing.Point(284, 331);
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(156, 22);
-            this.textBoxAddress.TabIndex = 5;
+            this.textBoxAddress.TabIndex = 7;
             // 
             // textBoxNumber
             // 
@@ -247,10 +248,10 @@
             // 
             // textBoxZipcode
             // 
-            this.textBoxZipcode.Location = new System.Drawing.Point(284, 331);
+            this.textBoxZipcode.Location = new System.Drawing.Point(284, 265);
             this.textBoxZipcode.Name = "textBoxZipcode";
             this.textBoxZipcode.Size = new System.Drawing.Size(156, 22);
-            this.textBoxZipcode.TabIndex = 7;
+            this.textBoxZipcode.TabIndex = 5;
             // 
             // textBoxCity
             // 
@@ -269,7 +270,7 @@
             // labeUsername
             // 
             this.labeUsername.AutoSize = true;
-            this.labeUsername.Location = new System.Drawing.Point(576, 103);
+            this.labeUsername.Location = new System.Drawing.Point(632, 103);
             this.labeUsername.Name = "labeUsername";
             this.labeUsername.Size = new System.Drawing.Size(113, 17);
             this.labeUsername.TabIndex = 25;
@@ -278,7 +279,7 @@
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(576, 136);
+            this.labelPassword.Location = new System.Drawing.Point(632, 136);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(86, 17);
             this.labelPassword.TabIndex = 26;
@@ -287,7 +288,7 @@
             // labelRepeatPassword
             // 
             this.labelRepeatPassword.AutoSize = true;
-            this.labelRepeatPassword.Location = new System.Drawing.Point(576, 169);
+            this.labelRepeatPassword.Location = new System.Drawing.Point(632, 169);
             this.labelRepeatPassword.Name = "labelRepeatPassword";
             this.labelRepeatPassword.Size = new System.Drawing.Size(140, 17);
             this.labelRepeatPassword.TabIndex = 27;
@@ -295,14 +296,14 @@
             // 
             // textBoxUsername
             // 
-            this.textBoxUsername.Location = new System.Drawing.Point(752, 100);
+            this.textBoxUsername.Location = new System.Drawing.Point(808, 100);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(156, 22);
             this.textBoxUsername.TabIndex = 13;
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(752, 133);
+            this.textBoxPassword.Location = new System.Drawing.Point(808, 133);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(156, 22);
             this.textBoxPassword.TabIndex = 14;
@@ -310,7 +311,7 @@
             // 
             // textBoxRepeatPassword
             // 
-            this.textBoxRepeatPassword.Location = new System.Drawing.Point(752, 166);
+            this.textBoxRepeatPassword.Location = new System.Drawing.Point(808, 166);
             this.textBoxRepeatPassword.Name = "textBoxRepeatPassword";
             this.textBoxRepeatPassword.Size = new System.Drawing.Size(156, 22);
             this.textBoxRepeatPassword.TabIndex = 15;
@@ -318,7 +319,7 @@
             // 
             // buttonBevestigen
             // 
-            this.buttonBevestigen.Location = new System.Drawing.Point(1015, 502);
+            this.buttonBevestigen.Location = new System.Drawing.Point(1085, 502);
             this.buttonBevestigen.Name = "buttonBevestigen";
             this.buttonBevestigen.Size = new System.Drawing.Size(125, 43);
             this.buttonBevestigen.TabIndex = 16;
@@ -354,7 +355,7 @@
             // 
             this.labelCheckUsername.AutoSize = true;
             this.labelCheckUsername.ForeColor = System.Drawing.Color.Red;
-            this.labelCheckUsername.Location = new System.Drawing.Point(914, 103);
+            this.labelCheckUsername.Location = new System.Drawing.Point(970, 103);
             this.labelCheckUsername.Name = "labelCheckUsername";
             this.labelCheckUsername.Size = new System.Drawing.Size(182, 17);
             this.labelCheckUsername.TabIndex = 35;
@@ -365,18 +366,30 @@
             // 
             this.labelCheckPassword.AutoSize = true;
             this.labelCheckPassword.ForeColor = System.Drawing.Color.Red;
-            this.labelCheckPassword.Location = new System.Drawing.Point(914, 150);
+            this.labelCheckPassword.Location = new System.Drawing.Point(970, 150);
             this.labelCheckPassword.Name = "labelCheckPassword";
             this.labelCheckPassword.Size = new System.Drawing.Size(234, 17);
             this.labelCheckPassword.TabIndex = 36;
             this.labelCheckPassword.Text = "Wachtwoorden komen niet overeen!";
             this.labelCheckPassword.Visible = false;
             // 
+            // labelCheckFirstname
+            // 
+            this.labelCheckFirstname.AutoSize = true;
+            this.labelCheckFirstname.ForeColor = System.Drawing.Color.Red;
+            this.labelCheckFirstname.Location = new System.Drawing.Point(446, 136);
+            this.labelCheckFirstname.Name = "labelCheckFirstname";
+            this.labelCheckFirstname.Size = new System.Drawing.Size(168, 17);
+            this.labelCheckFirstname.TabIndex = 37;
+            this.labelCheckFirstname.Text = "Alleen letters toegestaan!";
+            this.labelCheckFirstname.Visible = false;
+            // 
             // CreateUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1152, 557);
+            this.ClientSize = new System.Drawing.Size(1222, 557);
+            this.Controls.Add(this.labelCheckFirstname);
             this.Controls.Add(this.labelCheckPassword);
             this.Controls.Add(this.labelCheckUsername);
             this.Controls.Add(this.labelBirthday);
@@ -459,5 +472,6 @@
         public System.Windows.Forms.DateTimePicker dateTimePickerBirthday;
         public System.Windows.Forms.Label labelCheckUsername;
         public System.Windows.Forms.Label labelCheckPassword;
+        public System.Windows.Forms.Label labelCheckFirstname;
     }
 }

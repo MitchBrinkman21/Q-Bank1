@@ -95,7 +95,7 @@ namespace Q_Bank.Controller
                 {
                     accountId = tp.accountid,
                     transactionTypeId = 1,
-                    transactionStatusId = 1,
+                    transactionStatusId = 2,
                     amount = Convert.ToDouble(formMain.transactionNumericUpDown1.Text),
                     datetime = DateTime.Now,
                     executeDate = Convert.ToDateTime(formMain.transactionDateTimePicker1.Value),

@@ -121,7 +121,7 @@
     <Compile Include="View\CreateUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\CreateUser.Designer.cs">
+    <Compile Include="View\CreateUser.designer.cs">
       <DependentUpon>CreateUser.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FormMain.cs">
@@ -160,6 +160,9 @@
     <Compile Include="View\TransactionSearch.Designer.cs">
       <DependentUpon>TransactionSearch.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\CreateUser.resx">
+      <DependentUpon>CreateUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

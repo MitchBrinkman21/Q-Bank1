@@ -20,7 +20,6 @@ namespace Q_Bank
         {
             InitializeComponent();
             Home();
-            test();
          }
 
         private void Home()

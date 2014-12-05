@@ -60,6 +60,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Controller\CreateUserController.cs" />
+    <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Controller\TransactionOverviewController.cs" />
     <Compile Include="Controller\TransactionsStatusController.cs" />
@@ -121,8 +122,14 @@
     <Compile Include="View\CreateUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\CreateUser.designer.cs">
+    <Compile Include="View\CreateUser.Designer.cs">
       <DependentUpon>CreateUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FormMain.cs">
       <SubType>Form</SubType>
@@ -160,8 +167,8 @@
     <Compile Include="View\TransactionSearch.Designer.cs">
       <DependentUpon>TransactionSearch.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\CreateUser.resx">
-      <DependentUpon>CreateUser.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

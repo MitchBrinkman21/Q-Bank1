@@ -63,7 +63,7 @@ namespace Q_Bank.Controller
             Label tempLabel;
 
             tempLabel = new Label();
-            tempLabel.Text = t.executeDate.Value.Date.ToShortDateString();
+            tempLabel.Text = t.commitDatetime.Value.Date.ToShortDateString();
             tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             tempLabel.Tag = t.transactionId;
             tempLabel.Click += TransactionOverviewLabelOnClick;
@@ -83,26 +83,15 @@ namespace Q_Bank.Controller
             tempLabel.Click += TransactionOverviewLabelOnClick;
             formMain.TransactionOverviewTable.Controls.Add(tempLabel, 2, i);
 
-            String addWithdraw = "Bij";
-            if (t.amount < 0)
-            {
-                addWithdraw = "Af";
-            }
             tempLabel = new Label();
-            tempLabel.Text = addWithdraw;
+            tempLabel.Text = t.transactiontype.transactionTypeName.ToString();
             tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             tempLabel.Tag = t.transactionId;
             tempLabel.Click += TransactionOverviewLabelOnClick;
             formMain.TransactionOverviewTable.Controls.Add(tempLabel, 3, i);
 
-            double amount = t.amount;
-            if (t.amount < 0)
-            {
-                amount *= -1;
-            }
-
             tempLabel = new Label();
-            tempLabel.Text = "€" + String.Format("{0:0,00}", amount.ToString("f2"));
+            tempLabel.Text = "€" + String.Format("{0:0,00}", t.amount.ToString("f2"));
             tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             tempLabel.Tag = t.transactionId;
             tempLabel.Click += TransactionOverviewLabelOnClick;
@@ -190,12 +179,13 @@ namespace Q_Bank.Controller
                 }
                 if (ts.TransactionSearchOrderByCombobobox.SelectedIndex == 0)
                 {
-                    transactionCol = transactionCol.OrderBy(t => t.executeDate);
+                    transactionCol = transactionCol.OrderBy(t => t.commitDatetime);
                 }
                 else
                 {
-                    transactionCol = transactionCol.OrderByDescending(t => t.executeDate);
+                    transactionCol = transactionCol.OrderByDescending(t => t.commitDatetime);
                 }
+                transactionCol = transactionCol.Where(t => t.commit == 1);
                 if (transactionCol != null)
                 {
                     int i = 1;
@@ -253,14 +243,9 @@ namespace Q_Bank.Controller
                         }
 
                         transactionCol = from t in con.transactions
-                                         orderby t.datetime descending
+                                         where t.commit == 1
+                                         orderby t.commitDatetime descending
                                          select t;
-
-                        foreach (transaction t in transactionCol)
-                        {
-                            AddItemsInTable(t, i);
-                            i++;
-                        }
                     }
                     else if (combobox.Value > 0)
                     {
@@ -275,16 +260,19 @@ namespace Q_Bank.Controller
                         }
 
                         transactionCol = from t in con.transactions
-                                         where t.accountId == combobox.Value
-                                         orderby t.datetime descending
+                                         where t.accountId == combobox.Value && t.commit == 1
+                                         orderby t.commitDatetime descending
                                          select t;
-
+                    }
+                    if (transactionCol != null)
+                    {
                         foreach (transaction t in transactionCol)
                         {
                             AddItemsInTable(t, i);
                             i++;
                         }
                     }
+
                     Label tempLabel = new Label();
                     formMain.TransactionOverviewTable.Controls.Add(tempLabel, 0, formMain.TransactionOverviewTable.RowCount);
                 }

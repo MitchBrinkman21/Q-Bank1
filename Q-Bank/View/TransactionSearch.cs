@@ -92,7 +92,7 @@ namespace Q_Bank.View
                     TransactionSearchAccountCombobox.SelectedIndex = 0;
                     foreach (account a in accountsCol)
                     {
-                        TransactionSearchAccountCombobox.Items.Add(new ComboBoxItem(a.accountId, a.iban.ToString()));
+                        TransactionSearchAccountCombobox.Items.Add(new ComboBoxItem(a.accountId, a.iban.ToString(), a.iban.ToString()));
                     }
                 }
                 else

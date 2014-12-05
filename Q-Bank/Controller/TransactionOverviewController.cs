@@ -165,15 +165,15 @@ namespace Q_Bank.Controller
                                  select t;
                 if (ts.TransactionSearchCombobox.SelectedIndex == 0) {
                     // Textboxes
-                    if (String.IsNullOrEmpty(ts.textBoxFirstName.Text))
+                    if (String.IsNullOrEmpty(ts.textBoxFirstName.Text) && !String.IsNullOrEmpty(ts.textBoxLastName.Text))
                     {
                         transactionCol = transactionCol.Where(t => t.nameReceiver.Contains(ts.textBoxLastName.Text));
                     }
-                    else if (String.IsNullOrEmpty(ts.textBoxLastName.Text))
+                    else if (String.IsNullOrEmpty(ts.textBoxLastName.Text) && !String.IsNullOrEmpty(ts.textBoxFirstName.Text))
                     {
                         transactionCol = transactionCol.Where(t => t.nameReceiver.Contains(ts.textBoxFirstName.Text));
                     }
-                    else
+                    else if (!String.IsNullOrEmpty(ts.textBoxFirstName.Text) && !String.IsNullOrEmpty(ts.textBoxLastName.Text))
                     {
                         transactionCol = transactionCol.Where(t => t.nameReceiver.Contains(ts.textBoxFirstName.Text) && t.nameReceiver.Contains(ts.textBoxLastName.Text));
                     }

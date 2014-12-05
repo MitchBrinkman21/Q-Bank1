@@ -9,9 +9,17 @@ namespace Q_Bank.View
     public class ComboBoxItem
     {
         public int Value;
+        public string Iban;
         public string Text;
         public ComboBoxItem(int val, string text)
         {
+            Value = val;
+            Text = text;
+        }
+
+        public ComboBoxItem(int val, string iban, string text)
+        {
+            Iban = iban;
             Value = val;
             Text = text;
         }

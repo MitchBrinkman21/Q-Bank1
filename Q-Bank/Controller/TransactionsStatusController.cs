@@ -86,7 +86,7 @@ namespace Q_Bank.Controller
         public void clickLabelDate(object sender, EventArgs e)
         {
             Label clickedLabel = sender as Label;
-            View.TransactionDetails d = new View.TransactionDetails(Convert.ToInt32(clickedLabel.Tag));
+            View.TransactionDetails d = new View.TransactionDetails(Convert.ToInt32(clickedLabel.Tag), null);
             d.ShowDialog();
         }
     }

@@ -12,7 +12,7 @@ namespace Q_Bank.View
 {
     public partial class TransactionDetails : Form
     {
-        public TransactionDetails(int tID)
+        public TransactionDetails(int tID, ComboBoxItem cbi)
         {
             InitializeComponent();
             using (var con = new Q_BANKEntities())
@@ -22,6 +22,24 @@ namespace Q_Bank.View
                               select t;
 
                 transaction tr = details.First();
+                if (cbi != null) { 
+                    if (cbi.Value > 0)
+                    {
+                        if (cbi.Iban.Equals(tr.ibanReceiver))
+                        {
+                            if (tr.transactionTypeId == 1)
+                            {
+                                tr.transactiontype.transactionTypeName = "Bijschrijven";
+                            }
+                            else
+                            {
+                                tr.transactiontype.transactionTypeName = "Afschrijven";
+                            }
+                            tr.nameReceiver = tr.account.customer.firstName + " " + tr.account.customer.lastName;
+                            tr.ibanReceiver = tr.account.iban;
+                        }
+                    }
+                }
                 accountLabel.Text = tr.account.iban.ToString() + "-" + tr.account.accounttype.accountTypeName.ToString();
                 datetimeLabel.Text = tr.datetime.ToShortDateString();
                 executeDateLabel.Text = tr.executeDate.Value.ToShortDateString();

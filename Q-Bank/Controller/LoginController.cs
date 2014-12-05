@@ -15,6 +15,7 @@ namespace Q_Bank.Controller
         {
             this.formLogin = formLogin;
             formLogin.button2.Click += processLogin;
+            formLogin.button3.Click += openCreateUser;
         }
             public void processLogin (object sender, System.EventArgs e)
             {
@@ -22,6 +23,12 @@ namespace Q_Bank.Controller
                 {
                     // Ga hier naar de main applicatie.
                 }
+            }
+
+            public void openCreateUser(object sender, System.EventArgs e)
+            {
+                CreateUser cu = new CreateUser();
+                cu.ShowDialog();
             }
         
         public bool checkData()

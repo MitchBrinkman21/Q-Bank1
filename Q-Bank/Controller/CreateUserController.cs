@@ -17,34 +17,41 @@ namespace Q_Bank.Controller
             {
                 var phonetypes = from c in con.phonetypes
                                  select c.phoneTypeName;
-
+                // Fill combobox with phonetypes
                 foreach (string pt in phonetypes)
                 {
-                    createUser.comboBoxTelType.Items.Add(pt);
+                    createUser.comboBoxPhoneType.Items.Add(pt);
                 }
             }
             createUser.textBoxBSN.Select();
             createUser.buttonBevestigen.Click += processCreateUser;
+            createUser.textBoxUsername.TextChanged += checkUsername;
+            createUser.textBoxPassword.Leave += checkPassword;
+            createUser.textBoxRepeatPassword.Leave += checkPassword;
+            createUser.textBoxZipcode.Leave += fillAddress;
+            createUser.textBoxNumber.Leave += fillAddress;
         }
 
         public void processCreateUser(object sender, System.EventArgs e)
         {
+            // Check if entered data is valid
             if (checkData())
             {
-                DateTime registerDateTime = DateTime.Now;
+                // Import data into database
+
                 using (var con = new Q_BANKEntities())
                 {
                     customer newCustomer = new customer()
                     {
                         bsn = createUser.textBoxBSN.Text,
                         active = 0,
-                        firstName = createUser.textBoxVoornaam.Text,
-                        lastName = createUser.textBoxAchternaam.Text,
-                        gender = createUser.comboBoxGeslacht.Text,
-                        birthDate = Convert.ToDateTime(createUser.dateTimePickerGeboortedatum.Value),
-                        username = createUser.textBoxGebruikersnaam.Text,
-                        password = createUser.textBoxWachtwoord.Text,
-                        registerDatetime = registerDateTime
+                        firstName = createUser.textBoxFirstname.Text,
+                        lastName = createUser.textBoxLastname.Text,
+                        gender = createUser.comboBoxGender.Text,
+                        birthDate = Convert.ToDateTime(createUser.dateTimePickerBirthday.Value),
+                        username = createUser.textBoxUsername.Text,
+                        password = createUser.textBoxPassword.Text,
+                        registerDatetime = DateTime.Now
                     };
                     con.customers.Add(newCustomer);
                     con.SaveChanges();
@@ -53,7 +60,7 @@ namespace Q_Bank.Controller
                 using (var con = new Q_BANKEntities())
                 {
                     var customers = from c in con.customers
-                                    where c.username == createUser.textBoxGebruikersnaam.Text
+                                    where c.username == createUser.textBoxUsername.Text
                                     select c.customerId;
 
                     int customerID = 0;
@@ -67,20 +74,20 @@ namespace Q_Bank.Controller
                     {
                         customerId = customerID,
                         active = 1,
-                        address = createUser.textBoxAdres.Text,
-                        number = createUser.textBoxHuisnummer.Text,
-                        zipcode = createUser.textBoxPostcode.Text,
-                        city = createUser.textBoxStad.Text,
+                        address = createUser.textBoxAddress.Text,
+                        number = createUser.textBoxNumber.Text,
+                        zipcode = createUser.textBoxZipcode.Text,
+                        city = createUser.textBoxCity.Text,
                         state = "empty",
-                        country = createUser.textBoxLand.Text
+                        country = createUser.textBoxCountry.Text
                     };
                     con.customeraddresses.Add(newCustomerAddress);
 
                     customerphone newCustomerPhone = new customerphone()
                     {
                         customerId = customerID,
-                        phoneTypeId = createUser.comboBoxTelType.SelectedIndex + 1,
-                        phonenumber = createUser.textBoxTel.Text,
+                        phoneTypeId = createUser.comboBoxPhoneType.SelectedIndex + 1,
+                        phonenumber = createUser.textBoxPhonenumber.Text,
                         active = 1
                     };
                     con.customerphones.Add(newCustomerPhone);
@@ -95,37 +102,34 @@ namespace Q_Bank.Controller
 
                     con.SaveChanges();
                 }
+                createUser.showMessage("Uw account is met succes aangemaakt!");
                 resetFields();
-                createUser.showMessage("Het account is met succes aangemaakt!");
                 createUser.Close();
             }
         }
 
         public bool checkData()
         {
+            // Check if all entered data is not empty
             if (!String.IsNullOrEmpty(createUser.textBoxBSN.Text) &&
-               !String.IsNullOrEmpty(createUser.textBoxVoornaam.Text) &&
-               !String.IsNullOrEmpty(createUser.textBoxAchternaam.Text) &&
-               createUser.comboBoxGeslacht.SelectedIndex >= 0 &&
-               !String.IsNullOrEmpty(createUser.textBoxAdres.Text) &&
-               !String.IsNullOrEmpty(createUser.textBoxHuisnummer.Text) &&
-               !String.IsNullOrEmpty(createUser.textBoxPostcode.Text) &&
-               !String.IsNullOrEmpty(createUser.textBoxStad.Text) &&
-               !String.IsNullOrEmpty(createUser.textBoxLand.Text) &&
-               !String.IsNullOrEmpty(createUser.textBoxTel.Text) &&
-               createUser.comboBoxTelType.SelectedIndex >= 0 &&
+               !String.IsNullOrEmpty(createUser.textBoxFirstname.Text) &&
+               !String.IsNullOrEmpty(createUser.textBoxLastname.Text) &&
+               createUser.comboBoxGender.SelectedIndex >= 0 &&
+               !String.IsNullOrEmpty(createUser.textBoxAddress.Text) &&
+               !String.IsNullOrEmpty(createUser.textBoxNumber.Text) &&
+               !String.IsNullOrEmpty(createUser.textBoxZipcode.Text) &&
+               !String.IsNullOrEmpty(createUser.textBoxCity.Text) &&
+               !String.IsNullOrEmpty(createUser.textBoxCountry.Text) &&
+               !String.IsNullOrEmpty(createUser.textBoxPhonenumber.Text) &&
+               createUser.comboBoxPhoneType.SelectedIndex >= 0 &&
                !String.IsNullOrEmpty(createUser.textBoxEmail.Text) &&
-               !String.IsNullOrEmpty(createUser.textBoxGebruikersnaam.Text) &&
-               !String.IsNullOrEmpty(createUser.textBoxWachtwoord.Text) &&
-               !String.IsNullOrEmpty(createUser.textBoxHerhaalWachtwoord.Text))
+               !String.IsNullOrEmpty(createUser.textBoxUsername.Text) &&
+               !String.IsNullOrEmpty(createUser.textBoxPassword.Text) &&
+               !String.IsNullOrEmpty(createUser.textBoxRepeatPassword.Text))
             {
-                if (!checkUsername(createUser.textBoxGebruikersnaam.Text))
+                // Check if username doesn't exist and password is correct
+                if(createUser.labelCheckUsername.Visible == true || createUser.labelCheckPassword.Visible == true)
                 {
-                    createUser.showMessage("Gebruikersnaam is al in gebruik!");
-                    return false;
-                }
-                else if(!checkPassword(createUser.textBoxWachtwoord.Text, createUser.textBoxHerhaalWachtwoord.Text)){
-                    createUser.showMessage("Wachtwoorden komen niet overeen!");
                     return false;
                 }
             }
@@ -138,51 +142,72 @@ namespace Q_Bank.Controller
             return true;
         }
 
-        private bool checkUsername(string username)
+        private void checkUsername(object sender, System.EventArgs e)
         {
             using (var con = new Q_BANKEntities())
             {
                 var query = from c in con.customers
-                            where c.username == createUser.textBoxGebruikersnaam.Text
+                            where c.username == createUser.textBoxUsername.Text
                             select c;
-
+                // Check if username doesn't exist
                 if (query.Count() != 0)
                 {
-                    return false;
+                    createUser.labelCheckUsername.Visible = true;
+                }
+                else
+                {
+                    createUser.labelCheckUsername.Visible = false;
                 }
             }
-
-            return true;
         }
 
-        private bool checkPassword(string password, string password2)
+        private void checkPassword(object sender, System.EventArgs e)
         {
-            if (password != password2)
+            // Check if password is equal to repeated password
+            if (!String.IsNullOrEmpty(createUser.textBoxPassword.Text) &&
+                !String.IsNullOrEmpty(createUser.textBoxRepeatPassword.Text))
             {
-                return false;
+                if (createUser.textBoxPassword.Text != createUser.textBoxRepeatPassword.Text)
+                {
+                    createUser.labelCheckPassword.Visible = true;
+                }
+                else
+                {
+                    createUser.labelCheckPassword.Visible = false;
+                }
             }
+        }
 
-            return true;
+        private void fillAddress(object sender, System.EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(createUser.textBoxZipcode.Text) &&
+                !String.IsNullOrEmpty(createUser.textBoxNumber.Text))
+            {
+                /*AddressGenerator ag = new AddressGenerator(createUser.textBoxZipcode.Text, createUser.textBoxNumber.Text);
+                ag.generateAddressDetails();
+                createUser.textBoxAddress.Text = ag.street;
+                createUser.textBoxCity.Text = ag.city;*/
+            }
         }
 
         private void resetFields()
         {
             createUser.textBoxBSN.Clear();
-            createUser.textBoxVoornaam.Clear();
-            createUser.textBoxAchternaam.Clear();
-            createUser.comboBoxGeslacht.Text = "Kies:";
-            createUser.dateTimePickerGeboortedatum.Text = DateTime.Today.ToString();
-            createUser.textBoxAdres.Clear();
-            createUser.textBoxHuisnummer.Clear();
-            createUser.textBoxPostcode.Clear();
-            createUser.textBoxStad.Clear();
-            createUser.textBoxLand.Clear();
-            createUser.textBoxTel.Clear();
-            createUser.comboBoxTelType.Text = "Kies: ";
+            createUser.textBoxFirstname.Clear();
+            createUser.textBoxLastname.Clear();
+            createUser.comboBoxGender.Text = "Kies:";
+            createUser.dateTimePickerBirthday.Text = DateTime.Today.ToString();
+            createUser.textBoxAddress.Clear();
+            createUser.textBoxNumber.Clear();
+            createUser.textBoxZipcode.Clear();
+            createUser.textBoxCity.Clear();
+            createUser.textBoxCountry.Clear();
+            createUser.textBoxPhonenumber.Clear();
+            createUser.comboBoxPhoneType.Text = "Kies: ";
             createUser.textBoxEmail.Clear();
-            createUser.textBoxGebruikersnaam.Clear();
-            createUser.textBoxWachtwoord.Clear();
-            createUser.textBoxHerhaalWachtwoord.Clear();
+            createUser.textBoxUsername.Clear();
+            createUser.textBoxPassword.Clear();
+            createUser.textBoxRepeatPassword.Clear();
         }
 
         /*public bool checkOnlyNumbers(string text)

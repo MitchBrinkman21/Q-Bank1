@@ -28,51 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelAccountAanmaken = new System.Windows.Forms.Label();
+            this.labelCreateUser = new System.Windows.Forms.Label();
             this.labelBSN = new System.Windows.Forms.Label();
-            this.labelVoornaam = new System.Windows.Forms.Label();
-            this.labelAchternaam = new System.Windows.Forms.Label();
-            this.labelGeslacht = new System.Windows.Forms.Label();
-            this.labelAdres = new System.Windows.Forms.Label();
-            this.labelHuisnummer = new System.Windows.Forms.Label();
-            this.labelPostcode = new System.Windows.Forms.Label();
-            this.labelStad = new System.Windows.Forms.Label();
-            this.labelLand = new System.Windows.Forms.Label();
-            this.labelTelefoonnummer = new System.Windows.Forms.Label();
-            this.labelTelefoonnummerType = new System.Windows.Forms.Label();
+            this.labelFirstname = new System.Windows.Forms.Label();
+            this.labelLastname = new System.Windows.Forms.Label();
+            this.labelGender = new System.Windows.Forms.Label();
+            this.labelAddress = new System.Windows.Forms.Label();
+            this.labelNumber = new System.Windows.Forms.Label();
+            this.labelZipcode = new System.Windows.Forms.Label();
+            this.labelCity = new System.Windows.Forms.Label();
+            this.labelCountry = new System.Windows.Forms.Label();
+            this.labelPhonenumber = new System.Windows.Forms.Label();
+            this.labelPhoneType = new System.Windows.Forms.Label();
             this.labelEmail = new System.Windows.Forms.Label();
-            this.textBoxTel = new System.Windows.Forms.TextBox();
+            this.textBoxPhonenumber = new System.Windows.Forms.TextBox();
             this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.textBoxBSN = new System.Windows.Forms.TextBox();
-            this.textBoxVoornaam = new System.Windows.Forms.TextBox();
-            this.textBoxAchternaam = new System.Windows.Forms.TextBox();
-            this.comboBoxGeslacht = new System.Windows.Forms.ComboBox();
-            this.textBoxAdres = new System.Windows.Forms.TextBox();
-            this.textBoxHuisnummer = new System.Windows.Forms.TextBox();
-            this.textBoxPostcode = new System.Windows.Forms.TextBox();
-            this.textBoxStad = new System.Windows.Forms.TextBox();
-            this.textBoxLand = new System.Windows.Forms.TextBox();
-            this.labelGebruikersnaam = new System.Windows.Forms.Label();
-            this.labelWachtwoord = new System.Windows.Forms.Label();
-            this.labelHerhaalWachtwoord = new System.Windows.Forms.Label();
-            this.textBoxGebruikersnaam = new System.Windows.Forms.TextBox();
-            this.textBoxWachtwoord = new System.Windows.Forms.TextBox();
-            this.textBoxHerhaalWachtwoord = new System.Windows.Forms.TextBox();
+            this.textBoxFirstname = new System.Windows.Forms.TextBox();
+            this.textBoxLastname = new System.Windows.Forms.TextBox();
+            this.comboBoxGender = new System.Windows.Forms.ComboBox();
+            this.textBoxAddress = new System.Windows.Forms.TextBox();
+            this.textBoxNumber = new System.Windows.Forms.TextBox();
+            this.textBoxZipcode = new System.Windows.Forms.TextBox();
+            this.textBoxCity = new System.Windows.Forms.TextBox();
+            this.textBoxCountry = new System.Windows.Forms.TextBox();
+            this.labeUsername = new System.Windows.Forms.Label();
+            this.labelPassword = new System.Windows.Forms.Label();
+            this.labelRepeatPassword = new System.Windows.Forms.Label();
+            this.textBoxUsername = new System.Windows.Forms.TextBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.textBoxRepeatPassword = new System.Windows.Forms.TextBox();
             this.buttonBevestigen = new System.Windows.Forms.Button();
-            this.comboBoxTelType = new System.Windows.Forms.ComboBox();
-            this.dateTimePickerGeboortedatum = new System.Windows.Forms.DateTimePicker();
-            this.labelGeboortedatum = new System.Windows.Forms.Label();
+            this.comboBoxPhoneType = new System.Windows.Forms.ComboBox();
+            this.dateTimePickerBirthday = new System.Windows.Forms.DateTimePicker();
+            this.labelBirthday = new System.Windows.Forms.Label();
+            this.labelCheckUsername = new System.Windows.Forms.Label();
+            this.labelCheckPassword = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // labelAccountAanmaken
+            // labelCreateUser
             // 
-            this.labelAccountAanmaken.AutoSize = true;
-            this.labelAccountAanmaken.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAccountAanmaken.Location = new System.Drawing.Point(94, 29);
-            this.labelAccountAanmaken.Name = "labelAccountAanmaken";
-            this.labelAccountAanmaken.Size = new System.Drawing.Size(215, 29);
-            this.labelAccountAanmaken.TabIndex = 0;
-            this.labelAccountAanmaken.Text = "Account aanmaken";
+            this.labelCreateUser.AutoSize = true;
+            this.labelCreateUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCreateUser.Location = new System.Drawing.Point(94, 29);
+            this.labelCreateUser.Name = "labelCreateUser";
+            this.labelCreateUser.Size = new System.Drawing.Size(215, 29);
+            this.labelCreateUser.TabIndex = 0;
+            this.labelCreateUser.Text = "Account aanmaken";
             // 
             // labelBSN
             // 
@@ -83,95 +85,95 @@
             this.labelBSN.TabIndex = 1;
             this.labelBSN.Text = "BSN/NI";
             // 
-            // labelVoornaam
+            // labelFirstname
             // 
-            this.labelVoornaam.AutoSize = true;
-            this.labelVoornaam.Location = new System.Drawing.Point(96, 136);
-            this.labelVoornaam.Name = "labelVoornaam";
-            this.labelVoornaam.Size = new System.Drawing.Size(73, 17);
-            this.labelVoornaam.TabIndex = 2;
-            this.labelVoornaam.Text = "Voornaam";
+            this.labelFirstname.AutoSize = true;
+            this.labelFirstname.Location = new System.Drawing.Point(96, 136);
+            this.labelFirstname.Name = "labelFirstname";
+            this.labelFirstname.Size = new System.Drawing.Size(73, 17);
+            this.labelFirstname.TabIndex = 2;
+            this.labelFirstname.Text = "Voornaam";
             // 
-            // labelAchternaam
+            // labelLastname
             // 
-            this.labelAchternaam.AutoSize = true;
-            this.labelAchternaam.Location = new System.Drawing.Point(96, 169);
-            this.labelAchternaam.Name = "labelAchternaam";
-            this.labelAchternaam.Size = new System.Drawing.Size(84, 17);
-            this.labelAchternaam.TabIndex = 3;
-            this.labelAchternaam.Text = "Achternaam";
+            this.labelLastname.AutoSize = true;
+            this.labelLastname.Location = new System.Drawing.Point(96, 169);
+            this.labelLastname.Name = "labelLastname";
+            this.labelLastname.Size = new System.Drawing.Size(84, 17);
+            this.labelLastname.TabIndex = 3;
+            this.labelLastname.Text = "Achternaam";
             // 
-            // labelGeslacht
+            // labelGender
             // 
-            this.labelGeslacht.AutoSize = true;
-            this.labelGeslacht.Location = new System.Drawing.Point(96, 202);
-            this.labelGeslacht.Name = "labelGeslacht";
-            this.labelGeslacht.Size = new System.Drawing.Size(64, 17);
-            this.labelGeslacht.TabIndex = 4;
-            this.labelGeslacht.Text = "Geslacht";
+            this.labelGender.AutoSize = true;
+            this.labelGender.Location = new System.Drawing.Point(96, 202);
+            this.labelGender.Name = "labelGender";
+            this.labelGender.Size = new System.Drawing.Size(64, 17);
+            this.labelGender.TabIndex = 4;
+            this.labelGender.Text = "Geslacht";
             // 
-            // labelAdres
+            // labelAddress
             // 
-            this.labelAdres.AutoSize = true;
-            this.labelAdres.Location = new System.Drawing.Point(96, 268);
-            this.labelAdres.Name = "labelAdres";
-            this.labelAdres.Size = new System.Drawing.Size(45, 17);
-            this.labelAdres.TabIndex = 5;
-            this.labelAdres.Text = "Adres";
+            this.labelAddress.AutoSize = true;
+            this.labelAddress.Location = new System.Drawing.Point(96, 268);
+            this.labelAddress.Name = "labelAddress";
+            this.labelAddress.Size = new System.Drawing.Size(45, 17);
+            this.labelAddress.TabIndex = 5;
+            this.labelAddress.Text = "Adres";
             // 
-            // labelHuisnummer
+            // labelNumber
             // 
-            this.labelHuisnummer.AutoSize = true;
-            this.labelHuisnummer.Location = new System.Drawing.Point(96, 301);
-            this.labelHuisnummer.Name = "labelHuisnummer";
-            this.labelHuisnummer.Size = new System.Drawing.Size(87, 17);
-            this.labelHuisnummer.TabIndex = 6;
-            this.labelHuisnummer.Text = "Huisnummer";
+            this.labelNumber.AutoSize = true;
+            this.labelNumber.Location = new System.Drawing.Point(96, 301);
+            this.labelNumber.Name = "labelNumber";
+            this.labelNumber.Size = new System.Drawing.Size(87, 17);
+            this.labelNumber.TabIndex = 6;
+            this.labelNumber.Text = "Huisnummer";
             // 
-            // labelPostcode
+            // labelZipcode
             // 
-            this.labelPostcode.AutoSize = true;
-            this.labelPostcode.Location = new System.Drawing.Point(96, 334);
-            this.labelPostcode.Name = "labelPostcode";
-            this.labelPostcode.Size = new System.Drawing.Size(67, 17);
-            this.labelPostcode.TabIndex = 7;
-            this.labelPostcode.Text = "Postcode";
+            this.labelZipcode.AutoSize = true;
+            this.labelZipcode.Location = new System.Drawing.Point(96, 334);
+            this.labelZipcode.Name = "labelZipcode";
+            this.labelZipcode.Size = new System.Drawing.Size(67, 17);
+            this.labelZipcode.TabIndex = 7;
+            this.labelZipcode.Text = "Postcode";
             // 
-            // labelStad
+            // labelCity
             // 
-            this.labelStad.AutoSize = true;
-            this.labelStad.Location = new System.Drawing.Point(96, 367);
-            this.labelStad.Name = "labelStad";
-            this.labelStad.Size = new System.Drawing.Size(37, 17);
-            this.labelStad.TabIndex = 8;
-            this.labelStad.Text = "Stad";
+            this.labelCity.AutoSize = true;
+            this.labelCity.Location = new System.Drawing.Point(96, 367);
+            this.labelCity.Name = "labelCity";
+            this.labelCity.Size = new System.Drawing.Size(37, 17);
+            this.labelCity.TabIndex = 8;
+            this.labelCity.Text = "Stad";
             // 
-            // labelLand
+            // labelCountry
             // 
-            this.labelLand.AutoSize = true;
-            this.labelLand.Location = new System.Drawing.Point(96, 400);
-            this.labelLand.Name = "labelLand";
-            this.labelLand.Size = new System.Drawing.Size(40, 17);
-            this.labelLand.TabIndex = 9;
-            this.labelLand.Text = "Land";
+            this.labelCountry.AutoSize = true;
+            this.labelCountry.Location = new System.Drawing.Point(96, 400);
+            this.labelCountry.Name = "labelCountry";
+            this.labelCountry.Size = new System.Drawing.Size(40, 17);
+            this.labelCountry.TabIndex = 9;
+            this.labelCountry.Text = "Land";
             // 
-            // labelTelefoonnummer
+            // labelPhonenumber
             // 
-            this.labelTelefoonnummer.AutoSize = true;
-            this.labelTelefoonnummer.Location = new System.Drawing.Point(96, 433);
-            this.labelTelefoonnummer.Name = "labelTelefoonnummer";
-            this.labelTelefoonnummer.Size = new System.Drawing.Size(115, 17);
-            this.labelTelefoonnummer.TabIndex = 10;
-            this.labelTelefoonnummer.Text = "Telefoonnummer";
+            this.labelPhonenumber.AutoSize = true;
+            this.labelPhonenumber.Location = new System.Drawing.Point(96, 433);
+            this.labelPhonenumber.Name = "labelPhonenumber";
+            this.labelPhonenumber.Size = new System.Drawing.Size(115, 17);
+            this.labelPhonenumber.TabIndex = 10;
+            this.labelPhonenumber.Text = "Telefoonnummer";
             // 
-            // labelTelefoonnummerType
+            // labelPhoneType
             // 
-            this.labelTelefoonnummerType.AutoSize = true;
-            this.labelTelefoonnummerType.Location = new System.Drawing.Point(96, 466);
-            this.labelTelefoonnummerType.Name = "labelTelefoonnummerType";
-            this.labelTelefoonnummerType.Size = new System.Drawing.Size(146, 17);
-            this.labelTelefoonnummerType.TabIndex = 11;
-            this.labelTelefoonnummerType.Text = "Telefoonnummer type";
+            this.labelPhoneType.AutoSize = true;
+            this.labelPhoneType.Location = new System.Drawing.Point(96, 466);
+            this.labelPhoneType.Name = "labelPhoneType";
+            this.labelPhoneType.Size = new System.Drawing.Size(146, 17);
+            this.labelPhoneType.TabIndex = 11;
+            this.labelPhoneType.Text = "Telefoonnummer type";
             // 
             // labelEmail
             // 
@@ -182,12 +184,12 @@
             this.labelEmail.TabIndex = 12;
             this.labelEmail.Text = "E-mail";
             // 
-            // textBoxTel
+            // textBoxPhonenumber
             // 
-            this.textBoxTel.Location = new System.Drawing.Point(284, 430);
-            this.textBoxTel.Name = "textBoxTel";
-            this.textBoxTel.Size = new System.Drawing.Size(156, 22);
-            this.textBoxTel.TabIndex = 10;
+            this.textBoxPhonenumber.Location = new System.Drawing.Point(284, 430);
+            this.textBoxPhonenumber.Name = "textBoxPhonenumber";
+            this.textBoxPhonenumber.Size = new System.Drawing.Size(156, 22);
+            this.textBoxPhonenumber.TabIndex = 10;
             // 
             // textBoxEmail
             // 
@@ -203,191 +205,216 @@
             this.textBoxBSN.Size = new System.Drawing.Size(156, 22);
             this.textBoxBSN.TabIndex = 0;
             // 
-            // textBoxVoornaam
+            // textBoxFirstname
             // 
-            this.textBoxVoornaam.Location = new System.Drawing.Point(284, 133);
-            this.textBoxVoornaam.Name = "textBoxVoornaam";
-            this.textBoxVoornaam.Size = new System.Drawing.Size(156, 22);
-            this.textBoxVoornaam.TabIndex = 1;
+            this.textBoxFirstname.Location = new System.Drawing.Point(284, 133);
+            this.textBoxFirstname.Name = "textBoxFirstname";
+            this.textBoxFirstname.Size = new System.Drawing.Size(156, 22);
+            this.textBoxFirstname.TabIndex = 1;
             // 
-            // textBoxAchternaam
+            // textBoxLastname
             // 
-            this.textBoxAchternaam.Location = new System.Drawing.Point(284, 166);
-            this.textBoxAchternaam.Name = "textBoxAchternaam";
-            this.textBoxAchternaam.Size = new System.Drawing.Size(156, 22);
-            this.textBoxAchternaam.TabIndex = 2;
+            this.textBoxLastname.Location = new System.Drawing.Point(284, 166);
+            this.textBoxLastname.Name = "textBoxLastname";
+            this.textBoxLastname.Size = new System.Drawing.Size(156, 22);
+            this.textBoxLastname.TabIndex = 2;
             // 
-            // comboBoxGeslacht
+            // comboBoxGender
             // 
-            this.comboBoxGeslacht.FormattingEnabled = true;
-            this.comboBoxGeslacht.Items.AddRange(new object[] {
+            this.comboBoxGender.FormattingEnabled = true;
+            this.comboBoxGender.Items.AddRange(new object[] {
             "Man",
             "Vrouw"});
-            this.comboBoxGeslacht.Location = new System.Drawing.Point(284, 199);
-            this.comboBoxGeslacht.Name = "comboBoxGeslacht";
-            this.comboBoxGeslacht.Size = new System.Drawing.Size(156, 24);
-            this.comboBoxGeslacht.TabIndex = 3;
-            this.comboBoxGeslacht.Text = "Kies:";
+            this.comboBoxGender.Location = new System.Drawing.Point(284, 199);
+            this.comboBoxGender.Name = "comboBoxGender";
+            this.comboBoxGender.Size = new System.Drawing.Size(156, 24);
+            this.comboBoxGender.TabIndex = 3;
+            this.comboBoxGender.Text = "Kies:";
             // 
-            // textBoxAdres
+            // textBoxAddress
             // 
-            this.textBoxAdres.Location = new System.Drawing.Point(284, 265);
-            this.textBoxAdres.Name = "textBoxAdres";
-            this.textBoxAdres.Size = new System.Drawing.Size(156, 22);
-            this.textBoxAdres.TabIndex = 5;
+            this.textBoxAddress.Location = new System.Drawing.Point(284, 265);
+            this.textBoxAddress.Name = "textBoxAddress";
+            this.textBoxAddress.Size = new System.Drawing.Size(156, 22);
+            this.textBoxAddress.TabIndex = 5;
             // 
-            // textBoxHuisnummer
+            // textBoxNumber
             // 
-            this.textBoxHuisnummer.Location = new System.Drawing.Point(284, 298);
-            this.textBoxHuisnummer.Name = "textBoxHuisnummer";
-            this.textBoxHuisnummer.Size = new System.Drawing.Size(156, 22);
-            this.textBoxHuisnummer.TabIndex = 6;
+            this.textBoxNumber.Location = new System.Drawing.Point(284, 298);
+            this.textBoxNumber.Name = "textBoxNumber";
+            this.textBoxNumber.Size = new System.Drawing.Size(156, 22);
+            this.textBoxNumber.TabIndex = 6;
             // 
-            // textBoxPostcode
+            // textBoxZipcode
             // 
-            this.textBoxPostcode.Location = new System.Drawing.Point(284, 331);
-            this.textBoxPostcode.Name = "textBoxPostcode";
-            this.textBoxPostcode.Size = new System.Drawing.Size(156, 22);
-            this.textBoxPostcode.TabIndex = 7;
+            this.textBoxZipcode.Location = new System.Drawing.Point(284, 331);
+            this.textBoxZipcode.Name = "textBoxZipcode";
+            this.textBoxZipcode.Size = new System.Drawing.Size(156, 22);
+            this.textBoxZipcode.TabIndex = 7;
             // 
-            // textBoxStad
+            // textBoxCity
             // 
-            this.textBoxStad.Location = new System.Drawing.Point(284, 364);
-            this.textBoxStad.Name = "textBoxStad";
-            this.textBoxStad.Size = new System.Drawing.Size(156, 22);
-            this.textBoxStad.TabIndex = 8;
+            this.textBoxCity.Location = new System.Drawing.Point(284, 364);
+            this.textBoxCity.Name = "textBoxCity";
+            this.textBoxCity.Size = new System.Drawing.Size(156, 22);
+            this.textBoxCity.TabIndex = 8;
             // 
-            // textBoxLand
+            // textBoxCountry
             // 
-            this.textBoxLand.Location = new System.Drawing.Point(284, 397);
-            this.textBoxLand.Name = "textBoxLand";
-            this.textBoxLand.Size = new System.Drawing.Size(156, 22);
-            this.textBoxLand.TabIndex = 9;
+            this.textBoxCountry.Location = new System.Drawing.Point(284, 397);
+            this.textBoxCountry.Name = "textBoxCountry";
+            this.textBoxCountry.Size = new System.Drawing.Size(156, 22);
+            this.textBoxCountry.TabIndex = 9;
             // 
-            // labelGebruikersnaam
+            // labeUsername
             // 
-            this.labelGebruikersnaam.AutoSize = true;
-            this.labelGebruikersnaam.Location = new System.Drawing.Point(576, 103);
-            this.labelGebruikersnaam.Name = "labelGebruikersnaam";
-            this.labelGebruikersnaam.Size = new System.Drawing.Size(113, 17);
-            this.labelGebruikersnaam.TabIndex = 25;
-            this.labelGebruikersnaam.Text = "Gebruikersnaam";
+            this.labeUsername.AutoSize = true;
+            this.labeUsername.Location = new System.Drawing.Point(576, 103);
+            this.labeUsername.Name = "labeUsername";
+            this.labeUsername.Size = new System.Drawing.Size(113, 17);
+            this.labeUsername.TabIndex = 25;
+            this.labeUsername.Text = "Gebruikersnaam";
             // 
-            // labelWachtwoord
+            // labelPassword
             // 
-            this.labelWachtwoord.AutoSize = true;
-            this.labelWachtwoord.Location = new System.Drawing.Point(576, 136);
-            this.labelWachtwoord.Name = "labelWachtwoord";
-            this.labelWachtwoord.Size = new System.Drawing.Size(86, 17);
-            this.labelWachtwoord.TabIndex = 26;
-            this.labelWachtwoord.Text = "Wachtwoord";
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.Location = new System.Drawing.Point(576, 136);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(86, 17);
+            this.labelPassword.TabIndex = 26;
+            this.labelPassword.Text = "Wachtwoord";
             // 
-            // labelHerhaalWachtwoord
+            // labelRepeatPassword
             // 
-            this.labelHerhaalWachtwoord.AutoSize = true;
-            this.labelHerhaalWachtwoord.Location = new System.Drawing.Point(576, 169);
-            this.labelHerhaalWachtwoord.Name = "labelHerhaalWachtwoord";
-            this.labelHerhaalWachtwoord.Size = new System.Drawing.Size(140, 17);
-            this.labelHerhaalWachtwoord.TabIndex = 27;
-            this.labelHerhaalWachtwoord.Text = "Herhaal Wachtwoord";
+            this.labelRepeatPassword.AutoSize = true;
+            this.labelRepeatPassword.Location = new System.Drawing.Point(576, 169);
+            this.labelRepeatPassword.Name = "labelRepeatPassword";
+            this.labelRepeatPassword.Size = new System.Drawing.Size(140, 17);
+            this.labelRepeatPassword.TabIndex = 27;
+            this.labelRepeatPassword.Text = "Herhaal Wachtwoord";
             // 
-            // textBoxGebruikersnaam
+            // textBoxUsername
             // 
-            this.textBoxGebruikersnaam.Location = new System.Drawing.Point(752, 100);
-            this.textBoxGebruikersnaam.Name = "textBoxGebruikersnaam";
-            this.textBoxGebruikersnaam.Size = new System.Drawing.Size(156, 22);
-            this.textBoxGebruikersnaam.TabIndex = 13;
+            this.textBoxUsername.Location = new System.Drawing.Point(752, 100);
+            this.textBoxUsername.Name = "textBoxUsername";
+            this.textBoxUsername.Size = new System.Drawing.Size(156, 22);
+            this.textBoxUsername.TabIndex = 13;
             // 
-            // textBoxWachtwoord
+            // textBoxPassword
             // 
-            this.textBoxWachtwoord.Location = new System.Drawing.Point(752, 133);
-            this.textBoxWachtwoord.Name = "textBoxWachtwoord";
-            this.textBoxWachtwoord.Size = new System.Drawing.Size(156, 22);
-            this.textBoxWachtwoord.TabIndex = 14;
-            this.textBoxWachtwoord.UseSystemPasswordChar = true;
+            this.textBoxPassword.Location = new System.Drawing.Point(752, 133);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.Size = new System.Drawing.Size(156, 22);
+            this.textBoxPassword.TabIndex = 14;
+            this.textBoxPassword.UseSystemPasswordChar = true;
             // 
-            // textBoxHerhaalWachtwoord
+            // textBoxRepeatPassword
             // 
-            this.textBoxHerhaalWachtwoord.Location = new System.Drawing.Point(752, 166);
-            this.textBoxHerhaalWachtwoord.Name = "textBoxHerhaalWachtwoord";
-            this.textBoxHerhaalWachtwoord.Size = new System.Drawing.Size(156, 22);
-            this.textBoxHerhaalWachtwoord.TabIndex = 15;
-            this.textBoxHerhaalWachtwoord.UseSystemPasswordChar = true;
+            this.textBoxRepeatPassword.Location = new System.Drawing.Point(752, 166);
+            this.textBoxRepeatPassword.Name = "textBoxRepeatPassword";
+            this.textBoxRepeatPassword.Size = new System.Drawing.Size(156, 22);
+            this.textBoxRepeatPassword.TabIndex = 15;
+            this.textBoxRepeatPassword.UseSystemPasswordChar = true;
             // 
             // buttonBevestigen
             // 
-            this.buttonBevestigen.Location = new System.Drawing.Point(967, 499);
+            this.buttonBevestigen.Location = new System.Drawing.Point(1015, 502);
             this.buttonBevestigen.Name = "buttonBevestigen";
             this.buttonBevestigen.Size = new System.Drawing.Size(125, 43);
             this.buttonBevestigen.TabIndex = 16;
             this.buttonBevestigen.Text = "Bevestigen";
             this.buttonBevestigen.UseVisualStyleBackColor = true;
             // 
-            // comboBoxTelType
+            // comboBoxPhoneType
             // 
-            this.comboBoxTelType.FormattingEnabled = true;
-            this.comboBoxTelType.Location = new System.Drawing.Point(284, 463);
-            this.comboBoxTelType.Name = "comboBoxTelType";
-            this.comboBoxTelType.Size = new System.Drawing.Size(156, 24);
-            this.comboBoxTelType.TabIndex = 11;
-            this.comboBoxTelType.Text = "Kies:";
+            this.comboBoxPhoneType.FormattingEnabled = true;
+            this.comboBoxPhoneType.Location = new System.Drawing.Point(284, 463);
+            this.comboBoxPhoneType.Name = "comboBoxPhoneType";
+            this.comboBoxPhoneType.Size = new System.Drawing.Size(156, 24);
+            this.comboBoxPhoneType.TabIndex = 11;
+            this.comboBoxPhoneType.Text = "Kies:";
             // 
-            // dateTimePickerGeboortedatum
+            // dateTimePickerBirthday
             // 
-            this.dateTimePickerGeboortedatum.Location = new System.Drawing.Point(284, 232);
-            this.dateTimePickerGeboortedatum.Name = "dateTimePickerGeboortedatum";
-            this.dateTimePickerGeboortedatum.Size = new System.Drawing.Size(156, 22);
-            this.dateTimePickerGeboortedatum.TabIndex = 4;
+            this.dateTimePickerBirthday.Location = new System.Drawing.Point(284, 232);
+            this.dateTimePickerBirthday.Name = "dateTimePickerBirthday";
+            this.dateTimePickerBirthday.Size = new System.Drawing.Size(156, 22);
+            this.dateTimePickerBirthday.TabIndex = 4;
             // 
-            // labelGeboortedatum
+            // labelBirthday
             // 
-            this.labelGeboortedatum.AutoSize = true;
-            this.labelGeboortedatum.Location = new System.Drawing.Point(96, 235);
-            this.labelGeboortedatum.Name = "labelGeboortedatum";
-            this.labelGeboortedatum.Size = new System.Drawing.Size(107, 17);
-            this.labelGeboortedatum.TabIndex = 34;
-            this.labelGeboortedatum.Text = "Geboortedatum";
+            this.labelBirthday.AutoSize = true;
+            this.labelBirthday.Location = new System.Drawing.Point(96, 235);
+            this.labelBirthday.Name = "labelBirthday";
+            this.labelBirthday.Size = new System.Drawing.Size(107, 17);
+            this.labelBirthday.TabIndex = 34;
+            this.labelBirthday.Text = "Geboortedatum";
+            // 
+            // labelCheckUsername
+            // 
+            this.labelCheckUsername.AutoSize = true;
+            this.labelCheckUsername.ForeColor = System.Drawing.Color.Red;
+            this.labelCheckUsername.Location = new System.Drawing.Point(914, 103);
+            this.labelCheckUsername.Name = "labelCheckUsername";
+            this.labelCheckUsername.Size = new System.Drawing.Size(182, 17);
+            this.labelCheckUsername.TabIndex = 35;
+            this.labelCheckUsername.Text = "Gebruikersnaam bestaat al!";
+            this.labelCheckUsername.Visible = false;
+            // 
+            // labelCheckPassword
+            // 
+            this.labelCheckPassword.AutoSize = true;
+            this.labelCheckPassword.ForeColor = System.Drawing.Color.Red;
+            this.labelCheckPassword.Location = new System.Drawing.Point(914, 150);
+            this.labelCheckPassword.Name = "labelCheckPassword";
+            this.labelCheckPassword.Size = new System.Drawing.Size(234, 17);
+            this.labelCheckPassword.TabIndex = 36;
+            this.labelCheckPassword.Text = "Wachtwoorden komen niet overeen!";
+            this.labelCheckPassword.Visible = false;
             // 
             // CreateUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1104, 557);
-            this.Controls.Add(this.labelGeboortedatum);
-            this.Controls.Add(this.dateTimePickerGeboortedatum);
-            this.Controls.Add(this.comboBoxTelType);
+            this.ClientSize = new System.Drawing.Size(1152, 557);
+            this.Controls.Add(this.labelCheckPassword);
+            this.Controls.Add(this.labelCheckUsername);
+            this.Controls.Add(this.labelBirthday);
+            this.Controls.Add(this.dateTimePickerBirthday);
+            this.Controls.Add(this.comboBoxPhoneType);
             this.Controls.Add(this.buttonBevestigen);
-            this.Controls.Add(this.textBoxHerhaalWachtwoord);
-            this.Controls.Add(this.textBoxWachtwoord);
-            this.Controls.Add(this.textBoxGebruikersnaam);
-            this.Controls.Add(this.labelHerhaalWachtwoord);
-            this.Controls.Add(this.labelWachtwoord);
-            this.Controls.Add(this.labelGebruikersnaam);
-            this.Controls.Add(this.textBoxLand);
-            this.Controls.Add(this.textBoxStad);
-            this.Controls.Add(this.textBoxPostcode);
-            this.Controls.Add(this.textBoxHuisnummer);
-            this.Controls.Add(this.textBoxAdres);
-            this.Controls.Add(this.comboBoxGeslacht);
-            this.Controls.Add(this.textBoxAchternaam);
-            this.Controls.Add(this.textBoxVoornaam);
+            this.Controls.Add(this.textBoxRepeatPassword);
+            this.Controls.Add(this.textBoxPassword);
+            this.Controls.Add(this.textBoxUsername);
+            this.Controls.Add(this.labelRepeatPassword);
+            this.Controls.Add(this.labelPassword);
+            this.Controls.Add(this.labeUsername);
+            this.Controls.Add(this.textBoxCountry);
+            this.Controls.Add(this.textBoxCity);
+            this.Controls.Add(this.textBoxZipcode);
+            this.Controls.Add(this.textBoxNumber);
+            this.Controls.Add(this.textBoxAddress);
+            this.Controls.Add(this.comboBoxGender);
+            this.Controls.Add(this.textBoxLastname);
+            this.Controls.Add(this.textBoxFirstname);
             this.Controls.Add(this.textBoxBSN);
             this.Controls.Add(this.textBoxEmail);
-            this.Controls.Add(this.textBoxTel);
+            this.Controls.Add(this.textBoxPhonenumber);
             this.Controls.Add(this.labelEmail);
-            this.Controls.Add(this.labelTelefoonnummerType);
-            this.Controls.Add(this.labelTelefoonnummer);
-            this.Controls.Add(this.labelLand);
-            this.Controls.Add(this.labelStad);
-            this.Controls.Add(this.labelPostcode);
-            this.Controls.Add(this.labelHuisnummer);
-            this.Controls.Add(this.labelAdres);
-            this.Controls.Add(this.labelGeslacht);
-            this.Controls.Add(this.labelAchternaam);
-            this.Controls.Add(this.labelVoornaam);
+            this.Controls.Add(this.labelPhoneType);
+            this.Controls.Add(this.labelPhonenumber);
+            this.Controls.Add(this.labelCountry);
+            this.Controls.Add(this.labelCity);
+            this.Controls.Add(this.labelZipcode);
+            this.Controls.Add(this.labelNumber);
+            this.Controls.Add(this.labelAddress);
+            this.Controls.Add(this.labelGender);
+            this.Controls.Add(this.labelLastname);
+            this.Controls.Add(this.labelFirstname);
             this.Controls.Add(this.labelBSN);
-            this.Controls.Add(this.labelAccountAanmaken);
+            this.Controls.Add(this.labelCreateUser);
             this.Name = "CreateUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Account aanmaken";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -396,39 +423,41 @@
 
         #endregion
 
-        private System.Windows.Forms.Label labelAccountAanmaken;
+        private System.Windows.Forms.Label labelCreateUser;
         private System.Windows.Forms.Label labelBSN;
-        private System.Windows.Forms.Label labelVoornaam;
-        private System.Windows.Forms.Label labelAchternaam;
-        private System.Windows.Forms.Label labelGeslacht;
-        private System.Windows.Forms.Label labelAdres;
-        private System.Windows.Forms.Label labelHuisnummer;
-        private System.Windows.Forms.Label labelPostcode;
-        private System.Windows.Forms.Label labelStad;
-        private System.Windows.Forms.Label labelLand;
-        private System.Windows.Forms.Label labelTelefoonnummer;
-        private System.Windows.Forms.Label labelTelefoonnummerType;
+        private System.Windows.Forms.Label labelFirstname;
+        private System.Windows.Forms.Label labelLastname;
+        private System.Windows.Forms.Label labelGender;
+        private System.Windows.Forms.Label labelAddress;
+        private System.Windows.Forms.Label labelNumber;
+        private System.Windows.Forms.Label labelZipcode;
+        private System.Windows.Forms.Label labelCity;
+        private System.Windows.Forms.Label labelCountry;
+        private System.Windows.Forms.Label labelPhonenumber;
+        private System.Windows.Forms.Label labelPhoneType;
         private System.Windows.Forms.Label labelEmail;
-        private System.Windows.Forms.Label labelGebruikersnaam;
-        private System.Windows.Forms.Label labelWachtwoord;
-        private System.Windows.Forms.Label labelHerhaalWachtwoord;
+        private System.Windows.Forms.Label labeUsername;
+        private System.Windows.Forms.Label labelPassword;
+        private System.Windows.Forms.Label labelRepeatPassword;
         public System.Windows.Forms.Button buttonBevestigen;
-        public System.Windows.Forms.ComboBox comboBoxTelType;
-        public System.Windows.Forms.TextBox textBoxTel;
+        public System.Windows.Forms.ComboBox comboBoxPhoneType;
+        public System.Windows.Forms.TextBox textBoxPhonenumber;
         public System.Windows.Forms.TextBox textBoxEmail;
         public System.Windows.Forms.TextBox textBoxBSN;
-        public System.Windows.Forms.TextBox textBoxVoornaam;
-        public System.Windows.Forms.TextBox textBoxAchternaam;
-        public System.Windows.Forms.ComboBox comboBoxGeslacht;
-        public System.Windows.Forms.TextBox textBoxAdres;
-        public System.Windows.Forms.TextBox textBoxHuisnummer;
-        public System.Windows.Forms.TextBox textBoxPostcode;
-        public System.Windows.Forms.TextBox textBoxStad;
-        public System.Windows.Forms.TextBox textBoxLand;
-        public System.Windows.Forms.TextBox textBoxGebruikersnaam;
-        public System.Windows.Forms.TextBox textBoxWachtwoord;
-        public System.Windows.Forms.TextBox textBoxHerhaalWachtwoord;
-        private System.Windows.Forms.Label labelGeboortedatum;
-        public System.Windows.Forms.DateTimePicker dateTimePickerGeboortedatum;
+        public System.Windows.Forms.TextBox textBoxFirstname;
+        public System.Windows.Forms.TextBox textBoxLastname;
+        public System.Windows.Forms.ComboBox comboBoxGender;
+        public System.Windows.Forms.TextBox textBoxAddress;
+        public System.Windows.Forms.TextBox textBoxNumber;
+        public System.Windows.Forms.TextBox textBoxZipcode;
+        public System.Windows.Forms.TextBox textBoxCity;
+        public System.Windows.Forms.TextBox textBoxCountry;
+        public System.Windows.Forms.TextBox textBoxUsername;
+        public System.Windows.Forms.TextBox textBoxPassword;
+        public System.Windows.Forms.TextBox textBoxRepeatPassword;
+        private System.Windows.Forms.Label labelBirthday;
+        public System.Windows.Forms.DateTimePicker dateTimePickerBirthday;
+        public System.Windows.Forms.Label labelCheckUsername;
+        public System.Windows.Forms.Label labelCheckPassword;
     }
 }

@@ -16,6 +16,8 @@ namespace Q_Bank.View
         public List<CheckBox> kies;
         private Label lKies, lUitvoerDatum, lTegenRekening, lOmschrijving, lBedrag, lStatus;
         private List<String> statussen = new List<string>();
+        public bool hideVerzondenItems = false;
+        public bool allesGeselecteerd = false;
         public TabTransactionStatus(FormMain formMain)
         {
             
@@ -41,6 +43,8 @@ namespace Q_Bank.View
             formMain.transactionStatusSelectEverything.Click += tsc.SelectAllHandler;
             formMain.transactionStatusButtonAnnuleren.Click += tsc.Annuleren;
             formMain.TrasactionStatusDropBox.SelectedIndexChanged += TransactionStatusAccountComboboxChanged;
+            formMain.transactieStatusVerzenden.Click += tsc.Verzenden;
+            formMain.transactieStatusHideButton.Click += tsc.Hide;
             tsc = new Controller.TransactionsStatusController(this);
             //AddTransactions();
             //verwijderd de verticale scrollbar
@@ -50,6 +54,7 @@ namespace Q_Bank.View
 
         public void TransactionStatusAccountComboboxChanged(object sender, System.EventArgs e)
         {
+            allesGeselecteerd = false;
             using (var con = new Q_BANKEntities())
             {
                 formMain.TransactionStatusTableLayout.Controls.Clear();
@@ -83,7 +88,7 @@ namespace Q_Bank.View
 
                         foreach (transaction t in transactionCol)
                         {
-                            AddItemsInTable(t, i);
+                            CheckItems(t, i);
                             i++;
                         }
                     }
@@ -105,7 +110,7 @@ namespace Q_Bank.View
 
                         foreach (transaction t in transactionCol)
                         {
-                            AddItemsInTable(t, i);
+                            CheckItems(t, i);
                             i++;
                         }
                     }
@@ -116,10 +121,26 @@ namespace Q_Bank.View
 
         }
 
-        private void AddItemsInTable(transaction t, int i)
+        private void CheckItems(transaction t, int i)
         {
-            if (t.transactionStatusId == 1 || t.transactionStatusId == 2)
+            if (hideVerzondenItems)
             {
+                if (t.transactionStatusId == 1)
+                {
+                    AddItemsInTable(t, i);
+                }
+            }
+            else
+            {
+                if (t.transactionStatusId == 1 || t.transactionStatusId == 2 || t.transactionStatusId == 3)
+                {
+                    AddItemsInTable(t, i);
+                }
+            }
+        }
+
+        private void AddItemsInTable(transaction t, int i)
+        {           
                 Label tempLabel;
                 CheckBox tempCBox;
                 int tID = t.transactionId;
@@ -170,8 +191,6 @@ namespace Q_Bank.View
                 status.Add(tempLabel);
 
                 formMain.TransactionStatusTableLayout.RowCount = i + 2;
-
-            }
         }
 
 

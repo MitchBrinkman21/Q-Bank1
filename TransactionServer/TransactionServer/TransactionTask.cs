@@ -179,9 +179,9 @@ namespace TransactionServer
                                 recordsAffected = queryUpdateBalance.ExecuteNonQuery();
                                 conn.Close();
 
-                                string finishQuery = "UPDATE [transaction] SET transactionStatusId = 4 WHERE transactionId = @transactionId ";
+                                string finishQuery = "UPDATE [transaction] SET transactionStatusId = 4, commitDateTime = CURRENT_TIMESTAMP WHERE transactionId = @transactionId ";
 
-                                using (SqlCommand queryUpdateStatus = new SqlCommand(updateQuery))
+                                using (SqlCommand queryUpdateStatus = new SqlCommand(finishQuery))
                                 {
                                     // Update Status of transaction 
                                     queryUpdateStatus.Connection = conn;

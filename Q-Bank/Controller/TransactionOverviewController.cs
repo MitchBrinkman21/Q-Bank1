@@ -185,7 +185,7 @@ namespace Q_Bank.Controller
                 {
                     transactionCol = transactionCol.OrderByDescending(t => t.commitDatetime);
                 }
-                transactionCol = transactionCol.Where(t => t.commit == 1);
+                transactionCol = transactionCol.Where(t => t.commitDatetime != null);
                 if (transactionCol != null)
                 {
                     int i = 1;
@@ -243,7 +243,7 @@ namespace Q_Bank.Controller
                         }
 
                         transactionCol = from t in con.transactions
-                                         where t.commit == 1
+                                         where t.commitDatetime != null
                                          orderby t.commitDatetime descending
                                          select t;
                     }
@@ -260,7 +260,7 @@ namespace Q_Bank.Controller
                         }
 
                         transactionCol = from t in con.transactions
-                                         where t.accountId == combobox.Value && t.commit == 1
+                                         where t.accountId == combobox.Value && t.commitDatetime != null
                                          orderby t.commitDatetime descending
                                          select t;
                     }

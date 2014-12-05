@@ -294,7 +294,6 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(958, 840);
             this.tabPage3.Size = new System.Drawing.Size(1023, 840);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Transactieoverzicht";
@@ -825,7 +824,6 @@
         public System.Windows.Forms.TableLayoutPanel TransactionOverviewTable;
         private System.Windows.Forms.Label label23;
         public System.Windows.Forms.ComboBox TransactionOverviewAccountsCombobox;
-        private System.Windows.Forms.TextBox TransactionStatusSearch;
         public System.Windows.Forms.Label TransactionOverviewBalanceLabel;
         public System.Windows.Forms.TextBox TransactionOverviewSearchTextbox;
         public System.Windows.Forms.Label transactionLabel9;

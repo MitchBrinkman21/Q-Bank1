@@ -86,9 +86,6 @@ namespace Q_Bank.Controller
         {
             Label clickedLabel = sender as Label;
             View.TransactionDetails d = new View.TransactionDetails(Convert.ToInt32(clickedLabel.Tag));
-            d.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
             d.ShowDialog();
         }
     }

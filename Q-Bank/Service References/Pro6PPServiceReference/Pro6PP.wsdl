@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://www.w3.org/2001/09/soap-encoding" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://api.pro6pp.nl/v1/soap/api.wsdl" xmlns:types="http://api.pro6pp.nl/v1/soap/api.wsdl" name="Pro6PP" targetNamespace="http://api.pro6pp.nl/v1/soap/api.wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://api.pro6pp.nl/v1/soap/api.wsdl">
+      <xsd:complexType name="Address">
+        <xsd:all>
+          <xsd:element minOccurs="0" name="nl_sixpp" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nl_fourpp" type="xsd:int" />
+          <xsd:element minOccurs="0" name="street" type="xsd:string" />
+          <xsd:element minOccurs="0" name="streetnumbers" type="xsd:string" />
+          <xsd:element name="city" type="xsd:string" />
+          <xsd:element name="municipality" type="xsd:string" />
+          <xsd:element name="province" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lat" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lng" type="xsd:string" />
+          <xsd:element minOccurs="0" name="areacode" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:element name="autocompleteRequest">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="auth_key" type="xsd:string" />
+            <xsd:element minOccurs="0" name="nl_sixpp" type="xsd:string" />
+            <xsd:element minOccurs="0" name="nl_fourpp" type="xsd:int" />
+            <xsd:element minOccurs="0" name="streetnumber" type="xsd:string" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="autocompleteResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="results" type="types:Results" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="Results">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" name="result" nillable="true" type="types:Address" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="suggestRequest">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="auth_key" type="xsd:string" />
+            <xsd:element minOccurs="0" name="nl_city" type="xsd:string" />
+            <xsd:element minOccurs="0" name="city_key" type="xsd:string" />
+            <xsd:element minOccurs="0" name="street" type="xsd:string" />
+            <xsd:element minOccurs="0" name="streetnumber" type="xsd:int" />
+            <xsd:element minOccurs="0" name="page" type="xsd:int" />
+            <xsd:element minOccurs="0" name="per_page" type="xsd:int" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="suggestResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="results" type="types:suggestResults" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="suggestResults">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" name="result" nillable="true" type="types:suggestResult" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="suggestResult">
+        <xsd:all>
+          <xsd:element minOccurs="0" name="city_key" type="xsd:string" />
+          <xsd:element minOccurs="0" name="city" type="xsd:string" />
+          <xsd:element minOccurs="0" name="official_city" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nl_fourpps" type="xsd:string" />
+          <xsd:element minOccurs="0" name="province" type="xsd:string" />
+          <xsd:element minOccurs="0" name="street" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nl_sixpps" type="xsd:string" />
+          <xsd:element name="lat" type="xsd:decimal" />
+          <xsd:element name="lng" type="xsd:decimal" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="suggestStreetResult">
+        <xsd:all />
+      </xsd:complexType>
+      <xsd:element name="rangeRequest">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="auth_key" type="xsd:string" />
+            <xsd:element name="nl_fourpp" type="xsd:int" />
+            <xsd:element minOccurs="0" name="range" type="xsd:int" />
+            <xsd:element minOccurs="0" name="page" type="xsd:int" />
+            <xsd:element minOccurs="0" name="per_page" type="xsd:int" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="rangeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="results" type="types:RangeResults" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="RangeResults">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" name="result" nillable="true" type="types:RangeResult" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RangeResult">
+        <xsd:all>
+          <xsd:element name="nl_fourpp" type="xsd:int" />
+          <xsd:element name="lat" type="xsd:decimal" />
+          <xsd:element name="lng" type="xsd:decimal" />
+          <xsd:element name="distance" type="xsd:int" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:element name="reverseRequest">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="auth_key" type="xsd:string" />
+            <xsd:element name="lat" type="xsd:decimal" />
+            <xsd:element name="lng" type="xsd:decimal" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="reverseResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="results" type="types:ReverseResults" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ReverseResults">
+        <xsd:all>
+          <xsd:element name="precision" type="xsd:int" />
+          <xsd:element name="province" type="xsd:string" />
+          <xsd:element name="municipality" type="xsd:string" />
+          <xsd:element name="city" type="xsd:string" />
+          <xsd:element name="nl_fourpp" type="xsd:int" />
+          <xsd:element name="lat" type="xsd:decimal" />
+          <xsd:element name="lng" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="nl_sixpp" type="xsd:string" />
+          <xsd:element minOccurs="0" name="streets" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:element name="feedbackRequest">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="auth_key" type="xsd:string" />
+            <xsd:element name="nl_sixpp" type="xsd:string" />
+            <xsd:element name="street" type="xsd:string" />
+            <xsd:element name="streetnumber" type="xsd:int" />
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="feedbackResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="results" type="types:FeedbackResults" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="FeedbackResults">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" name="result" nillable="true" type="types:FeedbackResult" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FeedbackResult">
+        <xsd:all />
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message xmlns="http://api.pro6pp.nl/v1/soap/api.wsdl" name="autocompleteRequest">
+    <wsdl:part name="parameters" element="types:autocompleteRequest" />
+  </wsdl:message>
+  <wsdl:message xmlns="http://api.pro6pp.nl/v1/soap/api.wsdl" name="autocompleteResponse">
+    <wsdl:part name="parameters" element="types:autocompleteResponse" />
+  </wsdl:message>
+  <wsdl:message xmlns="http://api.pro6pp.nl/v1/soap/api.wsdl" name="suggestRequest">
+    <wsdl:part name="parameters" element="types:suggestRequest" />
+  </wsdl:message>
+  <wsdl:message xmlns="http://api.pro6pp.nl/v1/soap/api.wsdl" name="suggestResponse">
+    <wsdl:part name="parameters" element="types:suggestResponse" />
+  </wsdl:message>
+  <wsdl:message xmlns="http://api.pro6pp.nl/v1/soap/api.wsdl" name="rangeRequest">
+    <wsdl:part name="parameters" element="types:rangeRequest" />
+  </wsdl:message>
+  <wsdl:message xmlns="http://api.pro6pp.nl/v1/soap/api.wsdl" name="rangeResponse">
+    <wsdl:part name="parameters" element="types:rangeResponse" />
+  </wsdl:message>
+  <wsdl:message xmlns="http://api.pro6pp.nl/v1/soap/api.wsdl" name="reverseRequest">
+    <wsdl:part name="parameters" element="types:reverseRequest" />
+  </wsdl:message>
+  <wsdl:message xmlns="http://api.pro6pp.nl/v1/soap/api.wsdl" name="reverseResponse">
+    <wsdl:part name="parameters" element="types:reverseResponse" />
+  </wsdl:message>
+  <wsdl:message xmlns="http://api.pro6pp.nl/v1/soap/api.wsdl" name="feedbackRequest">
+    <wsdl:part name="parameters" element="types:feedbackRequest" />
+  </wsdl:message>
+  <wsdl:message xmlns="http://api.pro6pp.nl/v1/soap/api.wsdl" name="feedbackResponse">
+    <wsdl:part name="parameters" element="types:feedbackResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Pro6PP_Port">
+    <wsdl:operation name="autocomplete">
+      <wsdl:documentation>autocomplete address information by postcode (either from a 4PP or a 6PP)
+				@param nl_sixpp Gets address information from a 6PP.
+				@param nl_fourpp Gets city information from a 4PP.
+				@param streetnumber Gets address information for a specific streetnumber
+				in the specified nl_sixpp.
+       		</wsdl:documentation>
+      <wsdl:input message="types:autocompleteRequest" />
+      <wsdl:output message="types:autocompleteResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="suggest">
+      <wsdl:documentation>Suggest a city and streetname based on the first (few) characters.
+                @param nl_city One or more characters of the city being searched.
+                @param city_key To search for a street, find a city first and provide its key here.
+                @param street One or more characters of the street being searched (parameter city_key required)
+                @param per_page Maximum amount of returned results.
+                @param page The page of returned results. Default: 1
+            </wsdl:documentation>
+      <wsdl:input message="types:suggestRequest" />
+      <wsdl:output message="types:suggestResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="range">
+      <wsdl:documentation>Provides postcodes in the nearby area (4PP/City precision)
+				@param nl_fourpp Gets nearby postcodes around this 4PP.
+				@param range Look in a range of at most this many meters.
+				@param per_page Maximum amount of returned results.
+				@param page The page of returned results. Default: 1
+       		</wsdl:documentation>
+      <wsdl:input message="types:rangeRequest" />
+      <wsdl:output message="types:rangeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="reverse">
+      <wsdl:documentation>Provides geo-metadata from coordinates. The amount of metadata depends on the position accuracy.
+                @param lat Latitude component of location to get metadata for.
+                @param lng Longitude component of location to get metadata for.
+            </wsdl:documentation>
+      <wsdl:input message="types:reverseRequest" />
+      <wsdl:output message="types:reverseResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="feedback">
+      <wsdl:documentation>supply postcodes to append to the database
+				@param nl_sixpp The new found postcode.
+				@param street The new found street.
+       		</wsdl:documentation>
+      <wsdl:input message="types:feedbackRequest" />
+      <wsdl:output message="types:feedbackResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Pro6PP_Binding" type="types:Pro6PP_Port">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="autocomplete">
+      <soap:operation soapAction="http://api.pro6pp.nl/v1/autocomplete" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="suggest">
+      <soap:operation soapAction="http://api.pro6pp.nl/v1/suggest" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="range">
+      <soap:operation soapAction="http://api.pro6pp.nl/v1/range" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reverse">
+      <soap:operation soapAction="http://api.pro6pp.nl/v1/reverse" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="feedback">
+      <soap:operation soapAction="http://api.pro6pp.nl/v1/feedback" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Pro6PP">
+    <wsdl:documentation>WSDL File for the Pro6PP webservice (http://www.pro6pp.nl)</wsdl:documentation>
+    <wsdl:port name="Pro6PP_Port" binding="types:Pro6PP_Binding">
+      <soap:address location="http://api.pro6pp.nl/v1/soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

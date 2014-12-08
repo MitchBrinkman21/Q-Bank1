@@ -19,9 +19,13 @@ namespace Q_Bank.Controller
         }
             public void processLogin (object sender, System.EventArgs e)
             {
+                
                 if(checkData())
                 {
                     // Ga hier naar de main applicatie.
+                    FormMain a = new FormMain();
+                    a.Show();
+                    formLogin.Hide();
                 }
             }
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Q_Bank.Controller
 {
@@ -43,6 +44,7 @@ namespace Q_Bank.Controller
             createUser.textBoxCountry.Leave += checkValidText;
             createUser.textBoxPhonenumber.Leave += checkValidText;
             createUser.textBoxEmail.Leave += checkValidText;
+            createUser.AcceptButton = createUser.buttonBevestigen;
         }
 
         public void processCreateUser(object sender, System.EventArgs e)
@@ -327,7 +329,7 @@ namespace Q_Bank.Controller
             }
 
             if(!String.IsNullOrEmpty(createUser.textBoxPhonenumber.Text) && 
-                !Regex.IsMatch(createUser.textBoxPhonenumber.Text,@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$"))
+               !Regex.IsMatch(createUser.textBoxPhonenumber.Text, @"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$"))
             {
                 createUser.labelCheckPhonenumber.Visible = true;
                 valid = false;
@@ -352,7 +354,7 @@ namespace Q_Bank.Controller
             }
             else
             {
-                createUser.labelCheckPhonenumber.Visible = false;
+                createUser.labelCheckEmail.Visible = false;
             }
         }
 

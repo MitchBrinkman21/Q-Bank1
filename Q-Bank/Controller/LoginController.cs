@@ -11,42 +11,54 @@ namespace Q_Bank.Controller
     class LoginController
     {
         public FormLogin formLogin { get; set; }
+        public FormMain a;
 
-        public LoginController (FormLogin formLogin)
+        public LoginController(FormLogin formLogin)
         {
             this.formLogin = formLogin;
             formLogin.button2.Click += processLogin;
             formLogin.button3.Click += openCreateUser;
-            formLogin.FormClosed += exitApp;
+            a = new FormMain(formLogin);
+            a.FormClosed += showLogin;
+
         }
 
-        private void exitApp(object sender, System.Windows.Forms.FormClosedEventArgs e)
+        private void showLogin(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            a.Close();
+            formLogin.Show();
         }
-            public void processLogin (object sender, System.EventArgs e)
-            {
-                
-                if(checkLogin())
-                {
-                    // Ga hier naar de main applicatie.
-                    FormMain a = new FormMain();
-                    a.Show();
-                    formLogin.Hide();
-                }
-            }
 
-            public void openCreateUser(object sender, System.EventArgs e)
+        public void processLogin(object sender, System.EventArgs e)
+        {
+
+            if (checkLogin())
             {
-                CreateUser cu = new CreateUser();
-                cu.ShowDialog();
+                // Ga hier naar de main applicatie.
+                FormMain a = new FormMain(formLogin);
+                a.Show();
+                formLogin.Hide();
+                formLogin.label4.Text = String.Empty;
             }
+            else
+            {
+                formLogin.label4.Text = "Onjuist wachtwoord en/of gebruikersnaam";
+            }
+        }
+
         
+
+        public void openCreateUser(object sender, System.EventArgs e)
+        {
+            CreateUser cu = new CreateUser();
+            cu.ShowDialog();
+        }
+
         public bool checkData()
         {
-            if(!String.IsNullOrEmpty(formLogin.textBox1.Text) && !String.IsNullOrEmpty(formLogin.textBox2.Text))
+            if (!String.IsNullOrEmpty(formLogin.textBox1.Text) && !String.IsNullOrEmpty(formLogin.textBox2.Text))
             {
-                if(checkLogin())
+                if (checkLogin())
                 {
                     return true;
                 }
@@ -59,26 +71,26 @@ namespace Q_Bank.Controller
             return false;
         }
 
-            private bool checkLogin()
+        private bool checkLogin()
+        {
+            if (!String.IsNullOrEmpty(formLogin.textBox1.Text) && !String.IsNullOrEmpty(formLogin.textBox2.Text))
             {
-                if (!String.IsNullOrEmpty(formLogin.textBox1.Text) && !String.IsNullOrEmpty(formLogin.textBox2.Text))
+                using (var con = new Q_BANKEntities())
                 {
-                    using (var con = new Q_BANKEntities())
+                    var query = from c in con.customers
+                                where c.password == formLogin.textBox2.Text && c.username == formLogin.textBox1.Text
+                                select c;
+
+                    if (query.Count() != 0)
                     {
-                        var query = from c in con.customers
-                                    where c.password == formLogin.textBox2.Text && c.username == formLogin.textBox1.Text
-                                    select c;
-
-                        if (query.Count() != 0)
-                        {
-                            return true;
-                        }
-
-                        return false;
+                        return true;
                     }
+
+                    return false;
                 }
-                return false;
             }
+            return false;
         }
-    
+    }
+
 }

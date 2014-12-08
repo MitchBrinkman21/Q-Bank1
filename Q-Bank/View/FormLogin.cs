@@ -18,5 +18,10 @@ namespace Q_Bank.View
             InitializeComponent();
             LoginController lc = new LoginController(this);
         }
+
+        private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

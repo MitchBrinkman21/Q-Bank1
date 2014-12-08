@@ -65,6 +65,16 @@
             this.labelCheckUsername = new System.Windows.Forms.Label();
             this.labelCheckPassword = new System.Windows.Forms.Label();
             this.labelCheckFirstname = new System.Windows.Forms.Label();
+            this.labelCheckBSN = new System.Windows.Forms.Label();
+            this.labelCheckLastname = new System.Windows.Forms.Label();
+            this.labelCheckCity = new System.Windows.Forms.Label();
+            this.labelCheckCountry = new System.Windows.Forms.Label();
+            this.labelCheckPhonenumber = new System.Windows.Forms.Label();
+            this.labelCheckAddress = new System.Windows.Forms.Label();
+            this.labelCheckEmail = new System.Windows.Forms.Label();
+            this.labelCheckZipcode = new System.Windows.Forms.Label();
+            this.labelCheckNumber = new System.Windows.Forms.Label();
+            this.labelCheckBirthday = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelCreateUser
@@ -384,11 +394,131 @@
             this.labelCheckFirstname.Text = "Alleen letters toegestaan!";
             this.labelCheckFirstname.Visible = false;
             // 
+            // labelCheckBSN
+            // 
+            this.labelCheckBSN.AutoSize = true;
+            this.labelCheckBSN.ForeColor = System.Drawing.Color.Red;
+            this.labelCheckBSN.Location = new System.Drawing.Point(446, 103);
+            this.labelCheckBSN.Name = "labelCheckBSN";
+            this.labelCheckBSN.Size = new System.Drawing.Size(166, 17);
+            this.labelCheckBSN.TabIndex = 38;
+            this.labelCheckBSN.Text = "Alleen cijfers toegestaan!";
+            this.labelCheckBSN.Visible = false;
+            // 
+            // labelCheckLastname
+            // 
+            this.labelCheckLastname.AutoSize = true;
+            this.labelCheckLastname.ForeColor = System.Drawing.Color.Red;
+            this.labelCheckLastname.Location = new System.Drawing.Point(446, 169);
+            this.labelCheckLastname.Name = "labelCheckLastname";
+            this.labelCheckLastname.Size = new System.Drawing.Size(168, 17);
+            this.labelCheckLastname.TabIndex = 39;
+            this.labelCheckLastname.Text = "Alleen letters toegestaan!";
+            this.labelCheckLastname.Visible = false;
+            // 
+            // labelCheckCity
+            // 
+            this.labelCheckCity.AutoSize = true;
+            this.labelCheckCity.ForeColor = System.Drawing.Color.Red;
+            this.labelCheckCity.Location = new System.Drawing.Point(446, 367);
+            this.labelCheckCity.Name = "labelCheckCity";
+            this.labelCheckCity.Size = new System.Drawing.Size(168, 17);
+            this.labelCheckCity.TabIndex = 40;
+            this.labelCheckCity.Text = "Alleen letters toegestaan!";
+            this.labelCheckCity.Visible = false;
+            // 
+            // labelCheckCountry
+            // 
+            this.labelCheckCountry.AutoSize = true;
+            this.labelCheckCountry.ForeColor = System.Drawing.Color.Red;
+            this.labelCheckCountry.Location = new System.Drawing.Point(446, 400);
+            this.labelCheckCountry.Name = "labelCheckCountry";
+            this.labelCheckCountry.Size = new System.Drawing.Size(168, 17);
+            this.labelCheckCountry.TabIndex = 41;
+            this.labelCheckCountry.Text = "Alleen letters toegestaan!";
+            this.labelCheckCountry.Visible = false;
+            // 
+            // labelCheckPhonenumber
+            // 
+            this.labelCheckPhonenumber.AutoSize = true;
+            this.labelCheckPhonenumber.ForeColor = System.Drawing.Color.Red;
+            this.labelCheckPhonenumber.Location = new System.Drawing.Point(446, 433);
+            this.labelCheckPhonenumber.Name = "labelCheckPhonenumber";
+            this.labelCheckPhonenumber.Size = new System.Drawing.Size(194, 17);
+            this.labelCheckPhonenumber.TabIndex = 42;
+            this.labelCheckPhonenumber.Text = "Geen geldig telefoonnummer!";
+            this.labelCheckPhonenumber.Visible = false;
+            // 
+            // labelCheckAddress
+            // 
+            this.labelCheckAddress.AutoSize = true;
+            this.labelCheckAddress.ForeColor = System.Drawing.Color.Red;
+            this.labelCheckAddress.Location = new System.Drawing.Point(446, 334);
+            this.labelCheckAddress.Name = "labelCheckAddress";
+            this.labelCheckAddress.Size = new System.Drawing.Size(168, 17);
+            this.labelCheckAddress.TabIndex = 43;
+            this.labelCheckAddress.Text = "Alleen letters toegestaan!";
+            this.labelCheckAddress.Visible = false;
+            // 
+            // labelCheckEmail
+            // 
+            this.labelCheckEmail.AutoSize = true;
+            this.labelCheckEmail.ForeColor = System.Drawing.Color.Red;
+            this.labelCheckEmail.Location = new System.Drawing.Point(446, 499);
+            this.labelCheckEmail.Name = "labelCheckEmail";
+            this.labelCheckEmail.Size = new System.Drawing.Size(173, 17);
+            this.labelCheckEmail.TabIndex = 44;
+            this.labelCheckEmail.Text = "Geen geldig e-mailadress!";
+            this.labelCheckEmail.Visible = false;
+            // 
+            // labelCheckZipcode
+            // 
+            this.labelCheckZipcode.AutoSize = true;
+            this.labelCheckZipcode.ForeColor = System.Drawing.Color.Red;
+            this.labelCheckZipcode.Location = new System.Drawing.Point(446, 268);
+            this.labelCheckZipcode.Name = "labelCheckZipcode";
+            this.labelCheckZipcode.Size = new System.Drawing.Size(158, 17);
+            this.labelCheckZipcode.TabIndex = 45;
+            this.labelCheckZipcode.Text = "Geen geldige postcode!";
+            this.labelCheckZipcode.Visible = false;
+            // 
+            // labelCheckNumber
+            // 
+            this.labelCheckNumber.AutoSize = true;
+            this.labelCheckNumber.ForeColor = System.Drawing.Color.Red;
+            this.labelCheckNumber.Location = new System.Drawing.Point(446, 301);
+            this.labelCheckNumber.Name = "labelCheckNumber";
+            this.labelCheckNumber.Size = new System.Drawing.Size(177, 17);
+            this.labelCheckNumber.TabIndex = 46;
+            this.labelCheckNumber.Text = "Geen geldige huisnummer!";
+            this.labelCheckNumber.Visible = false;
+            // 
+            // labelCheckBirthday
+            // 
+            this.labelCheckBirthday.AutoSize = true;
+            this.labelCheckBirthday.ForeColor = System.Drawing.Color.Red;
+            this.labelCheckBirthday.Location = new System.Drawing.Point(446, 237);
+            this.labelCheckBirthday.Name = "labelCheckBirthday";
+            this.labelCheckBirthday.Size = new System.Drawing.Size(196, 17);
+            this.labelCheckBirthday.TabIndex = 47;
+            this.labelCheckBirthday.Text = "Geen geldige geboortedatum!";
+            this.labelCheckBirthday.Visible = false;
+            // 
             // CreateUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1222, 557);
+            this.Controls.Add(this.labelCheckBirthday);
+            this.Controls.Add(this.labelCheckNumber);
+            this.Controls.Add(this.labelCheckZipcode);
+            this.Controls.Add(this.labelCheckEmail);
+            this.Controls.Add(this.labelCheckAddress);
+            this.Controls.Add(this.labelCheckPhonenumber);
+            this.Controls.Add(this.labelCheckCountry);
+            this.Controls.Add(this.labelCheckCity);
+            this.Controls.Add(this.labelCheckLastname);
+            this.Controls.Add(this.labelCheckBSN);
             this.Controls.Add(this.labelCheckFirstname);
             this.Controls.Add(this.labelCheckPassword);
             this.Controls.Add(this.labelCheckUsername);
@@ -473,5 +603,15 @@
         public System.Windows.Forms.Label labelCheckUsername;
         public System.Windows.Forms.Label labelCheckPassword;
         public System.Windows.Forms.Label labelCheckFirstname;
+        public System.Windows.Forms.Label labelCheckBSN;
+        public System.Windows.Forms.Label labelCheckLastname;
+        public System.Windows.Forms.Label labelCheckCity;
+        public System.Windows.Forms.Label labelCheckCountry;
+        public System.Windows.Forms.Label labelCheckPhonenumber;
+        public System.Windows.Forms.Label labelCheckAddress;
+        public System.Windows.Forms.Label labelCheckEmail;
+        public System.Windows.Forms.Label labelCheckZipcode;
+        public System.Windows.Forms.Label labelCheckNumber;
+        public System.Windows.Forms.Label labelCheckBirthday;
     }
 }

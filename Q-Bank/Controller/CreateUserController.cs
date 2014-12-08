@@ -11,6 +11,7 @@ namespace Q_Bank.Controller
     class CreateUserController
     {
         public CreateUser createUser { get; set; }
+        private bool valid = true;
         public CreateUserController(CreateUser createUser)
         {
             this.createUser = createUser;
@@ -29,9 +30,19 @@ namespace Q_Bank.Controller
             createUser.textBoxUsername.TextChanged += checkUsername;
             createUser.textBoxPassword.Leave += checkPassword;
             createUser.textBoxRepeatPassword.Leave += checkPassword;
-            
             createUser.textBoxZipcode.Leave += fillAddress;
             createUser.textBoxNumber.Leave += fillAddress;
+            createUser.textBoxBSN.Leave += checkValidText;
+            createUser.textBoxFirstname.Leave += checkValidText;
+            createUser.textBoxLastname.Leave += checkValidText;
+            createUser.dateTimePickerBirthday.ValueChanged += checkValidText;
+            createUser.textBoxZipcode.Leave += checkValidText;
+            createUser.textBoxNumber.Leave += checkValidText;
+            createUser.textBoxAddress.Leave += checkValidText;
+            createUser.textBoxCity.Leave += checkValidText;
+            createUser.textBoxCountry.Leave += checkValidText;
+            createUser.textBoxPhonenumber.Leave += checkValidText;
+            createUser.textBoxEmail.Leave += checkValidText;
         }
 
         public void processCreateUser(object sender, System.EventArgs e)
@@ -113,7 +124,21 @@ namespace Q_Bank.Controller
         public bool checkData()
         {
             // Check if all entered data is not empty
-            if (!String.IsNullOrEmpty(createUser.textBoxBSN.Text) &&
+            if (checkEmptyFields())
+            {
+                return valid;
+            }
+            else
+            {     
+                createUser.showMessage("Niet alle velden zijn ingevuld!");
+                return false;
+            }
+        }
+
+        private bool checkEmptyFields()
+        {
+            // Check if entered data is not empty
+            if(!String.IsNullOrEmpty(createUser.textBoxBSN.Text) &&
                !String.IsNullOrEmpty(createUser.textBoxFirstname.Text) &&
                !String.IsNullOrEmpty(createUser.textBoxLastname.Text) &&
                createUser.comboBoxGender.SelectedIndex >= 0 &&
@@ -129,29 +154,10 @@ namespace Q_Bank.Controller
                !String.IsNullOrEmpty(createUser.textBoxPassword.Text) &&
                !String.IsNullOrEmpty(createUser.textBoxRepeatPassword.Text))
             {
-                bool valid = true;
-
-                // Check if username doesn't exist and password is correct
-                if(createUser.labelCheckUsername.Visible == true || createUser.labelCheckPassword.Visible == true)
-                {
-                    valid = false;
-                }
-                
-                if (!Regex.IsMatch(createUser.textBoxFirstname.Text, @"^[a-zA-Z]+$") ||
-                         !Regex.IsMatch(createUser.textBoxFirstname.Text, @"^[a-zA-Z]+$") || 
-                         !Regex.IsMatch(createUser.textBoxLastname.Text, @"^[a-zA-Z]+$") ||
-                         !Regex.IsMatch(createUser.textBoxCity.Text, @"^[a-zA-Z]+$") ||
-                         !Regex.IsMatch(createUser.textBoxCountry.Text, @"^[a-zA-Z]+$") ||
-                         !Regex.IsMatch(createUser.textBoxPhonenumber.Text, @"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$"))
-                {
-                    valid = false;
-                }
-
-                return valid;
+                return true;
             }
             else
-            {     
-                createUser.showMessage("Niet alle velden zijn ingevuld!");
+            {
                 return false;
             }
         }
@@ -167,6 +173,7 @@ namespace Q_Bank.Controller
                 if (query.Count() != 0)
                 {
                     createUser.labelCheckUsername.Visible = true;
+                    valid = false;
                 }
                 else
                 {
@@ -184,6 +191,7 @@ namespace Q_Bank.Controller
                 if (createUser.textBoxPassword.Text != createUser.textBoxRepeatPassword.Text)
                 {
                     createUser.labelCheckPassword.Visible = true;
+                    valid = false;
                 }
                 else
                 {
@@ -194,6 +202,7 @@ namespace Q_Bank.Controller
 
         private void fillAddress(object sender, System.EventArgs e)
         {
+            // Search and fill address and city when zipcode and number are entered in the textboxes
             if (!String.IsNullOrEmpty(createUser.textBoxZipcode.Text) &&
                 !String.IsNullOrEmpty(createUser.textBoxNumber.Text))
             {
@@ -210,6 +219,213 @@ namespace Q_Bank.Controller
                     createUser.textBoxCity.Clear();
                 }
             }
+        }
+
+        private void checkValidText(object sender, System.EventArgs e)
+        {
+            valid = true;
+
+            // Check if entered data is correct
+
+            if(!String.IsNullOrEmpty(createUser.textBoxBSN.Text) && 
+                !Regex.IsMatch(createUser.textBoxBSN.Text, @"^[0-9]+$"))
+            {
+                createUser.labelCheckBSN.Visible = true;
+                valid = false;
+            }
+            else
+            {
+                createUser.labelCheckBSN.Visible = false;
+            }
+
+            if(!String.IsNullOrEmpty(createUser.textBoxFirstname.Text) && 
+                !Regex.IsMatch(createUser.textBoxFirstname.Text, @"^[a-zA-Z]+$"))
+            {
+                createUser.labelCheckFirstname.Visible = true;
+                valid = false;
+            }
+            else
+            {
+                createUser.labelCheckFirstname.Visible = false;
+            }
+
+            if(!String.IsNullOrEmpty(createUser.textBoxLastname.Text) && 
+                !Regex.IsMatch(createUser.textBoxLastname.Text, @"^[a-zA-Z]+$"))
+            {
+                createUser.labelCheckLastname.Visible = true;
+                valid = false;
+            }
+            else
+            {
+                createUser.labelCheckLastname.Visible = false;
+            }
+
+            if (createUser.dateTimePickerBirthday.Value > DateTime.Now)
+            {
+                createUser.labelCheckBirthday.Visible = true;
+                valid = false;
+            }
+            else
+            {
+                createUser.labelCheckBirthday.Visible = false;
+            }
+
+            if (!String.IsNullOrEmpty(createUser.textBoxZipcode.Text) &&
+                !checkValidZipcode(createUser.textBoxZipcode.Text))
+            {
+                createUser.labelCheckZipcode.Visible = true;
+                valid = false;
+            }
+            else
+            {
+                createUser.labelCheckZipcode.Visible = false;
+            }
+
+            if (!String.IsNullOrEmpty(createUser.textBoxNumber.Text) &&
+                !checkValidHouseNumber(createUser.textBoxNumber.Text))
+            {
+                createUser.labelCheckNumber.Visible = true;
+                valid = false;
+            }
+            else
+            {
+                createUser.labelCheckNumber.Visible = false;
+            }
+
+            if (!String.IsNullOrEmpty(createUser.textBoxAddress.Text) &&
+                !Regex.IsMatch(createUser.textBoxAddress.Text, @"^[a-zA-Z]+$"))
+            {
+                createUser.labelCheckAddress.Visible = true;
+                valid = false;
+            }
+            else
+            {
+                createUser.labelCheckAddress.Visible = false;
+            }
+
+
+            if(!String.IsNullOrEmpty(createUser.textBoxCity.Text) && 
+                !Regex.IsMatch(createUser.textBoxCity.Text, @"^[a-zA-Z]+$"))
+            {
+                createUser.labelCheckCity.Visible = true;
+                valid = false;
+            }
+            else
+            {
+                createUser.labelCheckCity.Visible = false;
+            }
+
+            if(!String.IsNullOrEmpty(createUser.textBoxCountry.Text) && 
+                !Regex.IsMatch(createUser.textBoxCountry.Text, @"^[a-zA-Z]+$"))
+            {
+                createUser.labelCheckCountry.Visible = true;
+                valid = false;
+            }
+            else
+            {
+                createUser.labelCheckCountry.Visible = false;
+            }
+
+            if(!String.IsNullOrEmpty(createUser.textBoxPhonenumber.Text) && 
+                !Regex.IsMatch(createUser.textBoxPhonenumber.Text,@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$"))
+            {
+                createUser.labelCheckPhonenumber.Visible = true;
+                valid = false;
+            }
+            else
+            {
+                createUser.labelCheckPhonenumber.Visible = false;
+            }
+
+            if (!String.IsNullOrEmpty(createUser.textBoxEmail.Text))
+            {
+                ValidateEmail ve = new ValidateEmail();
+                if (!ve.IsValidEmail(createUser.textBoxEmail.Text))
+                {
+                    createUser.labelCheckEmail.Visible = true;
+                    valid = false;
+                }
+                else
+                {
+                    createUser.labelCheckEmail.Visible = false;
+                }
+            }
+            else
+            {
+                createUser.labelCheckPhonenumber.Visible = false;
+            }
+        }
+
+        public bool checkValidZipcode(string zipcode)
+        {
+            // Check if entered zipcode is valid
+            if (zipcode.Length < 6 || zipcode.Length > 6)
+            {
+                return false;
+            }
+            else
+            {
+                for (int index = 0; index < 6; index++)
+                {
+                    if (index < 4)
+                    {
+                        if (!(zipcode[index] >= '0' && zipcode[index] <= '9'))
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        if (!((zipcode[index] >= 'A' || zipcode[index] >= 'a') && (zipcode[index] <= 'Z' || zipcode[index] <= 'z')))
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
+        public bool checkValidHouseNumber(string number)
+        {
+            bool switchSort = false;
+
+            for (int index = 0; index < number.Length; index++)
+            {
+                if (index > 0)
+                {
+                    if (number[index] >= '0' && number[index] <= '9')
+                    {
+                        if (!(number[index - 1] >= '0' && number[index - 1] <= '9'))
+                        {
+                            return false;
+                        }
+                    }
+                    else if ((number[index] >= 'A' || number[index] >= 'a') && (number[index] <= 'Z' || number[index] <= 'z'))
+                    {
+                        if (!((number[index - 1] >= 'A' || number[index - 1] >= 'a') && (number[index - 1] <= 'Z' || number[index - 1] <= 'z')) && switchSort == true)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            switchSort = true;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (!(number[index] >= '0' && number[index] <= '9'))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
         private void resetFields()

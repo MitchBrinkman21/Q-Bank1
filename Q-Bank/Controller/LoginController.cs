@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Q_Bank.Controller
 {
@@ -16,11 +17,17 @@ namespace Q_Bank.Controller
             this.formLogin = formLogin;
             formLogin.button2.Click += processLogin;
             formLogin.button3.Click += openCreateUser;
+            formLogin.FormClosed += exitApp;
+        }
+
+        private void exitApp(object sender, System.Windows.Forms.FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
             public void processLogin (object sender, System.EventArgs e)
             {
                 
-                if(checkData())
+                if(checkLogin())
                 {
                     // Ga hier naar de main applicatie.
                     FormMain a = new FormMain();
@@ -36,57 +43,41 @@ namespace Q_Bank.Controller
             }
         
         public bool checkData()
+        {
+            if(!String.IsNullOrEmpty(formLogin.textBox1.Text) && !String.IsNullOrEmpty(formLogin.textBox2.Text))
             {
-                if(!String.IsNullOrEmpty(formLogin.textBox1.Text) && !String.IsNullOrEmpty(formLogin.textBox2.Text))
+                if(checkLogin())
                 {
-                    if(checkUsername(formLogin.textBox1.Text))
-                    {
-                        return false;
-                    }
-                    if(checkPassword(formLogin.textBox2.Text))
-                    {
-                        return false;
-                    }
+                    return true;
                 }
-                else
-                {
-                    return false;
-                }
-                return true;
             }
-
-            private bool checkUsername(string Username)
+            else
             {
-                using (var con = new Q_BANKEntities())
-                {
-                    var query = from c in con.customers
-                                where c.username == formLogin.textBox1.Text
-                                select c;
-
-                    if (query.Count() != 0)
-                    {
-                        return true;
-                    }
-                }
-
                 return false;
             }
 
-            private bool checkPassword(string Password)
+            return false;
+        }
+
+            private bool checkLogin()
             {
-                using (var con = new Q_BANKEntities())
+                if (!String.IsNullOrEmpty(formLogin.textBox1.Text) && !String.IsNullOrEmpty(formLogin.textBox2.Text))
                 {
-                    var query = from c in con.customers
-                                where c.password == formLogin.textBox2.Text
-                                select c;
-
-                    if(query.Count() != 0)
+                    using (var con = new Q_BANKEntities())
                     {
-                        return true;
-                    }
+                        var query = from c in con.customers
+                                    where c.password == formLogin.textBox2.Text && c.username == formLogin.textBox1.Text
+                                    select c;
 
-                    return false;
+                        if (query.Count() != 0)
+                        {
+                            return true;
+                        }
+
+                        return false;
+                    }
                 }
+                return false;
             }
         }
     

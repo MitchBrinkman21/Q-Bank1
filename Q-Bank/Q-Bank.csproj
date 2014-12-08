@@ -66,6 +66,7 @@
     <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Controller\TransactionOverviewController.cs" />
     <Compile Include="Controller\TransactionsStatusController.cs" />
+    <Compile Include="Controller\ValidateEmail.cs" />
     <Compile Include="customer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

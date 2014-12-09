@@ -30,10 +30,9 @@ namespace Q_Bank.Controller
         {
             using (var con = new Q_BANKEntities())
             {
-                int customerId = 1;
                 formMain.TransactionOverviewAccountsCombobox.Items.Clear();
                 var accountsCol = from a in con.accounts
-                                  where a.customerId == customerId
+                                  where a.customerId == formMain.id
                                   select a;
 
                 if (accountsCol.Count() > 0)
@@ -177,22 +176,19 @@ namespace Q_Bank.Controller
                     {
                         transactionCol = transactionCol.Where(t => t.nameReceiver.Contains(ts.textBoxFirstName.Text) && t.nameReceiver.Contains(ts.textBoxLastName.Text));
                     }
-                    // ComboBox for accounts
-                    if (accountComboBox.Value != 0)
-                    {
-                        transactionCol = transactionCol.Where(t => t.account.iban == accountComboBox.Iban || t.ibanReceiver == accountComboBox.Iban);
-                    }
                 }
                 else
                 {
                     transactionCol = transactionCol.Where(t => DbFunctions.TruncateTime(t.executeDate.Value) >= DbFunctions.TruncateTime(ts.beginDatePicker.Value));
                     transactionCol = transactionCol.Where(t => DbFunctions.TruncateTime(t.executeDate.Value) <= DbFunctions.TruncateTime(ts.endDatePicker.Value));
-
-                    if (accountComboBox.Value != 0)
-                    {
-                        transactionCol = transactionCol.Where(t => t.accountId == accountComboBox.Value);
-                    }
                 }
+
+                // ComboBox for accounts
+                if (accountComboBox.Value != 0)
+                {
+                    transactionCol = transactionCol.Where(t => t.account.iban == accountComboBox.Iban || t.ibanReceiver == accountComboBox.Iban);
+                }
+
                 if (ts.TransactionSearchOrderByCombobobox.SelectedIndex == 0)
                 {
                     transactionCol = transactionCol.OrderBy(t => t.commitDatetime);
@@ -237,7 +233,6 @@ namespace Q_Bank.Controller
                 IQueryable<account> accountCol = null;
                 IQueryable<transaction> transactionCol = null;
                 int i = 1;
-                int customerId = 1;
                 if (formMain.TransactionOverviewAccountsCombobox.SelectedIndex >= 0)
                 {
                     ComboBoxItem accountComboBox = (ComboBoxItem)formMain.TransactionOverviewAccountsCombobox.SelectedItem;
@@ -245,7 +240,7 @@ namespace Q_Bank.Controller
                     if (accountComboBox.Value == 0)
                     {
                         accountCol = from a in con.accounts
-                                     where a.customerId == customerId
+                                     where a.customerId == formMain.id
                                      select a;
 
                         if (accountCol.Count() > 0)
@@ -303,7 +298,7 @@ namespace Q_Bank.Controller
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void TransactionOverviewSearchButtonMouseDown(object sender, System.EventArgs e)
         {
-            using (TransactionSearch ts = new TransactionSearch())
+            using (TransactionSearch ts = new TransactionSearch(formMain.id))
             {
                 ts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
                 ts.ShowDialog();

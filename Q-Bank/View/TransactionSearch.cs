@@ -13,8 +13,10 @@ namespace Q_Bank.View
     public partial class TransactionSearch : Form
     {
         public Boolean CloseForm { get; set; }
-        public TransactionSearch()
+        public int id { get; set; }
+        public TransactionSearch(int id)
         {
+            this.id = id;
             InitializeComponent();
             FillAccountCombobox();
             TransactionSearchCombobox.SelectedIndex = 0;
@@ -80,10 +82,9 @@ namespace Q_Bank.View
         {
             using (var con = new Q_BANKEntities())
             {
-                int customerId = 1;
                 TransactionSearchAccountCombobox.Items.Clear();
                 var accountsCol = from a in con.accounts
-                                  where a.customerId == customerId
+                                  where a.customerId == this.id
                                   select a;
 
                 if (accountsCol.Count() > 0)

@@ -69,9 +69,8 @@ namespace Q_Bank.View
 
                     if (combobox.Value == 0)
                     {
-                        int userId = 1;
                         var accountCol = from a in con.accounts
-                                         where a.customerId == userId
+                                         where a.customerId == formMain.id
                                          select a;
                         if (accountCol.Count() > 0)
                         {

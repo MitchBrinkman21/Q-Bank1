@@ -37,6 +37,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -69,14 +72,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(450, 134);
+            this.textBox1.Location = new System.Drawing.Point(459, 134);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 3;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(450, 161);
+            this.textBox2.Location = new System.Drawing.Point(459, 161);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(100, 20);
@@ -120,11 +123,39 @@
             this.label4.Size = new System.Drawing.Size(0, 13);
             this.label4.TabIndex = 8;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(360, 256);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 13);
+            this.label5.TabIndex = 9;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Enabled = false;
+            this.textBox3.Location = new System.Drawing.Point(459, 231);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.TabIndex = 10;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(360, 234);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(93, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Authenticatiecode";
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 527);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -135,6 +166,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormLogin";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -152,5 +184,8 @@
         public System.Windows.Forms.Button button2;
         public System.Windows.Forms.Button button3;
         public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.TextBox textBox3;
+        public System.Windows.Forms.Label label6;
     }
 }

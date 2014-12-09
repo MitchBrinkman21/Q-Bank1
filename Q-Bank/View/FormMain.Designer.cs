@@ -31,6 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.optiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afmeldenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.transactionStatusRefreshButton = new System.Windows.Forms.Button();
             this.transactieStatusVerzenden = new System.Windows.Forms.Button();
@@ -86,7 +87,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.afmeldenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.TransactionStatusTableLayout.SuspendLayout();
@@ -125,6 +125,13 @@
             this.optiesToolStripMenuItem.Name = "optiesToolStripMenuItem";
             this.optiesToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.optiesToolStripMenuItem.Text = "Opties";
+            // 
+            // afmeldenToolStripMenuItem
+            // 
+            this.afmeldenToolStripMenuItem.Name = "afmeldenToolStripMenuItem";
+            this.afmeldenToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.afmeldenToolStripMenuItem.Text = "Afmelden";
+            this.afmeldenToolStripMenuItem.Click += new System.EventHandler(this.afmeldenToolStripMenuItem_Click_1);
             // 
             // tabPage4
             // 
@@ -772,13 +779,6 @@
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // afmeldenToolStripMenuItem
-            // 
-            this.afmeldenToolStripMenuItem.Name = "afmeldenToolStripMenuItem";
-            this.afmeldenToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
-            this.afmeldenToolStripMenuItem.Text = "Afmelden";
-            this.afmeldenToolStripMenuItem.Click += new System.EventHandler(this.afmeldenToolStripMenuItem_Click_1);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -793,6 +793,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainMenu";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
             this.tabPage4.ResumeLayout(false);

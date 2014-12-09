@@ -197,7 +197,7 @@ namespace Q_Bank.Controller
                 {
                     transactionCol = transactionCol.OrderByDescending(t => t.commitDatetime);
                 }
-                transactionCol = transactionCol.Where(t => t.commitDatetime != null);
+                transactionCol = transactionCol.Where(t => t.commitDatetime != null && t.transactionStatusId == 4);
                 if (transactionCol != null)
                 {
                     int i = 1;
@@ -241,14 +241,14 @@ namespace Q_Bank.Controller
                     {
 
                         transactionCol = from t in con.transactions
-                                         where t.commitDatetime != null
+                                         where t.commitDatetime != null && t.transactionStatusId == 4
                                          orderby t.commitDatetime descending
                                          select t;
                     }
                     else if (accountComboBox.Value > 0)
                     {
                         transactionCol = from t in con.transactions
-                                         where t.commitDatetime != null && (t.ibanReceiver.Equals(accountComboBox.Iban) || t.account.iban.Equals(accountComboBox.Iban))
+                                         where t.commitDatetime != null && (t.ibanReceiver.Equals(accountComboBox.Iban) || t.account.iban.Equals(accountComboBox.Iban)) && t.transactionStatusId == 4
                                          orderby t.commitDatetime descending
                                          select t;
                     }
@@ -268,6 +268,9 @@ namespace Q_Bank.Controller
 
         }
 
+        /// <summary>
+        /// Sets the balance label.
+        /// </summary>
         private void SetBalanceLabel()
         {
             using (var con = new Q_BANKEntities())

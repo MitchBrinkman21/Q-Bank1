@@ -230,28 +230,15 @@ namespace Q_Bank.Controller
                 formMain.TransactionOverviewTable.RowStyles.Add(new RowStyle(SizeType.AutoSize));
                 AddDefaultLabels();
 
-                IQueryable<account> accountCol = null;
                 IQueryable<transaction> transactionCol = null;
                 int i = 1;
                 if (formMain.TransactionOverviewAccountsCombobox.SelectedIndex >= 0)
                 {
+                    SetBalanceLabel();
                     ComboBoxItem accountComboBox = (ComboBoxItem)formMain.TransactionOverviewAccountsCombobox.SelectedItem;
 
                     if (accountComboBox.Value == 0)
                     {
-                        accountCol = from a in con.accounts
-                                     where a.customerId == formMain.id
-                                     select a;
-
-                        if (accountCol.Count() > 0)
-                        {
-                            double balance = 0;
-                            foreach (account a in accountCol)
-                            {
-                                balance += a.balance;
-                            }
-                            formMain.TransactionOverviewBalanceLabel.Text = "Saldo: €" + String.Format("{0:0,00}", balance.ToString("f2"));
-                        }
 
                         transactionCol = from t in con.transactions
                                          where t.commitDatetime != null
@@ -260,16 +247,6 @@ namespace Q_Bank.Controller
                     }
                     else if (accountComboBox.Value > 0)
                     {
-                        accountCol = from a in con.accounts
-                                     where a.accountId == accountComboBox.Value
-                                     select a;
-
-                        if (accountCol.Count() > 0)
-                        {
-                            account a = accountCol.First();
-                            formMain.TransactionOverviewBalanceLabel.Text = "Saldo: €" + String.Format("{0:0,00}", a.balance.ToString("f2"));
-                        }
-
                         transactionCol = from t in con.transactions
                                          where t.commitDatetime != null && (t.ibanReceiver.Equals(accountComboBox.Iban) || t.account.iban.Equals(accountComboBox.Iban))
                                          orderby t.commitDatetime descending
@@ -291,6 +268,46 @@ namespace Q_Bank.Controller
 
         }
 
+        private void SetBalanceLabel()
+        {
+            using (var con = new Q_BANKEntities())
+            {
+                IQueryable<account> accountCol = null;
+                ComboBoxItem accountComboBox = (ComboBoxItem)formMain.TransactionOverviewAccountsCombobox.SelectedItem;
+
+                if (accountComboBox.Value == 0)
+                {
+                    accountCol = from a in con.accounts
+                                    where a.customerId == formMain.id
+                                    select a;
+
+                    if (accountCol.Count() > 0)
+                    {
+                        double balance = 0;
+                        foreach (account a in accountCol)
+                        {
+                            balance += a.balance;
+                        }
+                        formMain.TransactionOverviewBalanceLabel.Text = "Saldo: €" + String.Format("{0:0,00}", balance.ToString("f2"));
+                    }
+                }
+                else
+                {
+
+                    accountCol = from a in con.accounts
+                                    where a.accountId == accountComboBox.Value
+                                    select a;
+
+                    if (accountCol.Count() > 0)
+                    {
+                        account a = accountCol.First();
+                        formMain.TransactionOverviewBalanceLabel.Text = "Saldo: €" + String.Format("{0:0,00}", a.balance.ToString("f2"));
+                    }
+                }
+            }
+        }
+        
+
         /// <summary>
         /// When the user clicks on the TransactionOverviewSearchTextbox.
         /// </summary>
@@ -304,6 +321,7 @@ namespace Q_Bank.Controller
                 ts.ShowDialog();
                 if (ts.CloseForm == true)
                 {
+                    formMain.TransactionOverviewAccountsCombobox.SelectedIndex = ts.TransactionSearchAccountCombobox.SelectedIndex;
                     formMain.TransactionOverviewSearchLabel.Visible = true;
                     if (ts.TransactionSearchCombobox.SelectedIndex == 0) 
                     { 
@@ -315,6 +333,7 @@ namespace Q_Bank.Controller
                     }
                     formMain.TransactionOverviewSearchLabel.Text += " (" + ts.TransactionSearchOrderByCombobobox.Text + ")";
                     FillTransactionOverviewTableSearchResults(ts);
+                    SetBalanceLabel();
                 }
             }
         }

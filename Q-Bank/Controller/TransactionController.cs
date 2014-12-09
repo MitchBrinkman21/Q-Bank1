@@ -25,7 +25,7 @@ namespace Q_Bank.Controller
             using (var con = new Q_BANKEntities())
             {
                 var query = from c in con.accounts
-                            where c.customerId == 1
+                            where c.customerId == formMain.id
                             select c;
 
                 if (query.Count() > 0)
@@ -62,7 +62,7 @@ namespace Q_Bank.Controller
                 }
                 else
                 {
-                    formMain.transactionLabel9.Text = "U heeft uw geselecteerde IBAN ingevuld als doelrekening";
+                    formMain.transactionLabel9.Text = "U heeft uw eigen IBAN ingevuld als doelrekening";
                 }
             }
         }

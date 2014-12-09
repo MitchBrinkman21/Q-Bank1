@@ -12,15 +12,14 @@ namespace Q_Bank.Controller
     {
         public FormLogin formLogin { get; set; }
         public FormMain a;
+        private int id = 0;
 
         public LoginController(FormLogin formLogin)
         {
             this.formLogin = formLogin;
             formLogin.button2.Click += processLogin;
             formLogin.button3.Click += openCreateUser;
-            a = new FormMain();
-            a.FormClosed += a_FormClosed;
-
+            formLogin.AcceptButton = formLogin.button2;
         }
 
         void a_FormClosed(object sender, FormClosedEventArgs e)
@@ -34,12 +33,18 @@ namespace Q_Bank.Controller
             if (checkLogin())
             {
                 // Ga hier naar de main applicatie.
-                a.Show();
-                formLogin.Hide();
-                formLogin.label4.Text = String.Empty;
-                formLogin.textBox1.Text = String.Empty;
-                formLogin.textBox2.Text = String.Empty;
-                formLogin.AcceptButton = formLogin.button2;
+                if (id >= 1)
+                {
+                    a = new FormMain(id);
+                    a.FormClosed += a_FormClosed;
+                    a.Show();
+                    formLogin.Hide();
+                    formLogin.label4.Text = String.Empty;
+                    formLogin.textBox1.Text = String.Empty;
+                    formLogin.textBox2.Text = String.Empty;
+                    formLogin.AcceptButton = formLogin.button2;
+                    id = 0;
+                }
             }
             else
             {
@@ -82,6 +87,7 @@ namespace Q_Bank.Controller
 
                     if (query.Count() != 0)
                     {
+                        id = query.First().customerId;
                         query = null;
                         return true;
                     }

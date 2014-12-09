@@ -17,12 +17,13 @@ namespace Q_Bank
     {
         public static Q_BANKEntities connection = new Q_BANKEntities();
         public Boolean afgemeld = false;
+        public int id;
 
-        public FormMain()
+        public FormMain(int id)
         {
             InitializeComponent();
             Home();
-
+            this.id = id;
         }
 
         private void Home()

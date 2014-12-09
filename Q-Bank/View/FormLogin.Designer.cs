@@ -135,7 +135,6 @@
             this.Controls.Add(this.label1);
             this.Name = "FormLogin";
             this.Text = "FormLogin";
-            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

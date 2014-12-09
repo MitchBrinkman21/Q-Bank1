@@ -31,8 +31,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.optiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.afsluitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.transactionStatusRefreshButton = new System.Windows.Forms.Button();
             this.transactieStatusVerzenden = new System.Windows.Forms.Button();
             this.transactieStatusHideButton = new System.Windows.Forms.Button();
             this.TransactionStatusTableLayout = new System.Windows.Forms.TableLayoutPanel();
@@ -86,7 +86,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.transactionStatusRefreshButton = new System.Windows.Forms.Button();
+            this.afmeldenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.TransactionStatusTableLayout.SuspendLayout();
@@ -113,7 +113,7 @@
             // 
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.optiesToolStripMenuItem,
-            this.afsluitenToolStripMenuItem});
+            this.afmeldenToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Size = new System.Drawing.Size(994, 24);
@@ -125,13 +125,6 @@
             this.optiesToolStripMenuItem.Name = "optiesToolStripMenuItem";
             this.optiesToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.optiesToolStripMenuItem.Text = "Opties";
-            // 
-            // afsluitenToolStripMenuItem
-            // 
-            this.afsluitenToolStripMenuItem.Name = "afsluitenToolStripMenuItem";
-            this.afsluitenToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
-            this.afsluitenToolStripMenuItem.Text = "Afsluiten";
-            this.afsluitenToolStripMenuItem.Click += new System.EventHandler(this.afsluitenToolStripMenuItem_Click);
             // 
             // tabPage4
             // 
@@ -151,6 +144,16 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Transactiestatus";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // transactionStatusRefreshButton
+            // 
+            this.transactionStatusRefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.transactionStatusRefreshButton.Location = new System.Drawing.Point(722, 55);
+            this.transactionStatusRefreshButton.Name = "transactionStatusRefreshButton";
+            this.transactionStatusRefreshButton.Size = new System.Drawing.Size(65, 20);
+            this.transactionStatusRefreshButton.TabIndex = 8;
+            this.transactionStatusRefreshButton.Text = "Refresh";
+            this.transactionStatusRefreshButton.UseVisualStyleBackColor = true;
             // 
             // transactieStatusVerzenden
             // 
@@ -769,15 +772,12 @@
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // transactionStatusRefreshButton
+            // afmeldenToolStripMenuItem
             // 
-            this.transactionStatusRefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.transactionStatusRefreshButton.Location = new System.Drawing.Point(722, 55);
-            this.transactionStatusRefreshButton.Name = "transactionStatusRefreshButton";
-            this.transactionStatusRefreshButton.Size = new System.Drawing.Size(65, 20);
-            this.transactionStatusRefreshButton.TabIndex = 8;
-            this.transactionStatusRefreshButton.Text = "Refresh";
-            this.transactionStatusRefreshButton.UseVisualStyleBackColor = true;
+            this.afmeldenToolStripMenuItem.Name = "afmeldenToolStripMenuItem";
+            this.afmeldenToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.afmeldenToolStripMenuItem.Text = "Afmelden";
+            this.afmeldenToolStripMenuItem.Click += new System.EventHandler(this.afmeldenToolStripMenuItem_Click_1);
             // 
             // FormMain
             // 
@@ -823,7 +823,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem optiesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem afsluitenToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
@@ -879,6 +878,7 @@
         public System.Windows.Forms.Button transactieStatusHideButton;
         public System.Windows.Forms.Button transactieStatusVerzenden;
         public System.Windows.Forms.Button transactionStatusRefreshButton;
+        private System.Windows.Forms.ToolStripMenuItem afmeldenToolStripMenuItem;
     }
 }
 

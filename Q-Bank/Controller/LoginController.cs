@@ -18,14 +18,13 @@ namespace Q_Bank.Controller
             this.formLogin = formLogin;
             formLogin.button2.Click += processLogin;
             formLogin.button3.Click += openCreateUser;
-            a = new FormMain(formLogin);
-            a.FormClosed += showLogin;
+            a = new FormMain();
+            a.FormClosed += a_FormClosed;
 
         }
 
-        private void showLogin(object sender, FormClosedEventArgs e)
+        void a_FormClosed(object sender, FormClosedEventArgs e)
         {
-            a.Close();
             formLogin.Show();
         }
 
@@ -35,18 +34,18 @@ namespace Q_Bank.Controller
             if (checkLogin())
             {
                 // Ga hier naar de main applicatie.
-                FormMain a = new FormMain(formLogin);
                 a.Show();
                 formLogin.Hide();
                 formLogin.label4.Text = String.Empty;
+                formLogin.textBox1.Text = String.Empty;
+                formLogin.textBox2.Text = String.Empty;
+                formLogin.AcceptButton = formLogin.button2;
             }
             else
             {
                 formLogin.label4.Text = "Onjuist wachtwoord en/of gebruikersnaam";
             }
         }
-
-        
 
         public void openCreateUser(object sender, System.EventArgs e)
         {
@@ -83,6 +82,7 @@ namespace Q_Bank.Controller
 
                     if (query.Count() != 0)
                     {
+                        query = null;
                         return true;
                     }
 

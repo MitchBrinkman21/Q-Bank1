@@ -142,7 +142,8 @@ namespace Q_Bank.Controller
                     accountComboBox = (ComboBoxItem)formMain.TransactionOverviewAccountsCombobox.SelectedItem;
                 }
                 if (accountComboBox.AccountId > 0)
-                { 
+                {
+                    formMain.TransactionOverviewBalanceLabel.Visible = true;
                     IQueryable<transaction> transactionCol = null;
                     int i = 1;
                     SetBalanceLabel();
@@ -203,6 +204,10 @@ namespace Q_Bank.Controller
                             i++;
                         }
                     }
+                }
+                else
+                {
+                    formMain.TransactionOverviewBalanceLabel.Visible = false;
                 }
 
                 Label tempLabel = new Label();

@@ -66,7 +66,7 @@ namespace Q_Bank.View
                 
                 formMain.TransactionStatusTableLayout.Controls.Clear();
                 formMain.TransactionStatusTableLayout.RowStyles.Clear();
-                formMain.TransactionStatusTableLayout.RowCount = 0;
+                formMain.TransactionStatusTableLayout.RowCount = 1;
                 AddDefaultLabels();
                 ClearArray();
 
@@ -77,28 +77,7 @@ namespace Q_Bank.View
 
                     if (combobox.AccountId == 0)
                     {
-                        var accountCol = from a in con.accounts
-                                         where a.customerId == formMain.id
-                                         select a;
-                        if (accountCol.Count() > 0)
-                        {
-                            double balance = 0;
-                            foreach (account a in accountCol)
-                            {
-                                balance += a.balance;
-                            }
-                            formMain.transactionStatusSaldo.Text = "Saldo: " + balance.ToString();
-                        }
-
-                        var transactionCol = from t in con.transactions
-                                             orderby t.datetime descending
-                                             select t;
-
-                        foreach (transaction t in transactionCol)
-                        {
-                            CheckItems(t, i);
-                            i++;
-                        }
+                        formMain.transactionStatusSaldo.Visible = false;
                     }
                     else
                     {
@@ -108,7 +87,8 @@ namespace Q_Bank.View
                         if (accountCol.Count() > 0)
                         {
                             account a = accountCol.First();
-                            formMain.transactionStatusSaldo.Text = "Saldo: " + a.balance.ToString();
+                            formMain.transactionStatusSaldo.Text = "Saldo: €" + String.Format("{0:0,00}",a.balance.ToString("f2"));
+                            formMain.transactionStatusSaldo.Visible = true;
                         }
 
                         var transactionCol = from t in con.transactions
@@ -189,7 +169,7 @@ namespace Q_Bank.View
                 omschrijving.Add(tempLabel);
 
                 tempLabel = new Label();
-                tempLabel.Text = "€" + t.amount.ToString();
+                tempLabel.Text = "€" + String.Format("{0:0,00}", t.amount.ToString("f2"));
                 tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
                 tempLabel.Tag = tID;
                 tempLabel.Click += tsc.clickLabelDate;

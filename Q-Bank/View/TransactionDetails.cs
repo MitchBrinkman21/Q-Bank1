@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Q_Bank.Model;
 namespace Q_Bank.View
 {
     public partial class TransactionDetails : Form
@@ -22,8 +23,8 @@ namespace Q_Bank.View
                               select t;
 
                 transaction tr = details.First();
-                if (cbi != null) { 
-                    if (cbi.Value > 0)
+                if (cbi != null) {
+                    if (cbi.AccountId > 0)
                     {
                         if (cbi.Iban.Equals(tr.ibanReceiver))
                         {

@@ -7,16 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Q_Bank.Model;
+using Q_Bank.Controller;
 
 namespace Q_Bank.View
 {
     public partial class TransactionSearch : Form
     {
         public Boolean CloseForm { get; set; }
-        public int id { get; set; }
-        public TransactionSearch(int id)
+        public FormMain formMain { get; set; }
+        public TransactionSearch(FormMain formMain)
         {
-            this.id = id;
+            this.formMain = formMain;
             InitializeComponent();
             FillAccountCombobox();
             TransactionSearchCombobox.SelectedIndex = 0;
@@ -80,28 +82,7 @@ namespace Q_Bank.View
 
         private void FillAccountCombobox()
         {
-            using (var con = new Q_BANKEntities())
-            {
-                TransactionSearchAccountCombobox.Items.Clear();
-                var accountsCol = from a in con.accounts
-                                  where a.customerId == this.id
-                                  select a;
-
-                if (accountsCol.Count() > 0)
-                {
-                    TransactionSearchAccountCombobox.Items.Add(new ComboBoxItem(0, "Alle rekeningen"));
-                    TransactionSearchAccountCombobox.SelectedIndex = 0;
-                    foreach (account a in accountsCol)
-                    {
-                        TransactionSearchAccountCombobox.Items.Add(new ComboBoxItem(a.accountId, a.iban.ToString(), a.iban.ToString()));
-                    }
-                }
-                else
-                {
-                    TransactionSearchAccountCombobox.Items.Add(new ComboBoxItem(-1, "Geen rekeningen gevonden"));
-                    TransactionSearchAccountCombobox.SelectedIndex = 0;
-                }
-            }
+            AccComboBoxGen acbg = new AccComboBoxGen(formMain, TransactionSearchAccountCombobox);
         }
     }
 }

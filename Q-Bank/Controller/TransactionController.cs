@@ -4,6 +4,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Q_Bank.Model;
 
 namespace Q_Bank.Controller
 {
@@ -32,19 +33,16 @@ namespace Q_Bank.Controller
                 {
 
 
-                    formMain.transactionComboBox1.Items.Add(new TempAccount(0, "Selecteer rekening", "", 0));
+                    formMain.transactionComboBox1.Items.Add(new ComboBoxItem(0, "Selecteer rekening", "", 0));
                     formMain.transactionComboBox1.SelectedIndex = 0;
                     foreach (account a in query)
                     {
-                        var query2 = from at in con.accounttypes
-                                     where at.accountTypeId == a.accountTypeId
-                                     select at;
-                        formMain.transactionComboBox1.Items.Add(new TempAccount(a.accountId, a.iban, query2.First().accountTypeName, a.balance));
+                        formMain.transactionComboBox1.Items.Add(new ComboBoxItem(a.accountId, a.iban, a.accounttype.accountTypeName, a.balance));
                     }
                 }
                 else
                 {
-                    formMain.transactionComboBox1.Items.Add(new TempAccount(-1, "Geen rekeningen gevonden", "", 0));
+                    formMain.transactionComboBox1.Items.Add(new ComboBoxItem(-1, "Geen rekeningen gevonden", "", 0));
                     formMain.transactionComboBox1.SelectedIndex = 0;
                 }
             }
@@ -54,8 +52,8 @@ namespace Q_Bank.Controller
         {
             if (IsCorrectlyFilledIn())
             {
-                TempAccount tp = (TempAccount)formMain.transactionComboBox1.SelectedItem;
-                if (!tp.accountnumber.Equals(formMain.transactionTextBox2.Text))
+                ComboBoxItem tp = (ComboBoxItem)formMain.transactionComboBox1.SelectedItem;
+                if (!tp.Iban.Equals(formMain.transactionTextBox2.Text))
                 {
                     createTransaction();
                     resetFields();
@@ -71,8 +69,8 @@ namespace Q_Bank.Controller
         {
             if (IsCorrectlyFilledIn())
             {
-                TempAccount tp = (TempAccount)formMain.transactionComboBox1.SelectedItem;
-                if (!tp.accountnumber.Equals(formMain.transactionTextBox2.Text))
+                ComboBoxItem tp = (ComboBoxItem)formMain.transactionComboBox1.SelectedItem;
+                if (!tp.Iban.Equals(formMain.transactionTextBox2.Text))
                 {
                     createTransaction();
                     resetFields();
@@ -90,10 +88,10 @@ namespace Q_Bank.Controller
         {
             using (var con = new Q_BANKEntities())
             {
-                TempAccount tp = (TempAccount)formMain.transactionComboBox1.SelectedItem;
+                ComboBoxItem tp = (ComboBoxItem)formMain.transactionComboBox1.SelectedItem;
                 transaction newTransaction = new transaction()
                 {
-                    accountId = tp.accountid,
+                    accountId = tp.AccountId,
                     transactionTypeId = 1,
                     transactionStatusId = 1,
                     amount = Convert.ToDouble(formMain.transactionNumericUpDown1.Text),
@@ -195,36 +193,6 @@ namespace Q_Bank.Controller
                 checksum = (checksum * 10 + value) % 97;
             }
             return checksum == 1;
-        }
-    }
-
-
-    //Temporary class to fill the combobox with
-    public class TempAccount
-    {
-        public string accountnumber;
-        public string accounttype;
-        public int accountid;
-        public double balance;
-
-        public TempAccount(int accountid, string accountnumber, string accounttype, double balance)
-        {
-            this.accountid = accountid;
-            this.accountnumber = accountnumber;
-            this.accounttype = accounttype;
-            this.balance = balance;
-        }
-
-        public override string ToString()
-        {
-            if (accountid > 0)
-            {
-                return accountnumber + " - " + accounttype + " - EUR " + balance;
-            }
-            else
-            {
-                return accountnumber;
-            }
         }
     }
 }

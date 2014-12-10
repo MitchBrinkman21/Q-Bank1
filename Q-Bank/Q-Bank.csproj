@@ -60,6 +60,7 @@
     <Compile Include="accounttype.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controller\AccComboBoxGen.cs" />
     <Compile Include="Controller\AddressGenerator.cs" />
     <Compile Include="Controller\CreateUserController.cs" />
     <Compile Include="Controller\LoginController.cs" />
@@ -126,7 +127,7 @@
     <Compile Include="transactiontype.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\ComboBoxItem.cs" />
+    <Compile Include="Model\ComboBoxItem.cs" />
     <Compile Include="View\CreateUser.cs">
       <SubType>Form</SubType>
     </Compile>

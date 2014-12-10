@@ -8,48 +8,22 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity;
+using Q_Bank.Model;
 
 namespace Q_Bank.Controller
 {
     public class TransactionOverviewController
     {
         public FormMain formMain { get; set; }
+        public TransactionSearch ts { get; set; }
+        public Boolean search { get; set; }
         private Label lDate, lFromAccount, lRemark, lAddWithdraw, lAmount;
         public TransactionOverviewController(FormMain formMain)
         {
             this.formMain = formMain;
             formMain.TransactionOverviewAccountsCombobox.SelectedIndexChanged += TransactionOverviewAccountComboboxChanged;
             formMain.TransactionOverviewSearchButton.MouseDown += TransactionOverviewSearchButtonMouseDown;
-            FillAccountCombobox();
-        }
-
-        /// <summary>
-        /// Fills the account combobox.
-        /// </summary>
-        private void FillAccountCombobox()
-        {
-            using (var con = new Q_BANKEntities())
-            {
-                formMain.TransactionOverviewAccountsCombobox.Items.Clear();
-                var accountsCol = from a in con.accounts
-                                  where a.customerId == formMain.id
-                                  select a;
-
-                if (accountsCol.Count() > 0)
-                {
-                    formMain.TransactionOverviewAccountsCombobox.Items.Add(new ComboBoxItem(0, "Alle rekeningen"));
-                    formMain.TransactionOverviewAccountsCombobox.SelectedIndex = 0;
-                    foreach (account a in accountsCol)
-                    {
-                        formMain.TransactionOverviewAccountsCombobox.Items.Add(new ComboBoxItem(a.accountId, a.iban.ToString(), a.iban.ToString()));
-                    }
-                }
-                else
-                {
-                    formMain.TransactionOverviewAccountsCombobox.Items.Add(new ComboBoxItem(-1, "Geen rekeningen gevonden"));
-                    formMain.TransactionOverviewAccountsCombobox.SelectedIndex = 0;
-                }
-            }
+            AccComboBoxGen acbg = new AccComboBoxGen(formMain, formMain.TransactionOverviewAccountsCombobox);
         }
 
         /// <summary>
@@ -59,17 +33,17 @@ namespace Q_Bank.Controller
         /// <param name="i">The rownumber.</param>
         private void AddItemsInTable(transaction t, int i, ComboBoxItem combobox)
         {
-            if (combobox.Value > 0)
+            if (combobox.AccountId > 0)
             {
                 if (combobox.Iban.Equals(t.ibanReceiver))
                 {
                     if (t.transactionTypeId == 1)
                     {
-                        t.transactiontype.transactionTypeName = "Bijschrijven";
+                        t.transactiontype.transactionTypeName = "Bijschrijving";
                     }
                     else
                     {
-                        t.transactiontype.transactionTypeName = "Afschrijven";
+                        t.transactiontype.transactionTypeName = "Afschrijving";
                     }
                     t.nameReceiver = t.account.customer.firstName + " " + t.account.customer.lastName;
                     t.ibanReceiver = t.account.iban;
@@ -146,68 +120,123 @@ namespace Q_Bank.Controller
         }
 
         /// <summary>
-        /// Fills the transaction overview table search results.
+        /// Fills the transaction overview table.
         /// </summary>
-        private void FillTransactionOverviewTableSearchResults(TransactionSearch ts)
+        private void FillTransactionOverviewTable()
         {
             using (var con = new Q_BANKEntities())
             {
+                ComboBoxItem accountComboBox = null;
+
                 formMain.TransactionOverviewTable.Controls.Clear();
                 formMain.TransactionOverviewTable.RowStyles.Clear();
                 formMain.TransactionOverviewTable.RowStyles.Add(new RowStyle(SizeType.AutoSize));
                 AddDefaultLabels();
 
-                ComboBoxItem accountComboBox = (ComboBoxItem)ts.TransactionSearchAccountCombobox.SelectedItem;
-
-                IQueryable<transaction> transactionCol = null;
-                transactionCol = from t in con.transactions
-                                 select t;
-                if (ts.TransactionSearchCombobox.SelectedIndex == 0) {
-                    // Textboxes
-                    if (String.IsNullOrEmpty(ts.textBoxFirstName.Text) && !String.IsNullOrEmpty(ts.textBoxLastName.Text))
-                    {
-                        transactionCol = transactionCol.Where(t => t.nameReceiver.Contains(ts.textBoxLastName.Text));
-                    }
-                    else if (String.IsNullOrEmpty(ts.textBoxLastName.Text) && !String.IsNullOrEmpty(ts.textBoxFirstName.Text))
-                    {
-                        transactionCol = transactionCol.Where(t => t.nameReceiver.Contains(ts.textBoxFirstName.Text));
-                    }
-                    else if (!String.IsNullOrEmpty(ts.textBoxFirstName.Text) && !String.IsNullOrEmpty(ts.textBoxLastName.Text))
-                    {
-                        transactionCol = transactionCol.Where(t => t.nameReceiver.Contains(ts.textBoxFirstName.Text) && t.nameReceiver.Contains(ts.textBoxLastName.Text));
-                    }
+                if (search)
+                {
+                    accountComboBox = (ComboBoxItem)ts.TransactionSearchAccountCombobox.SelectedItem;
                 }
                 else
                 {
-                    transactionCol = transactionCol.Where(t => DbFunctions.TruncateTime(t.executeDate.Value) >= DbFunctions.TruncateTime(ts.beginDatePicker.Value));
-                    transactionCol = transactionCol.Where(t => DbFunctions.TruncateTime(t.executeDate.Value) <= DbFunctions.TruncateTime(ts.endDatePicker.Value));
+                    accountComboBox = (ComboBoxItem)formMain.TransactionOverviewAccountsCombobox.SelectedItem;
                 }
-
-                // ComboBox for accounts
-                if (accountComboBox.Value != 0)
-                {
-                    transactionCol = transactionCol.Where(t => t.account.iban == accountComboBox.Iban || t.ibanReceiver == accountComboBox.Iban);
-                }
-
-                if (ts.TransactionSearchOrderByCombobobox.SelectedIndex == 0)
-                {
-                    transactionCol = transactionCol.OrderBy(t => t.commitDatetime);
-                }
-                else
-                {
-                    transactionCol = transactionCol.OrderByDescending(t => t.commitDatetime);
-                }
-                transactionCol = transactionCol.Where(t => t.commitDatetime != null && t.transactionStatusId == 4);
-                if (transactionCol != null)
-                {
+                if (accountComboBox.AccountId > 0)
+                { 
+                    IQueryable<transaction> transactionCol = null;
                     int i = 1;
-                    foreach (transaction t in transactionCol)
+                    SetBalanceLabel();
+
+                    transactionCol = from t in con.transactions
+                                     select t;
+
+                    if (search)
                     {
-                        AddItemsInTable(t, i, accountComboBox);
-                        i++;
+                        search = false;
+                        formMain.TransactionOverviewSearchLabel.Visible = true;
+                        if (ts.TransactionSearchCombobox.SelectedIndex == 0)
+                        {
+                            // Textboxes
+                            if (String.IsNullOrEmpty(ts.textBoxFirstName.Text) && !String.IsNullOrEmpty(ts.textBoxLastName.Text))
+                            {
+                                transactionCol = transactionCol.Where(t => t.nameReceiver.Contains(ts.textBoxLastName.Text));
+                            }
+                            else if (String.IsNullOrEmpty(ts.textBoxLastName.Text) && !String.IsNullOrEmpty(ts.textBoxFirstName.Text))
+                            {
+                                transactionCol = transactionCol.Where(t => t.nameReceiver.Contains(ts.textBoxFirstName.Text));
+                            }
+                            else if (!String.IsNullOrEmpty(ts.textBoxFirstName.Text) && !String.IsNullOrEmpty(ts.textBoxLastName.Text))
+                            {
+                                transactionCol = transactionCol.Where(t => t.nameReceiver.Contains(ts.textBoxFirstName.Text) && t.nameReceiver.Contains(ts.textBoxLastName.Text));
+                            }
+                        }
+                        else
+                        {
+                            transactionCol = transactionCol.Where(t => DbFunctions.TruncateTime(t.executeDate.Value) >= DbFunctions.TruncateTime(ts.beginDatePicker.Value));
+                            transactionCol = transactionCol.Where(t => DbFunctions.TruncateTime(t.executeDate.Value) <= DbFunctions.TruncateTime(ts.endDatePicker.Value));
+                        }
+
+                        if (ts.TransactionSearchOrderByCombobobox.SelectedIndex == 0)
+                        {
+                            transactionCol = transactionCol.OrderBy(t => t.commitDatetime);
+                        }
+                        else
+                        {
+                            transactionCol = transactionCol.OrderByDescending(t => t.commitDatetime);
+                        }
                     }
-                    Label tempLabel = new Label();
-                    formMain.TransactionOverviewTable.Controls.Add(tempLabel, 0, formMain.TransactionOverviewTable.RowCount);
+                    else
+                    {
+                        formMain.TransactionOverviewSearchLabel.Visible = false;
+
+                        transactionCol = transactionCol.OrderByDescending(t => t.commitDatetime);
+                    }
+
+                    transactionCol = transactionCol.Where(t => t.commitDatetime != null && t.transactionStatusId == 4);
+                    transactionCol = transactionCol.Where(t => t.account.iban == accountComboBox.Iban || t.ibanReceiver == accountComboBox.Iban);
+
+                    if (transactionCol != null && accountComboBox != null)
+                    {
+                        foreach (transaction t in transactionCol)
+                        {
+                            AddItemsInTable(t, i, accountComboBox);
+                            i++;
+                        }
+                    }
+                }
+
+                Label tempLabel = new Label();
+                formMain.TransactionOverviewTable.Controls.Add(tempLabel, 0, formMain.TransactionOverviewTable.RowCount);
+            }
+        }
+
+        /// <summary>
+        /// Sets the balance label.
+        /// </summary>
+        private void SetBalanceLabel()
+        {
+            using (var con = new Q_BANKEntities())
+            {
+                IQueryable<account> accountCol = null;
+                ComboBoxItem accountComboBox = (ComboBoxItem)formMain.TransactionOverviewAccountsCombobox.SelectedItem;
+
+                if (accountComboBox.AccountId == 0)
+                {
+                    formMain.TransactionOverviewBalanceLabel.Visible = false;
+                }
+                else
+                {
+                    formMain.TransactionOverviewBalanceLabel.Visible = true;
+
+                    accountCol = from a in con.accounts
+                                 where a.accountId == accountComboBox.AccountId
+                                 select a;
+
+                    if (accountCol.Count() > 0)
+                    {
+                        account a = accountCol.First();
+                        formMain.TransactionOverviewBalanceLabel.Text = "Saldo: €" + String.Format("{0:0,00}", a.balance.ToString("f2"));
+                    }
                 }
             }
         }
@@ -222,103 +251,18 @@ namespace Q_Bank.Controller
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         public void TransactionOverviewAccountComboboxChanged(object sender, System.EventArgs e)
         {
-            using (var con = new Q_BANKEntities())
-            {
-                formMain.TransactionOverviewSearchLabel.Visible = false;
-                formMain.TransactionOverviewTable.Controls.Clear();
-                formMain.TransactionOverviewTable.RowStyles.Clear();
-                formMain.TransactionOverviewTable.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                AddDefaultLabels();
-
-                IQueryable<transaction> transactionCol = null;
-                int i = 1;
-                if (formMain.TransactionOverviewAccountsCombobox.SelectedIndex >= 0)
-                {
-                    SetBalanceLabel();
-                    ComboBoxItem accountComboBox = (ComboBoxItem)formMain.TransactionOverviewAccountsCombobox.SelectedItem;
-
-                    if (accountComboBox.Value == 0)
-                    {
-
-                        transactionCol = from t in con.transactions
-                                         where t.commitDatetime != null && t.transactionStatusId == 4
-                                         orderby t.commitDatetime descending
-                                         select t;
-                    }
-                    else if (accountComboBox.Value > 0)
-                    {
-                        transactionCol = from t in con.transactions
-                                         where t.commitDatetime != null && (t.ibanReceiver.Equals(accountComboBox.Iban) || t.account.iban.Equals(accountComboBox.Iban)) && t.transactionStatusId == 4
-                                         orderby t.commitDatetime descending
-                                         select t;
-                    }
-                    if (transactionCol != null)
-                    {
-                        foreach (transaction t in transactionCol)
-                        {
-                            AddItemsInTable(t, i, accountComboBox);
-                            i++;
-                        }
-                    }
-
-                    Label tempLabel = new Label();
-                    formMain.TransactionOverviewTable.Controls.Add(tempLabel, 0, formMain.TransactionOverviewTable.RowCount);
-                }
-            }
-
-        }
-
-        /// <summary>
-        /// Sets the balance label.
-        /// </summary>
-        private void SetBalanceLabel()
-        {
-            using (var con = new Q_BANKEntities())
-            {
-                IQueryable<account> accountCol = null;
-                ComboBoxItem accountComboBox = (ComboBoxItem)formMain.TransactionOverviewAccountsCombobox.SelectedItem;
-
-                if (accountComboBox.Value == 0)
-                {
-                    accountCol = from a in con.accounts
-                                    where a.customerId == formMain.id
-                                    select a;
-
-                    if (accountCol.Count() > 0)
-                    {
-                        double balance = 0;
-                        foreach (account a in accountCol)
-                        {
-                            balance += a.balance;
-                        }
-                        formMain.TransactionOverviewBalanceLabel.Text = "Saldo: €" + String.Format("{0:0,00}", balance.ToString("f2"));
-                    }
-                }
-                else
-                {
-
-                    accountCol = from a in con.accounts
-                                    where a.accountId == accountComboBox.Value
-                                    select a;
-
-                    if (accountCol.Count() > 0)
-                    {
-                        account a = accountCol.First();
-                        formMain.TransactionOverviewBalanceLabel.Text = "Saldo: €" + String.Format("{0:0,00}", a.balance.ToString("f2"));
-                    }
-                }
-            }
+            FillTransactionOverviewTable();
         }
         
 
         /// <summary>
-        /// When the user clicks on the TransactionOverviewSearchTextbox.
+        /// When the user clicks on the TransactionOverviewSearchButton.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void TransactionOverviewSearchButtonMouseDown(object sender, System.EventArgs e)
         {
-            using (TransactionSearch ts = new TransactionSearch(formMain.id))
+            using (ts = new TransactionSearch(formMain))
             {
                 ts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
                 ts.ShowDialog();
@@ -335,8 +279,8 @@ namespace Q_Bank.Controller
                         formMain.TransactionOverviewSearchLabel.Text = "U hebt gezocht naar transacties in de periode " + ts.beginDatePicker.Value.ToShortDateString() + " - " + ts.endDatePicker.Value.ToShortDateString();
                     }
                     formMain.TransactionOverviewSearchLabel.Text += " (" + ts.TransactionSearchOrderByCombobobox.Text + ")";
-                    FillTransactionOverviewTableSearchResults(ts);
-                    SetBalanceLabel();
+                    search = true;
+                    FillTransactionOverviewTable();
                 }
             }
         }

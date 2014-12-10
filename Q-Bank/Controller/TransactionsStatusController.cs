@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Q_Bank.View;
+using Q_Bank.Model;
 
 namespace Q_Bank.Controller
 {
@@ -79,28 +80,7 @@ namespace Q_Bank.Controller
 
         private void FillAccountsCombobox()
         {
-            using (var con = new Q_BANKEntities())
-            { 
-                tss.formMain.TrasactionStatusDropBox.Items.Clear();
-                var accountsCol = from a in con.accounts
-                                  where a.customerId == tss.formMain.id
-                                  select a;
-
-                if (accountsCol.Count() > 0)
-                {
-                    tss.formMain.TrasactionStatusDropBox.Items.Add(new ComboBoxItem(0, "Alle rekeningen"));
-                    tss.formMain.TrasactionStatusDropBox.SelectedIndex = 0;
-                    foreach (account a in accountsCol)
-                    {
-                        tss.formMain.TrasactionStatusDropBox.Items.Add(new ComboBoxItem(a.accountId, a.iban.ToString()));
-                    }
-                }
-                else
-                {
-                    tss.formMain.TrasactionStatusDropBox.Items.Add(new ComboBoxItem(-1, "Geen rekeningen gevonden"));
-                    tss.formMain.TrasactionStatusDropBox.SelectedIndex = 0;
-                }
-            }
+            AccComboBoxGen acbg = new AccComboBoxGen(tss.formMain, tss.formMain.TrasactionStatusDropBox);
         }
 
         public void clickLabelDate(object sender, EventArgs e)

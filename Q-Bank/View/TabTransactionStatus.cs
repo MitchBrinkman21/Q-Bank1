@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Q_Bank.Model;
 
 namespace Q_Bank.View
 {
@@ -67,7 +68,7 @@ namespace Q_Bank.View
                 {
                     ComboBoxItem combobox = (ComboBoxItem)formMain.TrasactionStatusDropBox.SelectedItem;
 
-                    if (combobox.Value == 0)
+                    if (combobox.AccountId == 0)
                     {
                         var accountCol = from a in con.accounts
                                          where a.customerId == formMain.id
@@ -95,7 +96,7 @@ namespace Q_Bank.View
                     else
                     {
                         var accountCol = from a in con.accounts
-                                         where a.accountId == combobox.Value
+                                         where a.accountId == combobox.AccountId
                                          select a;
                         if (accountCol.Count() > 0)
                         {
@@ -104,7 +105,7 @@ namespace Q_Bank.View
                         }
 
                         var transactionCol = from t in con.transactions
-                                             where t.accountId == combobox.Value
+                                             where t.accountId == combobox.AccountId
                                              orderby t.datetime descending
                                              select t;
 

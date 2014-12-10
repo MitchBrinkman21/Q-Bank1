@@ -12,7 +12,9 @@ namespace Q_Bank.Controller
     class CreateUserController
     {
         public CreateUser createUser { get; set; }
-        private bool valid = true;
+        public bool validUsername { get; set; }
+        public bool validPassword { get; set; }
+        public bool validText { get; set; }
         public CreateUserController(CreateUser createUser)
         {
             this.createUser = createUser;
@@ -128,7 +130,15 @@ namespace Q_Bank.Controller
             // Check if all entered data is not empty
             if (checkEmptyFields())
             {
-                return valid;
+                if (validUsername && validPassword && validText)
+                {
+                    return true;
+                }
+                else
+                {
+                    createUser.showMessage("Niet alle velden zijn correct ingevuld!");
+                    return false;
+                }
             }
             else
             {     
@@ -175,11 +185,12 @@ namespace Q_Bank.Controller
                 if (query.Count() != 0)
                 {
                     createUser.labelCheckUsername.Visible = true;
-                    valid = false;
+                    validUsername = false;
                 }
                 else
                 {
                     createUser.labelCheckUsername.Visible = false;
+                    validUsername = true;
                 }
             }
         }
@@ -193,11 +204,12 @@ namespace Q_Bank.Controller
                 if (createUser.textBoxPassword.Text != createUser.textBoxRepeatPassword.Text)
                 {
                     createUser.labelCheckPassword.Visible = true;
-                    valid = false;
+                    validPassword = false;
                 }
                 else
                 {
                     createUser.labelCheckPassword.Visible = false;
+                    validPassword = true;
                 }
             }
         }
@@ -225,7 +237,7 @@ namespace Q_Bank.Controller
 
         private void checkValidText(object sender, System.EventArgs e)
         {
-            valid = true;
+            validText = true;
 
             // Check if entered data is correct
 
@@ -233,7 +245,7 @@ namespace Q_Bank.Controller
                 !Regex.IsMatch(createUser.textBoxBSN.Text, @"^[0-9]+$"))
             {
                 createUser.labelCheckBSN.Visible = true;
-                valid = false;
+                validText = false;
             }
             else
             {
@@ -244,7 +256,7 @@ namespace Q_Bank.Controller
                 !Regex.IsMatch(createUser.textBoxFirstname.Text, @"^[a-zA-Z]+$"))
             {
                 createUser.labelCheckFirstname.Visible = true;
-                valid = false;
+                validText = false;
             }
             else
             {
@@ -255,7 +267,7 @@ namespace Q_Bank.Controller
                 !Regex.IsMatch(createUser.textBoxLastname.Text, @"^[a-zA-Z]+$"))
             {
                 createUser.labelCheckLastname.Visible = true;
-                valid = false;
+                validText = false;
             }
             else
             {
@@ -265,7 +277,7 @@ namespace Q_Bank.Controller
             if (createUser.dateTimePickerBirthday.Value > DateTime.Now)
             {
                 createUser.labelCheckBirthday.Visible = true;
-                valid = false;
+                validText = false;
             }
             else
             {
@@ -276,7 +288,7 @@ namespace Q_Bank.Controller
                 !checkValidZipcode(createUser.textBoxZipcode.Text))
             {
                 createUser.labelCheckZipcode.Visible = true;
-                valid = false;
+                validText = false;
             }
             else
             {
@@ -287,7 +299,7 @@ namespace Q_Bank.Controller
                 !checkValidHouseNumber(createUser.textBoxNumber.Text))
             {
                 createUser.labelCheckNumber.Visible = true;
-                valid = false;
+                validText = false;
             }
             else
             {
@@ -298,7 +310,7 @@ namespace Q_Bank.Controller
                 !Regex.IsMatch(createUser.textBoxAddress.Text, @"^[a-zA-Z]+$"))
             {
                 createUser.labelCheckAddress.Visible = true;
-                valid = false;
+                validText = false;
             }
             else
             {
@@ -310,7 +322,7 @@ namespace Q_Bank.Controller
                 !Regex.IsMatch(createUser.textBoxCity.Text, @"^[a-zA-Z]+$"))
             {
                 createUser.labelCheckCity.Visible = true;
-                valid = false;
+                validText = false;
             }
             else
             {
@@ -321,7 +333,7 @@ namespace Q_Bank.Controller
                 !Regex.IsMatch(createUser.textBoxCountry.Text, @"^[a-zA-Z]+$"))
             {
                 createUser.labelCheckCountry.Visible = true;
-                valid = false;
+                validText = false;
             }
             else
             {
@@ -332,7 +344,7 @@ namespace Q_Bank.Controller
                !Regex.IsMatch(createUser.textBoxPhonenumber.Text, @"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$"))
             {
                 createUser.labelCheckPhonenumber.Visible = true;
-                valid = false;
+                validText = false;
             }
             else
             {
@@ -345,7 +357,7 @@ namespace Q_Bank.Controller
                 if (!ve.IsValidEmail(createUser.textBoxEmail.Text))
                 {
                     createUser.labelCheckEmail.Visible = true;
-                    valid = false;
+                    validText = false;
                 }
                 else
                 {

@@ -14,6 +14,7 @@ namespace Q_Bank.View
         public Controller.TransactionsStatusController tsc;
         public List<Label> uitvoerDatum, tegenRekening, omschrijving, bedrag, status;
         public List<CheckBox> kies;
+        public List<transaction> ListTransactions;
         private Label lKies, lUitvoerDatum, lTegenRekening, lOmschrijving, lBedrag, lStatus;
         private List<String> statussen = new List<string>();
         public bool hideVerzondenItems = false;
@@ -38,6 +39,7 @@ namespace Q_Bank.View
             bedrag = new List<Label>();
             status = new List<Label>();
             kies = new List<CheckBox>();
+            ListTransactions = new List<transaction>();
             this.formMain = formMain;
             tsc = new Controller.TransactionsStatusController(this);
             formMain.transactionStatusSelectEverything.Click += tsc.SelectAllHandler;
@@ -47,6 +49,8 @@ namespace Q_Bank.View
             formMain.transactieStatusHideButton.Click += tsc.Hide;
             formMain.transactionStatusRefreshButton.Click += tsc.Refresch;
             tsc = new Controller.TransactionsStatusController(this);
+            formMain.transactieStatusVerzenden.Enabled = false;
+            formMain.transactionStatusButtonAnnuleren.Enabled = false;
             //AddTransactions();
             //verwijderd de verticale scrollbar
             int vertScrollWidth = SystemInformation.VerticalScrollBarWidth;
@@ -58,7 +62,10 @@ namespace Q_Bank.View
             allesGeselecteerd = false;
             using (var con = new Q_BANKEntities())
             {
+                
                 formMain.TransactionStatusTableLayout.Controls.Clear();
+                formMain.TransactionStatusTableLayout.RowStyles.Clear();
+                formMain.TransactionStatusTableLayout.RowCount = 0;
                 AddDefaultLabels();
                 ClearArray();
 
@@ -140,15 +147,21 @@ namespace Q_Bank.View
         }
 
         private void AddItemsInTable(transaction t, int i)
-        {           
+        {
+                ListTransactions.Add(t);
                 Label tempLabel;
                 CheckBox tempCBox;
                 int tID = t.transactionId;
-                tempCBox = new CheckBox();
-                tempCBox.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                tempCBox.Tag = tID;
-                formMain.TransactionStatusTableLayout.Controls.Add(tempCBox, 0, i + 1);
-                kies.Add(tempCBox);
+
+                if (t.transactionStatusId < 3)
+                {                    
+                    tempCBox = new CheckBox();
+                    tempCBox.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                    tempCBox.Tag = tID;
+                    formMain.TransactionStatusTableLayout.Controls.Add(tempCBox, 0, i + 1);
+                    tempCBox.CheckedChanged += tsc.CheckChanged;
+                    kies.Add(tempCBox);
+                }
 
                 tempLabel = new Label();
                 tempLabel.Text = t.datetime.ToString();

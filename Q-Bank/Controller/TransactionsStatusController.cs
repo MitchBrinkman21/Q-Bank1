@@ -29,6 +29,9 @@ namespace Q_Bank.Controller
                     item.Checked = true;
                 }
                 tss.allesGeselecteerd = true;
+                tss.formMain.transactieStatusVerzenden.Enabled = true;
+                tss.formMain.transactionStatusButtonAnnuleren.Enabled = true;
+                
             }
             else
             {
@@ -37,12 +40,15 @@ namespace Q_Bank.Controller
                     item.Checked = false;
                 }
                 tss.allesGeselecteerd = false;
+                tss.formMain.transactieStatusVerzenden.Enabled = false;
+                tss.formMain.transactionStatusButtonAnnuleren.Enabled = false;
             }
         }
 
         public void Annuleren(object sender, EventArgs e)
         {
-            List<transaction> d = new List<transaction>();
+            List<transaction> able = new List<transaction>();
+            List<transaction> unAble = new List<transaction>();
             var selectedId = from id in tss.kies
                              where id.Checked == true
                              select id.Tag;
@@ -57,7 +63,7 @@ namespace Q_Bank.Controller
                     {
                         if (item.transactionStatusId == 1 || item.transactionStatusId == 2)
                         {
-                            d.Add(item);
+                            able.Add(item);
                         }
                     }
                 }
@@ -67,8 +73,8 @@ namespace Q_Bank.Controller
 
             if (result == DialogResult.OK)
             {
-                SetID(6, d);
-                MessageBox.Show("Alles is geannuuleerd behalve die al worden verwerkt", "annuleren");
+                SetID(6, able);
+                MessageBox.Show("Alles is geannuuleerd", "annuleren");
                 tss.TransactionStatusAccountComboboxChanged(sender, e);
             }
             else
@@ -112,7 +118,8 @@ namespace Q_Bank.Controller
 
         public void Verzenden(object sender, EventArgs e)
         {
-            List<transaction> d = new List<transaction>();
+            List<transaction> send = new List<transaction>();
+            List<transaction> notSend = new List<transaction>();
             var selectedId = from id in tss.kies
                              where id.Checked == true
                              select id.Tag;
@@ -127,7 +134,11 @@ namespace Q_Bank.Controller
                     {
                         if (item.transactionStatusId == 1)
                         {
-                            d.Add(item);
+                            send.Add(item);
+                        }
+                        else
+                        {
+                            notSend.Add(item);
                         }
                     }
                 }
@@ -137,9 +148,43 @@ namespace Q_Bank.Controller
 
             if (result == DialogResult.OK)
             {
-                SetID(2, d);
-                MessageBox.Show("Alle niet verzonden items zijn verzonden", "Verzenden");
-                tss.TransactionStatusAccountComboboxChanged(sender, e);
+                if(send.Count > 0)
+                {
+                    SetID(2, send);
+                    if (notSend.Count > 0)
+                    {
+                        if (notSend.Count == 1 && send.Count == 1)
+                        {
+                            MessageBox.Show(notSend.Count + " Item is niet verzonden omdat deze reeds al verzonden is\n" + send.Count + " item is wel verzonden", "Verzenden");
+                        }
+                        else if(notSend.Count == 1 && send.Count > 1)
+                        {
+                            MessageBox.Show(notSend.Count + " Item is niet verzonden omdat deze reeds al verzonden is\n" + send.Count + " items zijn wel verzonden", "Verzenden");
+                        }
+                        else if (notSend.Count > 1 && send.Count == 1)
+                        {
+                            MessageBox.Show(notSend.Count + " Items zijn niet verzonden omdat deze reeds al verzonden zijn\n" + send.Count + " item is wel verzonden", "Verzenden");
+                        }
+                        else if (notSend.Count > 1 && send.Count > 1)
+                        {
+                            MessageBox.Show(notSend.Count + " Items zijn niet verzonden omdat deze reeds al verzonden zijn\n" + send.Count + " items zijn wel verzonden", "Verzenden");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Alle geselecteerde items zijn succesvol verzonden","verzenden");
+                    }
+                    tss.TransactionStatusAccountComboboxChanged(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("er is geen geldige selectie gevonden om te verzenden/n je kunt alleen niet verzonden items verzenden", "verzenden");
+                    foreach (CheckBox item in tss.kies)
+                    {
+                        item.Checked = false;
+                    }
+                }
+                
             }
             else
             {
@@ -171,6 +216,7 @@ namespace Q_Bank.Controller
                     catch (Exception e)
                     {
                         // Provide for exceptions.
+                        throw e;
                     }
                 }
             }
@@ -195,6 +241,24 @@ namespace Q_Bank.Controller
         public void Refresch(object sender, EventArgs e)
         {
             tss.TransactionStatusAccountComboboxChanged(sender, e);
+        }
+
+        public void CheckChanged(object sender, EventArgs e)
+        {
+            var selectedId = from id in tss.kies
+                             where id.Checked == true
+                             select id.Tag;
+
+            if (selectedId.Count() > 0)
+            {
+                tss.formMain.transactieStatusVerzenden.Enabled = true;
+                tss.formMain.transactionStatusButtonAnnuleren.Enabled = true;
+            }
+            else
+            {
+                tss.formMain.transactieStatusVerzenden.Enabled = false;
+                tss.formMain.transactionStatusButtonAnnuleren.Enabled = false;
+            }
         }
     }
 }

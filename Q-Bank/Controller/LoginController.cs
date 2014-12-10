@@ -72,6 +72,7 @@ namespace Q_Bank.Controller
                 else
                 {
                     formLogin.textBox3.Enabled = true;
+                    formLogin.textBox3.Focus();
                 }
             }
             else

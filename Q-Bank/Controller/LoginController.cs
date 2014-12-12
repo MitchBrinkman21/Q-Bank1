@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -129,20 +130,21 @@ namespace Q_Bank.Controller
                             }
                             try
                             {
+
                                 MailMessage mail = new MailMessage();
-                                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
                                 mail.From = new MailAddress("qbankquintor@gmail.com");
-                                mail.To.Add("carswillems1@gmail.com");
-                                mail.Subject = "Test Mail";
+                                mail.To.Add("feikodevreede@hotmail.com");
+                                mail.Subject = "test";
                                 mail.Body = "Test Hype " + loginNo;
 
-                                SmtpServer.Port = 587;
-                                SmtpServer.Credentials = new System.Net.NetworkCredential("qbankquintor", "windesheim_project");
-                                SmtpServer.EnableSsl = true;
-
-                                SmtpServer.Send(mail);
-                                MessageBox.Show("mail Send");
+                                var client = new SmtpClient("smtp.gmail.com", 587)
+                                {
+                                    Credentials = new NetworkCredential("qbankquintor@gmail.com", "windesheim_project"),
+                                    EnableSsl = true
+                                };
+                                client.Send(mail);
+                                MessageBox.Show("mail sent");
                             }
                             catch (Exception ex)
                             {

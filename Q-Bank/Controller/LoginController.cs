@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -126,11 +127,31 @@ namespace Q_Bank.Controller
                                 loginNo += Convert.ToString(rnd.Next(10));
                                 formLogin.label5.Text = loginNo;
                             }
+                            try
+                            {
+                                MailMessage mail = new MailMessage();
+                                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                                mail.From = new MailAddress("qbankquintor@gmail.com");
+                                mail.To.Add("carswillems1@gmail.com");
+                                mail.Subject = "Test Mail";
+                                mail.Body = "Test Hype " + loginNo;
+
+                                SmtpServer.Port = 587;
+                                SmtpServer.Credentials = new System.Net.NetworkCredential("qbankquintor", "windesheim_project");
+                                SmtpServer.EnableSsl = true;
+
+                                SmtpServer.Send(mail);
+                                MessageBox.Show("mail Send");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.ToString());
+                            }
                         }
                         query = null;
                         return true;
                     }
-
                     return false;
                 }
             }

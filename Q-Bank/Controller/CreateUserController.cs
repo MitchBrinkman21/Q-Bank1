@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Q_Bank.Controller
 {
-    class CreateUserController
+    public class CreateUserController
     {
         public CreateUser createUser { get; set; }
         public bool validUsername { get; set; }
@@ -147,7 +147,7 @@ namespace Q_Bank.Controller
             }
         }
 
-        private bool checkEmptyFields()
+        public bool checkEmptyFields()
         {
             // Check if entered data is not empty
             if(!String.IsNullOrEmpty(createUser.textBoxBSN.Text) &&
@@ -174,7 +174,7 @@ namespace Q_Bank.Controller
             }
         }
 
-        private void checkUsername(object sender, System.EventArgs e)
+        public void checkUsername(object sender, System.EventArgs e)
         {
             using (var con = new Q_BANKEntities())
             {
@@ -195,7 +195,7 @@ namespace Q_Bank.Controller
             }
         }
 
-        private void checkPassword(object sender, System.EventArgs e)
+        public void checkPassword(object sender, System.EventArgs e)
         {
             // Check if password is equal to repeated password
             if (!String.IsNullOrEmpty(createUser.textBoxPassword.Text) &&
@@ -214,7 +214,7 @@ namespace Q_Bank.Controller
             }
         }
 
-        private void fillAddress(object sender, System.EventArgs e)
+        public void fillAddress(object sender, System.EventArgs e)
         {
             // Search and fill address and city when zipcode and number are entered in the textboxes
             if (!String.IsNullOrEmpty(createUser.textBoxZipcode.Text) &&
@@ -235,7 +235,7 @@ namespace Q_Bank.Controller
             }
         }
 
-        private void checkValidText(object sender, System.EventArgs e)
+        public void checkValidText(object sender, System.EventArgs e)
         {
             validText = true;
 
@@ -442,7 +442,7 @@ namespace Q_Bank.Controller
             return true;
         }
 
-        private void resetFields()
+        public void resetFields()
         {
             createUser.textBoxBSN.Clear();
             createUser.textBoxFirstname.Clear();

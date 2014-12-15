@@ -119,6 +119,8 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="transactionqueue.cs">
+    <Compile Include="Model\ComboBoxItem.cs" />
+    <Compile Include="transactionqueue.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="transactionstatu.cs">

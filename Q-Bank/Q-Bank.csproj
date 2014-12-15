@@ -63,6 +63,7 @@
     <Compile Include="Controller\AccComboBoxGen.cs" />
     <Compile Include="Controller\AddressGenerator.cs" />
     <Compile Include="Controller\CreateUserController.cs" />
+    <Compile Include="Controller\Logging.cs" />
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\PasswordEncryption.cs" />
     <Compile Include="Controller\TransactionController.cs" />

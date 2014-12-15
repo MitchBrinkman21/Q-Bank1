@@ -136,11 +136,14 @@ namespace Q_Bank.Controller
                                 }
                                 try
                                 {
+                                    var emailquery = from c in con.customeremails
+                                                     where c.customerId == id
+                                                     select c;
 
                                     MailMessage mail = new MailMessage();
 
                                     mail.From = new MailAddress("qbankquintor@gmail.com");
-                                    mail.To.Add("joeyklaassen@gmail.com");
+                                    mail.To.Add(emailquery.First().email);
                                     mail.Subject = "Authorisatiecode";
                                     mail.Body = "Code: " + loginNo;
 

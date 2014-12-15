@@ -90,7 +90,7 @@ namespace Q_Bank.Controller
         {
             
             ComboBoxItem tp = (ComboBoxItem)formMain.transactionComboBox1.SelectedItem;
-            Transaction newTransaction = new Transaction(tp.AccountId, 1, Convert.ToDouble(formMain.transactionNumericUpDown1.Text), DateTime.Now,
+            Transaction newTransaction = new Transaction(tp.AccountId, Convert.ToDouble(formMain.transactionNumericUpDown1.Text), DateTime.Now,
                     Convert.ToDateTime(formMain.transactionDateTimePicker1.Value), formMain.transactionTextBox1.Text, formMain.transactionTextBox2.Text,
                     formMain.transactionTextBox3.Text, 0, "QBAN");
             transactions.Add(newTransaction);

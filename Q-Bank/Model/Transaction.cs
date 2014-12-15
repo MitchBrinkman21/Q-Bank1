@@ -19,11 +19,10 @@ namespace Q_Bank.Model
         public int sepa;
         public String bic;
 
-        public Transaction(int accountId, int transactionTypeId, double amount, DateTime datetime, DateTime executeDate,
+        public Transaction(int accountId, double amount, DateTime datetime, DateTime executeDate,
             String nameReceiver, String ibanReceiver, String remark, int sepa, String bic)
         {
             this.accountId = accountId;
-            this.transactionTypeId = transactionTypeId;
             this.amount = amount;
             this.datetime = datetime;
             this.executeDate = executeDate;

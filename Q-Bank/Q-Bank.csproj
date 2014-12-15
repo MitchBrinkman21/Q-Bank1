@@ -104,6 +104,7 @@
     <Compile Include="employeephone.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Transaction.cs" />
     <Compile Include="phonetype.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -118,10 +119,10 @@
     <Compile Include="transaction.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ComboBoxItem.cs" />
     <Compile Include="transactionqueue.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ComboBoxItem.cs" />
     <Compile Include="transactionstatu.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

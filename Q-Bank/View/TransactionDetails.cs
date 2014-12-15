@@ -22,37 +22,35 @@ namespace Q_Bank.View
                               where t.transactionId == tID
                               select t;
 
+                String transactionType = "";
                 transaction tr = details.First();
                 if (cbi != null) {
                     if (cbi.AccountId > 0)
                     {
                         if (cbi.Iban.Equals(tr.ibanReceiver))
                         {
-                            if (tr.transactionTypeId == 1)
-                            {
-                                tr.transactiontype.transactionTypeName = "Bijschrijven";
-                            }
-                            else
-                            {
-                                tr.transactiontype.transactionTypeName = "Afschrijven";
-                            }
+                            transactionType = "Bijschrijving";
+
                             tr.nameReceiver = tr.account.customer.firstName + " " + tr.account.customer.lastName;
                             tr.ibanReceiver = tr.account.iban;
+                        }
+                        else
+                        {
+                            transactionType = "Afschrijving";
                         }
                     }
                 }
                 accountLabel.Text = tr.account.iban.ToString() + "-" + tr.account.accounttype.accountTypeName.ToString();
                 datetimeLabel.Text = tr.datetime.ToShortDateString();
-                executeDateLabel.Text = tr.executeDate.Value.ToShortDateString();
+                executeDateLabel.Text = tr.executeDate.ToShortDateString();
                 fromAccountLabel.Text = tr.nameReceiver.ToString() + "\n" + tr.ibanReceiver.ToString();
-                transactionTypeLabel.Text = tr.transactiontype.transactionTypeName.ToString();
+                transactionTypeLabel.Text = transactionType.ToString();
                 double amount = tr.amount;
                 if (tr.amount < 0)
                 {
                     amount *= -1;
                 }
                 amountLabel.Text = "€" + String.Format("{0:0,00}", amount.ToString("f2"));
-                transactionStateLabel.Text = tr.transactionstatu.transactionStatusName.ToString();
                 remarkLabel.Text = tr.remark.ToString();
             }
         }

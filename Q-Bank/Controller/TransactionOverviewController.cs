@@ -33,26 +33,25 @@ namespace Q_Bank.Controller
         /// <param name="i">The rownumber.</param>
         private void AddItemsInTable(transaction t, int i, ComboBoxItem combobox)
         {
+            String transactionType = "";
             if (combobox.AccountId > 0)
             {
                 if (combobox.Iban.Equals(t.ibanReceiver))
                 {
-                    if (t.transactionTypeId == 1)
-                    {
-                        t.transactiontype.transactionTypeName = "Bijschrijving";
-                    }
-                    else
-                    {
-                        t.transactiontype.transactionTypeName = "Afschrijving";
-                    }
+                    transactionType = "Bijschrijving";
+
                     t.nameReceiver = t.account.customer.firstName + " " + t.account.customer.lastName;
                     t.ibanReceiver = t.account.iban;
+                }
+                else
+                {
+                    transactionType = "Afschrijving";
                 }
             }
             Label tempLabel;
 
             tempLabel = new Label();
-            tempLabel.Text = t.commitDatetime.Value.Date.ToShortDateString();
+            tempLabel.Text = t.commitDatetime.ToShortDateString();
             tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             tempLabel.Tag = t.transactionId;
             tempLabel.Click += TransactionOverviewLabelOnClick;
@@ -73,7 +72,7 @@ namespace Q_Bank.Controller
             formMain.TransactionOverviewTable.Controls.Add(tempLabel, 2, i);
 
             tempLabel = new Label();
-            tempLabel.Text = t.transactiontype.transactionTypeName.ToString();
+            tempLabel.Text = transactionType.ToString();
             tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             tempLabel.Tag = t.transactionId;
             tempLabel.Click += TransactionOverviewLabelOnClick;
@@ -173,8 +172,8 @@ namespace Q_Bank.Controller
                         }
                         else
                         {
-                            transactionCol = transactionCol.Where(t => DbFunctions.TruncateTime(t.executeDate.Value) >= DbFunctions.TruncateTime(ts.beginDatePicker.Value));
-                            transactionCol = transactionCol.Where(t => DbFunctions.TruncateTime(t.executeDate.Value) <= DbFunctions.TruncateTime(ts.endDatePicker.Value));
+                            transactionCol = transactionCol.Where(t => DbFunctions.TruncateTime(t.executeDate) >= DbFunctions.TruncateTime(ts.beginDatePicker.Value));
+                            transactionCol = transactionCol.Where(t => DbFunctions.TruncateTime(t.executeDate) <= DbFunctions.TruncateTime(ts.endDatePicker.Value));
                         }
 
                         if (ts.TransactionSearchOrderByCombobobox.SelectedIndex == 0)
@@ -193,7 +192,7 @@ namespace Q_Bank.Controller
                         transactionCol = transactionCol.OrderByDescending(t => t.commitDatetime);
                     }
 
-                    transactionCol = transactionCol.Where(t => t.commitDatetime != null && t.transactionStatusId == 4);
+                    transactionCol = transactionCol.Where(t => t.commitDatetime != null);
                     transactionCol = transactionCol.Where(t => t.account.iban == accountComboBox.Iban || t.ibanReceiver == accountComboBox.Iban);
 
                     if (transactionCol != null && accountComboBox != null)

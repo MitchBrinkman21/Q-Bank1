@@ -119,16 +119,13 @@
     <Compile Include="transaction.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ComboBoxItem.cs" />
+    <Compile Include="transactionqueue.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="transactionstatu.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="transactiontask.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="transactiontype.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ComboBoxItem.cs" />
     <Compile Include="View\CreateUser.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -54,6 +54,9 @@ namespace Q_Bank.Controller
             // Check if entered data is valid
             if (checkData())
             {
+                PasswordEncryption pe = new PasswordEncryption();
+                pe.createEncryptedPassword(createUser.textBoxPassword.Text);
+
                 // Import data into database
 
                 using (var con = new Q_BANKEntities())
@@ -67,7 +70,8 @@ namespace Q_Bank.Controller
                         gender = createUser.comboBoxGender.Text,
                         birthDate = Convert.ToDateTime(createUser.dateTimePickerBirthday.Value),
                         username = createUser.textBoxUsername.Text,
-                        password = createUser.textBoxPassword.Text,
+                        password = pe.encodedSalt,
+                        key = pe.encodedKey,
                         registerDatetime = DateTime.Now
                     };
                     con.customers.Add(newCustomer);

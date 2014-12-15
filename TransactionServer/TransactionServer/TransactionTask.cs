@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,214 +14,488 @@ namespace TransactionServer
         private SqlConnection conn;
         public static int errors;
         public static int succesful;
+        public static int transactionsCount;
         private List<Transaction> transList = new List<Transaction>();
-        private Account account;
         private bool moneyReceived;
+        Logging log;
+        String path;
 
         public TransactionTask()
         {
             this.conn = FormMain.conn;
             errors = 0;
             succesful = 0;
-            Execute();
+            log = new Logging();
+
+            path = @"C:\Users\Mitch Brinkman\Documents\log.txt";
+
+            if (!File.Exists(path))
+            {
+                using (StreamWriter w = File.CreateText(path))
+                {
+                    log.WriteLogging("Log file Created! ", w);
+                }
+            }
         }
 
-
-        public void Execute() 
+        public List<Transaction> GetQueue()
         {
+            List<Transaction> list = new List<Transaction>();
+
             try
             {
+                transactionsCount = 0;
                 SqlCommand cmd = new SqlCommand();
                 SqlDataReader reader;
 
-                cmd.CommandText = "   SELECT ta.transactionId, ta.transactionStatusId, ta.sepa, ta.ibanReceiver, ta.amount, ac.iban, ac.balance "+
-                                  "     FROM [transaction] AS ta JOIN account AS ac ON ta.accountid = ac.accountId "+
-                                  "    WHERE transactionStatusId = 2"+
+                cmd.CommandText = "   SELECT ta.transactionId, ta.transactionStatusId, ta.sepa, ta.ibanReceiver, ta.nameReceiver, ta.amount, ta.accountId, ta.bic, ta.executeDate, ta.remark, ac.iban, ac.balance " +
+                                  "     FROM [transactionQueue] AS ta "+
+                                  "     JOIN account AS ac ON ta.accountid = ac.accountId "+
+                                  "    WHERE ta.transactionStatusId = 2"+
                                   "      AND ta.executeDate <= cast (GETDATE() as DATE) "+
                                   "      AND ta.sepa = 0";
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = conn;
 
-                conn.Open();
-
                 reader = cmd.ExecuteReader();
+                transList.Clear();
 
                 while (reader.Read())
                 {
-                    transList.Clear();
-
                     Transaction transaction = new Transaction();
                     transaction.SetTransactionId(Convert.ToInt32(reader[0]));
                     transaction.SetTransactionStatusId(Convert.ToInt32(reader[1]));
                     transaction.SetSepa(Convert.ToInt32(reader[2]));
                     transaction.SetIbanReceiver(reader[3].ToString());
-                    transaction.SetAmount(Convert.ToDouble(reader[4]));
-                    transaction.SetIban(reader[5].ToString());
-                    transaction.SetBalance(Convert.ToDouble(reader[6]));
+                    transaction.SetNameReceiver(reader[4].ToString());                
+                    transaction.SetAmount(Convert.ToDouble(reader[5]));
+                    transaction.SetAccountId(Convert.ToInt32(reader[6]));
+                    transaction.SetBic(reader[7].ToString());
+                    transaction.SetExecuteDate(reader[8].ToString());
+                    transaction.SetRemark(reader[9].ToString());
+                    transaction.SetIban(reader[10].ToString());
+                    transaction.SetBalance(Convert.ToDouble(reader[11]));
 
-                    transList.Add(transaction);
+                    list.Add(transaction);
+                    transactionsCount++;
 
                 }
                 reader.Close();
-                conn.Close();
 
-                foreach(Transaction ta in transList)
-                {
-                    moneyReceived = false;
-
-                    if (ta.GetSepa() == 0)
-                    {
-                        int transactionId = ta.GetTransactionId();
-
-                        string updateQuery = "UPDATE [transaction] SET transactionStatusId = 3 WHERE transactionId = @transactionId ";
-
-                        using (SqlCommand queryUpdateStatus = new SqlCommand(updateQuery))
-                        {
-                            // Update Status of transaction 
-                            queryUpdateStatus.Connection = conn;
-                            queryUpdateStatus.Parameters.Add("@transactionId", SqlDbType.Int, 32).Value = transactionId;
-
-                            int recordsAffected = 0;
-                            conn.Open();
-                            recordsAffected = queryUpdateStatus.ExecuteNonQuery();
-                            conn.Close();
-
-                            // Execute internal transaction!
-                            if (recordsAffected == 1)
-                            {
-                                SqlCommand ibanLookup = new SqlCommand();
-                                SqlDataReader readerIban;
-
-                                ibanLookup.CommandText = "SELECT iban, balance FROM account WHERE iban = @iban";
-                                ibanLookup.CommandType = CommandType.Text;
-                                ibanLookup.Connection = conn;
-                                ibanLookup.Parameters.Add("@iban", SqlDbType.VarChar, 45).Value = ta.GetIbanReceiver();
-
-                                conn.Open();
-                                readerIban = ibanLookup.ExecuteReader();
-
-                                if (readerIban.Read())
-                                {
-                                    account = new Account();
-                                    account.SetIban(readerIban[0].ToString());
-                                    account.SetBalance(Convert.ToDouble(readerIban[1]));
-                                }
-                                conn.Close();
-                            }
-                            else
-                            {
-                                // Write error in log...
-                                errors++;
-                            }
-
-                            // Update account balance!
-                            if(account != null)
-                            {
-                                string updateBalance = "UPDATE account SET balance = @balance WHERE iban = @iban ";
-
-                                // Bankers rounding on balance
-                                double newBalance = 0;
-                                double balance = account.GetBalance();
-                                double amount = ta.GetAmount();
-
-                                double temp = balance + amount;
-                                System.Math.Round(temp, 2);
-                                newBalance = temp;
-
-                                using (SqlCommand queryUpdateBalance = new SqlCommand(updateBalance))
-                                {
-                                    // Update Status of transaction 
-                                    queryUpdateBalance.Connection = conn;
-                                    queryUpdateBalance.Parameters.Add("@balance", SqlDbType.Decimal, 32).Value = newBalance;
-                                    queryUpdateBalance.Parameters.Add("@iban", SqlDbType.VarChar, 45).Value = account.GetIban();
-
-                                    recordsAffected = 0;
-                                    conn.Open();
-                                    recordsAffected = queryUpdateBalance.ExecuteNonQuery();
-                                    if (recordsAffected == 1)
-                                    {
-                                        moneyReceived = true;
-                                    }
-                                    else
-                                    {
-                                        // Weite error in log...
-                                        errors++;
-                                    }
-                                    conn.Close();
-                                    // Delete account data...
-                                    account = null;
-                                }
-                            }
-                        }
-
-                        if (moneyReceived == true)
-                        {
-                            // Update balance Transaction owner!
-                            string updateBalance = "UPDATE account SET balance = @balance WHERE iban = @iban ";
-
-                            // Bankers rounding on balance
-                            double newBalance = 0;
-                            double balance = ta.GetBalance();
-                            double amount = ta.GetAmount();
-
-                            double temp = balance - amount;
-                            System.Math.Round(temp, 2);
-                            newBalance = temp;
-
-                            using (SqlCommand queryUpdateBalance = new SqlCommand(updateBalance))
-                            {
-                                // Update Status of transaction 
-                                queryUpdateBalance.Connection = conn;
-                                queryUpdateBalance.Parameters.Add("@balance", SqlDbType.Decimal, 32).Value = newBalance;
-                                queryUpdateBalance.Parameters.Add("@iban", SqlDbType.VarChar, 45).Value = ta.GetIban();
-
-                                int recordsAffected = 0;
-                                conn.Open();
-                                recordsAffected = queryUpdateBalance.ExecuteNonQuery();
-                                conn.Close();
-
-                                string finishQuery = "UPDATE [transaction] SET transactionStatusId = 4, commitDateTime = CURRENT_TIMESTAMP WHERE transactionId = @transactionId ";
-
-                                using (SqlCommand queryUpdateStatus = new SqlCommand(finishQuery))
-                                {
-                                    // Update Status of transaction 
-                                    queryUpdateStatus.Connection = conn;
-                                    queryUpdateStatus.Parameters.Add("@transactionId", SqlDbType.Int, 32).Value = transactionId;
-
-                                    conn.Open();
-                                    recordsAffected = 0;
-                                    recordsAffected = queryUpdateStatus.ExecuteNonQuery();
-                                    if (recordsAffected == 1)
-                                    {
-                                        succesful++;
-                                    }
-                                    else
-                                    {
-                                        // Weite error in log...
-                                        errors++;
-                                    }
-                                    conn.Close();
-                                }
-
-                                // Delete account data...
-                                account = null;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //Create SEPA file...
-                        errors++;
-                    }
-                }
-
-                transList.Clear();
             }
             catch (Exception Ex)
             {
-                // write error in log...
                 errors++;
+
+                Console.WriteLine(" Exception Type: {0}", Ex.GetType());
+                Console.WriteLine("  Message: {0}", Ex.Message);
+            }
+            return list;
+        }
+
+        public Account GetBankAccount(Transaction ta)
+        {
+            Account account = null;
+            SqlTransaction transaction;
+            transaction = conn.BeginTransaction("BankAccountTransaction");
+
+            SqlCommand ibanLookup = new SqlCommand();
+            SqlDataReader readerIban;
+
+            ibanLookup.CommandText = "SELECT iban, balance FROM account WHERE iban = @iban";
+            ibanLookup.CommandType = CommandType.Text;
+            ibanLookup.Connection = conn;
+            ibanLookup.Transaction = transaction;
+            ibanLookup.Parameters.Add("@iban", SqlDbType.VarChar, 45).Value = ta.GetIbanReceiver();
+
+            readerIban = ibanLookup.ExecuteReader();
+
+            if (readerIban.Read())
+            {
+                account = new Account();
+                account.SetIban(readerIban[0].ToString());
+                account.SetBalance(Convert.ToDouble(readerIban[1]));
+            }
+            else
+            {
+                errors++;
+                using (StreamWriter w = File.AppendText(path))
+                {
+                    log.WriteLogging("TranactionStatusId set to 3 went wrong for TransactionId:" + ta.GetTransactionId().ToString(), w);
+                }
+            }
+            readerIban.Close();
+            transaction.Commit();
+
+            return account;
+        }
+
+        public int UpdateTransactionStatusTo3(int transactionId, int status)
+        {
+            int recordsAffected = 0;
+            SqlTransaction transaction;
+            transaction = conn.BeginTransaction("BankTransaction");
+
+            string updateQuery = "UPDATE [transactionQueue] SET transactionStatusId = @status WHERE transactionId = @transactionId ";
+
+            using (SqlCommand queryUpdateStatus = new SqlCommand(updateQuery))
+            {
+                // Update Status of transaction 
+                queryUpdateStatus.Connection = conn;
+                queryUpdateStatus.Transaction = transaction;
+                queryUpdateStatus.Parameters.Add("@transactionId", SqlDbType.Int, 32).Value = transactionId;
+                queryUpdateStatus.Parameters.Add("@status", SqlDbType.Int, 32).Value = status;
+                
+                try
+                {
+                    recordsAffected = queryUpdateStatus.ExecuteNonQuery();
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
+                    Console.WriteLine("  Message: {0}", ex.Message);
+
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        // This catch block will handle any errors that may have occurred 
+                        // on the server that would cause the rollback to fail, such as 
+                        // a closed connection.
+                        Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                        Console.WriteLine("  Message: {0}", ex2.Message);
+                    }
+                }
+                transaction.Commit();
+            }
+            return recordsAffected;
+        }
+
+        public void UpdateTransactionStatusTo(int transactionId, int status)
+        {
+            int recordsAffected = 0;
+            SqlTransaction transaction;
+            transaction = conn.BeginTransaction("BankTransaction");
+
+            string updateQuery = "UPDATE [transactionQueue] SET transactionStatusId = @status WHERE transactionId = @transactionId ";
+
+            using (SqlCommand queryUpdateStatus = new SqlCommand(updateQuery))
+            {
+                // Update Status of transaction 
+                queryUpdateStatus.Connection = conn;
+                queryUpdateStatus.Transaction = transaction;
+                queryUpdateStatus.Parameters.Add("@transactionId", SqlDbType.Int, 32).Value = transactionId;
+                queryUpdateStatus.Parameters.Add("@status", SqlDbType.Int, 32).Value = status;
+
+                try
+                {
+                    recordsAffected = queryUpdateStatus.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
+                    Console.WriteLine("  Message: {0}", ex.Message);
+
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        // This catch block will handle any errors that may have occurred 
+                        // on the server that would cause the rollback to fail, such as 
+                        // a closed connection.
+                        Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                        Console.WriteLine("  Message: {0}", ex2.Message);
+                    }
+                }
+                transaction.Commit();
             }
         }
+        
+        public void Execute() 
+        {
+            conn.Open();
+            transList = GetQueue();
+            Account account = null;
+
+            foreach (Transaction ta in transList)
+            {
+                moneyReceived = false;
+
+                if (ta.GetSepa() == 0)
+                {
+                    int transactionId = ta.GetTransactionId();
+                    int recordsAffected = UpdateTransactionStatusTo3(transactionId, 3);
+
+                    // Execute internal transaction!
+                    if (recordsAffected == 1)
+                    {
+                        account = GetBankAccount(ta);
+                    }
+                    else
+                    {
+                        // Write error in log...
+                        errors++;
+                        using (StreamWriter w = File.AppendText(path))
+                        {
+                            log.WriteLogging("TranactionStatusId set to 3 went wrong for TransactionId:" + ta.GetTransactionId().ToString(), w);
+                        }
+                    }
+
+                    SqlTransaction transaction;
+                    transaction = conn.BeginTransaction("BankTransaction");
+
+                    // Update account balance!
+                    if (account != null)
+                    {
+                        string updateBalance = "UPDATE account SET balance = @balance WHERE iban = @iban ";
+
+                        // Bankers rounding on balance
+                        double newBalance = 0;
+                        double balance = account.GetBalance();
+                        double amount = ta.GetAmount();
+
+                        double temp = balance + amount;
+                        System.Math.Round(temp, 2);
+                        newBalance = temp;
+
+                        using (SqlCommand queryUpdateBalance = new SqlCommand(updateBalance))
+                        {
+                            // Update Status of transaction 
+                            queryUpdateBalance.Connection = conn;
+                            queryUpdateBalance.Transaction = transaction;
+                            queryUpdateBalance.Parameters.Add("@balance", SqlDbType.Decimal, 32).Value = newBalance;
+                            queryUpdateBalance.Parameters.Add("@iban", SqlDbType.VarChar, 45).Value = account.GetIban();
+
+                            recordsAffected = 0;
+
+                            try
+                            {
+                                recordsAffected = queryUpdateBalance.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
+                                Console.WriteLine("  Message: {0}", ex.Message);
+
+                                try
+                                {
+                                    transaction.Rollback();
+                                }
+                                catch (Exception ex2)
+                                {
+                                    // This catch block will handle any errors that may have occurred 
+                                    // on the server that would cause the rollback to fail, such as 
+                                    // a closed connection.
+                                    Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                                    Console.WriteLine("  Message: {0}", ex2.Message);
+                                }
+                                UpdateTransactionStatusTo(transactionId, 2);
+                            }
+
+                            if (recordsAffected == 1)
+                            {
+                                moneyReceived = true;
+                            }
+                            else
+                            {
+                                // Weite error in log...
+                                errors++;
+                                using (StreamWriter w = File.AppendText(path))
+                                {
+                                    log.WriteLogging("Error in updating balance of receiver TransactionId:" + ta.GetTransactionId().ToString(), w);
+                                }
+                            }
+                            // Delete account data...
+                            account = null;
+                        }
+                    }
+
+                    if (moneyReceived == true)
+                    {
+                        // Update balance Transaction owner!
+                        string updateBalance = "UPDATE account SET balance = @balance WHERE iban = @iban ";
+
+                        // Bankers rounding on balance
+                        double newBalance = 0;
+                        double balance = ta.GetBalance();
+                        double amount = ta.GetAmount();
+
+                        double temp = balance - amount;
+                        System.Math.Round(temp, 2);
+                        newBalance = temp;
+
+                        using (SqlCommand queryUpdateBalance = new SqlCommand(updateBalance))
+                        {
+                            // Update Status of transaction 
+                            queryUpdateBalance.Connection = conn;
+                            queryUpdateBalance.Transaction = transaction;
+                            queryUpdateBalance.Parameters.Add("@balance", SqlDbType.Decimal, 32).Value = newBalance;
+                            queryUpdateBalance.Parameters.Add("@iban", SqlDbType.VarChar, 45).Value = ta.GetIban();
+
+                            recordsAffected = 0;
+                            try
+                            {
+                                recordsAffected = queryUpdateBalance.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
+                                Console.WriteLine("  Message: {0}", ex.Message);
+
+                                try
+                                {
+                                    transaction.Rollback();
+                                }
+                                catch (Exception ex2)
+                                {
+                                    // This catch block will handle any errors that may have occurred 
+                                    // on the server that would cause the rollback to fail, such as 
+                                    // a closed connection.
+                                    Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                                    Console.WriteLine("  Message: {0}", ex2.Message);
+                                }
+                                UpdateTransactionStatusTo(transactionId, 2);
+                            }
+                            if (recordsAffected != 1)
+                            {
+                                using (StreamWriter w = File.AppendText(path))
+                                {
+                                    log.WriteLogging("Error in updating balance of sender TransactionId:" + ta.GetTransactionId().ToString(), w);
+                                }
+                            }
+
+                            string finishQuery = "UPDATE [transactionQueue] SET transactionStatusId = 4 WHERE transactionId = @transactionId ";
+
+                            using (SqlCommand queryUpdateStatus = new SqlCommand(finishQuery))
+                            {
+                                // Update Status of transaction 
+                                queryUpdateStatus.Connection = conn;
+                                queryUpdateStatus.Transaction = transaction;
+                                queryUpdateStatus.Parameters.Add("@transactionId", SqlDbType.Int, 32).Value = transactionId;
+
+                                recordsAffected = 0;
+                                try
+                                {
+                                    recordsAffected = queryUpdateStatus.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
+                                    Console.WriteLine("  Message: {0}", ex.Message);
+
+                                    try
+                                    {
+                                        transaction.Rollback();
+                                    }
+                                    catch (Exception ex2)
+                                    {
+                                        // This catch block will handle any errors that may have occurred 
+                                        // on the server that would cause the rollback to fail, such as 
+                                        // a closed connection.
+                                        Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                                        Console.WriteLine("  Message: {0}", ex2.Message);
+                                    }
+                                    UpdateTransactionStatusTo(transactionId, 2);
+                                }
+
+                                if (recordsAffected == 1)
+                                {
+                                    succesful++;
+
+                                    // Insert Query into Transaction Table...
+                                    string insertQuery = " INSERT INTO [transaction] " +
+                                                            " (transactionId, amount, commit, sepa, ibanReceiver, nameReceiver, accountId, commitDateTime, datetime, bic, executeDate, remark)" +
+                                                            " VALUES " +
+                                                            "(@transactionId, @amount, 1, @sepa, @ibanReceiver, @nameReceiver, @accountId, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, @bic, @executeDate, @remark) ";
+
+                                    using (SqlCommand queryInsertTransaction = new SqlCommand(insertQuery))
+                                    {
+                                        // Update Status of transaction 
+                                        queryInsertTransaction.Connection = conn;
+                                        queryInsertTransaction.Transaction = transaction;
+                                        queryInsertTransaction.Parameters.Add("@transactionId", SqlDbType.Int, 32).Value = ta.GetTransactionId();
+                                        queryInsertTransaction.Parameters.Add("@sepa", SqlDbType.Int, 32).Value = ta.GetSepa();
+                                        queryInsertTransaction.Parameters.Add("@amount", SqlDbType.Int, 32).Value = ta.GetAmount();
+                                        queryInsertTransaction.Parameters.Add("@ibanReceiver", SqlDbType.VarChar, 32).Value = ta.GetIbanReceiver();
+                                        queryInsertTransaction.Parameters.Add("@nameReceiver", SqlDbType.VarChar, 32).Value = ta.GetNameReceiver();
+                                        queryInsertTransaction.Parameters.Add("@accountId", SqlDbType.Int, 32).Value = ta.GetAccountId();
+                                        queryInsertTransaction.Parameters.Add("@bic", SqlDbType.VarChar, 32).Value = ta.GetBic();
+                                        queryInsertTransaction.Parameters.Add("@executeDate", SqlDbType.VarChar, 32).Value = ta.GetExecuteDate();
+                                        queryInsertTransaction.Parameters.Add("@remark", SqlDbType.VarChar, 32).Value = ta.GetRemark();
+
+                                        recordsAffected = 0;
+                                        try
+                                        {
+                                            recordsAffected = queryInsertTransaction.ExecuteNonQuery();
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
+                                            Console.WriteLine("  Message: {0}", ex.Message);
+
+                                            try
+                                            {
+                                                transaction.Rollback();
+                                            }
+                                            catch (Exception ex2)
+                                            {
+                                                // This catch block will handle any errors that may have occurred 
+                                                // on the server that would cause the rollback to fail, such as 
+                                                // a closed connection.
+                                                Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                                                Console.WriteLine("  Message: {0}", ex2.Message);
+                                            }
+                                            UpdateTransactionStatusTo(transactionId, 2);
+                                        }
+                                    }
+
+                                }
+                                else
+                                {
+                                    // Weite error in log...
+                                    errors++;
+                                    using (StreamWriter w = File.AppendText(path))
+                                    {
+                                        log.WriteLogging("TranactionStatusId set to 4 went wrong for TransactionId:" + ta.GetTransactionId().ToString(), w);
+                                    }
+                                }
+                            }
+
+                            // Delete account data...
+                            account = null;
+                        }
+                    }
+
+                    try
+                    {
+                        transaction.Commit();
+                    }
+                    catch (Exception Ex)
+                    {
+                        try
+                        {
+                            transaction.Rollback();
+                        }
+                        catch (Exception ex2)
+                        {
+                            // This catch block will handle any errors that may have occurred 
+                            // on the server that would cause the rollback to fail, such as 
+                            // a closed connection.
+                            Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                            Console.WriteLine("  Message: {0}", ex2.Message);
+                        }
+                        UpdateTransactionStatusTo(transactionId, 2);
+                    }
+                    conn.Close();
+                }
+            }
+            transList.Clear();
+            conn.Close();
+        }
+        
     }
 }

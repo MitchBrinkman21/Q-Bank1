@@ -38,6 +38,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxErrors = new System.Windows.Forms.TextBox();
             this.timerInvalidateForm = new System.Windows.Forms.Timer(this.components);
+            this.textBoxQueue = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonStart
@@ -82,7 +84,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 91);
+            this.label2.Location = new System.Drawing.Point(36, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(225, 25);
             this.label2.TabIndex = 5;
@@ -91,7 +93,7 @@
             // textBoxTransactions
             // 
             this.textBoxTransactions.Enabled = false;
-            this.textBoxTransactions.Location = new System.Drawing.Point(277, 88);
+            this.textBoxTransactions.Location = new System.Drawing.Point(277, 108);
             this.textBoxTransactions.Name = "textBoxTransactions";
             this.textBoxTransactions.ReadOnly = true;
             this.textBoxTransactions.Size = new System.Drawing.Size(606, 31);
@@ -101,7 +103,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(36, 139);
+            this.label3.Location = new System.Drawing.Point(36, 148);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 25);
             this.label3.TabIndex = 7;
@@ -110,7 +112,7 @@
             // textBoxErrors
             // 
             this.textBoxErrors.Enabled = false;
-            this.textBoxErrors.Location = new System.Drawing.Point(277, 136);
+            this.textBoxErrors.Location = new System.Drawing.Point(277, 145);
             this.textBoxErrors.Name = "textBoxErrors";
             this.textBoxErrors.ReadOnly = true;
             this.textBoxErrors.Size = new System.Drawing.Size(606, 31);
@@ -122,11 +124,32 @@
             this.timerInvalidateForm.Enabled = true;
             this.timerInvalidateForm.Tick += new System.EventHandler(this.timerInvalidateForm_Tick);
             // 
+            // textBoxQueue
+            // 
+            this.textBoxQueue.Enabled = false;
+            this.textBoxQueue.Location = new System.Drawing.Point(277, 71);
+            this.textBoxQueue.Name = "textBoxQueue";
+            this.textBoxQueue.ReadOnly = true;
+            this.textBoxQueue.Size = new System.Drawing.Size(606, 31);
+            this.textBoxQueue.TabIndex = 8;
+            this.textBoxQueue.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(36, 77);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(76, 25);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Queue";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 443);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBoxQueue);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxErrors);
             this.Controls.Add(this.label2);
@@ -154,6 +177,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxErrors;
         private System.Windows.Forms.Timer timerInvalidateForm;
+        private System.Windows.Forms.TextBox textBoxQueue;
+        private System.Windows.Forms.Label label4;
     }
 }
 

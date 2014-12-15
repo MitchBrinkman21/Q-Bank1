@@ -49,6 +49,7 @@ namespace TransactionServer
             textBoxTransactions.Text = TransactionTask.succesful.ToString();
             textBoxErrors.Text = TransactionTask.errors.ToString();
             textBoxChecksum.Text = ExecuteThread.checksum.ToString();
+            textBoxQueue.Text = TransactionTask.transactionsCount.ToString();
             this.Refresh();
         }
     }

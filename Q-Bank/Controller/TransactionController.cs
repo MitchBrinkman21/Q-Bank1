@@ -11,6 +11,7 @@ namespace Q_Bank.Controller
     public class TransactionController
     {
         public FormMain formMain { get; set; }
+        public static List<Transaction> transactions;
         public TransactionController(FormMain formMain)
         {
             this.formMain = formMain;
@@ -19,20 +20,19 @@ namespace Q_Bank.Controller
             fillComboBox();
         }
 
+        //Vult de combobox met de rekeniningen van de klant
         public void fillComboBox()
         {
-
             formMain.transactionComboBox1.Items.Clear();
             using (var con = new Q_BANKEntities())
             {
+                //Haal bijbehorende rekeningen open
                 var query = from c in con.accounts
                             where c.customerId == formMain.id
                             select c;
 
                 if (query.Count() > 0)
                 {
-
-
                     formMain.transactionComboBox1.Items.Add(new ComboBoxItem(0, "Selecteer rekening", "", 0));
                     formMain.transactionComboBox1.SelectedIndex = 0;
                     foreach (account a in query)
@@ -48,6 +48,7 @@ namespace Q_Bank.Controller
             }
         }
 
+        //Handelt de "Opslaan en nieuwe overboeking" knop af.
         public void sendTransactionNew(object sender, System.EventArgs e)
         {
             if (IsCorrectlyFilledIn())
@@ -65,6 +66,7 @@ namespace Q_Bank.Controller
             }
         }
 
+        //Handelt de "Opslaan en naar verzendlijst" knop af.
         public void sendTransactionOverview(object sender, System.EventArgs e)
         {
             if (IsCorrectlyFilledIn())
@@ -86,30 +88,14 @@ namespace Q_Bank.Controller
 
         private void createTransaction()
         {
-            using (var con = new Q_BANKEntities())
-            {
-                ComboBoxItem tp = (ComboBoxItem)formMain.transactionComboBox1.SelectedItem;
-                transaction newTransaction = new transaction()
-                {
-                    accountId = tp.AccountId,
-                    transactionTypeId = 1,
-                    transactionStatusId = 1,
-                    amount = Convert.ToDouble(formMain.transactionNumericUpDown1.Text),
-                    datetime = DateTime.Now,
-                    executeDate = Convert.ToDateTime(formMain.transactionDateTimePicker1.Value),
-                    commitDatetime = null,
-                    commit = 0,
-                    nameReceiver = formMain.transactionTextBox1.Text,
-                    ibanReceiver = formMain.transactionTextBox2.Text,
-                    remark = formMain.transactionTextBox3.Text,
-                    sepa = 0,
-                    bic = "QBank"
-                };
-                con.transactions.Add(newTransaction);
-                con.SaveChanges();
+            
+            ComboBoxItem tp = (ComboBoxItem)formMain.transactionComboBox1.SelectedItem;
+            Transaction newTransaction = new Transaction(tp.AccountId, 1, Convert.ToDouble(formMain.transactionNumericUpDown1.Text), DateTime.Now,
+                    Convert.ToDateTime(formMain.transactionDateTimePicker1.Value), formMain.transactionTextBox1.Text, formMain.transactionTextBox2.Text,
+                    formMain.transactionTextBox3.Text, 0, "QBAN");
+            transactions.Add(newTransaction);
 
-
-            }
+          
         }
 
         private Boolean IsCorrectlyFilledIn()
@@ -126,7 +112,16 @@ namespace Q_Bank.Controller
                     //Check IBANformaat
                     if (isIbanChecksumValid(formMain.transactionTextBox2.Text))
                     {
-                        filled = true;
+                        ComboBoxItem tp = (ComboBoxItem)formMain.transactionComboBox1.SelectedItem;
+                        if (!tp.Iban.Equals(formMain.transactionTextBox2.Text))
+                        {
+                            filled = true;
+                        }
+                        else
+                        {
+                            formMain.transactionLabel9.Text = "U heeft uw geselecteerde IBAN ingevuld als doelrekening";
+                        }
+
                     }
                     else
                     {

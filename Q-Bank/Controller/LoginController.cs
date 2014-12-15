@@ -134,9 +134,9 @@ namespace Q_Bank.Controller
                                 MailMessage mail = new MailMessage();
 
                                 mail.From = new MailAddress("qbankquintor@gmail.com");
-                                mail.To.Add("feikodevreede@hotmail.com");
-                                mail.Subject = "test";
-                                mail.Body = "Test Hype " + loginNo;
+                                mail.To.Add("sjanne1992@hotmail.com");
+                                mail.Subject = "Authorisatiecode";
+                                mail.Body = "Code: " + loginNo;
 
                                 var client = new SmtpClient("smtp.gmail.com", 587)
                                 {
@@ -144,7 +144,7 @@ namespace Q_Bank.Controller
                                     EnableSsl = true
                                 };
                                 client.Send(mail);
-                                MessageBox.Show("mail sent");
+                                MessageBox.Show("De code is naar uw mail gestuurd");
                             }
                             catch (Exception ex)
                             {

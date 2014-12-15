@@ -16,13 +16,13 @@ namespace Q_Bank
     {
         public transactionstatu()
         {
-            this.transactions = new HashSet<transaction>();
+            this.transactionqueues = new HashSet<transactionqueue>();
         }
     
         public int transactionStatusId { get; set; }
         public string transactionStatusName { get; set; }
         public string remark { get; set; }
     
-        public virtual ICollection<transaction> transactions { get; set; }
+        public virtual ICollection<transactionqueue> transactionqueues { get; set; }
     }
 }

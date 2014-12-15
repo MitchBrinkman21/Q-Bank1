@@ -12,19 +12,20 @@ namespace Q_Bank
     using System;
     using System.Collections.Generic;
     
-    public partial class transactiontask
+    public partial class transactionqueue
     {
-        public int transactionTaskId { get; set; }
+        public int transactionId { get; set; }
+        public int transactionStatusId { get; set; }
         public int accountId { get; set; }
         public double amount { get; set; }
         public System.DateTime datetime { get; set; }
         public Nullable<System.DateTime> executeDate { get; set; }
-        public Nullable<System.DateTime> commitDatetime { get; set; }
-        public short commit { get; set; }
-        public string nameReceiver { get; set; }
         public string ibanReceiver { get; set; }
-        public string remark { get; set; }
+        public string nameReceiver { get; set; }
         public short sepa { get; set; }
         public string bic { get; set; }
+        public string remark { get; set; }
+    
+        public virtual transactionstatu transactionstatu { get; set; }
     }
 }

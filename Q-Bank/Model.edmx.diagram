@@ -5,26 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4b53e8d0fb414a59a949f8bb903abfb8" Name="Diagram1">
-        <EntityTypeShape EntityType="Q_BANKModel.account" Width="1.5" PointX="16" PointY="10.875" />
-        <EntityTypeShape EntityType="Q_BANKModel.accounttype" Width="1.5" PointX="13.75" PointY="14.5" />
-        <EntityTypeShape EntityType="Q_BANKModel.customer" Width="1.5" PointX="10.75" PointY="10.375" />
-        <EntityTypeShape EntityType="Q_BANKModel.customeraddress" Width="1.5" PointX="13" PointY="9.75" />
-        <EntityTypeShape EntityType="Q_BANKModel.customeremail" Width="1.5" PointX="13" PointY="20.25" />
-        <EntityTypeShape EntityType="Q_BANKModel.customerloginlog" Width="1.5" PointX="13" PointY="17.5" />
-        <EntityTypeShape EntityType="Q_BANKModel.customermessage" Width="1.5" PointX="13" PointY="23" />
-        <EntityTypeShape EntityType="Q_BANKModel.customerphone" Width="1.5" PointX="13" PointY="6.375" />
-        <EntityTypeShape EntityType="Q_BANKModel.employee" Width="1.5" PointX="3" PointY="7.5" />
-        <EntityTypeShape EntityType="Q_BANKModel.employeeaddress" Width="1.5" PointX="5.25" PointY="3.875" />
-        <EntityTypeShape EntityType="Q_BANKModel.employeeemail" Width="1.5" PointX="5.25" PointY="10.875" />
-        <EntityTypeShape EntityType="Q_BANKModel.employeeloginlog" Width="1.5" PointX="5.25" PointY="13.625" />
-        <EntityTypeShape EntityType="Q_BANKModel.employeemessage" Width="1.5" PointX="5.25" PointY="16.375" />
-        <EntityTypeShape EntityType="Q_BANKModel.employeephone" Width="1.5" PointX="8.25" PointY="8.5" />
-        <EntityTypeShape EntityType="Q_BANKModel.phonetype" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="Q_BANKModel.role" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="Q_BANKModel.transaction" Width="1.5" PointX="18.25" PointY="10.25" />
-        <EntityTypeShape EntityType="Q_BANKModel.transactionstatu" Width="1.5" PointX="16" PointY="14.75" />
-        <EntityTypeShape EntityType="Q_BANKModel.transactiontask" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="Q_BANKModel.transactiontype" Width="1.5" PointX="16" PointY="8.25" />
+        <EntityTypeShape EntityType="Q_BANKModel.account" Width="1.5" PointX="13" PointY="9.625" />
+        <EntityTypeShape EntityType="Q_BANKModel.accounttype" Width="1.5" PointX="10.75" PointY="6.375" />
+        <EntityTypeShape EntityType="Q_BANKModel.customer" Width="1.5" PointX="10.75" PointY="9.125" />
+        <EntityTypeShape EntityType="Q_BANKModel.customeraddress" Width="1.5" PointX="13" PointY="5.5" />
+        <EntityTypeShape EntityType="Q_BANKModel.customeremail" Width="1.5" PointX="13" PointY="13.625" />
+        <EntityTypeShape EntityType="Q_BANKModel.customerloginlog" Width="1.5" PointX="13" PointY="22.375" />
+        <EntityTypeShape EntityType="Q_BANKModel.customermessage" Width="1.5" PointX="13" PointY="19.5" />
+        <EntityTypeShape EntityType="Q_BANKModel.customerphone" Width="1.5" PointX="16" PointY="10" />
+        <EntityTypeShape EntityType="Q_BANKModel.employee" Width="1.5" PointX="3" PointY="6.625" />
+        <EntityTypeShape EntityType="Q_BANKModel.employeeaddress" Width="1.5" PointX="5.25" PointY="11.75" />
+        <EntityTypeShape EntityType="Q_BANKModel.employeeemail" Width="1.5" PointX="5.25" PointY="5.875" />
+        <EntityTypeShape EntityType="Q_BANKModel.employeeloginlog" Width="1.5" PointX="5.25" PointY="3.125" />
+        <EntityTypeShape EntityType="Q_BANKModel.employeemessage" Width="1.5" PointX="5.25" PointY="15.625" />
+        <EntityTypeShape EntityType="Q_BANKModel.employeephone" Width="1.5" PointX="8.25" PointY="7.75" />
+        <EntityTypeShape EntityType="Q_BANKModel.phonetype" Width="1.5" PointX="6" PointY="9" />
+        <EntityTypeShape EntityType="Q_BANKModel.role" Width="1.5" PointX="0.75" PointY="8" />
+        <EntityTypeShape EntityType="Q_BANKModel.transaction" Width="1.5" PointX="15.25" PointY="13.5" />
+        <EntityTypeShape EntityType="Q_BANKModel.transactionqueue" Width="1.5" PointX="10" PointY="1" />
+        <EntityTypeShape EntityType="Q_BANKModel.transactionstatu" Width="1.5" PointX="7.75" PointY="1.75" />
         <AssociationConnector Association="Q_BANKModel.account_fk_Account_AccountType1" />
         <AssociationConnector Association="Q_BANKModel.account_fk_Rekening_Persoon1" />
         <AssociationConnector Association="Q_BANKModel.transaction_fk_Transactie_Rekening1" />
@@ -41,8 +40,7 @@
         <AssociationConnector Association="Q_BANKModel.employeemessage_fk_EmployeeMessage_Employee1" />
         <AssociationConnector Association="Q_BANKModel.employeephone_fk_EmployeePhone_Employee1" />
         <AssociationConnector Association="Q_BANKModel.employeephone_fk_Phone_PhoneType10" />
-        <AssociationConnector Association="Q_BANKModel.transaction_fk_Transaction_TransactionStatus1" />
-        <AssociationConnector Association="Q_BANKModel.transaction_fk_Transaction_TransactionType1" />
+        <AssociationConnector Association="Q_BANKModel.transactionqueue_fk_TransactionQueue_TransactionStatus1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

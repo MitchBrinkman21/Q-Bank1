@@ -39,6 +39,7 @@
           <Property Name="birthDate" Type="date" Nullable="false" />
           <Property Name="username" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="key" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="registerDatetime" Type="datetime2" Precision="0" Nullable="false" />
         </EntityType>
         <EntityType Name="customeraddress">
@@ -108,6 +109,7 @@
           <Property Name="birthDate" Type="date" Nullable="false" />
           <Property Name="username" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="key" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="registerDatetime" Type="datetime2" Precision="0" Nullable="false" />
         </EntityType>
         <EntityType Name="employeeaddress">
@@ -182,20 +184,34 @@
           <Key>
             <PropertyRef Name="transactionId" />
           </Key>
-          <Property Name="transactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="transactionId" Type="int" Nullable="false" />
           <Property Name="accountId" Type="int" Nullable="false" />
-          <Property Name="transactionTypeId" Type="int" Nullable="false" />
-          <Property Name="transactionStatusId" Type="int" Nullable="false" />
           <Property Name="amount" Type="float" Nullable="false" />
           <Property Name="datetime" Type="datetime2" Precision="0" Nullable="false" />
-          <Property Name="executeDate" Type="date" />
-          <Property Name="commitDatetime" Type="datetime2" Precision="0" />
+          <Property Name="executeDate" Type="date" Nullable="false" />
+          <Property Name="commitDatetime" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="commit" Type="smallint" Nullable="false" />
           <Property Name="nameReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="ibanReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="remark" Type="nvarchar(max)" />
           <Property Name="sepa" Type="smallint" Nullable="false" />
           <Property Name="bic" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="remark" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="transactionqueue">
+          <Key>
+            <PropertyRef Name="transactionId" />
+          </Key>
+          <Property Name="transactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="transactionStatusId" Type="int" Nullable="false" />
+          <Property Name="accountId" Type="int" Nullable="false" />
+          <Property Name="amount" Type="float" Nullable="false" />
+          <Property Name="datetime" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="executeDate" Type="date" />
+          <Property Name="ibanReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="nameReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="sepa" Type="smallint" Nullable="false" />
+          <Property Name="bic" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="remark" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="transactionstatus">
           <Key>
@@ -203,31 +219,6 @@
           </Key>
           <Property Name="transactionStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="transactionStatusName" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="remark" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="transactiontask">
-          <Key>
-            <PropertyRef Name="transactionTaskId" />
-          </Key>
-          <Property Name="transactionTaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="accountId" Type="int" Nullable="false" />
-          <Property Name="amount" Type="float" Nullable="false" />
-          <Property Name="datetime" Type="datetime2" Precision="0" Nullable="false" />
-          <Property Name="executeDate" Type="date" />
-          <Property Name="commitDatetime" Type="datetime2" Precision="0" />
-          <Property Name="commit" Type="smallint" Nullable="false" />
-          <Property Name="nameReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="ibanReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="remark" Type="nvarchar(max)" />
-          <Property Name="sepa" Type="smallint" Nullable="false" />
-          <Property Name="bic" Type="nvarchar" MaxLength="45" Nullable="false" />
-        </EntityType>
-        <EntityType Name="transactiontype">
-          <Key>
-            <PropertyRef Name="transactionTypeId" />
-          </Key>
-          <Property Name="transactionTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="transactionTypeName" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="account$fk_Account_AccountType1">
@@ -422,27 +413,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="transaction$fk_Transaction_TransactionStatus1">
+        <Association Name="transactionqueue$fk_TransactionQueue_TransactionStatus1">
           <End Role="transactionstatus" Type="Self.transactionstatus" Multiplicity="1" />
-          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <End Role="transactionqueue" Type="Self.transactionqueue" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="transactionstatus">
               <PropertyRef Name="transactionStatusId" />
             </Principal>
-            <Dependent Role="transaction">
+            <Dependent Role="transactionqueue">
               <PropertyRef Name="transactionStatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="transaction$fk_Transaction_TransactionType1">
-          <End Role="transactiontype" Type="Self.transactiontype" Multiplicity="1" />
-          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="transactiontype">
-              <PropertyRef Name="transactionTypeId" />
-            </Principal>
-            <Dependent Role="transaction">
-              <PropertyRef Name="transactionTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -464,9 +443,8 @@
           <EntitySet Name="phonetype" EntityType="Self.phonetype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="transaction" EntityType="Self.transaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transactionqueue" EntityType="Self.transactionqueue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="transactionstatus" EntityType="Self.transactionstatus" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="transactiontask" EntityType="Self.transactiontask" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="transactiontype" EntityType="Self.transactiontype" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="account$fk_Account_AccountType1" Association="Self.account$fk_Account_AccountType1">
             <End Role="accounttype" EntitySet="accounttype" />
             <End Role="account" EntitySet="account" />
@@ -531,13 +509,9 @@
             <End Role="account" EntitySet="account" />
             <End Role="transaction" EntitySet="transaction" />
           </AssociationSet>
-          <AssociationSet Name="transaction$fk_Transaction_TransactionStatus1" Association="Self.transaction$fk_Transaction_TransactionStatus1">
+          <AssociationSet Name="transactionqueue$fk_TransactionQueue_TransactionStatus1" Association="Self.transactionqueue$fk_TransactionQueue_TransactionStatus1">
             <End Role="transactionstatus" EntitySet="transactionstatus" />
-            <End Role="transaction" EntitySet="transaction" />
-          </AssociationSet>
-          <AssociationSet Name="transaction$fk_Transaction_TransactionType1" Association="Self.transaction$fk_Transaction_TransactionType1">
-            <End Role="transactiontype" EntitySet="transactiontype" />
-            <End Role="transaction" EntitySet="transaction" />
+            <End Role="transactionqueue" EntitySet="transactionqueue" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -562,9 +536,8 @@
           <EntitySet Name="phonetypes" EntityType="Q_BANKModel.phonetype" />
           <EntitySet Name="roles" EntityType="Q_BANKModel.role" />
           <EntitySet Name="transactions" EntityType="Q_BANKModel.transaction" />
+          <EntitySet Name="transactionqueues" EntityType="Q_BANKModel.transactionqueue" />
           <EntitySet Name="transactionstatus" EntityType="Q_BANKModel.transactionstatu" />
-          <EntitySet Name="transactiontasks" EntityType="Q_BANKModel.transactiontask" />
-          <EntitySet Name="transactiontypes" EntityType="Q_BANKModel.transactiontype" />
           <AssociationSet Name="account_fk_Account_AccountType1" Association="Q_BANKModel.account_fk_Account_AccountType1">
             <End Role="accounttype" EntitySet="accounttypes" />
             <End Role="account" EntitySet="accounts" />
@@ -629,13 +602,9 @@
             <End Role="phonetype" EntitySet="phonetypes" />
             <End Role="employeephone" EntitySet="employeephones" />
           </AssociationSet>
-          <AssociationSet Name="transaction_fk_Transaction_TransactionStatus1" Association="Q_BANKModel.transaction_fk_Transaction_TransactionStatus1">
+          <AssociationSet Name="transactionqueue_fk_TransactionQueue_TransactionStatus1" Association="Q_BANKModel.transactionqueue_fk_TransactionQueue_TransactionStatus1">
             <End Role="transactionstatu" EntitySet="transactionstatus" />
-            <End Role="transaction" EntitySet="transactions" />
-          </AssociationSet>
-          <AssociationSet Name="transaction_fk_Transaction_TransactionType1" Association="Q_BANKModel.transaction_fk_Transaction_TransactionType1">
-            <End Role="transactiontype" EntitySet="transactiontypes" />
-            <End Role="transaction" EntitySet="transactions" />
+            <End Role="transactionqueue" EntitySet="transactionqueues" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="account">
@@ -676,6 +645,7 @@
           <Property Name="birthDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="username" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="key" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="registerDatetime" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="accounts" Relationship="Q_BANKModel.account_fk_Rekening_Persoon1" FromRole="customer" ToRole="account" />
           <NavigationProperty Name="customeraddresses" Relationship="Q_BANKModel.customeraddress_fk_Adres_Gebruiker1" FromRole="customer" ToRole="customeraddress" />
@@ -757,6 +727,7 @@
           <Property Name="birthDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="username" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="key" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="registerDatetime" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="role" Relationship="Q_BANKModel.employee_fk_Employee_Role1" FromRole="employee" ToRole="role" />
           <NavigationProperty Name="employeeaddresses" Relationship="Q_BANKModel.employeeaddress_fk_EmployeeAddress_Employee1" FromRole="employee" ToRole="employeeaddress" />
@@ -846,23 +817,36 @@
           <Key>
             <PropertyRef Name="transactionId" />
           </Key>
-          <Property Name="transactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="transactionId" Type="Int32" Nullable="false" />
           <Property Name="accountId" Type="Int32" Nullable="false" />
-          <Property Name="transactionTypeId" Type="Int32" Nullable="false" />
-          <Property Name="transactionStatusId" Type="Int32" Nullable="false" />
           <Property Name="amount" Type="Double" Nullable="false" />
           <Property Name="datetime" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="executeDate" Type="DateTime" Precision="0" />
-          <Property Name="commitDatetime" Type="DateTime" Precision="0" />
+          <Property Name="executeDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="commitDatetime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="commit" Type="Int16" Nullable="false" />
           <Property Name="nameReceiver" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="ibanReceiver" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="sepa" Type="Int16" Nullable="false" />
           <Property Name="bic" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="account" Relationship="Q_BANKModel.transaction_fk_Transactie_Rekening1" FromRole="transaction" ToRole="account" />
-          <NavigationProperty Name="transactionstatu" Relationship="Q_BANKModel.transaction_fk_Transaction_TransactionStatus1" FromRole="transaction" ToRole="transactionstatu" />
-          <NavigationProperty Name="transactiontype" Relationship="Q_BANKModel.transaction_fk_Transaction_TransactionType1" FromRole="transaction" ToRole="transactiontype" />
+        </EntityType>
+        <EntityType Name="transactionqueue">
+          <Key>
+            <PropertyRef Name="transactionId" />
+          </Key>
+          <Property Name="transactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="transactionStatusId" Type="Int32" Nullable="false" />
+          <Property Name="accountId" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Double" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="executeDate" Type="DateTime" Precision="0" />
+          <Property Name="ibanReceiver" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="nameReceiver" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="sepa" Type="Int16" Nullable="false" />
+          <Property Name="bic" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="transactionstatu" Relationship="Q_BANKModel.transactionqueue_fk_TransactionQueue_TransactionStatus1" FromRole="transactionqueue" ToRole="transactionstatu" />
         </EntityType>
         <EntityType Name="transactionstatu">
           <Key>
@@ -871,33 +855,7 @@
           <Property Name="transactionStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="transactionStatusName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="transactions" Relationship="Q_BANKModel.transaction_fk_Transaction_TransactionStatus1" FromRole="transactionstatu" ToRole="transaction" />
-        </EntityType>
-        <EntityType Name="transactiontask">
-          <Key>
-            <PropertyRef Name="transactionTaskId" />
-          </Key>
-          <Property Name="transactionTaskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accountId" Type="Int32" Nullable="false" />
-          <Property Name="amount" Type="Double" Nullable="false" />
-          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="executeDate" Type="DateTime" Precision="0" />
-          <Property Name="commitDatetime" Type="DateTime" Precision="0" />
-          <Property Name="commit" Type="Int16" Nullable="false" />
-          <Property Name="nameReceiver" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="ibanReceiver" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="sepa" Type="Int16" Nullable="false" />
-          <Property Name="bic" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="transactiontype">
-          <Key>
-            <PropertyRef Name="transactionTypeId" />
-          </Key>
-          <Property Name="transactionTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="transactionTypeName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="transactions" Relationship="Q_BANKModel.transaction_fk_Transaction_TransactionType1" FromRole="transactiontype" ToRole="transaction" />
+          <NavigationProperty Name="transactionqueues" Relationship="Q_BANKModel.transactionqueue_fk_TransactionQueue_TransactionStatus1" FromRole="transactionstatu" ToRole="transactionqueue" />
         </EntityType>
         <Association Name="account_fk_Account_AccountType1">
           <End Type="Q_BANKModel.accounttype" Role="accounttype" Multiplicity="1" />
@@ -1091,27 +1049,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="transaction_fk_Transaction_TransactionStatus1">
+        <Association Name="transactionqueue_fk_TransactionQueue_TransactionStatus1">
           <End Type="Q_BANKModel.transactionstatu" Role="transactionstatu" Multiplicity="1" />
-          <End Type="Q_BANKModel.transaction" Role="transaction" Multiplicity="*" />
+          <End Type="Q_BANKModel.transactionqueue" Role="transactionqueue" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="transactionstatu">
               <PropertyRef Name="transactionStatusId" />
             </Principal>
-            <Dependent Role="transaction">
+            <Dependent Role="transactionqueue">
               <PropertyRef Name="transactionStatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="transaction_fk_Transaction_TransactionType1">
-          <End Type="Q_BANKModel.transactiontype" Role="transactiontype" Multiplicity="1" />
-          <End Type="Q_BANKModel.transaction" Role="transaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="transactiontype">
-              <PropertyRef Name="transactionTypeId" />
-            </Principal>
-            <Dependent Role="transaction">
-              <PropertyRef Name="transactionTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1148,6 +1094,7 @@
             <EntityTypeMapping TypeName="Q_BANKModel.customer">
               <MappingFragment StoreEntitySet="customer">
                 <ScalarProperty Name="registerDatetime" ColumnName="registerDatetime" />
+                <ScalarProperty Name="key" ColumnName="key" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="birthDate" ColumnName="birthDate" />
@@ -1222,6 +1169,7 @@
             <EntityTypeMapping TypeName="Q_BANKModel.employee">
               <MappingFragment StoreEntitySet="employee">
                 <ScalarProperty Name="registerDatetime" ColumnName="registerDatetime" />
+                <ScalarProperty Name="key" ColumnName="key" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="birthDate" ColumnName="birthDate" />
@@ -1313,9 +1261,9 @@
           <EntitySetMapping Name="transactions">
             <EntityTypeMapping TypeName="Q_BANKModel.transaction">
               <MappingFragment StoreEntitySet="transaction">
+                <ScalarProperty Name="remark" ColumnName="remark" />
                 <ScalarProperty Name="bic" ColumnName="bic" />
                 <ScalarProperty Name="sepa" ColumnName="sepa" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
                 <ScalarProperty Name="ibanReceiver" ColumnName="ibanReceiver" />
                 <ScalarProperty Name="nameReceiver" ColumnName="nameReceiver" />
                 <ScalarProperty Name="commit" ColumnName="commit" />
@@ -1323,9 +1271,24 @@
                 <ScalarProperty Name="executeDate" ColumnName="executeDate" />
                 <ScalarProperty Name="datetime" ColumnName="datetime" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
-                <ScalarProperty Name="transactionStatusId" ColumnName="transactionStatusId" />
-                <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
                 <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="transactionId" ColumnName="transactionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transactionqueues">
+            <EntityTypeMapping TypeName="Q_BANKModel.transactionqueue">
+              <MappingFragment StoreEntitySet="transactionqueue">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="bic" ColumnName="bic" />
+                <ScalarProperty Name="sepa" ColumnName="sepa" />
+                <ScalarProperty Name="nameReceiver" ColumnName="nameReceiver" />
+                <ScalarProperty Name="ibanReceiver" ColumnName="ibanReceiver" />
+                <ScalarProperty Name="executeDate" ColumnName="executeDate" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="transactionStatusId" ColumnName="transactionStatusId" />
                 <ScalarProperty Name="transactionId" ColumnName="transactionId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1336,33 +1299,6 @@
                 <ScalarProperty Name="remark" ColumnName="remark" />
                 <ScalarProperty Name="transactionStatusName" ColumnName="transactionStatusName" />
                 <ScalarProperty Name="transactionStatusId" ColumnName="transactionStatusId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="transactiontasks">
-            <EntityTypeMapping TypeName="Q_BANKModel.transactiontask">
-              <MappingFragment StoreEntitySet="transactiontask">
-                <ScalarProperty Name="bic" ColumnName="bic" />
-                <ScalarProperty Name="sepa" ColumnName="sepa" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="ibanReceiver" ColumnName="ibanReceiver" />
-                <ScalarProperty Name="nameReceiver" ColumnName="nameReceiver" />
-                <ScalarProperty Name="commit" ColumnName="commit" />
-                <ScalarProperty Name="commitDatetime" ColumnName="commitDatetime" />
-                <ScalarProperty Name="executeDate" ColumnName="executeDate" />
-                <ScalarProperty Name="datetime" ColumnName="datetime" />
-                <ScalarProperty Name="amount" ColumnName="amount" />
-                <ScalarProperty Name="accountId" ColumnName="accountId" />
-                <ScalarProperty Name="transactionTaskId" ColumnName="transactionTaskId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="transactiontypes">
-            <EntityTypeMapping TypeName="Q_BANKModel.transactiontype">
-              <MappingFragment StoreEntitySet="transactiontype">
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="transactionTypeName" ColumnName="transactionTypeName" />
-                <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

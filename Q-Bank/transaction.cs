@@ -16,21 +16,17 @@ namespace Q_Bank
     {
         public int transactionId { get; set; }
         public int accountId { get; set; }
-        public int transactionTypeId { get; set; }
-        public int transactionStatusId { get; set; }
         public double amount { get; set; }
         public System.DateTime datetime { get; set; }
-        public Nullable<System.DateTime> executeDate { get; set; }
-        public Nullable<System.DateTime> commitDatetime { get; set; }
+        public System.DateTime executeDate { get; set; }
+        public System.DateTime commitDatetime { get; set; }
         public short commit { get; set; }
         public string nameReceiver { get; set; }
         public string ibanReceiver { get; set; }
-        public string remark { get; set; }
         public short sepa { get; set; }
         public string bic { get; set; }
+        public string remark { get; set; }
     
         public virtual account account { get; set; }
-        public virtual transactionstatu transactionstatu { get; set; }
-        public virtual transactiontype transactiontype { get; set; }
     }
 }

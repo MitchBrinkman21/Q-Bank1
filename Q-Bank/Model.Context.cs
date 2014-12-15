@@ -42,8 +42,7 @@ namespace Q_Bank
         public virtual DbSet<phonetype> phonetypes { get; set; }
         public virtual DbSet<role> roles { get; set; }
         public virtual DbSet<transaction> transactions { get; set; }
+        public virtual DbSet<transactionqueue> transactionqueues { get; set; }
         public virtual DbSet<transactionstatu> transactionstatus { get; set; }
-        public virtual DbSet<transactiontask> transactiontasks { get; set; }
-        public virtual DbSet<transactiontype> transactiontypes { get; set; }
     }
 }

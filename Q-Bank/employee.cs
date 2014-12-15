@@ -33,6 +33,7 @@ namespace Q_Bank
         public System.DateTime birthDate { get; set; }
         public string username { get; set; }
         public string password { get; set; }
+        public string key { get; set; }
         public System.DateTime registerDatetime { get; set; }
     
         public virtual role role { get; set; }

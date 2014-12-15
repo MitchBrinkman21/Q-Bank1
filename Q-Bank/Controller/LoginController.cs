@@ -113,49 +113,56 @@ namespace Q_Bank.Controller
                 using (var con = new Q_BANKEntities())
                 {
                     var query = from c in con.customers
-                                where c.password == formLogin.textBox2.Text && c.username == formLogin.textBox1.Text
+                                where c.username == formLogin.textBox1.Text
                                 select c;
 
                     if (query.Count() != 0)
                     {
-                        id = query.First().customerId;
-                        if (!formLogin.textBox3.Enabled)
+                        string encodedSalt = query.First().password;
+                        string encodedKey = query.First().key;
+                        PasswordEncryption pe = new PasswordEncryption();
+
+                        if (pe.authenticate(formLogin.textBox2.Text, encodedSalt, encodedKey))
                         {
-                            Random rnd = new Random();
-                            loginNo = "";
-                            for (int i = 0; i < 8; i++)
+                            id = query.First().customerId;
+                            if (!formLogin.textBox3.Enabled)
                             {
-                                loginNo += Convert.ToString(rnd.Next(10));
-                                formLogin.label5.Text = loginNo;
-                            }
-                            try
-                            {
-
-                                MailMessage mail = new MailMessage();
-
-                                mail.From = new MailAddress("qbankquintor@gmail.com");
-                                mail.To.Add("sjanne1992@hotmail.com");
-                                mail.Subject = "Authorisatiecode";
-                                mail.Body = "Code: " + loginNo;
-
-                                var client = new SmtpClient("smtp.gmail.com", 587)
+                                Random rnd = new Random();
+                                loginNo = "";
+                                for (int i = 0; i < 8; i++)
                                 {
-                                    Credentials = new NetworkCredential("qbankquintor@gmail.com", "windesheim_project"),
-                                    EnableSsl = true
-                                };
-                                client.Send(mail);
-                                MessageBox.Show("De code is naar uw mail gestuurd");
+                                    loginNo += Convert.ToString(rnd.Next(10));
+                                    formLogin.label5.Text = loginNo;
+                                }
+                                try
+                                {
+
+                                    MailMessage mail = new MailMessage();
+
+                                    mail.From = new MailAddress("qbankquintor@gmail.com");
+                                    mail.To.Add("joeyklaassen@gmail.com");
+                                    mail.Subject = "Authorisatiecode";
+                                    mail.Body = "Code: " + loginNo;
+
+                                    var client = new SmtpClient("smtp.gmail.com", 587)
+                                    {
+                                        Credentials = new NetworkCredential("qbankquintor@gmail.com", "windesheim_project"),
+                                        EnableSsl = true
+                                    };
+                                    client.Send(mail);
+                                    MessageBox.Show("De code is naar uw mail gestuurd");
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.ToString());
+                                }
                             }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.ToString());
-                            }
+                            query = null;
+                            return true;
                         }
-                        query = null;
-                        return true;
+                        return false;
                     }
-                    return false;
-                }
+                }                        
             }
             return false;
         }

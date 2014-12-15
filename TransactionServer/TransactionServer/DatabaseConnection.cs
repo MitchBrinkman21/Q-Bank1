@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace TransactionServer
 {
-    class DatabaseConnection
+    public class DatabaseConnection
     {
         public static SqlConnection CONN;
 

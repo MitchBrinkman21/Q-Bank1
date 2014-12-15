@@ -64,6 +64,7 @@
     <Compile Include="Controller\AddressGenerator.cs" />
     <Compile Include="Controller\CreateUserController.cs" />
     <Compile Include="Controller\LoginController.cs" />
+    <Compile Include="Controller\PasswordEncryption.cs" />
     <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Controller\TransactionOverviewController.cs" />
     <Compile Include="Controller\TransactionsStatusController.cs" />

@@ -64,7 +64,7 @@ namespace Q_BankTests
         public void TestWrongBirthday()
         {
             CreateUser cu = new CreateUser();
-            cu.dateTimePickerBirthday.Value = Convert.ToDateTime("2014-12-13");
+            cu.dateTimePickerBirthday.Value = Convert.ToDateTime("2015-01-30");
             CreateUserController cuc = new CreateUserController(cu);
             cuc.checkValidText(new object(), null);
             bool actual = cuc.validText;
@@ -206,6 +206,64 @@ namespace Q_BankTests
 
             Assert.AreEqual<string>(actualAddress, expectedAddress, "Wrong address");
             Assert.AreEqual<string>(actualCity, expectedCity, "Wrong city");
+        }
+
+        
+        [TestMethod]
+        public void TestCheckData()
+        {
+            CreateUser cu = new CreateUser();
+            cu.textBoxBSN.Text = "123456789";
+            cu.textBoxFirstname.Text = "Jan";
+            cu.textBoxLastname.Text = "van Vliet";
+            cu.comboBoxGender.SelectedIndex = 1;
+            cu.dateTimePickerBirthday.Value = Convert.ToDateTime("1990-02-12");
+            cu.textBoxZipcode.Text = "3864PN";
+            cu.textBoxNumber.Text = "25b";
+            cu.textBoxAddress.Text = "Domstraat";
+            cu.textBoxCity.Text = "Nijkerkerveen";
+            cu.textBoxCountry.Text = "Nederland";
+            cu.textBoxPhonenumber.Text = "033-4560058";
+            cu.comboBoxPhoneType.SelectedIndex = 1;
+            cu.textBoxEmail.Text = "janvanvliet@gmail.com";
+            cu.textBoxUsername.Text = "jvliet";
+            cu.textBoxPassword.Text = "vliet123";
+            cu.textBoxRepeatPassword.Text = "vliet123";
+            CreateUserController cuc = new CreateUserController(cu);
+            cuc.validText = true;
+            cuc.validUsername = true;
+            cuc.validPassword = true;
+            bool actual = cuc.checkData();
+            bool expected = true;
+
+            Assert.AreEqual<bool>(actual, expected, "Valid data is not detected");
+        }
+
+        [TestMethod]
+        public void TestProcessCreateUser()
+        {
+            CreateUser cu = new CreateUser();
+            cu.textBoxBSN.Text = "123456789";
+            cu.textBoxFirstname.Text = "Jan";
+            cu.textBoxLastname.Text = "van Vliet";
+            cu.comboBoxGender.SelectedIndex = 1;
+            cu.dateTimePickerBirthday.Value = Convert.ToDateTime("1990-02-12");
+            cu.textBoxZipcode.Text = "3864PN";
+            cu.textBoxNumber.Text = "25b";
+            cu.textBoxAddress.Text = "Domstraat";
+            cu.textBoxCity.Text = "Nijkerkerveen";
+            cu.textBoxCountry.Text = "Nederland";
+            cu.textBoxPhonenumber.Text = "033-4560058";
+            cu.comboBoxPhoneType.SelectedIndex = 1;
+            cu.textBoxEmail.Text = "janvanvliet@gmail.com";
+            cu.textBoxUsername.Text = "jvliet";
+            cu.textBoxPassword.Text = "vliet123";
+            cu.textBoxRepeatPassword.Text = "vliet123";
+            CreateUserController cuc = new CreateUserController(cu);
+            cuc.validText = true;
+            cuc.validUsername = true;
+            cuc.validPassword = true;
+            cuc.processCreateUser(new object(), null);
         }
     }
 }

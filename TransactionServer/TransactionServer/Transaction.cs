@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace TransactionServer
 {
-    class Transaction
+    public class Transaction
     {
         private int transactionId;
         private int transactionStatusId;
         private int sepa; 
         private String ibanReceiver;
+        private String nameReceiver;
+        private int accountId;
         private double amount;
+        private String bic;
+        private String executeDate;
+        private String remark;
         private String iban;
         private double balance;
 
@@ -56,6 +61,26 @@ namespace TransactionServer
             return this.ibanReceiver;
         }
 
+        public void SetNameReceiver(String nameReceiver)
+        {
+            this.nameReceiver = nameReceiver;
+        }
+
+        public String GetNameReceiver()
+        {
+            return this.nameReceiver;
+        }
+
+        public void SetAccountId(int accountId)
+        {
+            this.accountId = accountId;
+        }
+
+        public int GetAccountId()
+        {
+            return this.accountId;
+        }
+
         public void SetAmount(double amount)
         {
             this.amount = amount;
@@ -64,6 +89,36 @@ namespace TransactionServer
         public double GetAmount()
         {
             return this.amount;
+        }
+
+        public void SetBic(String bic)
+        {
+            this.bic = bic;
+        }
+
+        public String GetBic()
+        {
+            return this.bic;
+        }
+
+        public void SetRemark(String remark)
+        {
+            this.remark = remark;
+        }
+
+        public String GetRemark()
+        {
+            return this.remark;
+        }
+
+        public void SetExecuteDate(String executeDate)
+        {
+            this.executeDate = executeDate;
+        }
+
+        public String GetExecuteDate()
+        {
+            return this.executeDate;
         }
 
         public void SetIban(String iban)

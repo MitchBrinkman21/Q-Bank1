@@ -9,135 +9,85 @@ using Q_Bank.Model;
 
 namespace Q_Bank.View
 {
-    public class TabTransactionStatus
+    public class TabVerzendlijst
     {
         public FormMain formMain { get; set; }
-        public Controller.TransactionsStatusController tsc;
+        public Controller.VerzendlijstController tsc;
         public List<Label> uitvoerDatum, tegenRekening, omschrijving, bedrag, status;
         public List<CheckBox> kies;
-        public List<transaction> ListTransactions;
+        public List<Transaction> ListTransactions;
         private Label lKies, lUitvoerDatum, lTegenRekening, lOmschrijving, lBedrag, lStatus;
-        private List<String> statussen = new List<string>();
         public bool hideVerzondenItems = false;
         public bool allesGeselecteerd = false;
-        public TabTransactionStatus(FormMain formMain)
+        public TabVerzendlijst(FormMain formMain)
         {
-            
-            //using (var con = new Q_BANKEntities())
-            //{
-            //    var statusList = from a in con.transactionstatus
-            //                     select a;
-
-            //    foreach (transactionstatu item in statusList)
-            //    {
-            //        statussen.Add(item.transactionStatusName);
-            //    }
-            //}
-
             uitvoerDatum = new List<Label>();
             tegenRekening = new List<Label>();
             omschrijving = new List<Label>();
             bedrag = new List<Label>();
             status = new List<Label>();
             kies = new List<CheckBox>();
-            ListTransactions = new List<transaction>();
+            ListTransactions = new List<Transaction>();
             this.formMain = formMain;
-            tsc = new Controller.TransactionsStatusController(this);
+            tsc = new Controller.VerzendlijstController(this);
             formMain.transactionStatusSelectEverything.Click += tsc.SelectAllHandler;
             formMain.transactionStatusButtonAnnuleren.Click += tsc.Annuleren;
-            formMain.TrasactionStatusDropBox.SelectedIndexChanged += TransactionStatusAccountComboboxChanged;
             formMain.transactieStatusVerzenden.Click += tsc.Verzenden;
-            formMain.transactieStatusHideButton.Click += tsc.Hide;
             formMain.transactionStatusRefreshButton.Click += tsc.Refresch;
-            tsc = new Controller.TransactionsStatusController(this);
+            tsc = new Controller.VerzendlijstController(this);
             formMain.transactieStatusVerzenden.Enabled = false;
             formMain.transactionStatusButtonAnnuleren.Enabled = false;
+            FillList();
             //AddTransactions();
             //verwijderd de verticale scrollbar
             int vertScrollWidth = SystemInformation.VerticalScrollBarWidth;
             formMain.TransactionStatusTableLayout.Padding = new Padding(0, 0, vertScrollWidth, 0);
         }
 
-        public void TransactionStatusAccountComboboxChanged(object sender, System.EventArgs e)
+        public void FillList()
         {
             allesGeselecteerd = false;
-            using (var con = new Q_BANKEntities())
+               
+            formMain.TransactionStatusTableLayout.Controls.Clear();
+            formMain.TransactionStatusTableLayout.RowStyles.Clear();
+            formMain.TransactionStatusTableLayout.RowCount = 1;
+            AddDefaultLabels();
+            ClearArray();
+
+            int i = 0;
+            if (TransactionController.transactions.Count() == 0)
             {
-                
-                formMain.TransactionStatusTableLayout.Controls.Clear();
-                formMain.TransactionStatusTableLayout.RowStyles.Clear();
-                formMain.TransactionStatusTableLayout.RowCount = 1;
-                AddDefaultLabels();
-                ClearArray();
-
-                int i = 0;
-                if (formMain.TrasactionStatusDropBox.SelectedIndex >= 0)
-                {
-                    ComboBoxItem combobox = (ComboBoxItem)formMain.TrasactionStatusDropBox.SelectedItem;
-
-                    if (combobox.AccountId == 0)
-                    {
-                        formMain.transactionStatusSaldo.Visible = false;
-                    }
-                    else
-                    {
-                        var accountCol = from a in con.accounts
-                                         where a.accountId == combobox.AccountId
-                                         select a;
-                        if (accountCol.Count() > 0)
-                        {
-                            account a = accountCol.First();
-                            formMain.transactionStatusSaldo.Text = "Saldo: €" + String.Format("{0:0,00}",a.balance.ToString("f2"));
-                            formMain.transactionStatusSaldo.Visible = true;
-                        }
-
-                        var transactionCol = from t in con.transactions
-                                             where t.accountId == combobox.AccountId
-                                             orderby t.datetime descending
-                                             select t;
-
-                        foreach (transaction t in transactionCol)
-                        {
-                            CheckItems(t, i);
-                            i++;
-                        }
-                    }
-                    Label tempLabel = new Label();
-                    formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 0, formMain.TransactionStatusTableLayout.RowCount);
-                }
-            }
-
-        }
-
-        private void CheckItems(transaction t, int i)
-        {
-            if (hideVerzondenItems)
-            {
-                //if (t.transactionStatusId == 1)
-                //{
-                //    AddItemsInTable(t, i);
-                //}
+                Label tempLabel0 = new Label();
+                tempLabel0.Text = "Er zijn geen rekeningen te verzenden";
+                tempLabel0.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                tempLabel0.Tag = i;
+                tempLabel0.Click += tsc.clickLabelDate;
+                formMain.TransactionStatusTableLayout.Controls.Add(tempLabel0, 2, i + 1);
+                tegenRekening.Add(tempLabel0);
             }
             else
             {
-                //if (t.transactionStatusId == 1 || t.transactionStatusId == 2 || t.transactionStatusId == 3)
-                //{
-                //    AddItemsInTable(t, i);
-                //}
+                foreach (Model.Transaction t in TransactionController.transactions)
+                {
+                    AddItemsInTable(t, i);
+                    i++;
+                }
             }
+            formMain.TransactionStatusTableLayout.RowCount = i + 2;
+            Label tempLabel = new Label();
+            formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 0, formMain.TransactionStatusTableLayout.RowCount);
         }
 
-        private void AddItemsInTable(transaction t, int i)
+
+        private void AddItemsInTable(Transaction t, int i)
         {
                 ListTransactions.Add(t);
                 Label tempLabel;
                 CheckBox tempCBox;
-                int tID = t.transactionId;
-
 
                 tempCBox = new CheckBox();
                 tempCBox.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                tempCBox.Tag = tID;
+                tempCBox.Tag = i;
                 formMain.TransactionStatusTableLayout.Controls.Add(tempCBox, 0, i + 1);
                 tempCBox.CheckedChanged += tsc.CheckChanged;
                 kies.Add(tempCBox);
@@ -146,7 +96,7 @@ namespace Q_Bank.View
                 tempLabel = new Label();
                 tempLabel.Text = t.datetime.ToString();
                 tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                tempLabel.Tag = tID;
+                tempLabel.Tag = i;
                 tempLabel.Click += tsc.clickLabelDate;
                 formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 1, i + 1);
                 uitvoerDatum.Add(tempLabel);
@@ -154,7 +104,7 @@ namespace Q_Bank.View
                 tempLabel = new Label();
                 tempLabel.Text = t.nameReceiver.ToString() + " " + t.ibanReceiver.ToString();
                 tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                tempLabel.Tag = tID;
+                tempLabel.Tag = i;
                 tempLabel.Click += tsc.clickLabelDate;
                 formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 2, i + 1);
                 tegenRekening.Add(tempLabel);
@@ -162,7 +112,7 @@ namespace Q_Bank.View
                 tempLabel = new Label();
                 tempLabel.Text = t.remark.ToString();
                 tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                tempLabel.Tag = tID;
+                tempLabel.Tag = i;
                 tempLabel.Click += tsc.clickLabelDate;
                 formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 3, i + 1);
                 omschrijving.Add(tempLabel);
@@ -170,7 +120,7 @@ namespace Q_Bank.View
                 tempLabel = new Label();
                 tempLabel.Text = "€" + String.Format("{0:0,00}", t.amount.ToString("f2"));
                 tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                tempLabel.Tag = tID;
+                tempLabel.Tag = i;
                 tempLabel.Click += tsc.clickLabelDate;
                 formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 4, i + 1);
                 bedrag.Add(tempLabel);
@@ -178,12 +128,10 @@ namespace Q_Bank.View
                 tempLabel = new Label();
                 tempLabel.Text = "nog te verzenden";
                 tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                tempLabel.Tag = tID;
+                tempLabel.Tag = i;
                 tempLabel.Click += tsc.clickLabelDate;
                 formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 5, i + 1);
-                status.Add(tempLabel);
-
-                formMain.TransactionStatusTableLayout.RowCount = i + 2;
+                status.Add(tempLabel);                
         }
 
 

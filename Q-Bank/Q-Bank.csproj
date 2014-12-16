@@ -69,7 +69,7 @@
     <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Controller\TransactionSearchController.cs" />
     <Compile Include="Controller\TransactionOverviewController.cs" />
-    <Compile Include="Controller\TransactionsStatusController.cs" />
+    <Compile Include="Controller\VerzendlijstController.cs" />
     <Compile Include="Controller\ValidateEmail.cs" />
     <Compile Include="customer.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -164,7 +164,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\TabTransactionStatus.cs" />
+    <Compile Include="View\TabVerzendlijst.cs" />
     <Compile Include="View\TransactionDetails.cs">
       <SubType>Form</SubType>
     </Compile>

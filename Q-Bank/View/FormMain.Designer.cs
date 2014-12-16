@@ -35,7 +35,6 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.transactionStatusRefreshButton = new System.Windows.Forms.Button();
             this.transactieStatusVerzenden = new System.Windows.Forms.Button();
-            this.transactieStatusHideButton = new System.Windows.Forms.Button();
             this.TransactionStatusTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -45,8 +44,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.transactionStatusButtonAnnuleren = new System.Windows.Forms.Button();
             this.transactionStatusSelectEverything = new System.Windows.Forms.Button();
-            this.transactionStatusSaldo = new System.Windows.Forms.Label();
-            this.TrasactionStatusDropBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.TransactionOverviewSearchLabel = new System.Windows.Forms.Label();
@@ -137,25 +134,22 @@
             // 
             this.tabPage4.Controls.Add(this.transactionStatusRefreshButton);
             this.tabPage4.Controls.Add(this.transactieStatusVerzenden);
-            this.tabPage4.Controls.Add(this.transactieStatusHideButton);
             this.tabPage4.Controls.Add(this.TransactionStatusTableLayout);
             this.tabPage4.Controls.Add(this.transactionStatusButtonAnnuleren);
             this.tabPage4.Controls.Add(this.transactionStatusSelectEverything);
-            this.tabPage4.Controls.Add(this.transactionStatusSaldo);
-            this.tabPage4.Controls.Add(this.TrasactionStatusDropBox);
             this.tabPage4.Controls.Add(this.label2);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(986, 840);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Transactiestatus";
+            this.tabPage4.Text = "Verzendlijst";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // transactionStatusRefreshButton
             // 
             this.transactionStatusRefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.transactionStatusRefreshButton.Location = new System.Drawing.Point(722, 55);
+            this.transactionStatusRefreshButton.Location = new System.Drawing.Point(883, 61);
             this.transactionStatusRefreshButton.Name = "transactionStatusRefreshButton";
             this.transactionStatusRefreshButton.Size = new System.Drawing.Size(65, 20);
             this.transactionStatusRefreshButton.TabIndex = 8;
@@ -171,16 +165,6 @@
             this.transactieStatusVerzenden.TabIndex = 7;
             this.transactieStatusVerzenden.Text = "Verzenden";
             this.transactieStatusVerzenden.UseVisualStyleBackColor = true;
-            // 
-            // transactieStatusHideButton
-            // 
-            this.transactieStatusHideButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.transactieStatusHideButton.Location = new System.Drawing.Point(809, 55);
-            this.transactieStatusHideButton.Name = "transactieStatusHideButton";
-            this.transactieStatusHideButton.Size = new System.Drawing.Size(139, 20);
-            this.transactieStatusHideButton.TabIndex = 6;
-            this.transactieStatusHideButton.Text = "niet verzonden items";
-            this.transactieStatusHideButton.UseVisualStyleBackColor = true;
             // 
             // TransactionStatusTableLayout
             // 
@@ -292,34 +276,15 @@
             this.transactionStatusSelectEverything.Text = "Selecteer alles";
             this.transactionStatusSelectEverything.UseVisualStyleBackColor = true;
             // 
-            // transactionStatusSaldo
-            // 
-            this.transactionStatusSaldo.AutoSize = true;
-            this.transactionStatusSaldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.transactionStatusSaldo.Location = new System.Drawing.Point(489, 56);
-            this.transactionStatusSaldo.Name = "transactionStatusSaldo";
-            this.transactionStatusSaldo.Size = new System.Drawing.Size(102, 20);
-            this.transactionStatusSaldo.TabIndex = 2;
-            this.transactionStatusSaldo.Text = "Saldo: € 0,00";
-            // 
-            // TrasactionStatusDropBox
-            // 
-            this.TrasactionStatusDropBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TrasactionStatusDropBox.FormattingEnabled = true;
-            this.TrasactionStatusDropBox.Location = new System.Drawing.Point(30, 55);
-            this.TrasactionStatusDropBox.Name = "TrasactionStatusDropBox";
-            this.TrasactionStatusDropBox.Size = new System.Drawing.Size(363, 21);
-            this.TrasactionStatusDropBox.TabIndex = 1;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(26, 27);
+            this.label2.Location = new System.Drawing.Point(26, 37);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 20);
+            this.label2.Size = new System.Drawing.Size(103, 20);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Transactiestatus";
+            this.label2.Text = "Verzendlijst";
             // 
             // tabPage3
             // 
@@ -850,8 +815,6 @@
         private System.Windows.Forms.Label label8;
         public System.Windows.Forms.Button transactionButton2;
         private System.Windows.Forms.Label label2;
-        public System.Windows.Forms.ComboBox TrasactionStatusDropBox;
-        public System.Windows.Forms.Label transactionStatusSaldo;
         public System.Windows.Forms.Button transactionStatusButtonAnnuleren;
         public System.Windows.Forms.Button transactionStatusSelectEverything;
         public System.Windows.Forms.TableLayoutPanel TransactionStatusTableLayout;
@@ -876,7 +839,6 @@
         private System.Windows.Forms.Label transactionLabel1;
         public System.Windows.Forms.TabPage tabPage3;
         public System.Windows.Forms.Label TransactionOverviewSearchLabel;
-        public System.Windows.Forms.Button transactieStatusHideButton;
         public System.Windows.Forms.Button transactieStatusVerzenden;
         public System.Windows.Forms.Button transactionStatusRefreshButton;
         private System.Windows.Forms.ToolStripMenuItem afmeldenToolStripMenuItem;

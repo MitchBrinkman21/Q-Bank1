@@ -11,7 +11,7 @@ namespace Q_Bank.Controller
     public class TransactionController
     {
         public FormMain formMain { get; set; }
-        public static List<Transaction> transactions;
+        public static List<Transaction> transactions = new List<Transaction>();
         public TransactionController(FormMain formMain)
         {
             this.formMain = formMain;

@@ -30,15 +30,14 @@ namespace Q_Bank.View
             ListTransactions = new List<Transaction>();
             this.formMain = formMain;
             tsc = new Controller.VerzendlijstController(this);
-            formMain.transactionStatusSelectEverything.Click += tsc.SelectAllHandler;
-            formMain.transactionStatusButtonAnnuleren.Click += tsc.Annuleren;
-            formMain.transactieStatusVerzenden.Click += tsc.Verzenden;
-            formMain.transactionStatusRefreshButton.Click += tsc.Refresch;
+            formMain.transactionStatusSelectEverything.MouseClick += tsc.SelectAllHandler;
+            formMain.transactionStatusButtonAnnuleren.MouseClick += tsc.Annuleren;
+            formMain.transactieStatusVerzenden.MouseClick += tsc.Verzenden;
+            formMain.transactionStatusRefreshButton.MouseClick += tsc.Refresch;
             tsc = new Controller.VerzendlijstController(this);
             formMain.transactieStatusVerzenden.Enabled = false;
             formMain.transactionStatusButtonAnnuleren.Enabled = false;
             FillList();
-            //AddTransactions();
             //verwijderd de verticale scrollbar
             int vertScrollWidth = SystemInformation.VerticalScrollBarWidth;
             formMain.TransactionStatusTableLayout.Padding = new Padding(0, 0, vertScrollWidth, 0);

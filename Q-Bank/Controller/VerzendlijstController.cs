@@ -29,9 +29,6 @@ namespace Q_Bank.Controller
                     item.Checked = true;
                 }
                 tss.allesGeselecteerd = true;
-                tss.formMain.transactieStatusVerzenden.Enabled = true;
-                tss.formMain.transactionStatusButtonAnnuleren.Enabled = true;
-
             }
             else
             {

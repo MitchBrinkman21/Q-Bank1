@@ -64,7 +64,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTestLoginController.cs" />
+	<Compile Include="UnitTestLoginController.cs" />
+    <Compile Include="UnitTestTransactionSearch.cs" />
     <Compile Include="UnitTestCreateUser.cs" />
   </ItemGroup>
   <ItemGroup>

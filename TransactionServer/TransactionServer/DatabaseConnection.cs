@@ -15,7 +15,7 @@ namespace TransactionServer
         public DatabaseConnection()
         {
             string connetionString = null;
-            connetionString = "Data Source=Mitch-MacBook\\SQLEXPRESS;Initial Catalog=Q_Bank;User ID=sa;Password=VanDorland1";
+            connetionString = "Data Source=FEIKO-LAPTOP\\SQLEXPRESS;Initial Catalog=Q_Bank;User ID=sa;Password=Feiko1337";
             CONN = new SqlConnection(connetionString);
             try
             {

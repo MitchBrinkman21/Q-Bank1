@@ -16,9 +16,12 @@ namespace Q_Bank.View
     {
         public Boolean CloseForm { get; set; }
         public FormMain formMain { get; set; }
+        public Boolean validText { get; set; }
+        public TransactionSearchController tdc { get; set; }
         public TransactionSearch(FormMain formMain)
         {
             this.formMain = formMain;
+            tdc = new TransactionSearchController(this);
             InitializeComponent();
             FillAccountCombobox();
             TransactionSearchCombobox.SelectedIndex = 0;
@@ -34,23 +37,16 @@ namespace Q_Bank.View
 
         private void TransactionSearchButtonSearch_Click(object sender, EventArgs e)
         {
-            if (TransactionSearchCombobox.SelectedIndex == 1)
-            {
-                if (beginDatePicker.Value > endDatePicker.Value)
-                {
-                    MessageBox.Show("Begindatum moet kleiner zijn dat einddatum!");
-                }
-                else
-                {
-                    this.CloseForm = true;
-                    Close();
-                }
-            }
-            else
+            tdc.checkValidText();
+            if (tdc.validText) 
             {
                 this.CloseForm = true;
                 Close();
             }
+            else
+            {
+                MessageBox.Show(tdc.error, "Error");
+            }               
         }
 
         private void TransactionSearchCombobox_SelectedIndexChanged(object sender, EventArgs e)

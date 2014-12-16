@@ -67,6 +67,7 @@
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\PasswordEncryption.cs" />
     <Compile Include="Controller\TransactionController.cs" />
+    <Compile Include="Controller\TransactionSearchController.cs" />
     <Compile Include="Controller\TransactionOverviewController.cs" />
     <Compile Include="Controller\TransactionsStatusController.cs" />
     <Compile Include="Controller\ValidateEmail.cs" />

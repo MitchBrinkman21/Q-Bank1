@@ -65,11 +65,11 @@
     <Compile Include="Controller\CreateUserController.cs" />
     <Compile Include="Controller\Logging.cs" />
     <Compile Include="Controller\LoginController.cs" />
+    <Compile Include="Controller\MailingListController.cs" />
     <Compile Include="Controller\PasswordEncryption.cs" />
     <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Controller\TransactionSearchController.cs" />
     <Compile Include="Controller\TransactionOverviewController.cs" />
-    <Compile Include="Controller\VerzendlijstController.cs" />
     <Compile Include="Controller\ValidateEmail.cs" />
     <Compile Include="customer.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -164,7 +164,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\TabVerzendlijst.cs" />
+    <Compile Include="View\TabMailingList.cs" />
     <Compile Include="View\TransactionDetails.cs">
       <SubType>Form</SubType>
     </Compile>

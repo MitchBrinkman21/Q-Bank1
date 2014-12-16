@@ -207,9 +207,9 @@
             this.transactionStateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.transactionStateLabel.Location = new System.Drawing.Point(230, 262);
             this.transactionStateLabel.Name = "transactionStateLabel";
-            this.transactionStateLabel.Size = new System.Drawing.Size(45, 16);
+            this.transactionStateLabel.Size = new System.Drawing.Size(58, 16);
             this.transactionStateLabel.TabIndex = 19;
-            this.transactionStateLabel.Text = "Status";
+            this.transactionStateLabel.Text = "Voltooid";
             // 
             // label2
             // 

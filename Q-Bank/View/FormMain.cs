@@ -45,7 +45,7 @@ namespace Q_Bank
         private void TransactionStatus()
         {
 
-            TabVerzendlijst tts = new TabVerzendlijst(this);
+            TabMailingList tts = new TabMailingList(this);
 
         }
 

@@ -9,17 +9,17 @@ using Q_Bank.Model;
 
 namespace Q_Bank.View
 {
-    public class TabVerzendlijst
+    public class TabMailingList
     {
         public FormMain formMain { get; set; }
-        public Controller.VerzendlijstController tsc;
+        public Controller.MailingListController tsc;
         public List<Label> uitvoerDatum, tegenRekening, omschrijving, bedrag, status;
         public List<CheckBox> kies;
         public List<Transaction> ListTransactions;
         private Label lKies, lUitvoerDatum, lTegenRekening, lOmschrijving, lBedrag, lStatus;
         public bool hideVerzondenItems = false;
         public bool allesGeselecteerd = false;
-        public TabVerzendlijst(FormMain formMain)
+        public TabMailingList(FormMain formMain)
         {
             uitvoerDatum = new List<Label>();
             tegenRekening = new List<Label>();
@@ -29,12 +29,12 @@ namespace Q_Bank.View
             kies = new List<CheckBox>();
             ListTransactions = new List<Transaction>();
             this.formMain = formMain;
-            tsc = new Controller.VerzendlijstController(this);
+            tsc = new Controller.MailingListController(this);
             formMain.transactionStatusSelectEverything.MouseClick += tsc.SelectAllHandler;
             formMain.transactionStatusButtonAnnuleren.MouseClick += tsc.Annuleren;
             formMain.transactieStatusVerzenden.MouseClick += tsc.Verzenden;
             formMain.transactionStatusRefreshButton.MouseClick += tsc.Refresch;
-            tsc = new Controller.VerzendlijstController(this);
+            tsc = new Controller.MailingListController(this);
             formMain.transactieStatusVerzenden.Enabled = false;
             formMain.transactionStatusButtonAnnuleren.Enabled = false;
             FillList();

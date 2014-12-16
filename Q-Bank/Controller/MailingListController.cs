@@ -9,12 +9,12 @@ using Q_Bank.Model;
 
 namespace Q_Bank.Controller
 {
-    public class VerzendlijstController
+    public class MailingListController
     {
-        private View.TabVerzendlijst tss;
+        private View.TabMailingList tss;
 
 
-        public VerzendlijstController(View.TabVerzendlijst tss)
+        public MailingListController(View.TabMailingList tss)
         {
             this.tss = tss;
         }

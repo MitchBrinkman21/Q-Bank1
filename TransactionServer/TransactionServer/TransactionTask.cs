@@ -27,7 +27,7 @@ namespace TransactionServer
             succesful = 0;
             log = new Logging();
 
-            path = @"C:\Users\Mitch Brinkman\Documents\log.txt";
+            path = @"C:\Q-Bank\log.txt";
 
             if (!File.Exists(path))
             {
@@ -220,9 +220,11 @@ namespace TransactionServer
             conn.Open();
             transList = GetQueue();
             Account account = null;
+            Boolean transactionSucces;
 
             foreach (Transaction ta in transList)
             {
+                transactionSucces = false;
                 moneyReceived = false;
 
                 if (ta.GetSepa() == 0)
@@ -404,13 +406,11 @@ namespace TransactionServer
 
                                 if (recordsAffected == 1)
                                 {
-                                    succesful++;
-
                                     // Insert Query into Transaction Table...
                                     string insertQuery = " INSERT INTO [transaction] " +
-                                                            " (transactionId, amount, commit, sepa, ibanReceiver, nameReceiver, accountId, commitDateTime, datetime, bic, executeDate, remark)" +
+                                                            " (transactionId, amount, sepa, ibanReceiver, nameReceiver, accountId, commitDateTime, datetime, bic, executeDate, remark)" +
                                                             " VALUES " +
-                                                            "(@transactionId, @amount, 1, @sepa, @ibanReceiver, @nameReceiver, @accountId, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, @bic, @executeDate, @remark) ";
+                                                            "(@transactionId, @amount, @sepa, @ibanReceiver, @nameReceiver, @accountId, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, @bic, @executeDate, @remark) ";
 
                                     using (SqlCommand queryInsertTransaction = new SqlCommand(insertQuery))
                                     {
@@ -431,6 +431,7 @@ namespace TransactionServer
                                         try
                                         {
                                             recordsAffected = queryInsertTransaction.ExecuteNonQuery();
+                                            transactionSucces = true;
                                         }
                                         catch (Exception ex)
                                         {
@@ -490,12 +491,63 @@ namespace TransactionServer
                         }
                         UpdateTransactionStatusTo(transactionId, 2);
                     }
-                    conn.Close();
+
+                    if (transactionSucces == true)
+                    {
+                        int deletequeue = DeleteQueueRecord(ta.GetTransactionId());
+                        succesful++;
+                    }
                 }
             }
             transList.Clear();
             conn.Close();
         }
-        
-    }
+
+        public int DeleteQueueRecord(int transactionId)
+        {
+            int recordsAffected = 0;
+            SqlTransaction transaction;
+            transaction = conn.BeginTransaction("DeleteTransaction");
+
+            string deleteQuery = "DELETE FROM [transactionQueue] WHERE transactionId = @transactionId ";
+
+            using (SqlCommand queryUpdateStatus = new SqlCommand(deleteQuery))
+            {
+                // Update Status of transaction 
+                queryUpdateStatus.Connection = conn;
+                queryUpdateStatus.Transaction = transaction;
+                queryUpdateStatus.Parameters.Add("@transactionId", SqlDbType.Int, 32).Value = transactionId;
+
+                try
+                {
+                    recordsAffected = queryUpdateStatus.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Commit Exception Type: {0}", ex.GetType());
+                    Console.WriteLine("  Message: {0}", ex.Message);
+
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        // This catch block will handle any errors that may have occurred 
+                        // on the server that would cause the rollback to fail, such as 
+                        // a closed connection.
+                        Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                        Console.WriteLine("  Message: {0}", ex2.Message);
+
+                        using (StreamWriter w = File.AppendText(path))
+                        {
+                            log.WriteLogging("TransactionQueue could'n delete record for TransactionId:" + transactionId.ToString(), w);
+                        }
+                    }
+                }
+                transaction.Commit();
+            }
+            return recordsAffected;
+        }      
+    }  
 }

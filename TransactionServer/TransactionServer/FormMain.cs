@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -28,6 +29,11 @@ namespace TransactionServer
             conn = DatabaseConnection.CONN;
 
             buttonStop.Enabled = false;
+
+            if (!Directory.Exists(@"C:\Q-Bank"))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(@"C:\Q-Bank");
+            }
         }
 
         private void buttonStart_Click(object sender, EventArgs e)

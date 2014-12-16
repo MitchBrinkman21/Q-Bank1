@@ -62,10 +62,10 @@ namespace Q_Bank.Controller
                                    select a;
                     foreach (transaction item in transact)
                     {
-                        if (item.transactionStatusId == 1 || item.transactionStatusId == 2)
-                        {
-                            able.Add(item);
-                        }
+                        //if (item.transactionStatusId == 1 || item.transactionStatusId == 2)
+                        //{
+                        //    able.Add(item);
+                        //}
                     }
                 }
             }
@@ -112,14 +112,14 @@ namespace Q_Bank.Controller
                                        select a;
                     foreach (transaction item in transact)
                     {
-                        if (item.transactionStatusId == 1)
-                        {
-                            send.Add(item);
-                        }
-                        else
-                        {
-                            notSend.Add(item);
-                        }
+                        //if (item.transactionStatusId == 1)
+                        //{
+                        //    send.Add(item);
+                        //}
+                        //else
+                        //{
+                        //    notSend.Add(item);
+                        //}
                     }
                 }
             }
@@ -184,10 +184,10 @@ namespace Q_Bank.Controller
                                      where a.transactionId == item.transactionId
                                      select a;
 
-                    foreach (transaction item1 in done)
-                    {
-                         item1.transactionStatusId = setID;
-                    }
+                    //foreach (transaction item1 in done)
+                    //{
+                    //     item1.transactionStatusId = setID;
+                    //}
 
                     try
                     {

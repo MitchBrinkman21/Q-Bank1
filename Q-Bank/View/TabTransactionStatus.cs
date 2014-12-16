@@ -23,16 +23,16 @@ namespace Q_Bank.View
         public TabTransactionStatus(FormMain formMain)
         {
             
-            using (var con = new Q_BANKEntities())
-            {
-                var statusList = from a in con.transactionstatus
-                                 select a;
+            //using (var con = new Q_BANKEntities())
+            //{
+            //    var statusList = from a in con.transactionstatus
+            //                     select a;
 
-                foreach (transactionstatu item in statusList)
-                {
-                    statussen.Add(item.transactionStatusName);
-                }
-            }
+            //    foreach (transactionstatu item in statusList)
+            //    {
+            //        statussen.Add(item.transactionStatusName);
+            //    }
+            //}
 
             uitvoerDatum = new List<Label>();
             tegenRekening = new List<Label>();
@@ -113,17 +113,17 @@ namespace Q_Bank.View
         {
             if (hideVerzondenItems)
             {
-                if (t.transactionStatusId == 1)
-                {
-                    AddItemsInTable(t, i);
-                }
+                //if (t.transactionStatusId == 1)
+                //{
+                //    AddItemsInTable(t, i);
+                //}
             }
             else
             {
-                if (t.transactionStatusId == 1 || t.transactionStatusId == 2 || t.transactionStatusId == 3)
-                {
-                    AddItemsInTable(t, i);
-                }
+                //if (t.transactionStatusId == 1 || t.transactionStatusId == 2 || t.transactionStatusId == 3)
+                //{
+                //    AddItemsInTable(t, i);
+                //}
             }
         }
 
@@ -134,15 +134,14 @@ namespace Q_Bank.View
                 CheckBox tempCBox;
                 int tID = t.transactionId;
 
-                if (t.transactionStatusId < 3)
-                {                    
-                    tempCBox = new CheckBox();
-                    tempCBox.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-                    tempCBox.Tag = tID;
-                    formMain.TransactionStatusTableLayout.Controls.Add(tempCBox, 0, i + 1);
-                    tempCBox.CheckedChanged += tsc.CheckChanged;
-                    kies.Add(tempCBox);
-                }
+
+                tempCBox = new CheckBox();
+                tempCBox.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                tempCBox.Tag = tID;
+                formMain.TransactionStatusTableLayout.Controls.Add(tempCBox, 0, i + 1);
+                tempCBox.CheckedChanged += tsc.CheckChanged;
+                kies.Add(tempCBox);
+
 
                 tempLabel = new Label();
                 tempLabel.Text = t.datetime.ToString();
@@ -177,7 +176,7 @@ namespace Q_Bank.View
                 bedrag.Add(tempLabel);
 
                 tempLabel = new Label();
-                tempLabel.Text = statussen[t.transactionStatusId - 1];
+                tempLabel.Text = "nog te verzenden";
                 tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
                 tempLabel.Tag = tID;
                 tempLabel.Click += tsc.clickLabelDate;

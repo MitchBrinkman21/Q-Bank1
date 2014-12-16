@@ -65,14 +65,6 @@ namespace Q_Bank.Controller
             }
         }
 
-
-        public void clickLabelDate(object sender, EventArgs e)
-        {
-            Label clickedLabel = sender as Label;
-            View.TransactionDetails d = new View.TransactionDetails(Convert.ToInt32(clickedLabel.Tag), null);
-            d.ShowDialog();
-        }
-
         public void Verzenden(object sender, EventArgs e)
         {
             var selectedId = from id in tss.kies

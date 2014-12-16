@@ -60,7 +60,6 @@ namespace Q_Bank.View
                 tempLabel0.Text = "Er zijn geen rekeningen te verzenden";
                 tempLabel0.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
                 tempLabel0.Tag = i;
-                tempLabel0.Click += tsc.clickLabelDate;
                 formMain.TransactionStatusTableLayout.Controls.Add(tempLabel0, 2, i + 1);
                 tegenRekening.Add(tempLabel0);
             }
@@ -96,7 +95,7 @@ namespace Q_Bank.View
                 tempLabel.Text = t.datetime.ToString();
                 tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
                 tempLabel.Tag = i;
-                tempLabel.Click += tsc.clickLabelDate;
+                //tempLabel.Click += tsc.clickLabelDate;
                 formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 1, i + 1);
                 uitvoerDatum.Add(tempLabel);
 
@@ -104,7 +103,7 @@ namespace Q_Bank.View
                 tempLabel.Text = t.nameReceiver.ToString() + " " + t.ibanReceiver.ToString();
                 tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
                 tempLabel.Tag = i;
-                tempLabel.Click += tsc.clickLabelDate;
+                //tempLabel.Click += tsc.clickLabelDate;
                 formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 2, i + 1);
                 tegenRekening.Add(tempLabel);
 
@@ -112,7 +111,7 @@ namespace Q_Bank.View
                 tempLabel.Text = t.remark.ToString();
                 tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
                 tempLabel.Tag = i;
-                tempLabel.Click += tsc.clickLabelDate;
+                //tempLabel.Click += tsc.clickLabelDate;
                 formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 3, i + 1);
                 omschrijving.Add(tempLabel);
 
@@ -120,7 +119,7 @@ namespace Q_Bank.View
                 tempLabel.Text = "€" + String.Format("{0:0,00}", t.amount.ToString("f2"));
                 tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
                 tempLabel.Tag = i;
-                tempLabel.Click += tsc.clickLabelDate;
+                //tempLabel.Click += tsc.clickLabelDate;
                 formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 4, i + 1);
                 bedrag.Add(tempLabel);
 
@@ -128,7 +127,7 @@ namespace Q_Bank.View
                 tempLabel.Text = "nog te verzenden";
                 tempLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
                 tempLabel.Tag = i;
-                tempLabel.Click += tsc.clickLabelDate;
+                //tempLabel.Click += tsc.clickLabelDate;
                 formMain.TransactionStatusTableLayout.Controls.Add(tempLabel, 5, i + 1);
                 status.Add(tempLabel);                
         }

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Q_Bank.Controller
 {
-    class LoginController
+    public class LoginController
     {
         public FormLogin formLogin { get; set; }
         public FormMain a;
@@ -89,24 +89,7 @@ namespace Q_Bank.Controller
             cu.ShowDialog();
         }
 
-        public bool checkData()
-        {
-            if (!String.IsNullOrEmpty(formLogin.textBox1.Text) && !String.IsNullOrEmpty(formLogin.textBox2.Text))
-            {
-                if (checkLogin())
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                return false;
-            }
-
-            return false;
-        }
-
-        private bool checkLogin()
+        public bool checkLogin()
         {
             if (!String.IsNullOrEmpty(formLogin.textBox1.Text) && !String.IsNullOrEmpty(formLogin.textBox2.Text))
             {

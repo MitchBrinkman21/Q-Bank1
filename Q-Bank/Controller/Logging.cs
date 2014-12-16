@@ -12,23 +12,18 @@ namespace Q_Bank.Controller
         public string path = @"C:\Q-Bank\log.txt";
         public Logging()
         {
-            // Specify the directory you want to manipulate. 
-            string directoryPath = @"c:\Q-Bank";
-
             try
             {
                 // Determine whether the directory exists. 
-                if (!Directory.Exists(directoryPath))
+                if (!Directory.Exists(@"c:\Q-Bank"))
                 {
                     // Try to create the directory.
-                    DirectoryInfo di = Directory.CreateDirectory(directoryPath);
+                    DirectoryInfo di = Directory.CreateDirectory(@"c:\Q-Bank");
                 }
 
-                string filePath = @"C:\Q-Bank\log.txt";
-
-                if (!File.Exists(filePath))
+                if (!File.Exists(@"C:\Q-Bank\log.txt"))
                 {
-                    using (StreamWriter w = File.CreateText(filePath))
+                    using (StreamWriter w = File.CreateText(@"C:\Q-Bank\log.txt"))
                     {
                         WriteLogging("Log file Created! ", w);
                     }

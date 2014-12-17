@@ -279,16 +279,16 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.Button messageAddUsers;
-        private System.Windows.Forms.Button messageSendButton;
-        private System.Windows.Forms.Button messageSendCancel;
-        private System.Windows.Forms.RichTextBox messageMessageTextbox;
-        private System.Windows.Forms.TextBox messageTitelTextbox;
-        private System.Windows.Forms.TextBox messageToUserTextbox;
         private System.Windows.Forms.Label messageMessage;
         private System.Windows.Forms.Label messageTitel;
         private System.Windows.Forms.Label messageToPersonsLabel;
         private System.Windows.Forms.Label messageSendMessageLabel;
+        public System.Windows.Forms.Button messageAddUsers;
+        public System.Windows.Forms.Button messageSendButton;
+        public System.Windows.Forms.Button messageSendCancel;
+        public System.Windows.Forms.RichTextBox messageMessageTextbox;
+        public System.Windows.Forms.TextBox messageTitelTextbox;
+        public System.Windows.Forms.TextBox messageToUserTextbox;
 
 
     }

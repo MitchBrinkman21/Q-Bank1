@@ -48,13 +48,10 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.optiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afmeldenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-<<<<<<< HEAD
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.tabPage9 = new System.Windows.Forms.TabPage();
-=======
->>>>>>> ea78152921534dbebec716f9a794118f7b89c37d
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -257,7 +254,6 @@
             this.afmeldenToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.afmeldenToolStripMenuItem.Text = "Afmelden";
             this.afmeldenToolStripMenuItem.Click += new System.EventHandler(this.afmeldenToolStripMenuItem_Click_1);
-<<<<<<< HEAD
             // 
             // tabControl2
             // 
@@ -300,8 +296,6 @@
             this.tabPage9.TabIndex = 2;
             this.tabPage9.Text = "Niet Actieve gebruikers";
             this.tabPage9.UseVisualStyleBackColor = true;
-=======
->>>>>>> ea78152921534dbebec716f9a794118f7b89c37d
             // 
             // FormMain
             // 
@@ -341,20 +335,16 @@
         private System.Windows.Forms.Label messageTitel;
         private System.Windows.Forms.Label messageToPersonsLabel;
         private System.Windows.Forms.Label messageSendMessageLabel;
-<<<<<<< HEAD
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.TabPage tabPage9;
-=======
         public System.Windows.Forms.Button messageAddUsers;
         public System.Windows.Forms.Button messageSendButton;
         public System.Windows.Forms.Button messageSendCancel;
         public System.Windows.Forms.RichTextBox messageMessageTextbox;
         public System.Windows.Forms.TextBox messageTitelTextbox;
         public System.Windows.Forms.TextBox messageToUserTextbox;
->>>>>>> ea78152921534dbebec716f9a794118f7b89c37d
-
 
     }
 }

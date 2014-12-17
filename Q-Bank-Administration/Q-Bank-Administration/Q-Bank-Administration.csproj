@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\CostumerOverviewController.cs" />
+    <Compile Include="Controller\CustomerOverviewController.cs" />
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\MessagesController.cs" />
     <Compile Include="View\FormMain.cs">

@@ -31,6 +31,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.ButtonAdd = new System.Windows.Forms.Button();
             this.ButtonCancel = new System.Windows.Forms.Button();
+            this.messageAddUsersSearchTextbox = new System.Windows.Forms.TextBox();
+            this.messageAddUsersSearchButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -39,14 +41,14 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(32, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(166, 20);
+            this.label2.Size = new System.Drawing.Size(249, 20);
             this.label2.TabIndex = 21;
-            this.label2.Text = "Gebruikers toevoegen";
+            this.label2.Text = "Gebruikers toevoegen aan bericht";
             // 
             // ButtonAdd
             // 
             this.ButtonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonAdd.Location = new System.Drawing.Point(173, 355);
+            this.ButtonAdd.Location = new System.Drawing.Point(183, 503);
             this.ButtonAdd.Name = "ButtonAdd";
             this.ButtonAdd.Size = new System.Drawing.Size(136, 39);
             this.ButtonAdd.TabIndex = 23;
@@ -57,7 +59,7 @@
             // ButtonCancel
             // 
             this.ButtonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonCancel.Location = new System.Drawing.Point(315, 355);
+            this.ButtonCancel.Location = new System.Drawing.Point(325, 503);
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(136, 39);
             this.ButtonCancel.TabIndex = 22;
@@ -65,12 +67,30 @@
             this.ButtonCancel.UseVisualStyleBackColor = true;
             this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
+            // messageAddUsersSearchTextbox
+            // 
+            this.messageAddUsersSearchTextbox.Location = new System.Drawing.Point(36, 72);
+            this.messageAddUsersSearchTextbox.Name = "messageAddUsersSearchTextbox";
+            this.messageAddUsersSearchTextbox.Size = new System.Drawing.Size(344, 20);
+            this.messageAddUsersSearchTextbox.TabIndex = 24;
+            // 
+            // messageAddUsersSearchButton
+            // 
+            this.messageAddUsersSearchButton.Location = new System.Drawing.Point(386, 72);
+            this.messageAddUsersSearchButton.Name = "messageAddUsersSearchButton";
+            this.messageAddUsersSearchButton.Size = new System.Drawing.Size(75, 23);
+            this.messageAddUsersSearchButton.TabIndex = 25;
+            this.messageAddUsersSearchButton.Text = "Zoeken";
+            this.messageAddUsersSearchButton.UseVisualStyleBackColor = true;
+            // 
             // MessageAddUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(463, 406);
+            this.ClientSize = new System.Drawing.Size(473, 554);
+            this.Controls.Add(this.messageAddUsersSearchButton);
+            this.Controls.Add(this.messageAddUsersSearchTextbox);
             this.Controls.Add(this.ButtonAdd);
             this.Controls.Add(this.ButtonCancel);
             this.Controls.Add(this.label2);
@@ -90,5 +110,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button ButtonAdd;
         private System.Windows.Forms.Button ButtonCancel;
+        private System.Windows.Forms.TextBox messageAddUsersSearchTextbox;
+        private System.Windows.Forms.Button messageAddUsersSearchButton;
     }
 }

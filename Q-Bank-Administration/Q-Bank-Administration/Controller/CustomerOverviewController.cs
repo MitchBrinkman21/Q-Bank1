@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Q_Bank_Administration.Controller
 {
-    class CostumerOverviewController
+    class CustomerOverviewController
     {
         public FormMain formMain { get; set; }
 
-        public CostumerOverviewController(FormMain formMain)
+        public CustomerOverviewController(FormMain formMain)
         {
             this.formMain = formMain;
         }

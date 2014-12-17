@@ -31,6 +31,10 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -48,19 +52,18 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.optiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afmeldenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabControl2.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.menuStrip2.SuspendLayout();
-            this.tabControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -94,6 +97,50 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Klantenoverzicht";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl2.Controls.Add(this.tabPage7);
+            this.tabControl2.Controls.Add(this.tabPage8);
+            this.tabControl2.Controls.Add(this.tabPage9);
+            this.tabControl2.Location = new System.Drawing.Point(3, 3);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(983, 621);
+            this.tabControl2.TabIndex = 0;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(975, 595);
+            this.tabPage7.TabIndex = 0;
+            this.tabPage7.Text = "Alle gebruikers";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(975, 595);
+            this.tabPage8.TabIndex = 1;
+            this.tabPage8.Text = "Actieve gebruikers";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(975, 595);
+            this.tabPage9.TabIndex = 2;
+            this.tabPage9.Text = "Niet Actieve gebruikers";
+            this.tabPage9.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
@@ -255,48 +302,6 @@
             this.afmeldenToolStripMenuItem.Text = "Afmelden";
             this.afmeldenToolStripMenuItem.Click += new System.EventHandler(this.afmeldenToolStripMenuItem_Click_1);
             // 
-            // tabControl2
-            // 
-            this.tabControl2.Controls.Add(this.tabPage7);
-            this.tabControl2.Controls.Add(this.tabPage8);
-            this.tabControl2.Controls.Add(this.tabPage9);
-            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl2.Location = new System.Drawing.Point(3, 3);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(983, 621);
-            this.tabControl2.TabIndex = 0;
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(975, 595);
-            this.tabPage7.TabIndex = 0;
-            this.tabPage7.Text = "Alle gebruikers";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // tabPage8
-            // 
-            this.tabPage8.Location = new System.Drawing.Point(4, 22);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(975, 595);
-            this.tabPage8.TabIndex = 1;
-            this.tabPage8.Text = "Actieve gebruikers";
-            this.tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // tabPage9
-            // 
-            this.tabPage9.Location = new System.Drawing.Point(4, 22);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(975, 595);
-            this.tabPage9.TabIndex = 2;
-            this.tabPage9.Text = "Niet Actieve gebruikers";
-            this.tabPage9.UseVisualStyleBackColor = true;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,11 +314,11 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
-            this.tabControl2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,16 +340,16 @@
         private System.Windows.Forms.Label messageTitel;
         private System.Windows.Forms.Label messageToPersonsLabel;
         private System.Windows.Forms.Label messageSendMessageLabel;
-        private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.TabPage tabPage9;
         public System.Windows.Forms.Button messageAddUsers;
         public System.Windows.Forms.Button messageSendButton;
         public System.Windows.Forms.Button messageSendCancel;
         public System.Windows.Forms.RichTextBox messageMessageTextbox;
         public System.Windows.Forms.TextBox messageTitelTextbox;
         public System.Windows.Forms.TextBox messageToUserTextbox;
+        public System.Windows.Forms.TabControl tabControl2;
+        public System.Windows.Forms.TabPage tabPage7;
+        public System.Windows.Forms.TabPage tabPage8;
+        public System.Windows.Forms.TabPage tabPage9;
 
     }
 }

@@ -33,6 +33,10 @@
             this.ButtonCancel = new System.Windows.Forms.Button();
             this.messageAddUsersSearchTextbox = new System.Windows.Forms.TextBox();
             this.messageAddUsersSearchButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.usersTable = new System.Windows.Forms.TableLayoutPanel();
             this.SuspendLayout();
             // 
             // label2
@@ -54,7 +58,6 @@
             this.ButtonAdd.TabIndex = 23;
             this.ButtonAdd.Text = "Toevoegen";
             this.ButtonAdd.UseVisualStyleBackColor = true;
-            this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // ButtonCancel
             // 
@@ -65,23 +68,60 @@
             this.ButtonCancel.TabIndex = 22;
             this.ButtonCancel.Text = "Annuleren";
             this.ButtonCancel.UseVisualStyleBackColor = true;
-            this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // messageAddUsersSearchTextbox
             // 
-            this.messageAddUsersSearchTextbox.Location = new System.Drawing.Point(36, 72);
+            this.messageAddUsersSearchTextbox.Location = new System.Drawing.Point(82, 111);
             this.messageAddUsersSearchTextbox.Name = "messageAddUsersSearchTextbox";
-            this.messageAddUsersSearchTextbox.Size = new System.Drawing.Size(344, 20);
+            this.messageAddUsersSearchTextbox.Size = new System.Drawing.Size(298, 20);
             this.messageAddUsersSearchTextbox.TabIndex = 24;
             // 
             // messageAddUsersSearchButton
             // 
-            this.messageAddUsersSearchButton.Location = new System.Drawing.Point(386, 72);
+            this.messageAddUsersSearchButton.Location = new System.Drawing.Point(386, 111);
             this.messageAddUsersSearchButton.Name = "messageAddUsersSearchButton";
             this.messageAddUsersSearchButton.Size = new System.Drawing.Size(75, 23);
             this.messageAddUsersSearchButton.TabIndex = 25;
             this.messageAddUsersSearchButton.Text = "Zoeken";
             this.messageAddUsersSearchButton.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(36, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(26, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Aan";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(82, 72);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(298, 20);
+            this.textBox1.TabIndex = 27;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(36, 118);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "Zoeken";
+            // 
+            // usersTable
+            // 
+            this.usersTable.ColumnCount = 2;
+            this.usersTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.55719F));
+            this.usersTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.44282F));
+            this.usersTable.Location = new System.Drawing.Point(82, 159);
+            this.usersTable.Name = "usersTable";
+            this.usersTable.RowCount = 1;
+            this.usersTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.usersTable.Size = new System.Drawing.Size(341, 338);
+            this.usersTable.TabIndex = 29;
             // 
             // MessageAddUsers
             // 
@@ -89,6 +129,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(473, 554);
+            this.Controls.Add(this.usersTable);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.messageAddUsersSearchButton);
             this.Controls.Add(this.messageAddUsersSearchTextbox);
             this.Controls.Add(this.ButtonAdd);
@@ -108,9 +152,13 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button ButtonAdd;
-        private System.Windows.Forms.Button ButtonCancel;
         private System.Windows.Forms.TextBox messageAddUsersSearchTextbox;
         private System.Windows.Forms.Button messageAddUsersSearchButton;
+        public System.Windows.Forms.Button ButtonAdd;
+        public System.Windows.Forms.Button ButtonCancel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TableLayoutPanel usersTable;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Q_Bank_Administration.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,17 +17,7 @@ namespace Q_Bank_Administration.View
         public MessageAddUsers()
         {
             InitializeComponent();
-        }
-
-        private void ButtonCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void ButtonAdd_Click(object sender, EventArgs e)
-        {
-            this.CloseForm = true;
-            this.Close();
+            MessageAddUsersController mauc = new MessageAddUsersController(this);
         }
     }
 }

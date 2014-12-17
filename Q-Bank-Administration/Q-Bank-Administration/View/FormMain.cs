@@ -29,7 +29,7 @@ namespace Q_Bank_Administration
 
         private void CustomerOverview()
         {
-
+            CostumerOverviewController coc = new CostumerOverviewController(this);
         }
 
         private void EmployeeOverview()

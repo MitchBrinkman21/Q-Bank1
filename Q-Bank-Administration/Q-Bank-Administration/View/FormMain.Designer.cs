@@ -35,22 +35,28 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.messageAddUsers = new System.Windows.Forms.Button();
+            this.messageSendButton = new System.Windows.Forms.Button();
+            this.messageSendCancel = new System.Windows.Forms.Button();
+            this.messageMessageTextbox = new System.Windows.Forms.RichTextBox();
+            this.messageTitelTextbox = new System.Windows.Forms.TextBox();
+            this.messageToUserTextbox = new System.Windows.Forms.TextBox();
+            this.messageMessage = new System.Windows.Forms.Label();
+            this.messageTitel = new System.Windows.Forms.Label();
+            this.messageToPersonsLabel = new System.Windows.Forms.Label();
+            this.messageSendMessageLabel = new System.Windows.Forms.Label();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.optiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afmeldenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.messageSendMessageLabel = new System.Windows.Forms.Label();
-            this.messageToPersonsLabel = new System.Windows.Forms.Label();
-            this.messageTitel = new System.Windows.Forms.Label();
-            this.messageMessage = new System.Windows.Forms.Label();
-            this.messageToUserTextbox = new System.Windows.Forms.TextBox();
-            this.messageTitelTextbox = new System.Windows.Forms.TextBox();
-            this.messageMessageTextbox = new System.Windows.Forms.RichTextBox();
-            this.messageSendCancel = new System.Windows.Forms.Button();
-            this.messageSendButton = new System.Windows.Forms.Button();
-            this.messageAddUsers = new System.Windows.Forms.Button();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.menuStrip2.SuspendLayout();
+            this.tabControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -79,6 +85,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.tabControl2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -137,6 +144,92 @@
             this.tabPage6.Text = "Berichten";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // messageAddUsers
+            // 
+            this.messageAddUsers.Location = new System.Drawing.Point(924, 38);
+            this.messageAddUsers.Name = "messageAddUsers";
+            this.messageAddUsers.Size = new System.Drawing.Size(23, 23);
+            this.messageAddUsers.TabIndex = 9;
+            this.messageAddUsers.Text = "+";
+            this.messageAddUsers.UseVisualStyleBackColor = true;
+            // 
+            // messageSendButton
+            // 
+            this.messageSendButton.Location = new System.Drawing.Point(872, 576);
+            this.messageSendButton.Name = "messageSendButton";
+            this.messageSendButton.Size = new System.Drawing.Size(75, 23);
+            this.messageSendButton.TabIndex = 8;
+            this.messageSendButton.Text = "Verzenden";
+            this.messageSendButton.UseVisualStyleBackColor = true;
+            // 
+            // messageSendCancel
+            // 
+            this.messageSendCancel.Location = new System.Drawing.Point(127, 576);
+            this.messageSendCancel.Name = "messageSendCancel";
+            this.messageSendCancel.Size = new System.Drawing.Size(75, 23);
+            this.messageSendCancel.TabIndex = 7;
+            this.messageSendCancel.Text = "Annuleren";
+            this.messageSendCancel.UseVisualStyleBackColor = true;
+            // 
+            // messageMessageTextbox
+            // 
+            this.messageMessageTextbox.Location = new System.Drawing.Point(127, 93);
+            this.messageMessageTextbox.Name = "messageMessageTextbox";
+            this.messageMessageTextbox.Size = new System.Drawing.Size(820, 464);
+            this.messageMessageTextbox.TabIndex = 6;
+            this.messageMessageTextbox.Text = "";
+            // 
+            // messageTitelTextbox
+            // 
+            this.messageTitelTextbox.Location = new System.Drawing.Point(127, 67);
+            this.messageTitelTextbox.Name = "messageTitelTextbox";
+            this.messageTitelTextbox.Size = new System.Drawing.Size(820, 20);
+            this.messageTitelTextbox.TabIndex = 5;
+            // 
+            // messageToUserTextbox
+            // 
+            this.messageToUserTextbox.Location = new System.Drawing.Point(127, 38);
+            this.messageToUserTextbox.Name = "messageToUserTextbox";
+            this.messageToUserTextbox.Size = new System.Drawing.Size(791, 20);
+            this.messageToUserTextbox.TabIndex = 4;
+            // 
+            // messageMessage
+            // 
+            this.messageMessage.AutoSize = true;
+            this.messageMessage.Location = new System.Drawing.Point(61, 93);
+            this.messageMessage.Name = "messageMessage";
+            this.messageMessage.Size = new System.Drawing.Size(40, 13);
+            this.messageMessage.TabIndex = 3;
+            this.messageMessage.Text = "Bericht";
+            // 
+            // messageTitel
+            // 
+            this.messageTitel.AutoSize = true;
+            this.messageTitel.Location = new System.Drawing.Point(61, 67);
+            this.messageTitel.Name = "messageTitel";
+            this.messageTitel.Size = new System.Drawing.Size(27, 13);
+            this.messageTitel.TabIndex = 2;
+            this.messageTitel.Text = "Titel";
+            // 
+            // messageToPersonsLabel
+            // 
+            this.messageToPersonsLabel.AutoSize = true;
+            this.messageToPersonsLabel.Location = new System.Drawing.Point(61, 41);
+            this.messageToPersonsLabel.Name = "messageToPersonsLabel";
+            this.messageToPersonsLabel.Size = new System.Drawing.Size(26, 13);
+            this.messageToPersonsLabel.TabIndex = 1;
+            this.messageToPersonsLabel.Text = "Aan";
+            // 
+            // messageSendMessageLabel
+            // 
+            this.messageSendMessageLabel.AutoSize = true;
+            this.messageSendMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.messageSendMessageLabel.Location = new System.Drawing.Point(123, 3);
+            this.messageSendMessageLabel.Name = "messageSendMessageLabel";
+            this.messageSendMessageLabel.Size = new System.Drawing.Size(146, 20);
+            this.messageSendMessageLabel.TabIndex = 0;
+            this.messageSendMessageLabel.Text = "Bericht versturen";
+            // 
             // menuStrip2
             // 
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -161,91 +254,47 @@
             this.afmeldenToolStripMenuItem.Text = "Afmelden";
             this.afmeldenToolStripMenuItem.Click += new System.EventHandler(this.afmeldenToolStripMenuItem_Click_1);
             // 
-            // messageSendMessageLabel
+            // tabControl2
             // 
-            this.messageSendMessageLabel.AutoSize = true;
-            this.messageSendMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.messageSendMessageLabel.Location = new System.Drawing.Point(123, 3);
-            this.messageSendMessageLabel.Name = "messageSendMessageLabel";
-            this.messageSendMessageLabel.Size = new System.Drawing.Size(146, 20);
-            this.messageSendMessageLabel.TabIndex = 0;
-            this.messageSendMessageLabel.Text = "Bericht versturen";
+            this.tabControl2.Controls.Add(this.tabPage7);
+            this.tabControl2.Controls.Add(this.tabPage8);
+            this.tabControl2.Controls.Add(this.tabPage9);
+            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl2.Location = new System.Drawing.Point(3, 3);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(983, 621);
+            this.tabControl2.TabIndex = 0;
             // 
-            // messageToPersonsLabel
+            // tabPage7
             // 
-            this.messageToPersonsLabel.AutoSize = true;
-            this.messageToPersonsLabel.Location = new System.Drawing.Point(61, 41);
-            this.messageToPersonsLabel.Name = "messageToPersonsLabel";
-            this.messageToPersonsLabel.Size = new System.Drawing.Size(26, 13);
-            this.messageToPersonsLabel.TabIndex = 1;
-            this.messageToPersonsLabel.Text = "Aan";
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(975, 595);
+            this.tabPage7.TabIndex = 0;
+            this.tabPage7.Text = "Alle gebruikers";
+            this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // messageTitel
+            // tabPage8
             // 
-            this.messageTitel.AutoSize = true;
-            this.messageTitel.Location = new System.Drawing.Point(61, 67);
-            this.messageTitel.Name = "messageTitel";
-            this.messageTitel.Size = new System.Drawing.Size(27, 13);
-            this.messageTitel.TabIndex = 2;
-            this.messageTitel.Text = "Titel";
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(975, 595);
+            this.tabPage8.TabIndex = 1;
+            this.tabPage8.Text = "Actieve gebruikers";
+            this.tabPage8.UseVisualStyleBackColor = true;
             // 
-            // messageMessage
+            // tabPage9
             // 
-            this.messageMessage.AutoSize = true;
-            this.messageMessage.Location = new System.Drawing.Point(61, 93);
-            this.messageMessage.Name = "messageMessage";
-            this.messageMessage.Size = new System.Drawing.Size(40, 13);
-            this.messageMessage.TabIndex = 3;
-            this.messageMessage.Text = "Bericht";
-            // 
-            // messageToUserTextbox
-            // 
-            this.messageToUserTextbox.Location = new System.Drawing.Point(127, 38);
-            this.messageToUserTextbox.Name = "messageToUserTextbox";
-            this.messageToUserTextbox.Size = new System.Drawing.Size(791, 20);
-            this.messageToUserTextbox.TabIndex = 4;
-            // 
-            // messageTitelTextbox
-            // 
-            this.messageTitelTextbox.Location = new System.Drawing.Point(127, 67);
-            this.messageTitelTextbox.Name = "messageTitelTextbox";
-            this.messageTitelTextbox.Size = new System.Drawing.Size(820, 20);
-            this.messageTitelTextbox.TabIndex = 5;
-            // 
-            // messageMessageTextbox
-            // 
-            this.messageMessageTextbox.Location = new System.Drawing.Point(127, 93);
-            this.messageMessageTextbox.Name = "messageMessageTextbox";
-            this.messageMessageTextbox.Size = new System.Drawing.Size(820, 464);
-            this.messageMessageTextbox.TabIndex = 6;
-            this.messageMessageTextbox.Text = "";
-            // 
-            // messageSendCancel
-            // 
-            this.messageSendCancel.Location = new System.Drawing.Point(127, 576);
-            this.messageSendCancel.Name = "messageSendCancel";
-            this.messageSendCancel.Size = new System.Drawing.Size(75, 23);
-            this.messageSendCancel.TabIndex = 7;
-            this.messageSendCancel.Text = "Annuleren";
-            this.messageSendCancel.UseVisualStyleBackColor = true;
-            // 
-            // messageSendButton
-            // 
-            this.messageSendButton.Location = new System.Drawing.Point(872, 576);
-            this.messageSendButton.Name = "messageSendButton";
-            this.messageSendButton.Size = new System.Drawing.Size(75, 23);
-            this.messageSendButton.TabIndex = 8;
-            this.messageSendButton.Text = "Verzenden";
-            this.messageSendButton.UseVisualStyleBackColor = true;
-            // 
-            // messageAddUsers
-            // 
-            this.messageAddUsers.Location = new System.Drawing.Point(924, 38);
-            this.messageAddUsers.Name = "messageAddUsers";
-            this.messageAddUsers.Size = new System.Drawing.Size(23, 23);
-            this.messageAddUsers.TabIndex = 9;
-            this.messageAddUsers.Text = "+";
-            this.messageAddUsers.UseVisualStyleBackColor = true;
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(975, 595);
+            this.tabPage9.TabIndex = 2;
+            this.tabPage9.Text = "Niet Actieve gebruikers";
+            this.tabPage9.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -258,10 +307,12 @@
             this.Text = "Adminstrator";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.tabControl1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            this.tabControl2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -289,6 +340,10 @@
         private System.Windows.Forms.Label messageTitel;
         private System.Windows.Forms.Label messageToPersonsLabel;
         private System.Windows.Forms.Label messageSendMessageLabel;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.TabPage tabPage9;
 
 
     }

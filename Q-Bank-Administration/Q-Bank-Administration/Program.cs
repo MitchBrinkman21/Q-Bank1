@@ -16,7 +16,7 @@ namespace Q_Bank_Administration
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            Application.Run(new FormMain(1));
         }
     }
 }

@@ -11,17 +11,17 @@ namespace Q_Bank_Administration.Controller
     public class MessagesController
     {
         public FormMain formMain { get; set; }
-        public MessageAddUsers  mau { get; set; }
+        public MessageAddUsers mau { get; set; }
 
         public MessagesController(FormMain formMain)
         {
             this.formMain = formMain;
-            this.formMain.messageSendButton.MouseClick += MouseClickMessageSendButton;
-            this.formMain.messageSendCancel.MouseClick += MouseClickMessageCancelButton;
-            this.formMain.messageAddUsers.MouseClick += MouseClickAddUsersButton;
+            this.formMain.messageSendButton.Click += messageSendButton_Click;
+            this.formMain.messageSendCancel.Click += messageSendCancel_Click;
+            this.formMain.messageAddUsers.Click += messageAddUsers_Click;
         }
 
-        private void MouseClickMessageSendButton(object sender, EventArgs e)
+        private void messageSendButton_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Wilt u het bericht versturen?", "Weet u het zeker", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
@@ -31,12 +31,12 @@ namespace Q_Bank_Administration.Controller
             }
         }
 
-        private void MouseClickMessageCancelButton(object sender, EventArgs e)
+        private void messageSendCancel_Click(object sender, EventArgs e)
         {
-
+            ClearAllFields();
         }
 
-        private void MouseClickAddUsersButton(object sender, EventArgs e)
+        private void messageAddUsers_Click(object sender, EventArgs e)
         {
             using (mau = new MessageAddUsers())
             {
@@ -46,6 +46,18 @@ namespace Q_Bank_Administration.Controller
                 {
                     MessageBox.Show("asdas");
                 }
+            }
+        }
+
+        private void ClearAllFields()
+        {
+            DialogResult result = MessageBox.Show("Weet u zeker dat u het bericht wilt annuleren?", "Weet u het zeker", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                formMain.messageMessageTextbox.Text = "";
+                formMain.messageTitelTextbox.Text = "";
+                formMain.messageToUserTextbox.Text = "";
             }
         }
     }

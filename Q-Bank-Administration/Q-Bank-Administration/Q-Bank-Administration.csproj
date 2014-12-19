@@ -57,6 +57,7 @@
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\MessageAddUsersController.cs" />
     <Compile Include="Controller\MessagesController.cs" />
+    <Compile Include="Model\UserAdress.cs" />
     <Compile Include="View\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +78,12 @@
     <Compile Include="View\MessageAddUsers.Designer.cs">
       <DependentUpon>MessageAddUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\UserSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\UserSearch.Designer.cs">
+      <DependentUpon>UserSearch.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -91,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\MessageAddUsers.resx">
       <DependentUpon>MessageAddUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UserSearch.resx">
+      <DependentUpon>UserSearch.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

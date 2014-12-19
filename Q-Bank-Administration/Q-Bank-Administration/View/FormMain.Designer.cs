@@ -33,8 +33,11 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -52,9 +55,6 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.optiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afmeldenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -129,6 +129,16 @@
             this.tabPage7.Text = "Alle gebruikers";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(15, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(269, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Klanten overzicht alle gebruikers";
+            // 
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.label1);
@@ -140,6 +150,16 @@
             this.tabPage8.Text = "Actieve gebruikers";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(15, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(298, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Klanten overzicht actieve gebruikers";
+            // 
             // tabPage9
             // 
             this.tabPage9.Controls.Add(this.label3);
@@ -150,6 +170,16 @@
             this.tabPage9.TabIndex = 2;
             this.tabPage9.Text = "Niet Actieve gebruikers";
             this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(15, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(333, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Klanten overzicht niet actieve gebruikers";
             // 
             // tabPage3
             // 
@@ -310,36 +340,6 @@
             this.afmeldenToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.afmeldenToolStripMenuItem.Text = "Afmelden";
             this.afmeldenToolStripMenuItem.Click += new System.EventHandler(this.afmeldenToolStripMenuItem_Click_1);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(269, 20);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Klanten overzicht alle gebruikers";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(15, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(298, 20);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Klanten overzicht actieve gebruikers";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(15, 15);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(333, 20);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Klanten overzicht niet actieve gebruikers";
             // 
             // FormMain
             // 

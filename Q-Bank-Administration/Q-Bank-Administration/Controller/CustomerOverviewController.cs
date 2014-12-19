@@ -1,4 +1,5 @@
 ﻿using Q_Bank;
+using Q_Bank_Administration.View;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,12 +14,12 @@ namespace Q_Bank_Administration.Controller
     {
         public FormMain formMain { get; set; }
         private TableLayoutPanel tableLayout;
+        private UserSearch us;
         public CustomerOverviewController(FormMain formMain)
         {
             this.formMain = formMain;
             formMain.tabControl2.SelectedIndexChanged += TabControl;
-
-
+ 
             TabControl(null, null);
         }
 
@@ -28,24 +29,288 @@ namespace Q_Bank_Administration.Controller
             {
                 case 0:
                 AddTableLayout(formMain.tabPage7);
+                AddButton(formMain.tabPage7);
                 AddDefaultLabels();
                 FillTable(0);
+                ResetTableLayout();
                 break;
                 case 1:
                 AddTableLayout(formMain.tabPage8);
+                AddButton(formMain.tabPage8);
                 AddDefaultLabels();
                 FillTable(1);
+                ResetTableLayout();
                 break;
                 case 2:
                 AddTableLayout(formMain.tabPage9);
+                AddButton(formMain.tabPage9);
                 AddDefaultLabels();
                 FillTable(2);
+                ResetTableLayout();
                 break;
                 default:
                 AddTableLayout(formMain.tabPage7);
+                AddButton(formMain.tabPage7);
                 AddDefaultLabels();
                 FillTable(0);
+                ResetTableLayout();
                 break;
+            }
+        }
+
+        private void AddButton(TabPage tab)
+        {
+            Button Search = new Button();
+            Search.Text = "Zoeken";
+            Search.Size = new Size(121, 23);
+            Search.Location = new Point(838, 12);
+            Search.Click += SearchButton;
+            Search.Visible = true;
+            tab.Controls.Add(Search);
+        }
+
+        private void SearchButton(Object sender, EventArgs e)
+        {
+            using (us = new UserSearch())
+            {
+                us.ShowDialog();
+                if (us.CloseForm == true)
+                {
+                    int caseID;
+                    switch (formMain.tabControl2.SelectedIndex)
+                    {
+                        case 0:
+                        AddTableLayout(formMain.tabPage7);
+                        caseID = 0;
+                        AddDefaultLabels();
+                        break;
+                        case 1:
+                        AddTableLayout(formMain.tabPage8);
+                        caseID = 1;
+                        AddDefaultLabels();
+                        break;
+                        case 2:
+                        AddTableLayout(formMain.tabPage9);
+                        caseID = 2;
+                        AddDefaultLabels();
+                        break;
+                        default:
+                        AddTableLayout(formMain.tabPage7);
+                        caseID = 0;
+                        AddDefaultLabels();
+                        break;
+                    }
+                    if (!String.IsNullOrWhiteSpace(us.textBoxusername.Text) && String.IsNullOrWhiteSpace(us.textBoxFirstName.Text) && String.IsNullOrWhiteSpace(us.textBoxLastName.Text))
+                    {
+                        using (var con = new Q_BANKEntities())
+                        {
+                            var gebruikers = from g in con.customers
+                                             join a in con.customeraddresses on g.customerId equals a.customerId
+                                             where a.active == 1 && g.username == us.textBoxusername.Text
+                                             orderby g.lastName ascending
+                                             select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
+
+                            if (gebruikers.Count() > 0)
+                            {
+                                List<Model.UserAdress> gebruiker = new List<Model.UserAdress>();
+                                foreach (var g in gebruikers)
+                                {
+                                    Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
+                                    gebruiker.Add(temp);
+                                }
+                                AddUsersInTable(caseID, gebruiker);
+                            }
+                            else
+                            {
+                                Label defaultLabel = new Label();
+                                defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                                defaultLabel.Text = "Er zijn geen gebruikers gevonden zoek op iets anders";
+                                tableLayout.Controls.Add(defaultLabel, 1, 1);
+                            }
+                        }
+                    }
+                    else if (String.IsNullOrWhiteSpace(us.textBoxusername.Text) && !String.IsNullOrWhiteSpace(us.textBoxFirstName.Text) && String.IsNullOrWhiteSpace(us.textBoxLastName.Text))
+                    {
+                        using (var con = new Q_BANKEntities())
+                        {
+                            var gebruikers = from g in con.customers
+                                             join a in con.customeraddresses on g.customerId equals a.customerId
+                                             where a.active == 1 && g.firstName == us.textBoxFirstName.Text
+                                             orderby g.lastName ascending
+                                             select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
+
+                            if (gebruikers.Count() > 0)
+                            {
+                                List<Model.UserAdress> gebruiker = new List<Model.UserAdress>();
+                                foreach (var g in gebruikers)
+                                {
+                                    Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
+                                    gebruiker.Add(temp);
+                                }
+                                AddUsersInTable(caseID, gebruiker);
+                            }
+                            else
+                            {
+                                Label defaultLabel = new Label();
+                                defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                                defaultLabel.Text = "Er zijn geen gebruikers gevonden zoek op iets anders";
+                                tableLayout.Controls.Add(defaultLabel, 1, 1);
+                            }
+                        }
+                    }
+                    else if (String.IsNullOrWhiteSpace(us.textBoxusername.Text) && String.IsNullOrWhiteSpace(us.textBoxFirstName.Text) && !String.IsNullOrWhiteSpace(us.textBoxLastName.Text))
+                    {
+                        using (var con = new Q_BANKEntities())
+                        {
+                            var gebruikers = from g in con.customers
+                                             join a in con.customeraddresses on g.customerId equals a.customerId
+                                             where a.active == 1 && g.lastName == us.textBoxLastName.Text
+                                             orderby g.lastName ascending
+                                             select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
+
+                            if (gebruikers.Count() > 0)
+                            {
+                                List<Model.UserAdress> gebruiker = new List<Model.UserAdress>();
+                                foreach (var g in gebruikers)
+                                {
+                                    Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
+                                    gebruiker.Add(temp);
+                                }
+                                AddUsersInTable(caseID, gebruiker);
+                            }
+                            else
+                            {
+                                Label defaultLabel = new Label();
+                                defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                                defaultLabel.Text = "Er zijn geen gebruikers gevonden zoek op iets anders";
+                                tableLayout.Controls.Add(defaultLabel, 1, 1);
+                            }
+                        }
+                    }
+                    else if (!String.IsNullOrWhiteSpace(us.textBoxusername.Text) && !String.IsNullOrWhiteSpace(us.textBoxFirstName.Text) && String.IsNullOrWhiteSpace(us.textBoxLastName.Text))
+                    {
+                        using (var con = new Q_BANKEntities())
+                        {
+                            var gebruikers = from g in con.customers
+                                             join a in con.customeraddresses on g.customerId equals a.customerId
+                                             where a.active == 1 && g.username == us.textBoxusername.Text && g.firstName == us.textBoxFirstName.Text
+                                             orderby g.lastName ascending
+                                             select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
+
+                            if (gebruikers.Count() > 0)
+                            {
+                                List<Model.UserAdress> gebruiker = new List<Model.UserAdress>();
+                                foreach (var g in gebruikers)
+                                {
+                                    Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
+                                    gebruiker.Add(temp);
+                                }
+                                AddUsersInTable(caseID, gebruiker);
+                            }
+                            else
+                            {
+                                Label defaultLabel = new Label();
+                                defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                                defaultLabel.Text = "Er zijn geen gebruikers gevonden zoek op iets anders";
+                                tableLayout.Controls.Add(defaultLabel, 1, 1);
+                            }
+                        }
+                    }
+                    else if (!String.IsNullOrWhiteSpace(us.textBoxusername.Text) && String.IsNullOrWhiteSpace(us.textBoxFirstName.Text) && !String.IsNullOrWhiteSpace(us.textBoxLastName.Text))
+                    {
+                        using (var con = new Q_BANKEntities())
+                        {
+                            var gebruikers = from g in con.customers
+                                             join a in con.customeraddresses on g.customerId equals a.customerId
+                                             where a.active == 1 && g.username == us.textBoxusername.Text && g.lastName == us.textBoxLastName.Text
+                                             orderby g.lastName ascending
+                                             select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
+
+                            if (gebruikers.Count() > 0)
+                            {
+                                List<Model.UserAdress> gebruiker = new List<Model.UserAdress>();
+                                foreach (var g in gebruikers)
+                                {
+                                    Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
+                                    gebruiker.Add(temp);
+                                }
+                                AddUsersInTable(caseID, gebruiker);
+                            }
+                            else
+                            {
+                                Label defaultLabel = new Label();
+                                defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                                defaultLabel.Text = "Er zijn geen gebruikers gevonden zoek op iets anders";
+                                tableLayout.Controls.Add(defaultLabel, 1, 1);
+                            }
+                        }
+                    }
+                    else if (String.IsNullOrWhiteSpace(us.textBoxusername.Text) && !String.IsNullOrWhiteSpace(us.textBoxFirstName.Text) && !String.IsNullOrWhiteSpace(us.textBoxLastName.Text))
+                    {
+                        using (var con = new Q_BANKEntities())
+                        {
+                            var gebruikers = from g in con.customers
+                                             join a in con.customeraddresses on g.customerId equals a.customerId
+                                             where a.active == 1 && g.firstName == us.textBoxFirstName.Text && g.lastName == us.textBoxLastName.Text
+                                             orderby g.lastName ascending
+                                             select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
+
+                            if (gebruikers.Count() > 0)
+                            {
+                                List<Model.UserAdress> gebruiker = new List<Model.UserAdress>();
+                                foreach (var g in gebruikers)
+                                {
+                                    Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
+                                    gebruiker.Add(temp);
+                                }
+                                AddUsersInTable(caseID, gebruiker);
+                            }
+                            else
+                            {
+                                Label defaultLabel = new Label();
+                                defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                                defaultLabel.Text = "Er zijn geen gebruikers gevonden zoek op iets anders";
+                                tableLayout.Controls.Add(defaultLabel, 1, 1);
+                            }
+                        }
+                    }
+                    else if (!String.IsNullOrWhiteSpace(us.textBoxusername.Text) && !String.IsNullOrWhiteSpace(us.textBoxFirstName.Text) && !String.IsNullOrWhiteSpace(us.textBoxLastName.Text))
+                    {
+                        using (var con = new Q_BANKEntities())
+                        {
+                            var gebruikers = from g in con.customers
+                                             join a in con.customeraddresses on g.customerId equals a.customerId
+                                             where a.active == 1 && g.username == us.textBoxusername.Text && g.firstName == us.textBoxFirstName.Text && g.lastName == us.textBoxLastName.Text
+                                             orderby g.lastName ascending
+                                             select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
+
+                            if (gebruikers.Count() > 0)
+                            {
+                                List<Model.UserAdress> gebruiker = new List<Model.UserAdress>();
+                                foreach (var g in gebruikers)
+                                {
+                                    Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
+                                    gebruiker.Add(temp);
+                                }
+                                AddUsersInTable(caseID, gebruiker);
+                            }
+                            else
+                            {
+                                Label defaultLabel = new Label();
+                                defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+                                defaultLabel.Text = "Er zijn geen gebruikers gevonden zoek op iets anders";
+                                tableLayout.Controls.Add(defaultLabel, 1, 1);
+                            }
+                        }
+                    }
+                    //verwijderd de verticale scrollbar
+                    int vertScrollWidth = SystemInformation.VerticalScrollBarWidth;
+                    tableLayout.Padding = new Padding(0, 0, vertScrollWidth, 0);
+
+                    Label tempLabel = new Label();
+                    tableLayout.Controls.Add(tempLabel, 1, tableLayout.RowCount + 1);
+                    ResetTableLayout();
+                }
             }
         }
 
@@ -74,9 +339,11 @@ namespace Q_Bank_Administration.Controller
             tableLayout.Size = new System.Drawing.Size(970, 540);
             tableLayout.TabIndex = 0;
             //tableLayout.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-
             
+        }
 
+        private void ResetTableLayout()
+        {
             tableLayout.ResumeLayout(false);
             tableLayout.PerformLayout();
         }
@@ -130,45 +397,21 @@ namespace Q_Bank_Administration.Controller
         {
             using (var con = new Q_BANKEntities())
             {
-                var gebruikers = from g in con.customers
-                                 select g;
+                    var gebruikers = from g in con.customers
+                                 join a in con.customeraddresses on g.customerId equals a.customerId
+                                 where a.active == 1
+                                 orderby g.lastName ascending
+                                 select new {g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active ,a.address ,a.city, a.number };
+                
                 if (gebruikers.Count() > 0)
                 {
-                    if (tabID == 0)
+                    List<Model.UserAdress> gebruiker = new List<Model.UserAdress>();
+                    foreach (var g in gebruikers)
                     {
-                        int i = 1;
-                        foreach (customer c in gebruikers)
-                        {
-                            AddItems(c, i);
-                            i++;
-                        }
+                        Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
+                        gebruiker.Add(temp);
                     }
-                    else if (tabID == 1)
-                    {
-                        var active = from a in gebruikers
-                                     where a.active == 1
-                                     select a;
-
-                        int i = 1;
-                        foreach (customer c in active)
-                        {
-                            AddItems(c, i);
-                            i++;
-                        }
-                    }
-                    else if (tabID == 2)
-                    {
-                        var notActive = from a in gebruikers
-                                        where a.active == 0
-                                        select a;
-
-                        int i = 1;
-                        foreach (customer c in notActive)
-                        {
-                            AddItems(c, i);
-                            i++;
-                        }
-                    }
+                    AddUsersInTable(tabID, gebruiker);
                 }
                 else
                 {
@@ -188,7 +431,46 @@ namespace Q_Bank_Administration.Controller
             tableLayout.Controls.Add(tempLabel, 1, tableLayout.RowCount + 1);
         }
 
-        private void AddItems(customer gebruiker, int position)
+        private void AddUsersInTable(int tabID, List<Model.UserAdress> gebruikers)
+        {
+            if (tabID == 0)
+            {
+                int i = 1;
+                foreach (Model.UserAdress c in gebruikers)
+                {
+                    AddItems(c, i);
+                    i++;
+                }
+            }
+            else if (tabID == 1)
+            {
+                var active = from a in gebruikers
+                             where a.active == 1
+                             select a;
+
+                int i = 1;
+                foreach (Model.UserAdress c in active)
+                {
+                    AddItems(c, i);
+                    i++;
+                }
+            }
+            else if (tabID == 2)
+            {
+                var notActive = from a in gebruikers
+                                where a.active == 0
+                                select a;
+
+                int i = 1;
+                foreach (Model.UserAdress c in notActive)
+                {
+                    AddItems(c, i);
+                    i++;
+                }
+            }
+        }
+
+        private void AddItems(Model.UserAdress gebruiker, int position)
         {
             Label defaultLabel = new Label();
             defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
@@ -213,14 +495,14 @@ namespace Q_Bank_Administration.Controller
 
             defaultLabel = new Label();
             defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-            defaultLabel.Text = "Adress";
+            defaultLabel.Text = gebruiker.address + " " + gebruiker.number;
             defaultLabel.Tag = gebruiker.customerId;
             defaultLabel.Click += LabelClick; 
             tableLayout.Controls.Add(defaultLabel, 3, position);
 
             defaultLabel = new Label();
             defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-            defaultLabel.Text = "Woonplaats";
+            defaultLabel.Text = gebruiker.city;
             defaultLabel.Tag = gebruiker.customerId;
             defaultLabel.Click += LabelClick; 
             tableLayout.Controls.Add(defaultLabel, 4, position);

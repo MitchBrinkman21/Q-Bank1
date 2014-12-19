@@ -32,11 +32,12 @@
             this.ButtonAdd = new System.Windows.Forms.Button();
             this.ButtonCancel = new System.Windows.Forms.Button();
             this.messageAddUsersSearchTextbox = new System.Windows.Forms.TextBox();
-            this.messageAddUsersSearchButton = new System.Windows.Forms.Button();
+            this.ButtonSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.toUser = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.usersTable = new System.Windows.Forms.TableLayoutPanel();
+            this.checkBoxSelectAll = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label2
@@ -52,7 +53,7 @@
             // ButtonAdd
             // 
             this.ButtonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonAdd.Location = new System.Drawing.Point(183, 503);
+            this.ButtonAdd.Location = new System.Drawing.Point(185, 503);
             this.ButtonAdd.Name = "ButtonAdd";
             this.ButtonAdd.Size = new System.Drawing.Size(136, 39);
             this.ButtonAdd.TabIndex = 23;
@@ -62,7 +63,7 @@
             // ButtonCancel
             // 
             this.ButtonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonCancel.Location = new System.Drawing.Point(325, 503);
+            this.ButtonCancel.Location = new System.Drawing.Point(327, 503);
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(136, 39);
             this.ButtonCancel.TabIndex = 22;
@@ -76,14 +77,14 @@
             this.messageAddUsersSearchTextbox.Size = new System.Drawing.Size(298, 20);
             this.messageAddUsersSearchTextbox.TabIndex = 24;
             // 
-            // messageAddUsersSearchButton
+            // ButtonSearch
             // 
-            this.messageAddUsersSearchButton.Location = new System.Drawing.Point(386, 111);
-            this.messageAddUsersSearchButton.Name = "messageAddUsersSearchButton";
-            this.messageAddUsersSearchButton.Size = new System.Drawing.Size(75, 23);
-            this.messageAddUsersSearchButton.TabIndex = 25;
-            this.messageAddUsersSearchButton.Text = "Zoeken";
-            this.messageAddUsersSearchButton.UseVisualStyleBackColor = true;
+            this.ButtonSearch.Location = new System.Drawing.Point(386, 111);
+            this.ButtonSearch.Name = "ButtonSearch";
+            this.ButtonSearch.Size = new System.Drawing.Size(75, 23);
+            this.ButtonSearch.TabIndex = 25;
+            this.ButtonSearch.Text = "Zoeken";
+            this.ButtonSearch.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -94,13 +95,13 @@
             this.label1.TabIndex = 26;
             this.label1.Text = "Aan";
             // 
-            // textBox1
+            // toUser
             // 
-            this.textBox1.Location = new System.Drawing.Point(82, 72);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(298, 20);
-            this.textBox1.TabIndex = 27;
+            this.toUser.Location = new System.Drawing.Point(82, 72);
+            this.toUser.Name = "toUser";
+            this.toUser.ReadOnly = true;
+            this.toUser.Size = new System.Drawing.Size(298, 20);
+            this.toUser.TabIndex = 27;
             // 
             // label3
             // 
@@ -113,27 +114,38 @@
             // 
             // usersTable
             // 
+            this.usersTable.AutoScroll = true;
             this.usersTable.ColumnCount = 2;
-            this.usersTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.55719F));
-            this.usersTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.44282F));
+            this.usersTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.usersTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.usersTable.Location = new System.Drawing.Point(82, 159);
             this.usersTable.Name = "usersTable";
             this.usersTable.RowCount = 1;
-            this.usersTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.usersTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 338F));
             this.usersTable.Size = new System.Drawing.Size(341, 338);
             this.usersTable.TabIndex = 29;
+            // 
+            // checkBoxSelectAll
+            // 
+            this.checkBoxSelectAll.AutoSize = true;
+            this.checkBoxSelectAll.Location = new System.Drawing.Point(85, 139);
+            this.checkBoxSelectAll.Name = "checkBoxSelectAll";
+            this.checkBoxSelectAll.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxSelectAll.TabIndex = 30;
+            this.checkBoxSelectAll.UseVisualStyleBackColor = true;
             // 
             // MessageAddUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(473, 554);
+            this.ClientSize = new System.Drawing.Size(475, 554);
+            this.Controls.Add(this.checkBoxSelectAll);
             this.Controls.Add(this.usersTable);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.toUser);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.messageAddUsersSearchButton);
+            this.Controls.Add(this.ButtonSearch);
             this.Controls.Add(this.messageAddUsersSearchTextbox);
             this.Controls.Add(this.ButtonAdd);
             this.Controls.Add(this.ButtonCancel);
@@ -144,6 +156,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MessageAddUsers";
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MessageAddUsers_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,13 +165,14 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox messageAddUsersSearchTextbox;
-        private System.Windows.Forms.Button messageAddUsersSearchButton;
         public System.Windows.Forms.Button ButtonAdd;
         public System.Windows.Forms.Button ButtonCancel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox toUser;
         public System.Windows.Forms.TableLayoutPanel usersTable;
+        public System.Windows.Forms.Button ButtonSearch;
+        public System.Windows.Forms.TextBox messageAddUsersSearchTextbox;
+        public System.Windows.Forms.CheckBox checkBoxSelectAll;
     }
 }

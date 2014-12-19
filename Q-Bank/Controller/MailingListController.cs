@@ -82,7 +82,7 @@ namespace Q_Bank.Controller
                         transactionqueue newTransaction = new transactionqueue()
                         {
 
-                            transactionStatusId = 1,
+                            transactionStatusId = 2,
                             accountId = tp.accountId,
                             amount = Convert.ToDouble(tp.amount),
                             datetime = DateTime.Now,

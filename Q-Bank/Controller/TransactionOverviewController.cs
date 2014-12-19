@@ -98,7 +98,7 @@ namespace Q_Bank.Controller
             formMain.TransactionOverviewTable.Controls.Add(lDate, 0, 0);
 
             lFromAccount = new Label();
-            lFromAccount.Text = "Van rekening";
+            lFromAccount.Text = "Tegenrekening";
             lFromAccount.Font = new Font("Arial", 9, FontStyle.Bold);
             formMain.TransactionOverviewTable.Controls.Add(lFromAccount, 1, 0);
 

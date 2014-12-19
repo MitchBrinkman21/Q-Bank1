@@ -16,7 +16,7 @@ namespace TransactionServer
         private int accountId;
         private double amount;
         private String bic;
-        private String executeDate;
+        private DateTime executeDate;
         private String remark;
         private String iban;
         private double balance;
@@ -111,12 +111,12 @@ namespace TransactionServer
             return this.remark;
         }
 
-        public void SetExecuteDate(String executeDate)
+        public void SetExecuteDate(DateTime executeDate)
         {
             this.executeDate = executeDate;
         }
 
-        public String GetExecuteDate()
+        public DateTime GetExecuteDate()
         {
             return this.executeDate;
         }

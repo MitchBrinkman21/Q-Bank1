@@ -46,7 +46,7 @@
             this.messageSendButton = new System.Windows.Forms.Button();
             this.messageSendCancel = new System.Windows.Forms.Button();
             this.messageMessageTextbox = new System.Windows.Forms.RichTextBox();
-            this.messageTitelTextbox = new System.Windows.Forms.TextBox();
+            this.messageTitleTextbox = new System.Windows.Forms.TextBox();
             this.messageToUserTextbox = new System.Windows.Forms.TextBox();
             this.messageMessage = new System.Windows.Forms.Label();
             this.messageTitel = new System.Windows.Forms.Label();
@@ -217,7 +217,7 @@
             this.tabPage6.Controls.Add(this.messageSendButton);
             this.tabPage6.Controls.Add(this.messageSendCancel);
             this.tabPage6.Controls.Add(this.messageMessageTextbox);
-            this.tabPage6.Controls.Add(this.messageTitelTextbox);
+            this.tabPage6.Controls.Add(this.messageTitleTextbox);
             this.tabPage6.Controls.Add(this.messageToUserTextbox);
             this.tabPage6.Controls.Add(this.messageMessage);
             this.tabPage6.Controls.Add(this.messageTitel);
@@ -266,12 +266,12 @@
             this.messageMessageTextbox.TabIndex = 6;
             this.messageMessageTextbox.Text = "";
             // 
-            // messageTitelTextbox
+            // messageTitleTextbox
             // 
-            this.messageTitelTextbox.Location = new System.Drawing.Point(127, 67);
-            this.messageTitelTextbox.Name = "messageTitelTextbox";
-            this.messageTitelTextbox.Size = new System.Drawing.Size(820, 20);
-            this.messageTitelTextbox.TabIndex = 5;
+            this.messageTitleTextbox.Location = new System.Drawing.Point(127, 67);
+            this.messageTitleTextbox.Name = "messageTitleTextbox";
+            this.messageTitleTextbox.Size = new System.Drawing.Size(820, 20);
+            this.messageTitleTextbox.TabIndex = 5;
             // 
             // messageToUserTextbox
             // 
@@ -389,7 +389,7 @@
         public System.Windows.Forms.Button messageSendButton;
         public System.Windows.Forms.Button messageSendCancel;
         public System.Windows.Forms.RichTextBox messageMessageTextbox;
-        public System.Windows.Forms.TextBox messageTitelTextbox;
+        public System.Windows.Forms.TextBox messageTitleTextbox;
         public System.Windows.Forms.TextBox messageToUserTextbox;
         public System.Windows.Forms.TabControl tabControl2;
         public System.Windows.Forms.TabPage tabPage7;

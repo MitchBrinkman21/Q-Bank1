@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Q_Bank.Model;
+using System.Drawing;
 
 namespace Q_Bank.View
 {
@@ -137,31 +138,37 @@ namespace Q_Bank.View
         {
             lKies = new Label();
             lKies.Text = "Kies";
+            lKies.Font = new Font("Arial", 9, FontStyle.Bold);
             lKies.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             formMain.TransactionStatusTableLayout.Controls.Add(lKies, 0, 0);
 
             lUitvoerDatum = new Label();
             lUitvoerDatum.Text = "Uitvoerdatum";
+            lUitvoerDatum.Font = new Font("Arial", 9, FontStyle.Bold);
             lUitvoerDatum.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             formMain.TransactionStatusTableLayout.Controls.Add(lUitvoerDatum, 1, 0);
 
             lTegenRekening = new Label();
             lTegenRekening.Text = "Tegenrekening";
+            lTegenRekening.Font = new Font("Arial", 9, FontStyle.Bold);
             lTegenRekening.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             formMain.TransactionStatusTableLayout.Controls.Add(lTegenRekening, 2, 0);
 
             lOmschrijving = new Label();
             lOmschrijving.Text = "Omschrijving";
+            lOmschrijving.Font = new Font("Arial", 9, FontStyle.Bold);
             lOmschrijving.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             formMain.TransactionStatusTableLayout.Controls.Add(lOmschrijving, 3, 0);
 
             lBedrag = new Label();
             lBedrag.Text = "Bedrag";
+            lBedrag.Font = new Font("Arial", 9, FontStyle.Bold);
             lBedrag.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             formMain.TransactionStatusTableLayout.Controls.Add(lBedrag, 4, 0);
 
             lStatus = new Label();
             lStatus.Text = "Status";
+            lStatus.Font = new Font("Arial", 9, FontStyle.Bold);
             lStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             formMain.TransactionStatusTableLayout.Controls.Add(lStatus, 5, 0);
 

@@ -71,7 +71,7 @@ namespace TransactionServer
                     transaction.SetAmount(Convert.ToDouble(reader[5]));
                     transaction.SetAccountId(Convert.ToInt32(reader[6]));
                     transaction.SetBic(reader[7].ToString());
-                    transaction.SetExecuteDate(reader[8].ToString());
+                    transaction.SetExecuteDate(Convert.ToDateTime(reader[8]));
                     transaction.SetRemark(reader[9].ToString());
                     transaction.SetIban(reader[10].ToString());
                     transaction.SetBalance(Convert.ToDouble(reader[11]));
@@ -424,7 +424,7 @@ namespace TransactionServer
                                         queryInsertTransaction.Parameters.Add("@nameReceiver", SqlDbType.VarChar, 32).Value = ta.GetNameReceiver();
                                         queryInsertTransaction.Parameters.Add("@accountId", SqlDbType.Int, 32).Value = ta.GetAccountId();
                                         queryInsertTransaction.Parameters.Add("@bic", SqlDbType.VarChar, 32).Value = ta.GetBic();
-                                        queryInsertTransaction.Parameters.Add("@executeDate", SqlDbType.VarChar, 32).Value = ta.GetExecuteDate();
+                                        queryInsertTransaction.Parameters.Add("@executeDate", SqlDbType.DateTime, 32).Value = ta.GetExecuteDate();
                                         queryInsertTransaction.Parameters.Add("@remark", SqlDbType.VarChar, 32).Value = ta.GetRemark();
 
                                         recordsAffected = 0;

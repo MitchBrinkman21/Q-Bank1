@@ -15,6 +15,7 @@ namespace Q_Bank_Administration.Controller
         public FormMain formMain { get; set; }
         private TableLayoutPanel tableLayout;
         private UserSearch us;
+        private int tabID = 0;
         public CustomerOverviewController(FormMain formMain)
         {
             this.formMain = formMain;
@@ -33,6 +34,7 @@ namespace Q_Bank_Administration.Controller
                 AddDefaultLabels();
                 FillTable(0);
                 ResetTableLayout();
+                tabID = 0;
                 break;
                 case 1:
                 AddTableLayout(formMain.tabPage8);
@@ -40,6 +42,7 @@ namespace Q_Bank_Administration.Controller
                 AddDefaultLabels();
                 FillTable(1);
                 ResetTableLayout();
+                tabID = 1;
                 break;
                 case 2:
                 AddTableLayout(formMain.tabPage9);
@@ -47,6 +50,7 @@ namespace Q_Bank_Administration.Controller
                 AddDefaultLabels();
                 FillTable(2);
                 ResetTableLayout();
+                tabID = 2;
                 break;
                 default:
                 AddTableLayout(formMain.tabPage7);
@@ -54,6 +58,7 @@ namespace Q_Bank_Administration.Controller
                 AddDefaultLabels();
                 FillTable(0);
                 ResetTableLayout();
+                tabID = 0;
                 break;
             }
         }
@@ -76,30 +81,9 @@ namespace Q_Bank_Administration.Controller
                 us.ShowDialog();
                 if (us.CloseForm == true)
                 {
-                    int caseID;
-                    switch (formMain.tabControl2.SelectedIndex)
-                    {
-                        case 0:
-                        AddTableLayout(formMain.tabPage7);
-                        caseID = 0;
-                        AddDefaultLabels();
-                        break;
-                        case 1:
-                        AddTableLayout(formMain.tabPage8);
-                        caseID = 1;
-                        AddDefaultLabels();
-                        break;
-                        case 2:
-                        AddTableLayout(formMain.tabPage9);
-                        caseID = 2;
-                        AddDefaultLabels();
-                        break;
-                        default:
-                        AddTableLayout(formMain.tabPage7);
-                        caseID = 0;
-                        AddDefaultLabels();
-                        break;
-                    }
+                    tableLayout.Controls.Clear();
+                    tableLayout.RowStyles.Clear();
+                    tableLayout.RowCount = 1;
                     if (!String.IsNullOrWhiteSpace(us.textBoxusername.Text) && String.IsNullOrWhiteSpace(us.textBoxFirstName.Text) && String.IsNullOrWhiteSpace(us.textBoxLastName.Text))
                     {
                         using (var con = new Q_BANKEntities())
@@ -118,7 +102,7 @@ namespace Q_Bank_Administration.Controller
                                     Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
                                     gebruiker.Add(temp);
                                 }
-                                AddUsersInTable(caseID, gebruiker);
+                                AddUsersInTable(gebruiker);
                             }
                             else
                             {
@@ -147,7 +131,7 @@ namespace Q_Bank_Administration.Controller
                                     Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
                                     gebruiker.Add(temp);
                                 }
-                                AddUsersInTable(caseID, gebruiker);
+                                AddUsersInTable(gebruiker);
                             }
                             else
                             {
@@ -176,7 +160,7 @@ namespace Q_Bank_Administration.Controller
                                     Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
                                     gebruiker.Add(temp);
                                 }
-                                AddUsersInTable(caseID, gebruiker);
+                                AddUsersInTable(gebruiker);
                             }
                             else
                             {
@@ -205,7 +189,7 @@ namespace Q_Bank_Administration.Controller
                                     Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
                                     gebruiker.Add(temp);
                                 }
-                                AddUsersInTable(caseID, gebruiker);
+                                AddUsersInTable(gebruiker);
                             }
                             else
                             {
@@ -234,7 +218,7 @@ namespace Q_Bank_Administration.Controller
                                     Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
                                     gebruiker.Add(temp);
                                 }
-                                AddUsersInTable(caseID, gebruiker);
+                                AddUsersInTable(gebruiker);
                             }
                             else
                             {
@@ -263,7 +247,7 @@ namespace Q_Bank_Administration.Controller
                                     Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
                                     gebruiker.Add(temp);
                                 }
-                                AddUsersInTable(caseID, gebruiker);
+                                AddUsersInTable(gebruiker);
                             }
                             else
                             {
@@ -292,7 +276,7 @@ namespace Q_Bank_Administration.Controller
                                     Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
                                     gebruiker.Add(temp);
                                 }
-                                AddUsersInTable(caseID, gebruiker);
+                                AddUsersInTable(gebruiker);
                             }
                             else
                             {
@@ -411,7 +395,7 @@ namespace Q_Bank_Administration.Controller
                         Model.UserAdress temp = new Model.UserAdress(g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, g.address, g.city, g.number);
                         gebruiker.Add(temp);
                     }
-                    AddUsersInTable(tabID, gebruiker);
+                    AddUsersInTable(gebruiker);
                 }
                 else
                 {
@@ -431,7 +415,7 @@ namespace Q_Bank_Administration.Controller
             tableLayout.Controls.Add(tempLabel, 1, tableLayout.RowCount + 1);
         }
 
-        private void AddUsersInTable(int tabID, List<Model.UserAdress> gebruikers)
+        private void AddUsersInTable(List<Model.UserAdress> gebruikers)
         {
             if (tabID == 0)
             {

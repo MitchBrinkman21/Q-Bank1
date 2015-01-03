@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Q_Bank_Administration.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,13 +9,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Q_Bank_Administration
+namespace Q_Bank_Administration.View
 {
     public partial class FormLogin : Form
     {
         public FormLogin()
         {
             InitializeComponent();
+            LoginController lc = new LoginController(this);
+        }
+
+        private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -59,24 +59,25 @@
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\MessageAddUsersController.cs" />
     <Compile Include="Controller\MessagesController.cs" />
-<Compile Include="Model\UserAdress.cs" />
-<Compile Include="View\CreateAccount.cs">
+    <Compile Include="Controller\PasswordEncryption.cs" />
+    <Compile Include="Model\UserAdress.cs" />
+    <Compile Include="View\CreateAccount.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\CreateAccount.designer.cs">
       <DependentUpon>CreateAccount.cs</DependentUpon>
-    </Compile>
-<Compile Include="View\FormMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\FormMain.Designer.cs">
-      <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,6 +104,9 @@
     </Compile>
     <EmbeddedResource Include="View\CreateAccount.resx">
       <DependentUpon>CreateAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

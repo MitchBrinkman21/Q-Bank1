@@ -44,9 +44,12 @@ namespace Q_Bank
 
         private void TransactionStatus()
         {
-
             TabMailingList tts = new TabMailingList(this);
+        }
 
+        private void Inbox()
+        {
+            InboxController ic = new InboxController(this);
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -65,6 +68,9 @@ namespace Q_Bank
                     break;
                 case 3:
                     TransactionStatus();
+                    break;
+                case 4:
+                    Inbox();
                     break;
                 default:
                     Home();

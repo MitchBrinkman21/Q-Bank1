@@ -84,6 +84,15 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.inboxTable = new System.Windows.Forms.TableLayoutPanel();
+            this.inboxLabelUnread = new System.Windows.Forms.LinkLabel();
+            this.inboxLabelRead = new System.Windows.Forms.LinkLabel();
+            this.inboxLabelDeleted = new System.Windows.Forms.LinkLabel();
+            this.inboxLabelInbox = new System.Windows.Forms.LinkLabel();
+            this.inboxLabelDelete = new System.Windows.Forms.LinkLabel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.inboxLabelToInbox = new System.Windows.Forms.LinkLabel();
             this.menuStrip2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.TransactionStatusTableLayout.SuspendLayout();
@@ -95,6 +104,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -735,6 +745,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.ItemSize = new System.Drawing.Size(140, 18);
             this.tabControl1.Location = new System.Drawing.Point(0, 27);
             this.tabControl1.Name = "tabControl1";
@@ -743,6 +754,109 @@
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.inboxLabelToInbox);
+            this.tabPage5.Controls.Add(this.inboxTable);
+            this.tabPage5.Controls.Add(this.inboxLabelUnread);
+            this.tabPage5.Controls.Add(this.inboxLabelRead);
+            this.tabPage5.Controls.Add(this.inboxLabelDeleted);
+            this.tabPage5.Controls.Add(this.inboxLabelInbox);
+            this.tabPage5.Controls.Add(this.inboxLabelDelete);
+            this.tabPage5.Controls.Add(this.label16);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(986, 840);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Inbox";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // inboxTable
+            // 
+            this.inboxTable.ColumnCount = 4;
+            this.inboxTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.inboxTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.inboxTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
+            this.inboxTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.inboxTable.Location = new System.Drawing.Point(113, 80);
+            this.inboxTable.Name = "inboxTable";
+            this.inboxTable.RowCount = 2;
+            this.inboxTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.inboxTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.inboxTable.Size = new System.Drawing.Size(831, 511);
+            this.inboxTable.TabIndex = 16;
+            // 
+            // inboxLabelUnread
+            // 
+            this.inboxLabelUnread.AutoSize = true;
+            this.inboxLabelUnread.Location = new System.Drawing.Point(337, 45);
+            this.inboxLabelUnread.Name = "inboxLabelUnread";
+            this.inboxLabelUnread.Size = new System.Drawing.Size(120, 13);
+            this.inboxLabelUnread.TabIndex = 15;
+            this.inboxLabelUnread.TabStop = true;
+            this.inboxLabelUnread.Text = "Markeren als ongelezen";
+            // 
+            // inboxLabelRead
+            // 
+            this.inboxLabelRead.AutoSize = true;
+            this.inboxLabelRead.Location = new System.Drawing.Point(200, 45);
+            this.inboxLabelRead.Name = "inboxLabelRead";
+            this.inboxLabelRead.Size = new System.Drawing.Size(108, 13);
+            this.inboxLabelRead.TabIndex = 14;
+            this.inboxLabelRead.TabStop = true;
+            this.inboxLabelRead.Text = "Markeren als gelezen";
+            // 
+            // inboxLabelDeleted
+            // 
+            this.inboxLabelDeleted.AutoSize = true;
+            this.inboxLabelDeleted.Location = new System.Drawing.Point(29, 116);
+            this.inboxLabelDeleted.Name = "inboxLabelDeleted";
+            this.inboxLabelDeleted.Size = new System.Drawing.Size(56, 13);
+            this.inboxLabelDeleted.TabIndex = 13;
+            this.inboxLabelDeleted.TabStop = true;
+            this.inboxLabelDeleted.Text = "Verwijderd";
+            // 
+            // inboxLabelInbox
+            // 
+            this.inboxLabelInbox.AutoSize = true;
+            this.inboxLabelInbox.Location = new System.Drawing.Point(26, 80);
+            this.inboxLabelInbox.Name = "inboxLabelInbox";
+            this.inboxLabelInbox.Size = new System.Drawing.Size(33, 13);
+            this.inboxLabelInbox.TabIndex = 12;
+            this.inboxLabelInbox.TabStop = true;
+            this.inboxLabelInbox.Text = "Inbox";
+            // 
+            // inboxLabelDelete
+            // 
+            this.inboxLabelDelete.AutoSize = true;
+            this.inboxLabelDelete.Location = new System.Drawing.Point(110, 45);
+            this.inboxLabelDelete.Name = "inboxLabelDelete";
+            this.inboxLabelDelete.Size = new System.Drawing.Size(62, 13);
+            this.inboxLabelDelete.TabIndex = 11;
+            this.inboxLabelDelete.TabStop = true;
+            this.inboxLabelDelete.Text = "Verwijderen";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(109, 3);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(53, 20);
+            this.label16.TabIndex = 10;
+            this.label16.Text = "Inbox";
+            // 
+            // inboxLabelToInbox
+            // 
+            this.inboxLabelToInbox.AutoSize = true;
+            this.inboxLabelToInbox.Location = new System.Drawing.Point(200, 45);
+            this.inboxLabelToInbox.Name = "inboxLabelToInbox";
+            this.inboxLabelToInbox.Size = new System.Drawing.Size(103, 13);
+            this.inboxLabelToInbox.TabIndex = 17;
+            this.inboxLabelToInbox.TabStop = true;
+            this.inboxLabelToInbox.Text = "Verplaats naar inbox";
             // 
             // FormMain
             // 
@@ -779,6 +893,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -842,6 +958,15 @@
         public System.Windows.Forms.Button transactieStatusVerzenden;
         public System.Windows.Forms.Button transactionStatusRefreshButton;
         private System.Windows.Forms.ToolStripMenuItem afmeldenToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage5;
+        public System.Windows.Forms.TableLayoutPanel inboxTable;
+        public System.Windows.Forms.LinkLabel inboxLabelUnread;
+        public System.Windows.Forms.LinkLabel inboxLabelRead;
+        public System.Windows.Forms.LinkLabel inboxLabelDeleted;
+        public System.Windows.Forms.LinkLabel inboxLabelInbox;
+        public System.Windows.Forms.LinkLabel inboxLabelDelete;
+        private System.Windows.Forms.Label label16;
+        public System.Windows.Forms.LinkLabel inboxLabelToInbox;
     }
 }
 

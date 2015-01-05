@@ -524,7 +524,7 @@ namespace Q_Bank_Administration.Controller
             }
             else
             {
-                defaultLabel.Text = "in actief";
+                defaultLabel.Text = "inactief";
             }
             defaultLabel.Tag = gebruiker.customerId;
             defaultLabel.Click += LabelClick; 

@@ -70,7 +70,7 @@
     <Compile Include="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\FormLogin.Designer.cs">
+    <Compile Include="View\FormLogin.designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FormMain.cs">

@@ -10,7 +10,7 @@ using System.Numerics;
 
 namespace Q_Bank_Administration.Controller
 {
-    class CreateAccountController
+    public class CreateAccountController
     {
         public CreateAccount createAccount { get; set; }
         public int customerId;
@@ -42,7 +42,7 @@ namespace Q_Bank_Administration.Controller
             createAccount.buttonSubmit.Click += processCreateAccount;
         }
 
-        private void processCreateAccount(object sender, EventArgs e)
+        public void processCreateAccount(object sender, EventArgs e)
         {
             string accountNumber = createAccountNumber();
             string iban = createIBAN(accountNumber);
@@ -116,7 +116,7 @@ namespace Q_Bank_Administration.Controller
             return bi.ToString();
         }
 
-        public static bool isIbanChecksumValid(string iban)
+        public bool isIbanChecksumValid(string iban)
         {
             if (iban.Length < 4 || iban[0] == ' ' || iban[1] == ' ' || iban[2] == ' ' || iban[3] == ' ') throw new InvalidOperationException();
 

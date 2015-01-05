@@ -29,36 +29,37 @@ namespace Q_Bank_Administration.Controller
             switch (formMain.tabControl2.SelectedIndex)
             {
                 case 0:
+                tabID = 0;
                 AddTableLayout(formMain.tabPage7);
                 AddButton(formMain.tabPage7);
                 AddDefaultLabels();
                 FillTable(0);
                 ResetTableLayout();
-                tabID = 0;
+                
                 break;
                 case 1:
+                tabID = 1;
                 AddTableLayout(formMain.tabPage8);
                 AddButton(formMain.tabPage8);
                 AddDefaultLabels();
                 FillTable(1);
                 ResetTableLayout();
-                tabID = 1;
                 break;
                 case 2:
+                tabID = 2;
                 AddTableLayout(formMain.tabPage9);
                 AddButton(formMain.tabPage9);
                 AddDefaultLabels();
                 FillTable(2);
                 ResetTableLayout();
-                tabID = 2;
                 break;
                 default:
+                tabID = 0;
                 AddTableLayout(formMain.tabPage7);
                 AddButton(formMain.tabPage7);
                 AddDefaultLabels();
                 FillTable(0);
                 ResetTableLayout();
-                tabID = 0;
                 break;
             }
         }
@@ -66,14 +67,27 @@ namespace Q_Bank_Administration.Controller
         private void AddButton(TabPage tab)
         {
             Button Search = new Button();
+            Button Refresh = new Button();
             Search.Text = "Zoeken";
+            Refresh.Text = "Verversen";
             Search.Size = new Size(121, 23);
+            Refresh.Size = new Size(121, 23);
             Search.Location = new Point(838, 12);
+            Refresh.Location = new Point(700, 12);
             Search.Click += SearchButton;
+            Refresh.Click += RefreshButton;
             Search.Visible = true;
+            Refresh.Visible = true;
             tab.Controls.Add(Search);
+            tab.Controls.Add(Refresh);
         }
 
+        private void ResetTable()
+        {
+            tableLayout.Controls.Clear();
+            tableLayout.RowStyles.Clear();
+            tableLayout.RowCount = 1;
+        }
         private void SearchButton(Object sender, EventArgs e)
         {
             using (us = new UserSearch())
@@ -81,9 +95,7 @@ namespace Q_Bank_Administration.Controller
                 us.ShowDialog();
                 if (us.CloseForm == true)
                 {
-                    tableLayout.Controls.Clear();
-                    tableLayout.RowStyles.Clear();
-                    tableLayout.RowCount = 1;
+                    ResetTable();
                     if (!String.IsNullOrWhiteSpace(us.textBoxusername.Text) && String.IsNullOrWhiteSpace(us.textBoxFirstName.Text) && String.IsNullOrWhiteSpace(us.textBoxLastName.Text))
                     {
                         using (var con = new Q_BANKEntities())
@@ -298,6 +310,12 @@ namespace Q_Bank_Administration.Controller
             }
         }
 
+        private void RefreshButton(Object sender, EventArgs e)
+        {
+            ResetTable();
+            AddDefaultLabels();
+            FillTable(tabID);
+        }
         private void AddTableLayout(TabPage tab)
         {
             tableLayout = new TableLayoutPanel();

@@ -41,6 +41,10 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.TerminateAccountBevestigen = new System.Windows.Forms.Button();
+            this.TerminateAccountAnnuleren = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.TerminateAccountsLabel = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.messageAddUsers = new System.Windows.Forms.Button();
             this.messageSendButton = new System.Windows.Forms.Button();
@@ -52,22 +56,9 @@
             this.messageSubject = new System.Windows.Forms.Label();
             this.messageToPersonsLabel = new System.Windows.Forms.Label();
             this.messageSendMessageLabel = new System.Windows.Forms.Label();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.inboxTable = new System.Windows.Forms.TableLayoutPanel();
-            this.inboxLabelUnread = new System.Windows.Forms.LinkLabel();
-            this.inboxLabelRead = new System.Windows.Forms.LinkLabel();
-            this.inboxLabelDeleted = new System.Windows.Forms.LinkLabel();
-            this.inboxLabelInbox = new System.Windows.Forms.LinkLabel();
-            this.inboxLabelDelete = new System.Windows.Forms.LinkLabel();
-            this.label4 = new System.Windows.Forms.Label();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.optiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afmeldenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inboxLabelToInbox = new System.Windows.Forms.LinkLabel();
-            this.TerminateAccountsLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.TerminateAccountAnnuleren = new System.Windows.Forms.Button();
-            this.TerminateAccountBevestigen = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -76,7 +67,6 @@
             this.tabPage9.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            this.tabPage10.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +81,6 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage10);
             this.tabControl1.Location = new System.Drawing.Point(0, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -231,6 +220,47 @@
             this.tabPage5.Text = "Rekening beëindigen";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // TerminateAccountBevestigen
+            // 
+            this.TerminateAccountBevestigen.Location = new System.Drawing.Point(881, 580);
+            this.TerminateAccountBevestigen.Name = "TerminateAccountBevestigen";
+            this.TerminateAccountBevestigen.Size = new System.Drawing.Size(75, 23);
+            this.TerminateAccountBevestigen.TabIndex = 4;
+            this.TerminateAccountBevestigen.Text = "Bevestigen";
+            this.TerminateAccountBevestigen.UseVisualStyleBackColor = true;
+            // 
+            // TerminateAccountAnnuleren
+            // 
+            this.TerminateAccountAnnuleren.Location = new System.Drawing.Point(129, 580);
+            this.TerminateAccountAnnuleren.Name = "TerminateAccountAnnuleren";
+            this.TerminateAccountAnnuleren.Size = new System.Drawing.Size(75, 23);
+            this.TerminateAccountAnnuleren.TabIndex = 3;
+            this.TerminateAccountAnnuleren.Text = "Annuleren";
+            this.TerminateAccountAnnuleren.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.96905F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.03095F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 284F));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(129, 26);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(827, 548);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // TerminateAccountsLabel
+            // 
+            this.TerminateAccountsLabel.AutoSize = true;
+            this.TerminateAccountsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TerminateAccountsLabel.Location = new System.Drawing.Point(125, 3);
+            this.TerminateAccountsLabel.Name = "TerminateAccountsLabel";
+            this.TerminateAccountsLabel.Size = new System.Drawing.Size(178, 20);
+            this.TerminateAccountsLabel.TabIndex = 1;
+            this.TerminateAccountsLabel.Text = "Rekening beëindigen";
+            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.messageAddUsers);
@@ -347,99 +377,6 @@
             this.messageSendMessageLabel.TabIndex = 0;
             this.messageSendMessageLabel.Text = "Bericht versturen";
             // 
-            // tabPage10
-            // 
-            this.tabPage10.Controls.Add(this.inboxLabelToInbox);
-            this.tabPage10.Controls.Add(this.inboxTable);
-            this.tabPage10.Controls.Add(this.inboxLabelUnread);
-            this.tabPage10.Controls.Add(this.inboxLabelRead);
-            this.tabPage10.Controls.Add(this.inboxLabelDeleted);
-            this.tabPage10.Controls.Add(this.inboxLabelInbox);
-            this.tabPage10.Controls.Add(this.inboxLabelDelete);
-            this.tabPage10.Controls.Add(this.label4);
-            this.tabPage10.Location = new System.Drawing.Point(4, 22);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(989, 627);
-            this.tabPage10.TabIndex = 6;
-            this.tabPage10.Text = "Inbox";
-            this.tabPage10.UseVisualStyleBackColor = true;
-            // 
-            // inboxTable
-            // 
-            this.inboxTable.ColumnCount = 4;
-            this.inboxTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.inboxTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.inboxTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.inboxTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.inboxTable.Location = new System.Drawing.Point(127, 80);
-            this.inboxTable.Name = "inboxTable";
-            this.inboxTable.RowCount = 2;
-            this.inboxTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.inboxTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.inboxTable.Size = new System.Drawing.Size(831, 511);
-            this.inboxTable.TabIndex = 9;
-            // 
-            // inboxLabelUnread
-            // 
-            this.inboxLabelUnread.AutoSize = true;
-            this.inboxLabelUnread.Location = new System.Drawing.Point(351, 45);
-            this.inboxLabelUnread.Name = "inboxLabelUnread";
-            this.inboxLabelUnread.Size = new System.Drawing.Size(120, 13);
-            this.inboxLabelUnread.TabIndex = 8;
-            this.inboxLabelUnread.TabStop = true;
-            this.inboxLabelUnread.Text = "Markeren als ongelezen";
-            // 
-            // inboxLabelRead
-            // 
-            this.inboxLabelRead.AutoSize = true;
-            this.inboxLabelRead.Location = new System.Drawing.Point(214, 45);
-            this.inboxLabelRead.Name = "inboxLabelRead";
-            this.inboxLabelRead.Size = new System.Drawing.Size(108, 13);
-            this.inboxLabelRead.TabIndex = 7;
-            this.inboxLabelRead.TabStop = true;
-            this.inboxLabelRead.Text = "Markeren als gelezen";
-            // 
-            // inboxLabelDeleted
-            // 
-            this.inboxLabelDeleted.AutoSize = true;
-            this.inboxLabelDeleted.Location = new System.Drawing.Point(43, 116);
-            this.inboxLabelDeleted.Name = "inboxLabelDeleted";
-            this.inboxLabelDeleted.Size = new System.Drawing.Size(56, 13);
-            this.inboxLabelDeleted.TabIndex = 6;
-            this.inboxLabelDeleted.TabStop = true;
-            this.inboxLabelDeleted.Text = "Verwijderd";
-            // 
-            // inboxLabelInbox
-            // 
-            this.inboxLabelInbox.AutoSize = true;
-            this.inboxLabelInbox.Location = new System.Drawing.Point(40, 80);
-            this.inboxLabelInbox.Name = "inboxLabelInbox";
-            this.inboxLabelInbox.Size = new System.Drawing.Size(33, 13);
-            this.inboxLabelInbox.TabIndex = 5;
-            this.inboxLabelInbox.TabStop = true;
-            this.inboxLabelInbox.Text = "Inbox";
-            // 
-            // inboxLabelDelete
-            // 
-            this.inboxLabelDelete.AutoSize = true;
-            this.inboxLabelDelete.Location = new System.Drawing.Point(124, 45);
-            this.inboxLabelDelete.Name = "inboxLabelDelete";
-            this.inboxLabelDelete.Size = new System.Drawing.Size(62, 13);
-            this.inboxLabelDelete.TabIndex = 4;
-            this.inboxLabelDelete.TabStop = true;
-            this.inboxLabelDelete.Text = "Verwijderen";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(123, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 20);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Inbox";
-            // 
             // menuStrip2
             // 
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -464,63 +401,6 @@
             this.afmeldenToolStripMenuItem.Text = "Afmelden";
             this.afmeldenToolStripMenuItem.Click += new System.EventHandler(this.afmeldenToolStripMenuItem_Click_1);
             // 
-            // TerminateAccountsLabel
-            // 
-            this.TerminateAccountsLabel.AutoSize = true;
-            this.TerminateAccountsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TerminateAccountsLabel.Location = new System.Drawing.Point(125, 3);
-            this.TerminateAccountsLabel.Name = "TerminateAccountsLabel";
-            this.TerminateAccountsLabel.Size = new System.Drawing.Size(178, 20);
-            this.TerminateAccountsLabel.TabIndex = 1;
-            this.TerminateAccountsLabel.Text = "Rekening beëindigen";
-            //
-			// Inbox
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(269, 20);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Klanten overzicht alle gebruikers";
-            this.inboxLabelToInbox.AutoSize = true;
-            this.inboxLabelToInbox.Location = new System.Drawing.Point(214, 45);
-            this.inboxLabelToInbox.Name = "inboxLabelToInbox";
-            this.inboxLabelToInbox.Size = new System.Drawing.Size(115, 13);
-            this.inboxLabelToInbox.TabIndex = 10;
-            this.inboxLabelToInbox.TabStop = true;
-			//
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.96905F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.03095F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 282F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(129, 26);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(827, 548);
-            this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // TerminateAccountAnnuleren
-            // 
-            this.TerminateAccountAnnuleren.Location = new System.Drawing.Point(129, 580);
-            this.TerminateAccountAnnuleren.Name = "TerminateAccountAnnuleren";
-            this.TerminateAccountAnnuleren.Size = new System.Drawing.Size(75, 23);
-            this.TerminateAccountAnnuleren.TabIndex = 3;
-            this.TerminateAccountAnnuleren.Text = "Annuleren";
-            this.TerminateAccountAnnuleren.UseVisualStyleBackColor = true;
-            // 
-            // TerminateAccountBevestigen
-            // 
-            this.TerminateAccountBevestigen.Location = new System.Drawing.Point(881, 580);
-            this.TerminateAccountBevestigen.Name = "TerminateAccountBevestigen";
-            this.TerminateAccountBevestigen.Size = new System.Drawing.Size(75, 23);
-            this.TerminateAccountBevestigen.TabIndex = 4;
-            this.TerminateAccountBevestigen.Text = "Bevestigen";
-            this.TerminateAccountBevestigen.UseVisualStyleBackColor = true;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -544,8 +424,6 @@
             this.tabPage5.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            this.tabPage10.ResumeLayout(false);
-            this.tabPage10.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
@@ -585,16 +463,7 @@
 		private System.Windows.Forms.Button TerminateAccountBevestigen;
         private System.Windows.Forms.Button TerminateAccountAnnuleren;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label TerminateAccountsLabel;		
-        private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.Label label4;
-        public System.Windows.Forms.LinkLabel inboxLabelDeleted;
-        public System.Windows.Forms.LinkLabel inboxLabelInbox;
-        public System.Windows.Forms.LinkLabel inboxLabelDelete;
-        public System.Windows.Forms.LinkLabel inboxLabelUnread;
-        public System.Windows.Forms.LinkLabel inboxLabelRead;
-        public System.Windows.Forms.TableLayoutPanel inboxTable;
-        public System.Windows.Forms.LinkLabel inboxLabelToInbox;
+        private System.Windows.Forms.Label TerminateAccountsLabel;
     }
 }
 

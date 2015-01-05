@@ -63,9 +63,11 @@
     <Compile Include="Controller\AccComboBoxGen.cs" />
     <Compile Include="Controller\AddressGenerator.cs" />
     <Compile Include="Controller\CreateUserController.cs" />
+    <Compile Include="Controller\InboxController.cs" />
     <Compile Include="Controller\Logging.cs" />
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\MailingListController.cs" />
+    <Compile Include="Controller\MessageDetailsController.cs" />
     <Compile Include="Controller\PasswordEncryption.cs" />
     <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Controller\TransactionSearchController.cs" />
@@ -164,6 +166,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\MessageDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MessageDetails.designer.cs">
+      <DependentUpon>MessageDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\TabMailingList.cs" />
     <Compile Include="View\TransactionDetails.cs">
       <SubType>Form</SubType>
@@ -192,6 +200,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\MessageDetails.resx">
+      <DependentUpon>MessageDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\TransactionDetails.resx">
       <DependentUpon>TransactionDetails.cs</DependentUpon>
     </EmbeddedResource>

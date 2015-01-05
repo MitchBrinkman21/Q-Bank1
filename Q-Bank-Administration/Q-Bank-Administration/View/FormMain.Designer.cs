@@ -55,12 +55,17 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.optiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afmeldenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TerminateAccountsLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.TerminateAccountAnnuleren = new System.Windows.Forms.Button();
+            this.TerminateAccountBevestigen = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.tabPage9.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -203,6 +208,10 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.TerminateAccountBevestigen);
+            this.tabPage5.Controls.Add(this.TerminateAccountAnnuleren);
+            this.tabPage5.Controls.Add(this.tableLayoutPanel1);
+            this.tabPage5.Controls.Add(this.TerminateAccountsLabel);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -341,6 +350,47 @@
             this.afmeldenToolStripMenuItem.Text = "Afmelden";
             this.afmeldenToolStripMenuItem.Click += new System.EventHandler(this.afmeldenToolStripMenuItem_Click_1);
             // 
+            // TerminateAccountsLabel
+            // 
+            this.TerminateAccountsLabel.AutoSize = true;
+            this.TerminateAccountsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TerminateAccountsLabel.Location = new System.Drawing.Point(125, 3);
+            this.TerminateAccountsLabel.Name = "TerminateAccountsLabel";
+            this.TerminateAccountsLabel.Size = new System.Drawing.Size(178, 20);
+            this.TerminateAccountsLabel.TabIndex = 1;
+            this.TerminateAccountsLabel.Text = "Rekening beëindigen";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.96905F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.03095F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 282F));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(129, 26);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(827, 548);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // TerminateAccountAnnuleren
+            // 
+            this.TerminateAccountAnnuleren.Location = new System.Drawing.Point(129, 580);
+            this.TerminateAccountAnnuleren.Name = "TerminateAccountAnnuleren";
+            this.TerminateAccountAnnuleren.Size = new System.Drawing.Size(75, 23);
+            this.TerminateAccountAnnuleren.TabIndex = 3;
+            this.TerminateAccountAnnuleren.Text = "Annuleren";
+            this.TerminateAccountAnnuleren.UseVisualStyleBackColor = true;
+            // 
+            // TerminateAccountBevestigen
+            // 
+            this.TerminateAccountBevestigen.Location = new System.Drawing.Point(881, 580);
+            this.TerminateAccountBevestigen.Name = "TerminateAccountBevestigen";
+            this.TerminateAccountBevestigen.Size = new System.Drawing.Size(75, 23);
+            this.TerminateAccountBevestigen.TabIndex = 4;
+            this.TerminateAccountBevestigen.Text = "Bevestigen";
+            this.TerminateAccountBevestigen.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,6 +410,8 @@
             this.tabPage8.PerformLayout();
             this.tabPage9.ResumeLayout(false);
             this.tabPage9.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
@@ -398,6 +450,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button TerminateAccountBevestigen;
+        private System.Windows.Forms.Button TerminateAccountAnnuleren;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label TerminateAccountsLabel;
 
     }
 }

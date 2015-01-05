@@ -105,7 +105,7 @@
             this.Controls.Add(this.labelCreateAccount);
             this.Name = "CreateAccount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CreateAccount";
+            this.Text = "Rekening aanmaken";
             this.ResumeLayout(false);
             this.PerformLayout();
 

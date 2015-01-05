@@ -95,11 +95,11 @@ namespace Q_Bank_Administration.Controller
 
         public string createIBAN(string accountNumber)
         {
-            BigInteger bla = BigInteger.Parse("26111023" + accountNumber + "232100");
+            BigInteger bi = BigInteger.Parse("26111023" + accountNumber + "232100");
 
             for (int sum = 0; sum < 100; sum++)
             {
-                if ((bla % 97) == 1)
+                if ((bi % 97) == 1)
                 {
                     if (sum < 10)
                     {
@@ -110,10 +110,10 @@ namespace Q_Bank_Administration.Controller
                         return "NL" + sum.ToString() + "QBAN" + accountNumber;
                     }
                 }
-
-                bla += BigInteger.Parse("1");
+                bi += BigInteger.Parse("1");
             }
-            return "niks";
+
+            return bi.ToString();
         }
 
         public static bool isIbanChecksumValid(string iban)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Q_Bank.Model
 {
-    class Transaction
+    public class Transaction
     {
         public int accountId;
         public int transactionTypeId;

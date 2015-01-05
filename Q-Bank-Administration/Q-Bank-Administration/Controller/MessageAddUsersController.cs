@@ -15,15 +15,17 @@ namespace Q_Bank_Administration.Controller
     {
         public MessageAddUsers mau { get; set; }
         public List<CheckBox> checkBoxList { get; set; }
-        public List<int> customerIds { get; set; }
         public Boolean search { get; set; }
 
         public MessageAddUsersController(MessageAddUsers mau)
         {
             this.mau = mau;
             checkBoxList = new List<CheckBox>();
-            customerIds = new List<int>();
             AddUsersToTable();
+
+            mau.toUsers = ReplaceLastOccurence(mau.toUsers, ", ", ""); 
+            mau.toUsers = ReplaceLastOccurence(mau.toUsers, ",", "");
+            mau.ToUsersTextBox.Text = mau.toUsers;
 
             mau.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             mau.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
@@ -39,13 +41,6 @@ namespace Q_Bank_Administration.Controller
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            foreach (CheckBox c in checkBoxList)
-            {
-                if (c.Checked)
-                {
-                    customerIds.Add(Convert.ToInt32(Regex.Replace(c.Tag.ToString(), "[^.0-9]", "")));
-                }
-            }
             mau.CloseForm = true;
             mau.Close();
         }
@@ -61,13 +56,22 @@ namespace Q_Bank_Administration.Controller
 
         private void checkBoxStateChanged(object sender, EventArgs e)
         {
-            mau.toUser.Text = "";
+            int i = 0;
+            if (!String.IsNullOrEmpty(mau.toUsers))
+            {
+                i = 1;
+            }
+            mau.ToUsersTextBox.Text = mau.toUsers;
             foreach (CheckBox c in checkBoxList)
             {
                 if (c.Checked)
                 {
-                    mau.toUser.Text += Regex.Replace(c.Tag.ToString(), @"[\d-]", string.Empty);
-                    mau.toUser.Text += " ";
+                    if (i > 0)
+                    {
+                        mau.ToUsersTextBox.Text += ", ";
+                    }
+                    mau.ToUsersTextBox.Text += Regex.Replace(c.Tag.ToString(), @"[\d-]", string.Empty);
+                    i++;
                 }
             }
         }
@@ -143,6 +147,18 @@ namespace Q_Bank_Administration.Controller
                     }
                 }
             }
+        }
+
+        public string ReplaceLastOccurence(string originalValue, string occurenceValue, string newValue)
+        {
+            if (string.IsNullOrEmpty(originalValue))
+                return string.Empty;
+            if (string.IsNullOrEmpty(occurenceValue))
+                return originalValue;
+            if (string.IsNullOrEmpty(newValue))
+                return originalValue;
+            int startindex = originalValue.LastIndexOf(occurenceValue);
+            return originalValue.Remove(startindex, occurenceValue.Length).Insert(startindex, newValue);
         }
     }
 }

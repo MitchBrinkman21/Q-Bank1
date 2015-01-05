@@ -16,7 +16,7 @@ namespace Q_Bank
     {
         public int employeeEmailId { get; set; }
         public int employeeId { get; set; }
-        public short active { get; set; }
+        public bool active { get; set; }
         public string email { get; set; }
     
         public virtual employee employee { get; set; }

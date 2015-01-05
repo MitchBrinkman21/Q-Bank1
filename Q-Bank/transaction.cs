@@ -20,10 +20,10 @@ namespace Q_Bank
         public System.DateTime datetime { get; set; }
         public System.DateTime executeDate { get; set; }
         public System.DateTime commitDatetime { get; set; }
-        public short commit { get; set; }
+        public bool commit { get; set; }
         public string nameReceiver { get; set; }
         public string ibanReceiver { get; set; }
-        public short sepa { get; set; }
+        public bool sepa { get; set; }
         public string bic { get; set; }
         public string remark { get; set; }
     

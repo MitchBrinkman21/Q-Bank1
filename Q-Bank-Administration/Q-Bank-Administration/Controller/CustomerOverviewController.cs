@@ -146,7 +146,7 @@ namespace Q_Bank_Administration.Controller
                     else if (tabID == 1)
                     {
                         var active = from a in gebruikers
-                                     where a.active == 1
+                                     where a.active == true
                                      select a;
 
                         int i = 1;
@@ -159,7 +159,7 @@ namespace Q_Bank_Administration.Controller
                     else if (tabID == 2)
                     {
                         var notActive = from a in gebruikers
-                                        where a.active == 0
+                                        where a.active == false
                                         select a;
 
                         int i = 1;
@@ -234,7 +234,7 @@ namespace Q_Bank_Administration.Controller
 
             defaultLabel = new Label();
             defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-            if (gebruiker.active == 1) 
+            if (gebruiker.active == true) 
             {
                 defaultLabel.Text = "actief";
             }

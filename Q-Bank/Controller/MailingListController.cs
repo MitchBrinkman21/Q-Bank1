@@ -89,7 +89,7 @@ namespace Q_Bank.Controller
                             executeDate = Convert.ToDateTime(tp.executeDate),
                             ibanReceiver = tp.ibanReceiver,
                             nameReceiver = tp.nameReceiver,
-                            sepa = Convert.ToInt16(tp.sepa),
+                            sepa = Convert.ToBoolean(tp.sepa),
                             bic = tp.bic,
                             remark = tp.remark
                         };

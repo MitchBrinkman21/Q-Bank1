@@ -22,7 +22,7 @@ namespace Q_Bank
         public Nullable<System.DateTime> executeDate { get; set; }
         public string ibanReceiver { get; set; }
         public string nameReceiver { get; set; }
-        public short sepa { get; set; }
+        public bool sepa { get; set; }
         public string bic { get; set; }
         public string remark { get; set; }
     

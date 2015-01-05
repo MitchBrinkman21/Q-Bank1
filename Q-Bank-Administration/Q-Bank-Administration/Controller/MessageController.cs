@@ -9,7 +9,7 @@ using Q_Bank;
 
 namespace Q_Bank_Administration.Controller
 {
-    public class MessagesController
+    public class MessageController
     {
         public FormMain formMain { get; set; }
         public MessageAddUsers mau { get; set; }
@@ -18,7 +18,7 @@ namespace Q_Bank_Administration.Controller
         public Boolean validUsers { get; set; }
         public List<int> customerIds { get; set; }
 
-        public MessagesController(FormMain formMain)
+        public MessageController(FormMain formMain)
         {
             customerIds = new List<int>();
             mau = null;
@@ -38,15 +38,7 @@ namespace Q_Bank_Administration.Controller
                 {
                     using (var con = new Q_BANKEntities())
                     {
-                        if (mau != null)
-                        {
-                            customerIds = mau.mauc.customerIds;
-                            mau = null;
-                        }
-                        else
-                        {
-                            customerIds = GetCustomerIdsFromTextBox();
-                        }
+                        customerIds = GetCustomerIdsFromTextBox();
 
                         if (!validUsers)
                         {
@@ -70,9 +62,10 @@ namespace Q_Bank_Administration.Controller
                                             customerId = id,
                                             employeeId = formMain.id,
                                             messageText = formMain.messageMessageTextbox.Text.Replace("\n", "[Enter]"),
-                                            title = formMain.messageTitleTextbox.Text,
-                                            read = 0,
-                                            deleted = 0
+                                            subject = formMain.messageSubjectTextbox.Text,
+                                            datetimeSent = DateTime.Now,
+                                            read = false,
+                                            deleted = false
                                         };
                                         con.customermessages.Add(newMessage);
                                         con.SaveChanges();
@@ -111,22 +104,15 @@ namespace Q_Bank_Administration.Controller
 
         private void messageAddUsers_Click(object sender, EventArgs e)
         {
-            using (mau = new MessageAddUsers())
+            using (mau = new MessageAddUsers(formMain.messageToUserTextbox.Text))
             {
                 mau.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
                 mau.ShowDialog();
                 if (mau.CloseForm)
                 {
-                    formMain.messageToUserTextbox.Enabled = false;
-                    formMain.messageToUserTextbox.Text = mau.toUser.Text;
-                    validUsers = true;
+                    formMain.messageToUserTextbox.Text = mau.ToUsersTextBox.Text;
                 }
-                else
-                {
-                    formMain.messageToUserTextbox.Text = "";
-                    formMain.messageToUserTextbox.Enabled = true;
-                    mau = null;
-                }
+                mau = null;
             }
         }
 
@@ -134,7 +120,7 @@ namespace Q_Bank_Administration.Controller
         {
             formMain.messageToUserTextbox.Enabled = true;
             formMain.messageMessageTextbox.Text = "";
-            formMain.messageTitleTextbox.Text = "";
+            formMain.messageSubjectTextbox.Text = "";
             formMain.messageToUserTextbox.Text = "";
         }
 
@@ -148,7 +134,7 @@ namespace Q_Bank_Administration.Controller
                 validText = false;
             }
 
-            if (String.IsNullOrEmpty(formMain.messageTitleTextbox.Text))
+            if (String.IsNullOrEmpty(formMain.messageSubjectTextbox.Text))
             {
                 errorText += "Geen titel gegeven.\n";
                 validText = false;
@@ -160,7 +146,7 @@ namespace Q_Bank_Administration.Controller
                 validText = false;
             }
 
-            if (formMain.messageTitleTextbox.Text.Count() > 100)
+            if (formMain.messageSubjectTextbox.Text.Count() > 100)
             {
                 errorText += "Titel heeft meer dan 100 tekens.\n";
                 validText = false;
@@ -188,7 +174,10 @@ namespace Q_Bank_Administration.Controller
                         {
                             foreach (customer c in customerCol)
                             {
-                                customerIds.Add(c.customerId);
+                                if (!customerIds.Contains(c.customerId))
+                                {
+                                    customerIds.Add(c.customerId);
+                                }
                             }
                         }
                         else

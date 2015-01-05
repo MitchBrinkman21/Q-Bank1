@@ -49,7 +49,12 @@ namespace Q_Bank_Administration
 
         private void Messages()
         {
-            MessagesController mc = new MessagesController(this);
+            MessageController mc = new MessageController(this);
+        }
+
+        private void Inbox()
+        {
+            InboxController ic = new InboxController(this);
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -74,6 +79,9 @@ namespace Q_Bank_Administration
                     break;
                 case 5:
                     Messages();
+                    break;
+                case 6:
+                    Inbox();
                     break;
                 default:
                     Home();

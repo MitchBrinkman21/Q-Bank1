@@ -26,7 +26,8 @@ namespace Q_Bank
         public string accountNumber { get; set; }
         public string iban { get; set; }
         public string bic { get; set; }
-        public short active { get; set; }
+        public bool active { get; set; }
+        public bool deleteRequest { get; set; }
     
         public virtual accounttype accounttype { get; set; }
         public virtual customer customer { get; set; }

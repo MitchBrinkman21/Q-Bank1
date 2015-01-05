@@ -16,6 +16,7 @@ namespace Q_Bank
     {
         public employee()
         {
+            this.customermessages = new HashSet<customermessage>();
             this.employeeaddresses = new HashSet<employeeaddress>();
             this.employeeemails = new HashSet<employeeemail>();
             this.employeeloginlogs = new HashSet<employeeloginlog>();
@@ -26,7 +27,7 @@ namespace Q_Bank
         public int employeeId { get; set; }
         public int roleId { get; set; }
         public string bsn { get; set; }
-        public short active { get; set; }
+        public bool active { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string gender { get; set; }
@@ -36,6 +37,7 @@ namespace Q_Bank
         public string key { get; set; }
         public System.DateTime registerDatetime { get; set; }
     
+        public virtual ICollection<customermessage> customermessages { get; set; }
         public virtual role role { get; set; }
         public virtual ICollection<employeeaddress> employeeaddresses { get; set; }
         public virtual ICollection<employeeemail> employeeemails { get; set; }

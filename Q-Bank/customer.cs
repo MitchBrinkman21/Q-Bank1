@@ -26,7 +26,7 @@ namespace Q_Bank
     
         public int customerId { get; set; }
         public string bsn { get; set; }
-        public short active { get; set; }
+        public bool active { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string gender { get; set; }

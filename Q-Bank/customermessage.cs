@@ -16,12 +16,15 @@ namespace Q_Bank
     {
         public int customerMessageId { get; set; }
         public int customerId { get; set; }
+        public int employeeId { get; set; }
+        public string subject { get; set; }
         public string messageText { get; set; }
-        public Nullable<short> read { get; set; }
-        public Nullable<short> deleted { get; set; }
-        public string title { get; set; }
-        public Nullable<int> employeeId { get; set; }
+        public bool read { get; set; }
+        public bool deleted { get; set; }
+        public bool permDeleted { get; set; }
+        public System.DateTime datetimeSent { get; set; }
     
         public virtual customer customer { get; set; }
+        public virtual employee employee { get; set; }
     }
 }

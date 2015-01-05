@@ -56,9 +56,11 @@
   <ItemGroup>
     <Compile Include="Controller\CreateAccountController.cs" />
     <Compile Include="Controller\CustomerOverviewController.cs" />
+    <Compile Include="Controller\InboxController.cs" />
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\MessageAddUsersController.cs" />
-    <Compile Include="Controller\MessagesController.cs" />
+    <Compile Include="Controller\MessageController.cs" />
+    <Compile Include="Controller\MessageDetailsController.cs" />
     <Compile Include="View\CreateAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +87,12 @@
     <Compile Include="View\MessageAddUsers.Designer.cs">
       <DependentUpon>MessageAddUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\MessageDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MessageDetails.Designer.cs">
+      <DependentUpon>MessageDetails.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -102,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\MessageAddUsers.resx">
       <DependentUpon>MessageAddUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MessageDetails.resx">
+      <DependentUpon>MessageDetails.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

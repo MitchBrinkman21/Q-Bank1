@@ -61,7 +61,7 @@ namespace Q_Bank_Administration.Controller
                             accountNumber = accountNumber,
                             iban = iban,
                             bic = "QBANK",
-                            active = 1
+                            active = true
                         };
                         con.accounts.Add(newAccount);
                         con.SaveChanges();

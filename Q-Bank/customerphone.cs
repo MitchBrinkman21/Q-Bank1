@@ -18,7 +18,7 @@ namespace Q_Bank
         public int customerId { get; set; }
         public int phoneTypeId { get; set; }
         public string phonenumber { get; set; }
-        public short active { get; set; }
+        public bool active { get; set; }
     
         public virtual customer customer { get; set; }
         public virtual phonetype phonetype { get; set; }

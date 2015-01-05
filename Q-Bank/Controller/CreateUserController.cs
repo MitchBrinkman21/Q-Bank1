@@ -64,7 +64,7 @@ namespace Q_Bank.Controller
                     customer newCustomer = new customer()
                     {
                         bsn = createUser.textBoxBSN.Text,
-                        active = 0,
+                        active = false,
                         firstName = createUser.textBoxFirstname.Text,
                         lastName = createUser.textBoxLastname.Text,
                         gender = createUser.comboBoxGender.Text,
@@ -94,7 +94,7 @@ namespace Q_Bank.Controller
                     customeraddress newCustomerAddress = new customeraddress()
                     {
                         customerId = customerID,
-                        active = 1,
+                        active = true,
                         address = createUser.textBoxAddress.Text,
                         number = createUser.textBoxNumber.Text,
                         zipcode = createUser.textBoxZipcode.Text,
@@ -109,14 +109,14 @@ namespace Q_Bank.Controller
                         customerId = customerID,
                         phoneTypeId = createUser.comboBoxPhoneType.SelectedIndex + 1,
                         phonenumber = createUser.textBoxPhonenumber.Text,
-                        active = 1
+                        active = true
                     };
                     con.customerphones.Add(newCustomerPhone);
 
                     customeremail newCustomerEmail = new customeremail()
                     {
                         customerId = customerID,
-                        active = 1,
+                        active = true,
                         email = createUser.textBoxEmail.Text
                     };
                     con.customeremails.Add(newCustomerEmail);

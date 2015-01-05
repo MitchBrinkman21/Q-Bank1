@@ -16,7 +16,7 @@ namespace Q_Bank
     {
         public int customeAddressId { get; set; }
         public int customerId { get; set; }
-        public short active { get; set; }
+        public bool active { get; set; }
         public string address { get; set; }
         public string address2 { get; set; }
         public string number { get; set; }

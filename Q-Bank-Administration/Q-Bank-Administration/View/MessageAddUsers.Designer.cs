@@ -34,7 +34,7 @@
             this.messageAddUsersSearchTextbox = new System.Windows.Forms.TextBox();
             this.ButtonSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.toUser = new System.Windows.Forms.TextBox();
+            this.ToUsersTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.usersTable = new System.Windows.Forms.TableLayoutPanel();
             this.checkBoxSelectAll = new System.Windows.Forms.CheckBox();
@@ -95,13 +95,13 @@
             this.label1.TabIndex = 26;
             this.label1.Text = "Aan";
             // 
-            // toUser
+            // ToUsersTextBox
             // 
-            this.toUser.Location = new System.Drawing.Point(82, 72);
-            this.toUser.Name = "toUser";
-            this.toUser.ReadOnly = true;
-            this.toUser.Size = new System.Drawing.Size(298, 20);
-            this.toUser.TabIndex = 27;
+            this.ToUsersTextBox.Location = new System.Drawing.Point(82, 72);
+            this.ToUsersTextBox.Name = "ToUsersTextBox";
+            this.ToUsersTextBox.ReadOnly = true;
+            this.ToUsersTextBox.Size = new System.Drawing.Size(298, 20);
+            this.ToUsersTextBox.TabIndex = 27;
             // 
             // label3
             // 
@@ -143,7 +143,7 @@
             this.Controls.Add(this.checkBoxSelectAll);
             this.Controls.Add(this.usersTable);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.toUser);
+            this.Controls.Add(this.ToUsersTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ButtonSearch);
             this.Controls.Add(this.messageAddUsersSearchTextbox);
@@ -169,7 +169,7 @@
         public System.Windows.Forms.Button ButtonCancel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.TextBox toUser;
+        public System.Windows.Forms.TextBox ToUsersTextBox;
         public System.Windows.Forms.TableLayoutPanel usersTable;
         public System.Windows.Forms.Button ButtonSearch;
         public System.Windows.Forms.TextBox messageAddUsersSearchTextbox;

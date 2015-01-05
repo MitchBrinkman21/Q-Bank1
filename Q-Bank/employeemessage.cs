@@ -16,9 +16,10 @@ namespace Q_Bank
     {
         public int customerMessageId { get; set; }
         public int employeeId { get; set; }
+        public string subject { get; set; }
         public string messageText { get; set; }
-        public Nullable<short> read { get; set; }
-        public Nullable<short> deleted { get; set; }
+        public Nullable<bool> read { get; set; }
+        public Nullable<bool> deleted { get; set; }
     
         public virtual employee employee { get; set; }
     }

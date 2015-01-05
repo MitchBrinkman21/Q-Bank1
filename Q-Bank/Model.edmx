@@ -16,7 +16,8 @@
           <Property Name="accountNumber" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="iban" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="bic" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="active" Type="smallint" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="deleteRequest" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="accounttype">
           <Key>
@@ -32,7 +33,7 @@
           </Key>
           <Property Name="customerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="bsn" Type="nvarchar" MaxLength="45" />
-          <Property Name="active" Type="smallint" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
           <Property Name="firstName" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="lastName" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="gender" Type="nvarchar" MaxLength="45" Nullable="false" />
@@ -48,7 +49,7 @@
           </Key>
           <Property Name="customeAddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="customerId" Type="int" Nullable="false" />
-          <Property Name="active" Type="smallint" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
           <Property Name="address" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="address2" Type="nvarchar" MaxLength="45" />
           <Property Name="number" Type="nvarchar" MaxLength="45" Nullable="false" />
@@ -63,7 +64,7 @@
           </Key>
           <Property Name="customeEmailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="customerId" Type="int" Nullable="false" />
-          <Property Name="active" Type="smallint" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="customerloginlog">
@@ -81,9 +82,13 @@
           </Key>
           <Property Name="customerMessageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="customerId" Type="int" Nullable="false" />
-          <Property Name="messageText" Type="nvarchar(max)" />
-          <Property Name="read" Type="smallint" />
-          <Property Name="deleted" Type="smallint" />
+          <Property Name="employeeId" Type="int" Nullable="false" />
+          <Property Name="subject" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="messageText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="read" Type="bit" Nullable="false" />
+          <Property Name="deleted" Type="bit" Nullable="false" />
+          <Property Name="permDeleted" Type="bit" Nullable="false" />
+          <Property Name="datetimeSent" Type="datetime2" Precision="0" Nullable="false" />
         </EntityType>
         <EntityType Name="customerphone">
           <Key>
@@ -93,7 +98,7 @@
           <Property Name="customerId" Type="int" Nullable="false" />
           <Property Name="phoneTypeId" Type="int" Nullable="false" />
           <Property Name="phonenumber" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="active" Type="smallint" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="employee">
           <Key>
@@ -102,7 +107,7 @@
           <Property Name="employeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="roleId" Type="int" Nullable="false" />
           <Property Name="bsn" Type="nvarchar" MaxLength="45" />
-          <Property Name="active" Type="smallint" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
           <Property Name="firstName" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="lastName" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="gender" Type="nvarchar" MaxLength="45" Nullable="false" />
@@ -118,7 +123,7 @@
           </Key>
           <Property Name="employeeAddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="employeeId" Type="int" Nullable="false" />
-          <Property Name="active" Type="smallint" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
           <Property Name="address" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="address2" Type="nvarchar" MaxLength="45" />
           <Property Name="number" Type="nvarchar" MaxLength="45" Nullable="false" />
@@ -133,7 +138,7 @@
           </Key>
           <Property Name="employeeEmailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="employeeId" Type="int" Nullable="false" />
-          <Property Name="active" Type="smallint" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="employeeloginlog">
@@ -151,9 +156,10 @@
           </Key>
           <Property Name="customerMessageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="employeeId" Type="int" Nullable="false" />
-          <Property Name="messageText" Type="nvarchar(max)" />
-          <Property Name="read" Type="smallint" />
-          <Property Name="deleted" Type="smallint" />
+          <Property Name="subject" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="messageText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="read" Type="bit" />
+          <Property Name="deleted" Type="bit" />
         </EntityType>
         <EntityType Name="employeephone">
           <Key>
@@ -163,7 +169,7 @@
           <Property Name="employeeId" Type="int" Nullable="false" />
           <Property Name="phoneTypeId" Type="int" Nullable="false" />
           <Property Name="phonenumber" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="active" Type="smallint" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="phonetype">
           <Key>
@@ -190,10 +196,10 @@
           <Property Name="datetime" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="executeDate" Type="date" Nullable="false" />
           <Property Name="commitDatetime" Type="datetime2" Precision="0" Nullable="false" />
-          <Property Name="commit" Type="smallint" Nullable="false" />
+          <Property Name="commit" Type="bit" Nullable="false" />
           <Property Name="nameReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="ibanReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="sepa" Type="smallint" Nullable="false" />
+          <Property Name="sepa" Type="bit" Nullable="false" />
           <Property Name="bic" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
         </EntityType>
@@ -209,7 +215,7 @@
           <Property Name="executeDate" Type="date" />
           <Property Name="ibanReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="nameReceiver" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="sepa" Type="smallint" Nullable="false" />
+          <Property Name="sepa" Type="bit" Nullable="false" />
           <Property Name="bic" Type="nvarchar" MaxLength="45" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
         </EntityType>
@@ -278,6 +284,18 @@
             </Principal>
             <Dependent Role="customerloginlog">
               <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customermessage$fk_CustomerMessage_Employee1">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="customermessage" Type="Self.customermessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="customermessage">
+              <PropertyRef Name="employeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -465,6 +483,10 @@
             <End Role="customer" EntitySet="customer" />
             <End Role="customerloginlog" EntitySet="customerloginlog" />
           </AssociationSet>
+          <AssociationSet Name="customermessage$fk_CustomerMessage_Employee1" Association="Self.customermessage$fk_CustomerMessage_Employee1">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="customermessage" EntitySet="customermessage" />
+          </AssociationSet>
           <AssociationSet Name="customermessage$fk_Message_User1" Association="Self.customermessage$fk_Message_User1">
             <End Role="customer" EntitySet="customer" />
             <End Role="customermessage" EntitySet="customermessage" />
@@ -570,6 +592,10 @@
             <End Role="customer" EntitySet="customers" />
             <End Role="customerphone" EntitySet="customerphones" />
           </AssociationSet>
+          <AssociationSet Name="customermessage_fk_CustomerMessage_Employee1" Association="Q_BANKModel.customermessage_fk_CustomerMessage_Employee1">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="customermessage" EntitySet="customermessages" />
+          </AssociationSet>
           <AssociationSet Name="customerphone_fk_Phone_PhoneType1" Association="Q_BANKModel.customerphone_fk_Phone_PhoneType1">
             <End Role="phonetype" EntitySet="phonetypes" />
             <End Role="customerphone" EntitySet="customerphones" />
@@ -618,7 +644,8 @@
           <Property Name="accountNumber" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="iban" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="bic" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="active" Type="Int16" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="deleteRequest" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="accounttype" Relationship="Q_BANKModel.account_fk_Account_AccountType1" FromRole="account" ToRole="accounttype" />
           <NavigationProperty Name="customer" Relationship="Q_BANKModel.account_fk_Rekening_Persoon1" FromRole="account" ToRole="customer" />
           <NavigationProperty Name="transactions" Relationship="Q_BANKModel.transaction_fk_Transactie_Rekening1" FromRole="account" ToRole="transaction" />
@@ -638,7 +665,7 @@
           </Key>
           <Property Name="customerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="bsn" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="active" Type="Int16" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="firstName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="lastName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="gender" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
@@ -660,7 +687,7 @@
           </Key>
           <Property Name="customeAddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="customerId" Type="Int32" Nullable="false" />
-          <Property Name="active" Type="Int16" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="address2" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="number" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
@@ -676,7 +703,7 @@
           </Key>
           <Property Name="customeEmailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="customerId" Type="Int32" Nullable="false" />
-          <Property Name="active" Type="Int16" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="email" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="customer" Relationship="Q_BANKModel.customeremail_fk_Email_Gebruiker1" FromRole="customeremail" ToRole="customer" />
         </EntityType>
@@ -696,10 +723,15 @@
           </Key>
           <Property Name="customerMessageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="customerId" Type="Int32" Nullable="false" />
-          <Property Name="messageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="read" Type="Int16" />
-          <Property Name="deleted" Type="Int16" />
+          <Property Name="employeeId" Type="Int32" Nullable="false" />
+          <Property Name="subject" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="messageText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="read" Type="Boolean" Nullable="false" />
+          <Property Name="deleted" Type="Boolean" Nullable="false" />
+          <Property Name="permDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="datetimeSent" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="customer" Relationship="Q_BANKModel.customermessage_fk_Message_User1" FromRole="customermessage" ToRole="customer" />
+          <NavigationProperty Name="employee" Relationship="Q_BANKModel.customermessage_fk_CustomerMessage_Employee1" FromRole="customermessage" ToRole="employee" />
         </EntityType>
         <EntityType Name="customerphone">
           <Key>
@@ -709,7 +741,7 @@
           <Property Name="customerId" Type="Int32" Nullable="false" />
           <Property Name="phoneTypeId" Type="Int32" Nullable="false" />
           <Property Name="phonenumber" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="active" Type="Int16" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="customer" Relationship="Q_BANKModel.customerphone_fk_Telefoonnummer_Gebruiker1" FromRole="customerphone" ToRole="customer" />
           <NavigationProperty Name="phonetype" Relationship="Q_BANKModel.customerphone_fk_Phone_PhoneType1" FromRole="customerphone" ToRole="phonetype" />
         </EntityType>
@@ -720,7 +752,7 @@
           <Property Name="employeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="roleId" Type="Int32" Nullable="false" />
           <Property Name="bsn" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="active" Type="Int16" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="firstName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="lastName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="gender" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
@@ -729,6 +761,7 @@
           <Property Name="password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="key" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="registerDatetime" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="customermessages" Relationship="Q_BANKModel.customermessage_fk_CustomerMessage_Employee1" FromRole="employee" ToRole="customermessage" />
           <NavigationProperty Name="role" Relationship="Q_BANKModel.employee_fk_Employee_Role1" FromRole="employee" ToRole="role" />
           <NavigationProperty Name="employeeaddresses" Relationship="Q_BANKModel.employeeaddress_fk_EmployeeAddress_Employee1" FromRole="employee" ToRole="employeeaddress" />
           <NavigationProperty Name="employeeemails" Relationship="Q_BANKModel.employeeemail_fk_EmployeeEmail_Employee1" FromRole="employee" ToRole="employeeemail" />
@@ -742,7 +775,7 @@
           </Key>
           <Property Name="employeeAddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="employeeId" Type="Int32" Nullable="false" />
-          <Property Name="active" Type="Int16" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="address2" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="number" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
@@ -758,7 +791,7 @@
           </Key>
           <Property Name="employeeEmailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="employeeId" Type="Int32" Nullable="false" />
-          <Property Name="active" Type="Int16" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="email" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="employee" Relationship="Q_BANKModel.employeeemail_fk_EmployeeEmail_Employee1" FromRole="employeeemail" ToRole="employee" />
         </EntityType>
@@ -778,9 +811,10 @@
           </Key>
           <Property Name="customerMessageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="employeeId" Type="Int32" Nullable="false" />
-          <Property Name="messageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="read" Type="Int16" />
-          <Property Name="deleted" Type="Int16" />
+          <Property Name="subject" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="messageText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="read" Type="Boolean" />
+          <Property Name="deleted" Type="Boolean" />
           <NavigationProperty Name="employee" Relationship="Q_BANKModel.employeemessage_fk_EmployeeMessage_Employee1" FromRole="employeemessage" ToRole="employee" />
         </EntityType>
         <EntityType Name="employeephone">
@@ -791,7 +825,7 @@
           <Property Name="employeeId" Type="Int32" Nullable="false" />
           <Property Name="phoneTypeId" Type="Int32" Nullable="false" />
           <Property Name="phonenumber" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="active" Type="Int16" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="employee" Relationship="Q_BANKModel.employeephone_fk_EmployeePhone_Employee1" FromRole="employeephone" ToRole="employee" />
           <NavigationProperty Name="phonetype" Relationship="Q_BANKModel.employeephone_fk_Phone_PhoneType10" FromRole="employeephone" ToRole="phonetype" />
         </EntityType>
@@ -823,10 +857,10 @@
           <Property Name="datetime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="executeDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="commitDatetime" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="commit" Type="Int16" Nullable="false" />
+          <Property Name="commit" Type="Boolean" Nullable="false" />
           <Property Name="nameReceiver" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="ibanReceiver" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="sepa" Type="Int16" Nullable="false" />
+          <Property Name="sepa" Type="Boolean" Nullable="false" />
           <Property Name="bic" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="account" Relationship="Q_BANKModel.transaction_fk_Transactie_Rekening1" FromRole="transaction" ToRole="account" />
@@ -843,7 +877,7 @@
           <Property Name="executeDate" Type="DateTime" Precision="0" />
           <Property Name="ibanReceiver" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="nameReceiver" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="sepa" Type="Int16" Nullable="false" />
+          <Property Name="sepa" Type="Boolean" Nullable="false" />
           <Property Name="bic" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="transactionstatu" Relationship="Q_BANKModel.transactionqueue_fk_TransactionQueue_TransactionStatus1" FromRole="transactionqueue" ToRole="transactionstatu" />
@@ -950,6 +984,18 @@
             </Principal>
             <Dependent Role="customerphone">
               <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customermessage_fk_CustomerMessage_Employee1">
+          <End Type="Q_BANKModel.employee" Role="employee" Multiplicity="1" />
+          <End Type="Q_BANKModel.customermessage" Role="customermessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="customermessage">
+              <PropertyRef Name="employeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1070,6 +1116,7 @@
           <EntitySetMapping Name="accounts">
             <EntityTypeMapping TypeName="Q_BANKModel.account">
               <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="deleteRequest" ColumnName="deleteRequest" />
                 <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="bic" ColumnName="bic" />
                 <ScalarProperty Name="iban" ColumnName="iban" />
@@ -1146,9 +1193,13 @@
           <EntitySetMapping Name="customermessages">
             <EntityTypeMapping TypeName="Q_BANKModel.customermessage">
               <MappingFragment StoreEntitySet="customermessage">
+                <ScalarProperty Name="datetimeSent" ColumnName="datetimeSent" />
+                <ScalarProperty Name="permDeleted" ColumnName="permDeleted" />
                 <ScalarProperty Name="deleted" ColumnName="deleted" />
                 <ScalarProperty Name="read" ColumnName="read" />
                 <ScalarProperty Name="messageText" ColumnName="messageText" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
                 <ScalarProperty Name="customerId" ColumnName="customerId" />
                 <ScalarProperty Name="customerMessageId" ColumnName="customerMessageId" />
               </MappingFragment>
@@ -1225,6 +1276,7 @@
                 <ScalarProperty Name="deleted" ColumnName="deleted" />
                 <ScalarProperty Name="read" ColumnName="read" />
                 <ScalarProperty Name="messageText" ColumnName="messageText" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
                 <ScalarProperty Name="employeeId" ColumnName="employeeId" />
                 <ScalarProperty Name="customerMessageId" ColumnName="customerMessageId" />
               </MappingFragment>

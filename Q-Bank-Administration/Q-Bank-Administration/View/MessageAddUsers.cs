@@ -15,9 +15,12 @@ namespace Q_Bank_Administration.View
     {
         public Boolean CloseForm { get; set; }
         public MessageAddUsersController mauc { get; set; }
-        public MessageAddUsers()
+        public String toUsers { get; set; }
+
+        public MessageAddUsers(String toUsers)
         {
             InitializeComponent();
+            this.toUsers = toUsers;
             mauc = new MessageAddUsersController(this);
         }
 

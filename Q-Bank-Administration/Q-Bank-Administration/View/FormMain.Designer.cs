@@ -489,7 +489,6 @@
             this.inboxLabelToInbox.Size = new System.Drawing.Size(115, 13);
             this.inboxLabelToInbox.TabIndex = 10;
             this.inboxLabelToInbox.TabStop = true;
-            this.inbox
 			//
             // tableLayoutPanel1
             // 
@@ -586,15 +585,8 @@
 		private System.Windows.Forms.Button TerminateAccountBevestigen;
         private System.Windows.Forms.Button TerminateAccountAnnuleren;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label TerminateAccountsLabel;		private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.Label label4;
-        public System.Windows.Forms.LinkLabel inboxLabelDeleted;
-        public System.Windows.Forms.LinkLabel inboxLabelInbox;
-        public System.Windows.Forms.LinkLabel inboxLabelDelete;
-        public System.Windows.Forms.LinkLabel inboxLabelUnread;
-        public System.Windows.Forms.LinkLabel inboxLabelRead;
-        public System.Windows.Forms.TableLayoutPanel inboxTable;
-        public System.Windows.Forms.LinkLabel inboxLabelToInbox;<<<<<<< .mine        private System.Windows.Forms.TabPage tabPage10;
+        private System.Windows.Forms.Label TerminateAccountsLabel;		
+        private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.LinkLabel inboxLabelDeleted;
         public System.Windows.Forms.LinkLabel inboxLabelInbox;
@@ -603,11 +595,6 @@
         public System.Windows.Forms.LinkLabel inboxLabelRead;
         public System.Windows.Forms.TableLayoutPanel inboxTable;
         public System.Windows.Forms.LinkLabel inboxLabelToInbox;
-=======        private System.Windows.Forms.Button TerminateAccountBevestigen;
-        private System.Windows.Forms.Button TerminateAccountAnnuleren;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label TerminateAccountsLabel;
->>>>>>> .theirs
     }
 }
 

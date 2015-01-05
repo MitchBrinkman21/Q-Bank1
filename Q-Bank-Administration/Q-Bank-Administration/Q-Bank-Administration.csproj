@@ -89,30 +89,19 @@
     <Compile Include="View\MessageAddUsers.Designer.cs">
       <DependentUpon>MessageAddUsers.cs</DependentUpon>
     </Compile>
-	<Compile Include="View\UserSearch.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\UserSearch.Designer.cs">
-      <DependentUpon>UserSearch.cs</DependentUpon>
-    </Compile>
-	<Compile Include="View\MessageDetails.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\MessageDetails.Designer.cs">
-      <DependentUpon>MessageDetails.cs</DependentUpon>
-    </Compile><<<<<<< .mine    <Compile Include="View\MessageDetails.cs">
+    <Compile Include="View\MessageDetails.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\MessageDetails.Designer.cs">
       <DependentUpon>MessageDetails.cs</DependentUpon>
     </Compile>
-=======    <Compile Include="View\UserSearch.cs">
+    <Compile Include="View\UserSearch.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\UserSearch.Designer.cs">
       <DependentUpon>UserSearch.cs</DependentUpon>
     </Compile>
->>>>>>> .theirs    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -133,17 +122,10 @@
     <EmbeddedResource Include="View\MessageAddUsers.resx">
       <DependentUpon>MessageAddUsers.cs</DependentUpon>
     </EmbeddedResource>
-	<EmbeddedResource Include="View\UserSearch.resx">
-      <DependentUpon>UserSearch.cs</DependentUpon>
-    </EmbeddedResource>	<EmbeddedResource Include="View\MessageDetails.resx">
-      <DependentUpon>MessageDetails.cs</DependentUpon>
-    </EmbeddedResource><<<<<<< .mine    <EmbeddedResource Include="View\MessageDetails.resx">
-      <DependentUpon>MessageDetails.cs</DependentUpon>
-    </EmbeddedResource>
-=======    <EmbeddedResource Include="View\UserSearch.resx">
+    <EmbeddedResource Include="View\UserSearch.resx">
       <DependentUpon>UserSearch.cs</DependentUpon>
     </EmbeddedResource>
->>>>>>> .theirs    <None Include="packages.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

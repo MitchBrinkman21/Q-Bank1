@@ -70,6 +70,10 @@
     <Compile Include="Q-Bank\UnitTestCreateUser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Q-Bank-Administration\Q-Bank-Administration\Q-Bank-Administration.csproj">
+      <Project>{b16c1aad-59ab-4a5c-811f-54c28a9a6aa0}</Project>
+      <Name>Q-Bank-Administration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Q-Bank\Q-Bank.csproj">
       <Project>{7ac3dada-57d2-4a66-8938-fceada2a29f1}</Project>
       <Name>Q-Bank</Name>

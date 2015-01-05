@@ -9,7 +9,7 @@ namespace Q_Bank_Administration.Model
     class UserAdress
     {
         public int customerId;
-        public Int16 active;
+        public Boolean active;
         public string address;
         public string number;
         public string city;
@@ -18,7 +18,7 @@ namespace Q_Bank_Administration.Model
         public string firstName;
         public string bsn;
 
-        public UserAdress(int customerId, string username, string firstName, string lastName, string bsn, Int16 active, string address, string city, string number)
+        public UserAdress(int customerId, string username, string firstName, string lastName, string bsn, Boolean active, string address, string city, string number)
         {
             this.customerId = customerId;
             this.username = username;

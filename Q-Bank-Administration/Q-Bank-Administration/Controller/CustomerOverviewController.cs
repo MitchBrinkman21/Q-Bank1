@@ -102,7 +102,7 @@ namespace Q_Bank_Administration.Controller
                         {
                             var gebruikers = from g in con.customers
                                              join a in con.customeraddresses on g.customerId equals a.customerId
-                                             where a.active == 1 && g.username == us.textBoxusername.Text
+                                             where a.active == true && g.username == us.textBoxusername.Text
                                              orderby g.lastName ascending
                                              select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
 
@@ -131,7 +131,7 @@ namespace Q_Bank_Administration.Controller
                         {
                             var gebruikers = from g in con.customers
                                              join a in con.customeraddresses on g.customerId equals a.customerId
-                                             where a.active == 1 && g.firstName == us.textBoxFirstName.Text
+                                             where a.active == true && g.firstName == us.textBoxFirstName.Text
                                              orderby g.lastName ascending
                                              select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
 
@@ -160,7 +160,7 @@ namespace Q_Bank_Administration.Controller
                         {
                             var gebruikers = from g in con.customers
                                              join a in con.customeraddresses on g.customerId equals a.customerId
-                                             where a.active == 1 && g.lastName == us.textBoxLastName.Text
+                                             where a.active == true && g.lastName == us.textBoxLastName.Text
                                              orderby g.lastName ascending
                                              select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
 
@@ -189,7 +189,7 @@ namespace Q_Bank_Administration.Controller
                         {
                             var gebruikers = from g in con.customers
                                              join a in con.customeraddresses on g.customerId equals a.customerId
-                                             where a.active == 1 && g.username == us.textBoxusername.Text && g.firstName == us.textBoxFirstName.Text
+                                             where a.active == true && g.username == us.textBoxusername.Text && g.firstName == us.textBoxFirstName.Text
                                              orderby g.lastName ascending
                                              select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
 
@@ -218,7 +218,7 @@ namespace Q_Bank_Administration.Controller
                         {
                             var gebruikers = from g in con.customers
                                              join a in con.customeraddresses on g.customerId equals a.customerId
-                                             where a.active == 1 && g.username == us.textBoxusername.Text && g.lastName == us.textBoxLastName.Text
+                                             where a.active == true && g.username == us.textBoxusername.Text && g.lastName == us.textBoxLastName.Text
                                              orderby g.lastName ascending
                                              select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
 
@@ -247,7 +247,7 @@ namespace Q_Bank_Administration.Controller
                         {
                             var gebruikers = from g in con.customers
                                              join a in con.customeraddresses on g.customerId equals a.customerId
-                                             where a.active == 1 && g.firstName == us.textBoxFirstName.Text && g.lastName == us.textBoxLastName.Text
+                                             where a.active == true && g.firstName == us.textBoxFirstName.Text && g.lastName == us.textBoxLastName.Text
                                              orderby g.lastName ascending
                                              select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
 
@@ -276,7 +276,7 @@ namespace Q_Bank_Administration.Controller
                         {
                             var gebruikers = from g in con.customers
                                              join a in con.customeraddresses on g.customerId equals a.customerId
-                                             where a.active == 1 && g.username == us.textBoxusername.Text && g.firstName == us.textBoxFirstName.Text && g.lastName == us.textBoxLastName.Text
+                                             where a.active == true && g.username == us.textBoxusername.Text && g.firstName == us.textBoxFirstName.Text && g.lastName == us.textBoxLastName.Text
                                              orderby g.lastName ascending
                                              select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
 
@@ -401,7 +401,7 @@ namespace Q_Bank_Administration.Controller
             {
                     var gebruikers = from g in con.customers
                                  join a in con.customeraddresses on g.customerId equals a.customerId
-                                 where a.active == 1
+                                 where a.active == true
                                  orderby g.lastName ascending
                                  select new {g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active ,a.address ,a.city, a.number };
                 
@@ -447,7 +447,7 @@ namespace Q_Bank_Administration.Controller
             else if (tabID == 1)
             {
                 var active = from a in gebruikers
-                             where a.active == 1
+                             where a.active == true
                              select a;
 
                 int i = 1;
@@ -460,7 +460,7 @@ namespace Q_Bank_Administration.Controller
             else if (tabID == 2)
             {
                 var notActive = from a in gebruikers
-                                where a.active == 0
+                                where a.active == false
                                 select a;
 
                 int i = 1;
@@ -518,7 +518,7 @@ namespace Q_Bank_Administration.Controller
 
             defaultLabel = new Label();
             defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-            if (gebruiker.active == 1) 
+            if (gebruiker.active == true) 
             {
                 defaultLabel.Text = "actief";
             }

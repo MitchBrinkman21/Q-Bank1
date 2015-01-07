@@ -83,6 +83,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\AccComboBoxGen.cs" />
+    <Compile Include="Controller\AccountOverviewController.cs" />
     <Compile Include="Controller\CreateAccountController.cs" />
     <Compile Include="Controller\CustomerOverviewController.cs" />
     <Compile Include="Controller\LoginController.cs" />
@@ -91,12 +93,19 @@
     <Compile Include="Controller\MessageDetailsController.cs" />
     <Compile Include="Controller\PasswordEncryption.cs" />
     <Compile Include="Controller\TerminateAccountsController.cs" />
+    <Compile Include="Controller\TransactionSearchController.cs" />
     <Compile Include="Model\UserAdress.cs" />
     <Compile Include="View\AcceptTerminate.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\AcceptTerminate.Designer.cs">
       <DependentUpon>AcceptTerminate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AccountOverview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AccountOverview.Designer.cs">
+      <DependentUpon>AccountOverview.cs</DependentUpon>
     </Compile>
     <Compile Include="View\CreateAccount.cs">
       <SubType>Form</SubType>
@@ -130,6 +139,18 @@
     <Compile Include="View\MessageDetails.Designer.cs">
       <DependentUpon>MessageDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\TransactionDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TransactionDetails.Designer.cs">
+      <DependentUpon>TransactionDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\TransactionSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TransactionSearch.Designer.cs">
+      <DependentUpon>TransactionSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\UserSearch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +169,9 @@
     <EmbeddedResource Include="View\AcceptTerminate.resx">
       <DependentUpon>AcceptTerminate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\AccountOverview.resx">
+      <DependentUpon>AccountOverview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\CreateAccount.resx">
       <DependentUpon>CreateAccount.cs</DependentUpon>
     </EmbeddedResource>
@@ -159,6 +183,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\MessageAddUsers.resx">
       <DependentUpon>MessageAddUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TransactionDetails.resx">
+      <DependentUpon>TransactionDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TransactionSearch.resx">
+      <DependentUpon>TransactionSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserSearch.resx">
       <DependentUpon>UserSearch.cs</DependentUpon>

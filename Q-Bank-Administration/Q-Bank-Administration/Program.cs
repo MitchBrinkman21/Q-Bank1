@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Q_Bank_Administration.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Q_Bank_Administration
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain(3));
+            Application.Run(new FormLogin());
         }
     }
 }

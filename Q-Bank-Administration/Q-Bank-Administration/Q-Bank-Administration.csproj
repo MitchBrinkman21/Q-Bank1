@@ -62,7 +62,14 @@
     <Compile Include="Controller\MessageController.cs" />
     <Compile Include="Controller\MessageDetailsController.cs" />
     <Compile Include="Controller\PasswordEncryption.cs" />
+    <Compile Include="Controller\TerminateAccountsController.cs" />
     <Compile Include="Model\UserAdress.cs" />
+    <Compile Include="View\AcceptTerminate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AcceptTerminate.Designer.cs">
+      <DependentUpon>AcceptTerminate.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\CreateAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +117,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\AcceptTerminate.resx">
+      <DependentUpon>AcceptTerminate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\CreateAccount.resx">
       <DependentUpon>CreateAccount.cs</DependentUpon>
     </EmbeddedResource>

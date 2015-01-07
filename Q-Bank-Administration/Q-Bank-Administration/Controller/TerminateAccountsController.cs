@@ -15,6 +15,7 @@ namespace Q_Bank_Administration.Controller
         public FormMain formMain { get; set; }
         private TableLayoutPanel tableLayout;
         private AcceptTerminate at;
+        private CheckBox checkBox1;
 
 
         public TerminateAccountsController(FormMain formMain)
@@ -45,23 +46,34 @@ namespace Q_Bank_Administration.Controller
 
         private void DeclineButton(Object sender, EventArgs e)
         {
-            using (at = new AcceptTerminate())
-            {
-                at.ShowDialog();
-
-            }
+            
         }
 
         private void AcceptButton(Object sender, EventArgs e)
         {
+            using (at = new AcceptTerminate())
+            {
+                if (checkBox1.Checked)
+                {
+                    at.ShowDialog();
+                    if (at.CloseForm == true)
+                    {
 
+                    }
+                }
+
+                else
+                {
+                    MessageBox.Show("U heeft geen rekeningen geselecteerd om te beëindigen", "Rekening beëindigen",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void AddTableLayout()
         {
             tableLayout = new TableLayoutPanel();
             tableLayout.SuspendLayout();
-            //tab.Controls.Add(tableLayout);
             tableLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -81,7 +93,6 @@ namespace Q_Bank_Administration.Controller
             tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             tableLayout.Size = new System.Drawing.Size(970, 540);
             tableLayout.TabIndex = 0;
-            //tableLayout.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
         }
 
         private void AddDefaultLabels()
@@ -107,11 +118,18 @@ namespace Q_Bank_Administration.Controller
         {
             using (var con = new Q_BANKEntities())
             {
-                //query voor opzoeken rekening beëindigen enzo
+                var beeindigen = from a in con.accounts
+                                 where a.deleteRequest == true
+                                 select new { a.accountNumber, a.customerId };
 
-                if (false)
+                if (beeindigen.Count() > 0)
                 {
-                
+                    int i = 1;
+                    foreach (var a in beeindigen)
+                    {
+                        addItems(a.accountNumber, a.customerId, i);
+                        i++;
+                    }
                 }
 
                 else
@@ -125,5 +143,20 @@ namespace Q_Bank_Administration.Controller
 
         }
 
+        private void addItems(string a, int b, int position)
+        {
+            Label defaultLabel = new Label();
+            defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+            defaultLabel.Text = a;
+            tableLayout.Controls.Add(defaultLabel, 0, position);
+
+            defaultLabel = new Label();
+            defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+            defaultLabel.Text = b.ToString();
+            tableLayout.Controls.Add(defaultLabel, 1, position);
+
+            checkBox1 = new CheckBox();
+            tableLayout.Controls.Add(checkBox1, 2, position);
+        }
     }
 }

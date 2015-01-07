@@ -207,6 +207,13 @@ namespace Q_Bank.Controller
             {
                 if (createUser.textBoxPassword.Text != createUser.textBoxRepeatPassword.Text)
                 {
+                    createUser.labelCheckPassword.Text = "Wachtwoorden komen niet overeen!";
+                    createUser.labelCheckPassword.Visible = true;
+                    validPassword = false;
+                }
+                else if (createUser.textBoxPassword.Text.Length < 5)
+                {
+                    createUser.labelCheckPassword.Text = "Wachtwoord voldoet niet aan de eisen!";
                     createUser.labelCheckPassword.Visible = true;
                     validPassword = false;
                 }
@@ -257,7 +264,7 @@ namespace Q_Bank.Controller
             }
 
             if(!String.IsNullOrEmpty(createUser.textBoxFirstname.Text) && 
-                !Regex.IsMatch(createUser.textBoxFirstname.Text, @"^[a-zA-Z]+$"))
+                !Regex.IsMatch(createUser.textBoxFirstname.Text, @"^[-\ a-zA-Z]+$"))
             {
                 createUser.labelCheckFirstname.Visible = true;
                 validText = false;
@@ -268,7 +275,7 @@ namespace Q_Bank.Controller
             }
 
             if(!String.IsNullOrEmpty(createUser.textBoxLastname.Text) && 
-                !Regex.IsMatch(createUser.textBoxLastname.Text, @"^[a-zA-Z]+$"))
+                !Regex.IsMatch(createUser.textBoxLastname.Text, @"^[-\ a-zA-Z]+$"))
             {
                 createUser.labelCheckLastname.Visible = true;
                 validText = false;
@@ -311,7 +318,7 @@ namespace Q_Bank.Controller
             }
 
             if (!String.IsNullOrEmpty(createUser.textBoxAddress.Text) &&
-                !Regex.IsMatch(createUser.textBoxAddress.Text, @"^[a-zA-Z]+$"))
+                !Regex.IsMatch(createUser.textBoxAddress.Text, @"^[-\ a-zA-Z]+$"))
             {
                 createUser.labelCheckAddress.Visible = true;
                 validText = false;
@@ -323,7 +330,7 @@ namespace Q_Bank.Controller
 
 
             if(!String.IsNullOrEmpty(createUser.textBoxCity.Text) && 
-                !Regex.IsMatch(createUser.textBoxCity.Text, @"^[a-zA-Z]+$"))
+                !Regex.IsMatch(createUser.textBoxCity.Text, @"^[-\ a-zA-Z]+$"))
             {
                 createUser.labelCheckCity.Visible = true;
                 validText = false;
@@ -334,7 +341,7 @@ namespace Q_Bank.Controller
             }
 
             if(!String.IsNullOrEmpty(createUser.textBoxCountry.Text) && 
-                !Regex.IsMatch(createUser.textBoxCountry.Text, @"^[a-zA-Z]+$"))
+                !Regex.IsMatch(createUser.textBoxCountry.Text, @"^[-\ a-zA-Z]+$"))
             {
                 createUser.labelCheckCountry.Visible = true;
                 validText = false;

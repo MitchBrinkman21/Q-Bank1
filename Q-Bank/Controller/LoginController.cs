@@ -52,7 +52,6 @@ namespace Q_Bank.Controller
                             formLogin.AcceptButton = formLogin.button2;
                             id = 0;
                             formLogin.textBox3.Text = String.Empty;
-                            formLogin.label5.Text = String.Empty;
                             formLogin.textBox3.Enabled = false;
                             loginNo = "";
                             validated = false;
@@ -65,7 +64,6 @@ namespace Q_Bank.Controller
                             formLogin.AcceptButton = formLogin.button2;
                             id = 0;
                             formLogin.textBox3.Text = String.Empty;
-                            formLogin.label5.Text = String.Empty;
                             formLogin.textBox3.Enabled = false;
                             loginNo = "";
                         }
@@ -115,7 +113,6 @@ namespace Q_Bank.Controller
                                 for (int i = 0; i < 8; i++)
                                 {
                                     loginNo += Convert.ToString(rnd.Next(10));
-                                    formLogin.label5.Text = loginNo;
                                 }
                                 try
                                 {

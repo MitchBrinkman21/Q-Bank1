@@ -96,6 +96,7 @@ namespace Q_Bank_Administration.Controller
                 if (us.CloseForm == true)
                 {
                     ResetTable();
+                    AddDefaultLabels();
                     if (!String.IsNullOrWhiteSpace(us.textBoxusername.Text) && String.IsNullOrWhiteSpace(us.textBoxFirstName.Text) && String.IsNullOrWhiteSpace(us.textBoxLastName.Text))
                     {
                         using (var con = new Q_BANKEntities())

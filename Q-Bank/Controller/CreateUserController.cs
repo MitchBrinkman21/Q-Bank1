@@ -253,7 +253,8 @@ namespace Q_Bank.Controller
             // Check if entered data is correct
 
             if(!String.IsNullOrEmpty(createUser.textBoxBSN.Text) && 
-                !Regex.IsMatch(createUser.textBoxBSN.Text, @"^[0-9]+$"))
+                (!Regex.IsMatch(createUser.textBoxBSN.Text, @"^[0-9]+$") ||
+                createUser.textBoxBSN.Text.Length != 9))
             {
                 createUser.labelCheckBSN.Visible = true;
                 validText = false;

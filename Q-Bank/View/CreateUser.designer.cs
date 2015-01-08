@@ -400,9 +400,9 @@
             this.labelCheckBSN.ForeColor = System.Drawing.Color.Red;
             this.labelCheckBSN.Location = new System.Drawing.Point(446, 103);
             this.labelCheckBSN.Name = "labelCheckBSN";
-            this.labelCheckBSN.Size = new System.Drawing.Size(166, 17);
+            this.labelCheckBSN.Size = new System.Drawing.Size(128, 17);
             this.labelCheckBSN.TabIndex = 38;
-            this.labelCheckBSN.Text = "Alleen cijfers toegestaan!";
+            this.labelCheckBSN.Text = "Geen geldige BSN!";
             this.labelCheckBSN.Visible = false;
             // 
             // labelCheckLastname

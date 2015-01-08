@@ -142,12 +142,13 @@ namespace Q_Bank_Administration.Controller
                                     {
                                         Console.WriteLine(ex);
                                     }
-                                    ResetTable();
-                                    AddDefaultLabels();
-                                    FillTable();
+                                    
                                 }
                                                   
                             }
+                            ResetTable();
+                            AddDefaultLabels();
+                            FillTable();
                         }
                     }
                     else

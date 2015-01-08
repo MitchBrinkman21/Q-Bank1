@@ -70,7 +70,7 @@
             // buttonSubmit
             // 
             this.buttonSubmit.Location = new System.Drawing.Point(313, 202);
-            this.buttonSubmit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSubmit.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.Size = new System.Drawing.Size(104, 38);
             this.buttonSubmit.TabIndex = 4;
@@ -92,7 +92,7 @@
             // 
             this.comboBoxAccountType.FormattingEnabled = true;
             this.comboBoxAccountType.Location = new System.Drawing.Point(213, 140);
-            this.comboBoxAccountType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxAccountType.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxAccountType.Name = "comboBoxAccountType";
             this.comboBoxAccountType.Size = new System.Drawing.Size(112, 21);
             this.comboBoxAccountType.TabIndex = 6;
@@ -110,8 +110,10 @@
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.labelCreateAccount);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreateAccount";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rekening aanmaken";
             this.ResumeLayout(false);

@@ -208,6 +208,8 @@
             this.Controls.Add(this.TransactionSearchButtonCancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TransactionSearch";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TransactionSearch";
             this.ResumeLayout(false);

@@ -27,7 +27,7 @@ namespace Q_Bank_Administration.Controller
             accountOverview.TransactionOverviewAccountsCombobox.SelectedIndexChanged += TransactionOverviewAccountComboboxChanged;
             accountOverview.TransactionOverviewSearchButton.MouseDown += TransactionOverviewSearchButtonMouseDown;
             AccComboBoxGen acbg = new AccComboBoxGen(accountOverview, accountOverview.TransactionOverviewAccountsCombobox);
-            accountOverview.Show();
+            accountOverview.ShowDialog();
         }
 
         /// <summary>

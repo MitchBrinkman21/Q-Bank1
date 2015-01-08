@@ -87,12 +87,14 @@ namespace Q_Bank_Administration.Controller
                             {
                                 Console.WriteLine(ex);
                             }
-                            ResetTable();
-                            AddDefaultLabels();
-                            FillTable();
                         }
 
                     }
+                    checkBoxes.Clear();
+                    ResetTable();
+                    AddDefaultLabels();
+                    FillTable();
+                    
                 }
             }
             else
@@ -146,6 +148,7 @@ namespace Q_Bank_Administration.Controller
                                 }
                                                   
                             }
+                            checkBoxes.Clear();
                             ResetTable();
                             AddDefaultLabels();
                             FillTable();

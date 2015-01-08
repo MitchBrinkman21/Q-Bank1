@@ -371,6 +371,7 @@
             this.Controls.Add(this.menuStrip2);
             this.Controls.Add(this.tabControl1);
             this.Name = "FormMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Adminstrator";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.tabControl1.ResumeLayout(false);

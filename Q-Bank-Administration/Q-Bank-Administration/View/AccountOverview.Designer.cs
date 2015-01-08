@@ -116,7 +116,9 @@
             this.Controls.Add(this.TransactionOverviewBalanceLabel);
             this.Controls.Add(this.TransactionOverviewAccountsCombobox);
             this.Controls.Add(this.label23);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AccountOverview";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AccountOverview";
             this.ResumeLayout(false);
             this.PerformLayout();

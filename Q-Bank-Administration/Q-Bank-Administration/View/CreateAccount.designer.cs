@@ -40,35 +40,39 @@
             // 
             this.labelCreateAccount.AutoSize = true;
             this.labelCreateAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCreateAccount.Location = new System.Drawing.Point(123, 43);
+            this.labelCreateAccount.Location = new System.Drawing.Point(92, 35);
+            this.labelCreateAccount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCreateAccount.Name = "labelCreateAccount";
-            this.labelCreateAccount.Size = new System.Drawing.Size(233, 29);
+            this.labelCreateAccount.Size = new System.Drawing.Size(184, 24);
             this.labelCreateAccount.TabIndex = 1;
             this.labelCreateAccount.Text = "Rekening aanmaken";
             // 
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(125, 125);
+            this.labelName.Location = new System.Drawing.Point(94, 102);
+            this.labelName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(49, 17);
+            this.labelName.Size = new System.Drawing.Size(38, 13);
             this.labelName.TabIndex = 2;
             this.labelName.Text = "Naam:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(125, 175);
+            this.label1.Location = new System.Drawing.Point(94, 142);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 17);
+            this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Type rekening:";
             // 
             // buttonSubmit
             // 
-            this.buttonSubmit.Location = new System.Drawing.Point(417, 248);
+            this.buttonSubmit.Location = new System.Drawing.Point(313, 202);
+            this.buttonSubmit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonSubmit.Name = "buttonSubmit";
-            this.buttonSubmit.Size = new System.Drawing.Size(139, 47);
+            this.buttonSubmit.Size = new System.Drawing.Size(104, 38);
             this.buttonSubmit.TabIndex = 4;
             this.buttonSubmit.Text = "Bevestigen";
             this.buttonSubmit.UseVisualStyleBackColor = true;
@@ -77,32 +81,36 @@
             // 
             this.labelNameText.AutoSize = true;
             this.labelNameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNameText.Location = new System.Drawing.Point(284, 125);
+            this.labelNameText.Location = new System.Drawing.Point(213, 102);
+            this.labelNameText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelNameText.Name = "labelNameText";
-            this.labelNameText.Size = new System.Drawing.Size(49, 17);
+            this.labelNameText.Size = new System.Drawing.Size(39, 13);
             this.labelNameText.TabIndex = 5;
             this.labelNameText.Text = "Naam";
             // 
             // comboBoxAccountType
             // 
             this.comboBoxAccountType.FormattingEnabled = true;
-            this.comboBoxAccountType.Location = new System.Drawing.Point(284, 172);
+            this.comboBoxAccountType.Location = new System.Drawing.Point(213, 140);
+            this.comboBoxAccountType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxAccountType.Name = "comboBoxAccountType";
-            this.comboBoxAccountType.Size = new System.Drawing.Size(148, 24);
+            this.comboBoxAccountType.Size = new System.Drawing.Size(112, 21);
             this.comboBoxAccountType.TabIndex = 6;
             this.comboBoxAccountType.Text = "Kies:";
             // 
             // CreateAccount
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(575, 307);
+            this.ClientSize = new System.Drawing.Size(431, 249);
             this.Controls.Add(this.comboBoxAccountType);
             this.Controls.Add(this.labelNameText);
             this.Controls.Add(this.buttonSubmit);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.labelCreateAccount);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CreateAccount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rekening aanmaken";

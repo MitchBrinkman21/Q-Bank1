@@ -244,7 +244,9 @@
             this.Controls.Add(this.Uitvoerdatum);
             this.Controls.Add(this.accountLabel);
             this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TransactionDetails";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TransactionDetails";
             this.ResumeLayout(false);
             this.PerformLayout();

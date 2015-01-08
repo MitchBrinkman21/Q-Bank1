@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace Q_Bank_Administration.View
 {
-    public partial class AcceptTerminate : Form
+    public partial class DeclineTerminate : Form
     {
         public Boolean CloseForm { get; set; }
 
-        public AcceptTerminate(List<CheckBox> checkBoxes)
+        public DeclineTerminate(List<CheckBox> checkBoxes)
         {
             InitializeComponent();
             query(checkBoxes);
@@ -43,14 +43,14 @@ namespace Q_Bank_Administration.View
                 }
             }
         }
-        
-        private void button1_Click(object sender, EventArgs e)
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
             this.CloseForm = false;
             Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click_1(object sender, EventArgs e)
         {
             this.CloseForm = true;
             Close();

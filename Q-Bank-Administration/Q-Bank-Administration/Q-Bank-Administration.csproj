@@ -113,6 +113,12 @@
     <Compile Include="View\CreateAccount.designer.cs">
       <DependentUpon>CreateAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\DeclineTerminate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DeclineTerminate.Designer.cs">
+      <DependentUpon>DeclineTerminate.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\CreateAccount.resx">
       <DependentUpon>CreateAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DeclineTerminate.resx">
+      <DependentUpon>DeclineTerminate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

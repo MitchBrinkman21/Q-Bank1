@@ -404,7 +404,6 @@
         private System.Windows.Forms.ToolStripMenuItem afmeldenToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.Label messageMessage;
         private System.Windows.Forms.Label messageSubject;
@@ -424,6 +423,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label TerminateAccountsLabel;
+        public System.Windows.Forms.TabPage tabPage5;
     }
 }
 

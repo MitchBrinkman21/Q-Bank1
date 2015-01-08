@@ -22,6 +22,7 @@ namespace Q_Bank_Administration
             this.id = id;
             CustomerOverviewController coc = new CustomerOverviewController(this);
             TerminateAccountsController tac = new TerminateAccountsController(this);
+            MessageController mc = new MessageController(this);
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)

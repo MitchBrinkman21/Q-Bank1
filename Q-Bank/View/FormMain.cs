@@ -24,58 +24,16 @@ namespace Q_Bank
             InitializeComponent();
             Home();
             this.id = id;
+            TransactionController tc = new TransactionController(this);
+            TransactionOverviewController toc = new TransactionOverviewController(this);
+            TabMailingList tts = new TabMailingList(this);
+            InboxController ic = new InboxController(this);
         }
 
         private void Home()
         {
             tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
             tableLayoutPanel2.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-        }
-
-        private void Transaction()
-        {
-            TransactionController tc = new TransactionController(this);
-        }
-
-        private void TransactionOverview()
-        {
-            TransactionOverviewController toc = new TransactionOverviewController(this);
-        }
-
-        private void TransactionStatus()
-        {
-            TabMailingList tts = new TabMailingList(this);
-        }
-
-        private void Inbox()
-        {
-            InboxController ic = new InboxController(this);
-        }
-
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int i = tabControl1.SelectedIndex;
-            switch (i)
-            {
-                case 0:
-                    Home();
-                    break;
-                case 1:
-                    Transaction();
-                    break;
-                case 2:
-                    TransactionOverview();
-                    break;
-                case 3:
-                    TransactionStatus();
-                    break;
-                case 4:
-                    Inbox();
-                    break;
-                default:
-                    Home();
-                    break;
-            }
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)

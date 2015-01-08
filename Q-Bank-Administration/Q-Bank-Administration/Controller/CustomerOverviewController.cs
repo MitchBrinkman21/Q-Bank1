@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Q_Bank_Administration.Controller
 {
-    class CustomerOverviewController
+    public class CustomerOverviewController
     {
         public FormMain formMain { get; set; }
         private TableLayoutPanel tableLayout;

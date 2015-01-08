@@ -44,7 +44,7 @@ namespace Q_Bank_Administration
 
         private void TerminateAccounts()
         {
-
+            TerminateAccountsController tac = new TerminateAccountsController(this);
         }
 
         private void Messages()

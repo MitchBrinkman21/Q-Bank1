@@ -35,8 +35,8 @@ namespace Q_Bank_Administration.Controller
             Accept.Text = "Bevestigen";
             Decline.Size = new Size(121, 23);
             Accept.Size = new Size(121, 23);
-            Decline.Location = new Point(0, 0);
-            Accept.Location = new Point(0, 0);
+            Decline.Location = new Point(10, 500);
+            Accept.Location = new Point(800, 500);
 
             Decline.Click += DeclineButton;
             Accept.Click += AcceptButton;

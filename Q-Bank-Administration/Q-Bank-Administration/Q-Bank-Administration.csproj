@@ -151,6 +151,12 @@
     <Compile Include="View\TransactionSearch.Designer.cs">
       <DependentUpon>TransactionSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\UserMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\UserMenu.Designer.cs">
+      <DependentUpon>UserMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\UserSearch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\TransactionSearch.resx">
       <DependentUpon>TransactionSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\UserMenu.resx">
+      <DependentUpon>UserMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserSearch.resx">
       <DependentUpon>UserSearch.cs</DependentUpon>

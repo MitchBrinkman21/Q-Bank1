@@ -20,7 +20,7 @@ namespace Q_Bank_Administration.Controller
         {
             this.formMain = formMain;
             formMain.tabControl2.SelectedIndexChanged += TabControl;
- 
+
             TabControl(null, null);
         }
 
@@ -29,38 +29,38 @@ namespace Q_Bank_Administration.Controller
             switch (formMain.tabControl2.SelectedIndex)
             {
                 case 0:
-                tabID = 0;
-                AddTableLayout(formMain.tabPage7);
-                AddButton(formMain.tabPage7);
-                AddDefaultLabels();
-                FillTable(0);
-                ResetTableLayout();
-                
-                break;
+                    tabID = 0;
+                    AddTableLayout(formMain.tabPage7);
+                    AddButton(formMain.tabPage7);
+                    AddDefaultLabels();
+                    FillTable(0);
+                    ResetTableLayout();
+
+                    break;
                 case 1:
-                tabID = 1;
-                AddTableLayout(formMain.tabPage8);
-                AddButton(formMain.tabPage8);
-                AddDefaultLabels();
-                FillTable(1);
-                ResetTableLayout();
-                break;
+                    tabID = 1;
+                    AddTableLayout(formMain.tabPage8);
+                    AddButton(formMain.tabPage8);
+                    AddDefaultLabels();
+                    FillTable(1);
+                    ResetTableLayout();
+                    break;
                 case 2:
-                tabID = 2;
-                AddTableLayout(formMain.tabPage9);
-                AddButton(formMain.tabPage9);
-                AddDefaultLabels();
-                FillTable(2);
-                ResetTableLayout();
-                break;
+                    tabID = 2;
+                    AddTableLayout(formMain.tabPage9);
+                    AddButton(formMain.tabPage9);
+                    AddDefaultLabels();
+                    FillTable(2);
+                    ResetTableLayout();
+                    break;
                 default:
-                tabID = 0;
-                AddTableLayout(formMain.tabPage7);
-                AddButton(formMain.tabPage7);
-                AddDefaultLabels();
-                FillTable(0);
-                ResetTableLayout();
-                break;
+                    tabID = 0;
+                    AddTableLayout(formMain.tabPage7);
+                    AddButton(formMain.tabPage7);
+                    AddDefaultLabels();
+                    FillTable(0);
+                    ResetTableLayout();
+                    break;
             }
         }
 
@@ -342,7 +342,7 @@ namespace Q_Bank_Administration.Controller
             tableLayout.Size = new System.Drawing.Size(970, 540);
             tableLayout.TabIndex = 0;
             //tableLayout.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-            
+
         }
 
         private void ResetTableLayout()
@@ -400,12 +400,12 @@ namespace Q_Bank_Administration.Controller
         {
             using (var con = new Q_BANKEntities())
             {
-                    var gebruikers = from g in con.customers
+                var gebruikers = from g in con.customers
                                  join a in con.customeraddresses on g.customerId equals a.customerId
                                  where a.active == true
                                  orderby g.lastName ascending
-                                 select new {g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active ,a.address ,a.city, a.number };
-                
+                                 select new { g.customerId, g.username, g.firstName, g.lastName, g.bsn, g.active, a.address, a.city, a.number };
+
                 if (gebruikers.Count() > 0)
                 {
                     List<Model.UserAdress> gebruiker = new List<Model.UserAdress>();
@@ -424,8 +424,8 @@ namespace Q_Bank_Administration.Controller
                     tableLayout.Controls.Add(defaultLabel, 1, 1);
                 }
             }
-            
-            
+
+
             //verwijderd de verticale scrollbar
             int vertScrollWidth = SystemInformation.VerticalScrollBarWidth;
             tableLayout.Padding = new Padding(0, 0, vertScrollWidth, 0);
@@ -479,47 +479,47 @@ namespace Q_Bank_Administration.Controller
             defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             defaultLabel.Text = gebruiker.username;
             defaultLabel.Tag = gebruiker.customerId;
-            defaultLabel.Click += LabelClick; 
+            defaultLabel.Click += LabelClick;
             tableLayout.Controls.Add(defaultLabel, 0, position);
 
             defaultLabel = new Label();
             defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             defaultLabel.Text = gebruiker.firstName;
             defaultLabel.Tag = gebruiker.customerId;
-            defaultLabel.Click += LabelClick; 
+            defaultLabel.Click += LabelClick;
             tableLayout.Controls.Add(defaultLabel, 1, position);
 
             defaultLabel = new Label();
             defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             defaultLabel.Text = gebruiker.lastName;
             defaultLabel.Tag = gebruiker.customerId;
-            defaultLabel.Click += LabelClick; 
+            defaultLabel.Click += LabelClick;
             tableLayout.Controls.Add(defaultLabel, 2, position);
 
             defaultLabel = new Label();
             defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             defaultLabel.Text = gebruiker.address + " " + gebruiker.number;
             defaultLabel.Tag = gebruiker.customerId;
-            defaultLabel.Click += LabelClick; 
+            defaultLabel.Click += LabelClick;
             tableLayout.Controls.Add(defaultLabel, 3, position);
 
             defaultLabel = new Label();
             defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             defaultLabel.Text = gebruiker.city;
             defaultLabel.Tag = gebruiker.customerId;
-            defaultLabel.Click += LabelClick; 
+            defaultLabel.Click += LabelClick;
             tableLayout.Controls.Add(defaultLabel, 4, position);
 
             defaultLabel = new Label();
             defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
             defaultLabel.Text = gebruiker.bsn.ToString();
             defaultLabel.Tag = gebruiker.customerId;
-            defaultLabel.Click += LabelClick; 
+            defaultLabel.Click += LabelClick;
             tableLayout.Controls.Add(defaultLabel, 5, position);
 
             defaultLabel = new Label();
             defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-            if (gebruiker.active == true) 
+            if (gebruiker.active == true)
             {
                 defaultLabel.Text = "actief";
             }
@@ -528,7 +528,7 @@ namespace Q_Bank_Administration.Controller
                 defaultLabel.Text = "inactief";
             }
             defaultLabel.Tag = gebruiker.customerId;
-            defaultLabel.Click += LabelClick; 
+            defaultLabel.Click += LabelClick;
             tableLayout.Controls.Add(defaultLabel, 6, position);
 
             tableLayout.RowCount += 1;
@@ -539,7 +539,8 @@ namespace Q_Bank_Administration.Controller
             Label clickedLabel = sender as Label;
             if (clickedLabel != null)
             {
-                MessageBox.Show(clickedLabel.Tag.ToString(), "customer ID");
+                UserMenu um = new UserMenu(Convert.ToInt32(clickedLabel.Tag.ToString()));
+                um.ShowDialog();
             }
         }
     }

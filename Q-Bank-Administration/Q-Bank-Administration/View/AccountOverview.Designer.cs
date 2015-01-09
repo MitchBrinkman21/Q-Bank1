@@ -34,6 +34,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.TransactionOverviewTable = new System.Windows.Forms.TableLayoutPanel();
             this.TransactionOverviewSearchLabel = new System.Windows.Forms.Label();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TransactionOverviewSearchButton
@@ -93,7 +94,7 @@
             this.TransactionOverviewTable.Location = new System.Drawing.Point(36, 130);
             this.TransactionOverviewTable.Name = "TransactionOverviewTable";
             this.TransactionOverviewTable.RowCount = 1;
-            this.TransactionOverviewTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 472F));
+            this.TransactionOverviewTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 568F));
             this.TransactionOverviewTable.Size = new System.Drawing.Size(883, 472);
             this.TransactionOverviewTable.TabIndex = 13;
             // 
@@ -105,11 +106,21 @@
             this.TransactionOverviewSearchLabel.Size = new System.Drawing.Size(0, 13);
             this.TransactionOverviewSearchLabel.TabIndex = 14;
             // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(988, 452);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(134, 53);
+            this.buttonCancel.TabIndex = 15;
+            this.buttonCancel.Text = "Annuleren";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            // 
             // AccountOverview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 517);
+            this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.TransactionOverviewSearchLabel);
             this.Controls.Add(this.TransactionOverviewTable);
             this.Controls.Add(this.TransactionOverviewSearchButton);
@@ -135,5 +146,6 @@
         private System.Windows.Forms.Label label23;
         public System.Windows.Forms.TableLayoutPanel TransactionOverviewTable;
         public System.Windows.Forms.Label TransactionOverviewSearchLabel;
+        public System.Windows.Forms.Button buttonCancel;
     }
 }

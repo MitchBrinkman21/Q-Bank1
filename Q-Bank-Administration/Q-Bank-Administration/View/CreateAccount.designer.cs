@@ -34,6 +34,7 @@
             this.buttonSubmit = new System.Windows.Forms.Button();
             this.labelNameText = new System.Windows.Forms.Label();
             this.comboBoxAccountType = new System.Windows.Forms.ComboBox();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelCreateAccount
@@ -69,7 +70,7 @@
             // 
             // buttonSubmit
             // 
-            this.buttonSubmit.Location = new System.Drawing.Point(313, 202);
+            this.buttonSubmit.Location = new System.Drawing.Point(208, 200);
             this.buttonSubmit.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.Size = new System.Drawing.Size(104, 38);
@@ -98,11 +99,22 @@
             this.comboBoxAccountType.TabIndex = 6;
             this.comboBoxAccountType.Text = "Kies:";
             // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(316, 200);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(104, 38);
+            this.buttonCancel.TabIndex = 7;
+            this.buttonCancel.Text = "Annuleren";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            // 
             // CreateAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(431, 249);
+            this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.comboBoxAccountType);
             this.Controls.Add(this.labelNameText);
             this.Controls.Add(this.buttonSubmit);
@@ -129,5 +141,6 @@
         public System.Windows.Forms.Button buttonSubmit;
         public System.Windows.Forms.Label labelNameText;
         public System.Windows.Forms.ComboBox comboBoxAccountType;
+        public System.Windows.Forms.Button buttonCancel;
     }
 }

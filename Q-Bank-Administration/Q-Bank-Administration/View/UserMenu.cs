@@ -37,5 +37,10 @@ namespace Q_Bank_Administration.View
             ca.ShowDialog();
             this.Close();
         }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

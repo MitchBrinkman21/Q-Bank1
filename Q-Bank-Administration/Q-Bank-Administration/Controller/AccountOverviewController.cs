@@ -26,8 +26,14 @@ namespace Q_Bank_Administration.Controller
             this.accountOverview = new AccountOverview(id);
             accountOverview.TransactionOverviewAccountsCombobox.SelectedIndexChanged += TransactionOverviewAccountComboboxChanged;
             accountOverview.TransactionOverviewSearchButton.MouseDown += TransactionOverviewSearchButtonMouseDown;
+            accountOverview.buttonCancel.Click += TransactionOverviewShutdownButtonClick;
             AccComboBoxGen acbg = new AccComboBoxGen(accountOverview, accountOverview.TransactionOverviewAccountsCombobox);
             accountOverview.ShowDialog();
+        }
+
+        private void TransactionOverviewShutdownButtonClick(object sender, System.EventArgs e)
+        {
+            accountOverview.Close();
         }
 
         /// <summary>

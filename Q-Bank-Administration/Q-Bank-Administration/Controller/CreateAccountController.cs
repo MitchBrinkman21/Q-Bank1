@@ -40,6 +40,12 @@ namespace Q_Bank_Administration.Controller
             }
 
             createAccount.buttonSubmit.Click += processCreateAccount;
+            createAccount.buttonCancel.Click += buttonCancel;
+        }
+
+        private void buttonCancel(object sender, EventArgs e)
+        {
+            createAccount.Close();
         }
 
         public void processCreateAccount(object sender, EventArgs e)

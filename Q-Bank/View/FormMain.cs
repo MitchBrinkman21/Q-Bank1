@@ -54,5 +54,10 @@ namespace Q_Bank
             }
         }
 
+        private void rekeningBeëindigenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TerminateAccountRequestController tac = new TerminateAccountRequestController(this);
+        }
+
     }
 }

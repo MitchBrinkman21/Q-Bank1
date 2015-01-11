@@ -85,6 +85,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.inboxLabelToInbox = new System.Windows.Forms.LinkLabel();
             this.inboxTable = new System.Windows.Forms.TableLayoutPanel();
             this.inboxLabelUnread = new System.Windows.Forms.LinkLabel();
             this.inboxLabelRead = new System.Windows.Forms.LinkLabel();
@@ -92,7 +93,7 @@
             this.inboxLabelInbox = new System.Windows.Forms.LinkLabel();
             this.inboxLabelDelete = new System.Windows.Forms.LinkLabel();
             this.label16 = new System.Windows.Forms.Label();
-            this.inboxLabelToInbox = new System.Windows.Forms.LinkLabel();
+            this.rekeningBeëindigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.TransactionStatusTableLayout.SuspendLayout();
@@ -129,6 +130,8 @@
             // 
             // optiesToolStripMenuItem
             // 
+            this.optiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rekeningBeëindigenToolStripMenuItem});
             this.optiesToolStripMenuItem.Name = "optiesToolStripMenuItem";
             this.optiesToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.optiesToolStripMenuItem.Text = "Opties";
@@ -772,6 +775,16 @@
             this.tabPage5.Text = "Inbox";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // inboxLabelToInbox
+            // 
+            this.inboxLabelToInbox.AutoSize = true;
+            this.inboxLabelToInbox.Location = new System.Drawing.Point(200, 45);
+            this.inboxLabelToInbox.Name = "inboxLabelToInbox";
+            this.inboxLabelToInbox.Size = new System.Drawing.Size(103, 13);
+            this.inboxLabelToInbox.TabIndex = 17;
+            this.inboxLabelToInbox.TabStop = true;
+            this.inboxLabelToInbox.Text = "Verplaats naar inbox";
+            // 
             // inboxTable
             // 
             this.inboxTable.ColumnCount = 4;
@@ -847,15 +860,12 @@
             this.label16.TabIndex = 10;
             this.label16.Text = "Inbox";
             // 
-            // inboxLabelToInbox
+            // rekeningBeëindigenToolStripMenuItem
             // 
-            this.inboxLabelToInbox.AutoSize = true;
-            this.inboxLabelToInbox.Location = new System.Drawing.Point(200, 45);
-            this.inboxLabelToInbox.Name = "inboxLabelToInbox";
-            this.inboxLabelToInbox.Size = new System.Drawing.Size(103, 13);
-            this.inboxLabelToInbox.TabIndex = 17;
-            this.inboxLabelToInbox.TabStop = true;
-            this.inboxLabelToInbox.Text = "Verplaats naar inbox";
+            this.rekeningBeëindigenToolStripMenuItem.Name = "rekeningBeëindigenToolStripMenuItem";
+            this.rekeningBeëindigenToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.rekeningBeëindigenToolStripMenuItem.Text = "Rekening beëindigen";
+            this.rekeningBeëindigenToolStripMenuItem.Click += new System.EventHandler(this.rekeningBeëindigenToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -966,6 +976,7 @@
         public System.Windows.Forms.LinkLabel inboxLabelDelete;
         private System.Windows.Forms.Label label16;
         public System.Windows.Forms.LinkLabel inboxLabelToInbox;
+        private System.Windows.Forms.ToolStripMenuItem rekeningBeëindigenToolStripMenuItem;
     }
 }
 

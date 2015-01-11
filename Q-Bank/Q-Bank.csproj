@@ -69,6 +69,7 @@
     <Compile Include="Controller\MailingListController.cs" />
     <Compile Include="Controller\MessageDetailsController.cs" />
     <Compile Include="Controller\PasswordEncryption.cs" />
+    <Compile Include="Controller\TerminateAccountRequestController.cs" />
     <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Controller\TransactionSearchController.cs" />
     <Compile Include="Controller\TransactionOverviewController.cs" />
@@ -173,6 +174,12 @@
       <DependentUpon>MessageDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="View\TabMailingList.cs" />
+    <Compile Include="View\TerminateAccountRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TerminateAccountRequest.Designer.cs">
+      <DependentUpon>TerminateAccountRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\TransactionDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +212,9 @@
     </Compile>
     <EmbeddedResource Include="View\MessageDetails.resx">
       <DependentUpon>MessageDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TerminateAccountRequest.resx">
+      <DependentUpon>TerminateAccountRequest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\TransactionDetails.resx">
       <DependentUpon>TransactionDetails.cs</DependentUpon>

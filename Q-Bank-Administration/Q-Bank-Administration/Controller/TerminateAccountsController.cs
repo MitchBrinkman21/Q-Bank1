@@ -208,7 +208,7 @@ namespace Q_Bank_Administration.Controller
 
             Label defaultLabel2 = new Label();
             defaultLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-            defaultLabel2.Text = "Klantnummer";
+            defaultLabel2.Text = "Naam";
             defaultLabel2.Font = new Font("Arial", 9, FontStyle.Bold);
             tableLayout.Controls.Add(defaultLabel2, 1, 0);
 
@@ -225,14 +225,14 @@ namespace Q_Bank_Administration.Controller
             {
                 var beeindigen = from a in con.accounts
                                  where a.deleteRequest == true
-                                 select new { a.accountNumber, a.customerId, a.accountId };
+                                 select a;
 
                 if (beeindigen.Count() > 0)
                 {
                     int i = 1;
                     foreach (var a in beeindigen)
                     {
-                        addItems(a.accountNumber, a.customerId, a.accountId, i);
+                        addItems(a, i);
                         i++;
                     }
                 }
@@ -254,20 +254,20 @@ namespace Q_Bank_Administration.Controller
 
         }
 
-        private void addItems(string a, int b, int c, int position)
+        private void addItems(account a, int position)
         {
             Label defaultLabel = new Label();
             defaultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-            defaultLabel.Text = a;
+            defaultLabel.Text = a.iban;
             tableLayout.Controls.Add(defaultLabel, 0, position);
 
             Label defaultLabel2 = new Label();
             defaultLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
-            defaultLabel2.Text = b.ToString();
+            defaultLabel2.Text = a.customer.firstName + " " + a.customer.lastName;
             tableLayout.Controls.Add(defaultLabel2, 1, position);
 
             CheckBox checkBox1 = new CheckBox();
-            checkBox1.Tag = c;
+            checkBox1.Tag = a.accountId;
             checkBoxes.Add(checkBox1);
             tableLayout.Controls.Add(checkBox1, 2, position);
 

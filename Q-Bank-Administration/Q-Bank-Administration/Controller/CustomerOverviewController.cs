@@ -395,7 +395,7 @@ namespace Q_Bank_Administration.Controller
             defaultLabel.Font = new Font("Arial", 9, FontStyle.Bold);
             tableLayout.Controls.Add(defaultLabel, 6, 0);
         }
-
+        //fult de table met inhoud uit de database eng ebruikt daarvoor addusersintable
         private void FillTable(int tabID)
         {
             using (var con = new Q_BANKEntities())
